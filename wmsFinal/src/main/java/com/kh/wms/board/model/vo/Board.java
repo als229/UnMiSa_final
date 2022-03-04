@@ -18,7 +18,6 @@ public class Board {
 	private String gu;
 	private String dong;
 	
-	// im king ~
 	public Board() {
 		super();
 		// TODO Auto-generated constructor stub
