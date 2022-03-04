@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<h1>멍멍멍</h1>
+	<h1>야옹~</h1>
 
 </body>
 </html>
