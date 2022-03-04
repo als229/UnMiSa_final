@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<h1>king kwan min</h1>
+	<h1>seol</h1>
 
 </body>
 </html>
