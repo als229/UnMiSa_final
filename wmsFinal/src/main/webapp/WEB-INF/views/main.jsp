@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<h1>야옹~</h1>
+	<h1>BOXER</h1>
 
 </body>
 </html>
