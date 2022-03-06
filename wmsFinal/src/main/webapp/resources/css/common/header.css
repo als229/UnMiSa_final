@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+div {
+	box-sizing: border-box;
+}
+
+#header {
+	width: 1200px;
+	height: 200px;
+	padding-top: 20px;
+	margin: auto;
+	overflow: outo;
+}
+
+#header>div {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+#header_div {
+	height: 80%;
+}
+
+#header_div {
+	height: 60%;
+}
+
+#header_div>div {
+	height: 100%;
+	float: left;
+}
+
+#header_div_first {
+	width: 30%;
+	position: relative;
+}
+
+#header_div_center {
+	width: 40%;
+}
+
+#header_div_second {
+	width: 30%;
+}
+
+#header_div_first>img {
+	height: 100%;
+	position: absolute;
+	margin: auto;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+}
+
+#header_div_second {
+	text-align: center;
+	line-height: 35px;
+	font-size: 12px;
+	text-indent: 35px;
+}
+
+#header_div_second>a {
+	margin: 5px;
+}
+
+#header_div_second>a:hover {
+	cursor: pointer;
+}
+
+#header_div_first>img {
+	height: 100%;
+	position: absolute;
+	margin: auto;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+}
+
+#header_nav>ul {
+	width: 100%;
+	height: 100%;
+	list-style-type: none;
+	margin: auto;
+	padding: 0;
+}
+
+#header_nav>ul>li {
+	float: left;
+	width: 20%;
+	height: 100%;
+	line-height: 55px;
+	text-align: center;
+}
+
+#header_nav>ul>li a {
+	text-decoration: none;
+	color: black;
+	font-size: 18px;
+	font-weight: 900;
+}
+
+#header_nav>ul>li a:hover {
+	background-color: rgb(229, 242, 248);
+}
+
+#header_nav {
+	border-top: 1px solid lightgray;
+}
+
+#header a {
+	text-decoration: none;
+	color: black;
+	font-family: 'gmarket_font_medium';
+}
+.wrap{
+		width: 1200px;
+		padding-top: 20px;
+		margin: auto;
+	}
+@font-face {
+	font-family: 'gmarket_font_light';
+	font-style: normal;
+	font-weight: 800;
+	src: url('../../../resources/font/GmarketSansTTFLight.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'gmarket_font_bold';
+	font-style: normal;
+	font-weight: 800;
+	src: url('../../../resources/font/GmarketSansTTFBold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'gmarket_font_medium';
+	font-style: normal;
+	font-weight: 800;
+	src: url('../../../resources/font/GmarketSansTTFMedium.ttf') format('truetype');
+}

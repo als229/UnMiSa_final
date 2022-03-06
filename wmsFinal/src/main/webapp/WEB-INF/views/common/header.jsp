@@ -23,6 +23,9 @@
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 	<!-- Semantic UI theme -->
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+	
+	<!-- header css -->
+	<link rel="stylesheet" href="resources/css/common/header.css"/>
 </head>
 <body>
 
@@ -32,8 +35,70 @@
 		</script>
 		<c:remove var="alertMsg" scope="session" />
 	</c:if>
+	<div id="header">
+		<div id="header_div">
+			<div id="header_div_first">
+				<img src="resources/image/common/WMS2.png" alt="">
+			</div>
+			<div id="header_div_center">
+			
+			</div>
+			<div id="header_div_second">
+				<c:choose>
+           			<c:when test="${ loginUser == null }" >
+		                <!-- 로그인 전 -->
+		                <a href="">회원가입</a>
+		                <a data-toggle="modal" data-target="#loginModal">로그인</a> <!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
+           			</c:when>
+                
+                	<c:otherwise>
+		                <!-- 로그인 후 -->
+						<lable>홍길동님 환영합니다</label> &nbsp;&nbsp;
+						<a href=""><img src="">내 채팅</a>
+						<a href="">로그아웃</a>
+                	</c:otherwise>
+           		</c:choose> 
+			</div>
+		</div>
+		<div id="header_nav">
+			<ul>
+                <li><a href="">우리동네 운미사</a></li>
+                <li><a href="">우리동네 커뮤니티</a></li>
+                <li><a href="">우리동네 이벤트</a></li>
+                <li><a href="">마크 상점</a></li>
+                <li><a href="">고객센터</a></li>
+            </ul>
+		</div>
+	</div>
 	
-
+	<!-- 로그인 클릭 시 뜨는 모달  -->
+    <div class="modal fade" id="loginModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Login</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+        
+                <form action="login.me" method="post">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <label for="userId" class="mr-sm-2">ID : </label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter ID" id="memberId" name="memberId"> <br>
+                        <label for="userPwd" class="mr-sm-2">Password : </label>
+                        <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="memberPwd" name="memberPwd">
+                    </div>
+                           
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">로그인</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
