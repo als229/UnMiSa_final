@@ -38,10 +38,12 @@
 	<div id="header">
 		<div id="header_div">
 			<div id="header_div_first">
-				<img src="resources/image/common/WMS2.png" alt="">
+                    <img src="resources/image/common/WMS2.png" alt="">
 			</div>
 			<div id="header_div_center">
-			
+                <div id="header_div_inCenter" style="margin-top: 20px; margin-left: 100px;" >
+                    <span style="font-size: 50px;">운</span><span style="font-size: 20px;">동에</span><span style="font-size: 50px;">&nbsp;&nbsp;미</span> <span style="font-size: 20px;">친</span><span style="font-size: 50px;">&nbsp;&nbsp;사</span><span style="font-size: 20px;">람들</span>
+                </div>
 			</div>
 			<div id="header_div_second">
 				<c:choose>
@@ -103,6 +105,8 @@
             </div>
         </div>
     </div>
+
+
 
 </body>
 </html>
