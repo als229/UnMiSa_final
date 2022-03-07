@@ -26,4 +26,14 @@ public class MemberController {
 		
 		
 	}
+	
+	@RequestMapping(value="myPage.me")
+	public ModelAndView selectMyPage(ModelAndView mv) {
+		
+		mv.setViewName("member/myPage");
+		
+		return mv;
+	}
+	
+	
 }
