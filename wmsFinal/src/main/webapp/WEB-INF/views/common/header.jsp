@@ -49,6 +49,8 @@
 		                <!-- 로그인 전 -->
 		                <a href="enroll.me">회원가입</a>
 		                <a data-toggle="modal" data-target="#loginModal">로그인</a> <!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
+						<a href="myPage.me">마이페이지</a>
+						<a href="">운동파트너</a>
            			</c:when>
                 
                 	<c:otherwise>
@@ -56,6 +58,8 @@
 						<lable>홍길동님 환영합니다</label> &nbsp;&nbsp;
 						<a href=""><img src="">내 채팅</a>
 						<a href="">로그아웃</a>
+						<a href="myPage.me">마이페이지</a>
+						<a href="">운동파트너</a>
                 	</c:otherwise>
            		</c:choose> 
 			</div>
@@ -65,7 +69,7 @@
                 <li><a href="">우리동네 운미사</a></li>
                 <li><a href="">우리동네 커뮤니티</a></li>
                 <li><a href="">우리동네 이벤트</a></li>
-                <li><a href="">마크 상점</a></li>
+                <li><a href="markMarket.pm">마크 상점</a></li>
                 <li><a href="">고객센터</a></li>
             </ul>
 		</div>
