@@ -7,81 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>마이페이지 메인</title>
-    <style>
-        div {
-            box-sizing: border-box;
-            margin: auto;
-
-        }
-
-        div {
-            font-family: 'gmarket_font_medium';
-        }
-
-        .myPage-outer {
-            width: 1200px;
-            height: 500px;
-        }
-
-        .myPage-outer div {
-            float: left;
-        }
-
-        .side-bar {
-            width: 25%;
-            height: 100%;
-            border-right: 1px solid  rgb(229,242,248);
-        }
-
-        .myTeam {
-            width: 20%;
-            height: 100%;
-            margin-left: 20px;
-        }
-
-        .myMark {
-            width: 25%;
-            height: 100%;
-        }
-
-        .partner {
-            width: 25%;
-            height: 100%;
-        }
-
-        .side-bar a {
-            text-decoration-line: none;
-            color: black;
-            line-height: 50px;
-            margin-left: 10px;
-
-        }
-
-        .side-bar a:hover {
-            text-decoration-line: none;
-            color: rgb(135, 206, 235);
-        }
-
-        .big-menu {
-            font-size: 30px;
-        }
-
-        .myPage-outer table {
-            margin: auto;
-            text-align: center;
-            border-spacing : 10px;
-            border-collapse: separate;
-        }
-        .myPage-outer thead{
-            background-color: rgb(229,242,248);
-        }
-        .myPage-outer td:hover {
-            cursor: pointer;
-            background-color: rgb(229,242,248);
-        }
-
-        
-    </style>
+	<link rel="stylesheet" href="resources/css/member/myPage.css"/>
 </head>
 
 <body>
@@ -93,7 +19,6 @@
             <a href="">개인 정보 수정</a> <br>
             <a href="">내가 가입한 팀 관리</a> <br>
             <a href="">내가 만든 팀</a> <br>
-            <a href="">운미사 운동파트너</a> <br>
             <a href="">내 결제내역</a> <br>
             <a href="">내 체육관 예약관리</a> <br>
         </div>
@@ -121,6 +46,11 @@
                     <tr>
                         <td>
                             멍멍
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            킹호 라이언즈
                         </td>
                     </tr>
                     <tr>
@@ -162,6 +92,11 @@
                             킹호 라이언즈
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            킹호 라이언즈
+                        </td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -190,6 +125,11 @@
                     <tr>
                         <td>
                             멍멍
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            킹호 라이언즈
                         </td>
                     </tr>
                     <tr>
