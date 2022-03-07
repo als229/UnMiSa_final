@@ -12,7 +12,6 @@
 <title>메인</title>
 <style>
     div{
-        border: 1px red solid;
     }
     
     .wrap{

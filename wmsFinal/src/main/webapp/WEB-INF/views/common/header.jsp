@@ -26,6 +26,7 @@
 	
 	<!-- header css -->
 	<link rel="stylesheet" href="resources/css/common/header.css"/>
+	<script src="resources/js/common/header.js"></script>
 </head>
 <body>
 
@@ -38,7 +39,7 @@
 	<div id="header">
 		<div id="header_div">
 			<div id="header_div_first">
-                    <img src="resources/image/common/WMS2.png" alt="">
+                    <img src="resources/image/common/WMS2.png" alt="" id="rogo">
 			</div>
 			<div id="header_div_center">
                 <div id="header_div_inCenter" style="margin-top: 20px; margin-left: 100px;" >
