@@ -47,7 +47,7 @@
 				<c:choose>
            			<c:when test="${ loginUser == null }" >
 		                <!-- 로그인 전 -->
-		                <a href="">회원가입</a>
+		                <a href="enroll.me">회원가입</a>
 		                <a data-toggle="modal" data-target="#loginModal">로그인</a> <!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
            			</c:when>
                 
