@@ -102,6 +102,9 @@
        		font-family: 'gmarket_font_medium';
        		
        }
+        #noticeTable>tbody>tr{
+        	cursor: pointer;
+        }
        #notice_enrollBtnDiv{
        margin-top: 50px;
        	text-align : right;

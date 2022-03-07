@@ -31,6 +31,7 @@
                 </div>
             </div>
             <div id="content_2">
+             <form id="content_2_searchForm" action="" method="get" align="center">
                 <div class="content2_searchDiv">
                     <select name="notice_search" id="notice_search">
                         <option value="while">전체</option>
@@ -40,8 +41,10 @@
                     <input type="text" placeholder="검색어를 입력하세요" id="notice_searchBar">
                     <button class="notice_searchBtn btn btn-secondary">검색</button>
                 </div>
+             </form>
             </div>
             <div id="content_3">
+            <!-- location.href = "detail.no?boardNo="+ $(this).children(".bno").text(); 기능구현할때 쓸것 >< -->
             	<table class="table" id = "noticeTable">
             		<thead>
             			<tr>

@@ -1,0 +1,82 @@
+@charset "UTF-8";
+#content_0{
+height:100px;
+width:1200px;
+margin-top:100px;
+font-family: 'gmarket_font_medium';
+text-align:center;
+}
+#content_1{
+height: 135px;
+width: 1200px;
+border-top:2px solid rgb(212, 211, 211);
+border-bottom:2px solid rgb(212, 211, 211);
+}
+#content_1>div{
+float:left;
+font-family: 'gmarket_font_medium';
+}
+#content_2{
+width: 1200px;
+height: 70px;
+padding-top:22px;
+padding-left:20px;
+font-family: 'gmarket_font_medium';
+font-size:19px;
+border-bottom:2px solid rgb(212, 211, 211);
+}
+#content_3{
+width: 1200px;
+padding-top:40px;
+padding-left:20px;
+padding-bottom:50px;
+font-family: 'gmarket_font_medium';
+font-size:22px;
+border-bottom:2px solid rgb(212, 211, 211);
+}
+#content_4{
+width: 1200px;
+height: 150px;
+}
+div{
+/*border: 1px solid red;*/
+box-sizing : border-box;
+}
+#content_1_NoTitle{
+width:1190px;
+height:100px;
+padding-top:30px;
+padding-left:20px;
+}
+#content_1_NoWriter{
+width:230px;
+height:25px;
+margin-left:20px;
+}
+#content_1_createDate{
+	width:230px;
+	height:25px;
+}
+#content_1_count{
+	width:230px;
+	height:25px;
+}
+
+#content_4>button{
+	width:180px;
+	height:60px;
+	font-family: 'gmarket_font_medium';
+	font-size:17px;
+	margin-top:50px;
+}
+.noticeList_Btn{
+	margin-left:500px;
+}
+.noticeUpdate_Btn{
+	margin-left:100px;
+	text-align:right;
+	margin-right:10px;
+}
+.noticeDelete_Btn{
+	text-align:right;
+}
