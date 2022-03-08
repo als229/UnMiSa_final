@@ -34,4 +34,11 @@ public class NoticeController {
 		
 		return mv;
 	}
+	@RequestMapping(value="noticeFAQ.no")
+	public ModelAndView noticeFAQ(ModelAndView mv) {
+		
+		mv.setViewName("notice/noticeFAQ");
+		
+		return mv;
+	}
 }
