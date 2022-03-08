@@ -8,14 +8,18 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-
+<link rel="stylesheet" href="resources/css/common/header.css"/>
     <meta charset="UTF-8">
     <title>스포츠 파트너</title>
     <style>
         
+
+			
+		
         div{
          /*  border :  1px solid;  */
            box-sizing : border-box;
+           font-family: 'gmarket_font_medium';	
         }
     
         /* 요기부터 에이 */
@@ -128,6 +132,12 @@
             margin-right: 14px;
             cursor: pointer;
         }
+        #diaryListPlus:hover{
+  			background-color: rgb(229,242,248);
+            height : 8px;
+        }
+        
+        
         #ib1{
             width: 54px;
             height: 30px;
@@ -317,6 +327,11 @@
             line-height: 40px;
             border-radius:3%;
         }
+        #purposeDetail:hover{
+        	cursor: pointer;
+            background-color: rgb(176,176,176);
+        }
+        
         #ago4{
             font-size: 12px;
             float: left;
@@ -410,7 +425,7 @@
             position: absolute;
             bottom: 0px;
             margin-left: 48px;
-            margin-bottom: 54px;
+            margin-bottom: 25px;
         }
         .sports2{
             background-color: rgb(176,176,176);
@@ -423,7 +438,7 @@
             position: absolute;
             bottom: 0px;
             margin-left: 48px;
-            margin-bottom: 74px;
+            margin-bottom: 45px;
         }
         .sports3{
             background-color: rgb(176,176,176);
@@ -435,7 +450,7 @@
             position: absolute;
             bottom: 0px;
             margin-left: 48px;
-            margin-bottom: 94px;
+            margin-bottom: 65px;
            
         }
         #ago4day{
@@ -448,7 +463,7 @@
             position: absolute;
             bottom: 0px;
             margin-left: 48px;
-            margin-bottom: 34px;
+            margin-bottom: 5px;
         }
         #ago3day{
             background-color: rgb(176,176,176);
@@ -460,7 +475,7 @@
             position: absolute;
             bottom: 0px;
             margin-left: 48px;
-            margin-bottom: 34px;
+            margin-bottom: 5px;
         }
         #ago2day{
             background-color: rgb(229,242,248);
@@ -472,7 +487,7 @@
             position: absolute;
             bottom: 0px;
             margin-left: 48px;
-            margin-bottom: 34px;
+            margin-bottom: 5px;
         }
         #ago1day{
             background-color: rgb(229,242,248);
@@ -484,7 +499,7 @@
             position: absolute;
             bottom: 0px;
             margin-left: 48px;
-            margin-bottom: 34px;
+            margin-bottom: 5px;
         }
         #ago0day{
             background-color: rgb(229,242,248);
@@ -496,9 +511,13 @@
             position: absolute;
             bottom: 0px;
             margin-left: 48px;
-            margin-bottom: 34px;
+            margin-bottom: 5px;
         }
-
+        
+		#diaryWrite:hover {
+            cursor: pointer;
+            background-color: rgb(135, 206, 235);
+        }
 
         </style>
 </head>

@@ -12,6 +12,13 @@ pageEncoding="UTF-8" %>
 <title>목표페이지</title>
 <style>
 
+		
+		 div{
+         /*  border :  1px solid;  */
+           box-sizing : border-box;
+           font-family: 'gmarket_font_medium';	
+        }
+
         #spcontent{
             height : 800px;
             width: 1200px;
@@ -33,6 +40,7 @@ pageEncoding="UTF-8" %>
             height : 500px;
             margin-left : 140px;
             margin-top : 60px;
+            position : relative;
         }
         #pp_header{
         	margin : auto;
@@ -44,28 +52,288 @@ pageEncoding="UTF-8" %>
         	height : 38px;
         	border-radius: 2%;
         }
-        #before{
-        	margin-right : 300px;
+        #beforePic{
+        	position : absolute;
+        	z-index : 1;
+        	margin-top : 180px;
+        	margin-left : 60px;
         }
+        
+        #afterPic{
+        	position : absolute;
+        	z-index : 1;
+        	margin-top : 180px;
+        	margin-left : 806px;
+        }
+        #before{
+        	float : left;
+        	margin-left : 100px;
+        	margin-top : 20px;
+        	width : 245px;
+        	height : 320px;
+        	background-color : rgb(176,176,176);
+        	
+        }
+        #arrow{
+            position : absolute;
+        	display : inline-block;
+        	margin-left : 10px;
+        	width : 20px;
+        	height : 20px; 
+        	margin-top : 165px;
+        }
+        #after{
+    	    display : inline-block;
+        	margin-left : 40px;
+        	margin-top : 20px;
+        	width : 245px;
+        	height : 320px;
+        	background-color: rgb(229,242,248);
+        }
+        #pp_back{
+    		float : left;
+        	width : 120px;
+        	height : 40px;
+        	background-color : rgb(176,176,176);
+        	margin-left : 160px;
+        	margin-top : 20px;
+        	text-align : center;
+        	line-height : 42px;
+        	color : white;
+        }
+        #pp_commit{
+        
+        	display : inline-block;
+        	width : 120px;
+        	height : 40px;
+        	background-color: rgb(229,242,248);
+        	margin-top : 20px;
+    		margin-left : 167px;
+        	text-align : center;
+        	line-height : 42px;
+        
+        }
+        .kg{
+      		float : left;
+        	background-color:white;
+        	width : 80px;
+        	height : 25px;
+        	margin-left : 14px;
+        	margin-top : 22px;
+        	text-align : center;
+ 
+        }
+        
+        
+		.cgy{
+      		float : left;
+        	background-color:white;
+        	width : 80px;
+        	height : 25px;
+        	margin-left : 14px;
+        	margin-top : 12px;
+        	text-align : center;
+ 
+        }
+        
+        
+        .eq{
+        	display : inline-block;
+        	background-color:white;
+        	margin-left : 14px;
+        	margin-top : 22px;
+        	width : 30px;
+        	height : 25px;
+        	text-align : center;
+        	
+        }
+        .eq2{
+        	display : inline-block;
+        	background-color:white;
+        	margin-left : 14px;
+        	margin-top : 12px;
+        	width : 30px;
+        	height : 25px;
+        	text-align : center;
+        	
+        }      
+        
+        
+        
+        
+        
+        .ipkg{
+			
+			display : inline-block;
+            background-color:white;
+        	margin-left : 10px;
+        	margin-top : 22px;
+        	width : 80px;
+        	height : 25px;
+        	text-align : center;
+        	
+        }
+        
+        .ipkg2{
+			display : inline-block;
+            background-color:white;
+        	margin-left : 10px;
+        	margin-top : 12px;
+        	width : 80px;
+        	height : 25px;
+        	text-align : center;
+        }        
+        
+        
+        
+        .input{
+        	width : 75px;
+        	height : 18px;
+        	border : none;
+        }
+        
+        .sportsBorder{
+        	width : 218px;
+        	height : 160px;
+        	margin-left : 14px;
+        	margin-top : 16px;
+        	background-color:white;
+        }
+        .sports1{
+        	float : left;
+        	margin-top : 14px;
+        	margin-left : 55px;
+       		width : 105px;
+       		height : 35px;
+       		background-color : rgb(176,176,176);
+        }
+       	.sports2{
+       		display : inline-block;
+      	 	margin-left : 55px;
+      	 	margin-top : 14px;
+       		width : 105px;
+       		height : 35px;
+       		background-color : rgb(176,176,176);
+       	} 
+        .sports3{
+    	    display : inline-block;
+        	margin-left : 55px;
+        	margin-top : 14px;
+        	width : 105px;
+       		height : 35px;
+       		background-color : rgb(176,176,176);
+        }
+        .sp_input{
+        	margin-left : 7px;
+        	margin-top : 5px;
+        	width : 90px;
+        	height : 24px;
+        	border : none;
+        }
+        
 </style>
 </head>
 <body>
 <div id="spcontent">
-		<h1 style="text-align: center; margin-top: 0px; color: gray;">
-            SPORTS PARTNER</h1>
+		<h1 style="text-align: center; margin-top: 0px; color: gray;">목표 설정</h1>
 		<div id="spmain">
-		
-		<div id="before">
-         			<img src="resources/image/sportsPartner/before.png" width="160px" height="240px">
-         		</div>
-         	<div id="purposeBorder">
-         		<div id="pp_header">
-         			'나'를 바꾸는 것은 '나' 자신 뿐이다.
-         		</div>
-         		
-         		
-         		
-        	</div>
+			<div id="beforePic">
+	         	<img src="resources/image/sportsPartner/before.png" width="160px" height="240px">
+	        </div>
+	        
+	        
+	        <form action="test">
+		        <div id="purposeBorder">
+		         	<div id="pp_header">'나'를 바꾸는 것은 '나' 자신 뿐이다.</div> 		
+		        
+		        	<div id="before">
+		        		<div class="kg">몸무게</div>
+		        		<div class="eq">:</div>
+		        		<div class="ipkg">
+							<input type="text" class="input" placeholder="     (kg)"></input>		        		
+		        		</div>
+		        		
+		        		<div class="cgy">체지방률</div>
+		        		<div class="eq2">:</div>
+		        		<div class="ipkg2">
+							<input type="text" class="input" placeholder="     (%)"></input>		        		
+		        		</div>
+		        		
+						<div class="cgy">근육량</div>
+		        		<div class="eq2">:</div>
+		        		<div class="ipkg2">
+							<input type="text" class="input" placeholder="    (kg)"></input>		        		
+		        		</div>
+		        		
+		        		<div class="sportsBorder">
+		        			<div class="sports1">
+		        				<input type="text" class="sp_input" placeholder="진행할운동1"></input>	
+		        			</div>
+		        			<div class="sports2">
+		        				<input type="text" class="sp_input" placeholder="진행할운동2"></input>	
+		        			</div>
+		        			<div class="sports3">
+		        				<input type="text" class="sp_input" placeholder="진행할운동3"></input>	
+		        			</div>
+		        		</div>
+		        	</div>
+		        	
+		        	
+		        	
+		        	
+		        	
+		        	
+		        	
+		        	
+		        	<div id="arrow">>></div>
+		        	
+		        	<div id="after">
+		        		<div class="kg">몸무게</div>
+		        		<div class="eq">:</div>
+		        		<div class="ipkg">
+							<input type="text" class="input" placeholder="    (kg)"></input>		        		
+		        		</div>
+		        		
+		        		<div class="cgy">체지방률</div>
+		        		<div class="eq2">:</div>
+		        		<div class="ipkg2">
+							<input type="text" class="input" placeholder="     (%)"></input>		        		
+		        		</div>
+		        		
+		        		<!-- 숫자만 입력하게 키보드 제한 설정하기 + before 진행할운동 1에 쓰면 after 1에도 써지게 하기 -->
+		        		
+						<div class="cgy">근육량</div>
+		        		<div class="eq2">:</div>
+		        		<div class="ipkg2">
+							<input type="text" class="input" placeholder="    (kg)"></input>		        		
+		        		</div>
+		        		
+		        		<div class="sportsBorder">
+		        			<div class="sports1">
+		        				<input type="text" class="sp_input" placeholder="진행할운동1"></input>	
+		        			</div>
+		        			<div class="sports2">
+		        				<input type="text" class="sp_input" placeholder="진행할운동2"></input>	
+		        			</div>
+		        			<div class="sports3">
+		        				<input type="text" class="sp_input" placeholder="진행할운동3"></input>	
+		        			</div>
+		        		</div>
+		        	</div>
+		        
+		        	<div id="pp_back" onclick="console.log('3')">다음에 하기</div>
+		        	<button type="submit" id="pp_commit">목표 설정 완료</button>
+		        
+		        
+		        </div>
+	        </form>
+	        
+	        
+	        
+	        
+	        <div id="afterPic">
+	         	<img src="resources/image/sportsPartner/after.png" width="160px" height="240px">
+	        </div>
         </div>
 </div>
 </body>
