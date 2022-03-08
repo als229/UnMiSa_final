@@ -1,1 +1,74 @@
 @charset "UTF-8";
+
+div {
+    box-sizing: border-box;
+    margin: auto;
+
+}
+
+div {
+    font-family: 'gmarket_font_medium';
+}
+
+.myPage-outer {
+    margin-top: 50px;
+    width: 1200px;
+    height: 450px;
+}
+
+.myPage-outer div {
+    float: left;
+}
+
+.side-bar {
+    width: 20%;
+    height: 100%;
+    border-right: 1px solid  lightgray;
+}
+
+.myTeam {
+    width: 20%;
+    height: 100%;
+    margin-left: 70px;
+}
+
+.myMark {
+    width: 25%;
+    height: 100%;
+}
+
+.partner {
+    width: 25%;
+    height: 100%;
+}
+
+.side-bar a {
+    text-decoration-line: none;
+    color: black;
+    line-height: 50px;
+    margin-left: 10px;
+
+}
+
+.side-bar a:hover {
+    text-decoration-line: none;
+    color: rgb(135, 206, 235);
+}
+
+.big-menu {
+    font-size: 30px;
+}
+
+.myPage-outer table {
+    margin: auto;
+    text-align: center;
+    border-spacing : 10px;
+    border-collapse: separate;
+}
+.myPage-outer thead{
+    background-color: rgb(229,242,248);
+}
+.myPage-outer td:hover {
+    cursor: pointer;
+    background-color: rgb(229,242,248);
+}

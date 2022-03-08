@@ -1,0 +1,119 @@
+@charset "UTF-8";
+		#content_1{
+            height: 450px;
+            width: 1200px;
+            background-color: white;
+        }
+        #content_2{
+            width: 1200px;
+            height: 100px;
+            background-color: white;
+        }
+        #content_3{
+            
+            width: 1200px;
+            height: 800px;
+            background-color: white;
+        }
+        #content_4{
+            width: 1200px;
+            height: 80px;
+            background-color: white;
+            text-align: center;
+        }
+        div{
+            /*border: 1px solid red;*/
+            box-sizing : border-box;
+            
+        }
+        #content_0{
+            width: 1200px;
+            height: 200px;
+            background-color: white;
+            
+        }
+        .content_1_select{
+            margin-left: 1px;
+            
+        }
+        .content_1_select>div{
+            text-align: center;
+            float: left;
+            background-color: rgb(212, 211, 211);
+            width: 398px;
+            height: 80px;
+            font-size: 30px;
+            padding-top: 20px;
+            font-family: 'gmarket_font_medium';
+            border : 1px solid rgb(212, 211, 211);
+           
+        }
+         .content_1_select>div>a{
+            text-decoration: none;
+            color: black;
+         
+         }
+        .noticeList_title{
+            padding-top: 200px;
+            padding-bottom: 40px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 60px;
+            border-bottom: 3px solid rgb(212, 211, 211);
+             font-family: 'gmarket_font_medium';
+        }
+        .content2_searchDiv{
+            text-align: right;
+           
+            font-family: 'gmarket_font_medium';
+            
+        }
+        #notice_search{
+            width: 150px;
+            height: 50px;
+            text-align: center;
+            font-size: 20px;
+            font-family: 'gmarket_font_medium';
+        }
+        #notice_searchBar{
+            width: 400px;
+            height: 50px;
+            font-size: 20px;
+            font-family: 'gmarket_font_medium';
+        }
+        .notice_searchBtn{
+            width: 150px;
+            height: 50px;
+            text-align: center;
+            font-size: 25px;
+            margin-top: -4px;
+            font-family: 'gmarket_font_medium';
+        }
+       #noticeTable{
+       		margin-top:50px;
+       		text-align : center;
+       		font-size:18px;
+       		font-family: 'gmarket_font_medium';
+       }
+       #noticeTable>thead{
+       		margin-top:50px;
+       		text-align : center;
+       		font-size:22px;
+       		font-family: 'gmarket_font_medium';
+       		
+       }
+        #noticeTable>tbody>tr{
+        	cursor: pointer;
+        }
+       #notice_enrollBtnDiv{
+       margin-top: 50px;
+       	text-align : right;
+       }
+       .notice_enrollBtn{
+            width: 180px;
+            height: 60px;
+            text-align: center;
+            font-size: 25px;
+            font-family: 'gmarket_font_medium';
+        }
+     
