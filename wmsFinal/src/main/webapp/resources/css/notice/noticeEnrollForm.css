@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+#content{
+	font-family: 'gmarket_font_medium';
+}
+#content_1{
+	height:100px;
+	width:1200px;
+	margin-top:100px;
+	text-align:center;
+}
+
+div{
+	/*border: 1px solid red;*/
+	box-sizing : border-box;
+}
+
+#content_2{
+	width:1200px;
+	height:60px;
+}
+#content_2>div{
+	float:left;
+	height:60px;
+}
+#content_2_div1{
+	width:200px;
+	padding-top:10px;
+	padding-left:60px;
+}
+#content_2_div2{
+	width:900px;
+}
+#content_2>div>input{
+	width:900px;
+	height:58px;
+
+}
+#content_3{
+	height:500px;
+	margin-top:30px;	
+}
+#content_3>div{
+	float:left;
+	height:500px;
+}
+#content_3_div1{
+	width:200px;
+	padding-top:10px;
+	padding-left:60px;
+}
+#content_3_div2{
+	width:900px;
+	height:500px;
+	
+}
+#content_4{
+	height:50px;
+	margin-top:30px;	
+}
+#content_4>div{
+	float:left;
+	height:50px;
+}
+#content_4_div1{
+	width:200px;
+	padding-top:10px;
+	
+}
+#content_4_div2{
+	width:900px;
+	height:50px;
+}
+#content_4_div2>input{
+	height:50px;
+	font-size:27px;
+}
+#content_5{
+	width:1200px;
+	height:150px;
+}
+#content_5>button{
+	margin-top:50px;
+	width:200px;
+	height:70px;
+	font-size:20px;
+}
+.Insert_Btn{
+	margin-left:400px;
+	margin-right:30px;
+}

@@ -1,9 +1,12 @@
 @charset "UTF-8";
+
+#content{
+font-family: 'gmarket_font_medium';
+}
 #content_0{
 height:100px;
 width:1200px;
 margin-top:100px;
-font-family: 'gmarket_font_medium';
 text-align:center;
 }
 #content_1{
@@ -14,14 +17,12 @@ border-bottom:2px solid rgb(212, 211, 211);
 }
 #content_1>div{
 float:left;
-font-family: 'gmarket_font_medium';
 }
 #content_2{
 width: 1200px;
 height: 70px;
 padding-top:22px;
 padding-left:20px;
-font-family: 'gmarket_font_medium';
 font-size:19px;
 border-bottom:2px solid rgb(212, 211, 211);
 }
@@ -30,7 +31,6 @@ width: 1200px;
 padding-top:40px;
 padding-left:20px;
 padding-bottom:50px;
-font-family: 'gmarket_font_medium';
 font-size:22px;
 border-bottom:2px solid rgb(212, 211, 211);
 }
@@ -65,7 +65,6 @@ margin-left:20px;
 #content_4>button{
 	width:180px;
 	height:60px;
-	font-family: 'gmarket_font_medium';
 	font-size:17px;
 	margin-top:50px;
 }

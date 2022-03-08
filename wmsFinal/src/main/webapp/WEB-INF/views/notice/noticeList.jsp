@@ -9,10 +9,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- Notice css -->
 	<link rel="stylesheet" href="resources/css/notice/noticeList.css"/>
-	<script src="resources/js/notice/noticeList.js"></script>
+	<script src="resources/js/notice/notice.js"></script>
 </head>
 <body>
-<div id="header_area">
+	<div id="header_area">
 		<jsp:include page="../common/header.jsp"/>
 	</div>
     <div class="wrap">
@@ -136,7 +136,7 @@
             		</tbody>
             	</table>
             	<div id = "notice_enrollBtnDiv"> <!-- 관리자면 보여주는 등록하기 버튼 -->
-            	 <button class="notice_enrollBtn btn btn-primary">공지사항 등록하기</button>
+            	 <button class="notice_enrollBtn btn btn-primary">공지사항 작성하기</button>
             	</div>
             </div>
             <div id="content_4"><h4>페이징 처리</h4></div>

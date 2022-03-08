@@ -27,4 +27,11 @@ public class NoticeController {
 		
 		return mv;
 	}
+	@RequestMapping(value="noticeEnrollForm.no")
+	public ModelAndView noticeInsert(ModelAndView mv) {
+		
+		mv.setViewName("notice/noticeEnrollForm");
+		
+		return mv;
+	}
 }

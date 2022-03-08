@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- NoticeDetail css -->
 	<link rel="stylesheet" href="resources/css/notice/noticeDetail.css"/>
-	<script src="resources/js/notice/noticeDetail.js"></script>
+	<script src="resources/js/notice/notice.js"></script>
 </head>
 <body>
 	<div id="header_area">
