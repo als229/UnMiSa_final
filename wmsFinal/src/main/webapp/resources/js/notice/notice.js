@@ -12,5 +12,19 @@ $(function(){
     })
     
     
+     $('.faqAnswer').slideUp(0);
+    $('.faqQuestion').click(function(){
+    	   
+    	var $an = $(this).next();
+        if($an.css('display') == 'none'){
+        
+        	$an.siblings('p').slideUp(700);
+        	
+        	$an.slideDown(700);
+        	
+        }else{
+            $an.slideUp(700);
+        }
+    })
     
 })

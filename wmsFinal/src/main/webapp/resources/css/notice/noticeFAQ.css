@@ -1,0 +1,63 @@
+@charset "UTF-8";
+#content{
+	font-family: 'gmarket_font_medium';
+}
+div{
+   /* border: 1px solid red;*/
+    box-sizing : border-box;
+}
+#content_1{
+	margin-top:100px;
+	width:1200px;
+	height:90px;
+}
+#content_2{
+	margin-top:50px;
+	text-align:center;
+	width:1200px;
+	height:250px;
+	padding-top:70px;
+	border-bottom: 10px ridge rgb(212, 211, 211);
+}
+.content_1_select{
+	margin-left: 1px; 
+}
+.content_1_select>div{
+	text-align: center;
+	float: left;
+	background-color: rgb(212, 211, 211);
+	width: 398px;
+	height: 90px;
+	font-size: 30px;
+	padding-top: 20px;
+	font-family: 'gmarket_font_medium';
+
+}
+.content_1_select>div>a{
+	text-decoration: none;
+	color: black;
+}
+#content_3{
+	margin-top:100px;
+}
+#content_3>div{
+	font-size:30px;
+	color:black;
+	width:1200px;
+	height:90px;
+	padding-top:25px;
+	border-bottom : 1px solid rgb(212, 211, 211);           
+	border-top : 1px solid rgb(212, 211, 211);           
+	padding-left:15px;     
+	
+}
+#content_3>p{
+	padding-left:25px;     
+	font-size:25px;
+	padding-top:15px;
+	color:rgb(73, 73, 73);
+}
+#FAQblank{
+	height:100px;
+	width:1200px;'
+}
