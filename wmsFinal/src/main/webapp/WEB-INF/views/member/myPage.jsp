@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>마이페이지 메인</title>
-	<link rel="stylesheet" href="resources/css/member/myPage.css"/>
+	<link rel="stylesheet" href="resources/css/member/myPage.css?ver=1"/>
 </head>
 
 <body>
@@ -15,10 +15,10 @@
     <div class="myPage-outer">
 
         <div class="side-bar">
-            <a href="" class="big-menu">마이페이지</a> <br>
+            <a href="myPage.me" class="big-menu">마이페이지</a> <br>
             <a href="">개인 정보 수정</a> <br>
-            <a href="">내가 가입한 팀 관리</a> <br>
-            <a href="">내가 만든 팀</a> <br>
+            <a href="selectListTeam.te">내가 가입한 팀 관리</a> <br>
+            <a href="selectListCreateTeam.te">내가 만든 팀</a> <br>
             <a href="">내 결제내역</a> <br>
             <a href="">내 체육관 예약관리</a> <br>
         </div>
@@ -32,7 +32,7 @@
                     </tr>
                 </thead>
                 <br>
-                <tbody>
+                <tbody >
                     <tr>
                         <td>
                             멍멍 왈왈쓰
