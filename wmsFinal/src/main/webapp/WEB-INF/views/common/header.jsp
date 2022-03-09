@@ -53,7 +53,7 @@
 		                <a href="enroll.me">회원가입</a>
 		                <a data-toggle="modal" data-target="#loginModal">로그인</a> <!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
 						<a href="myPage.me">마이페이지</a>
-						<a href="">운동파트너</a>
+						<a href="sportsPartnerMain.sp">운동파트너</a>
            			</c:when>
                 
                 	<c:otherwise>
@@ -62,7 +62,7 @@
 						<a href=""><img src="">내 채팅</a>
 						<a href="">로그아웃</a>
 						<a href="myPage.me">마이페이지</a>
-						<a href="">운동파트너</a>
+						<a href="sportsPartnerMain.sp">운동파트너</a>
                 	</c:otherwise>
            		</c:choose> 
 			</div>

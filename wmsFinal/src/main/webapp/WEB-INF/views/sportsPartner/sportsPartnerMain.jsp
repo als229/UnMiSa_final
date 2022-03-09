@@ -522,9 +522,11 @@
         </style>
 </head>
 <body>
-
-
-	<div id="spcontent">
+	
+	<jsp:include page="../common/header.jsp" />
+	
+	<div class="wrap">
+		<div id="spcontent">
 		<h1 style="text-align: center; margin-top: 0px; color: gray;">SPORTS
 			PARTNER</h1>
 		<div id="spmain">
@@ -549,7 +551,7 @@
 						수 있는 아름다움과 강함을 알지 못하고 늙어 버리는 것은 안타까운 일이다. -소크라테스-</div>
 				</div>
 
-				<div id="diaryWrite">
+				<div id="diaryWrite" onclick="location.href='sportsPartnerDiaryWrite.sp'" >
 					<div
 						style="font-weight: bolder; text-align: center; font-size: 15px; margin-top: 5px;">오늘은
 						어떤 운동을 했어?💪</div>
@@ -628,7 +630,7 @@
 				<div id="ssh2">11회</div>
 				<div id="ssh3">47회</div>
 
-				<div id="purposeDetail">목표설정</div>
+				<div id="purposeDetail" onclick="location.href='sportsPartnerPurpose.sp'">목표설정</div>
 
 			</div>
 
@@ -675,7 +677,7 @@
 
 		</div>
 	</div>
-
-
+	</div>
+	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>
