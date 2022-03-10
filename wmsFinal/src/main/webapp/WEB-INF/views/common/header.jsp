@@ -24,6 +24,10 @@
 	<!-- Semantic UI theme -->
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 	
+	<!-- google api 부분 -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="692876068188-7ifibfj5gbk6vdpv3k4n8a3gdq72dnsk.apps.googleusercontent.com">
 	<!-- header css -->
 	<link rel="stylesheet" href="resources/css/common/header.css"/>
 	<script src="resources/js/common/header.js"></script>
@@ -53,7 +57,7 @@
 		                <a href="enroll.me">회원가입</a>
 		                <a data-toggle="modal" data-target="#loginModal">로그인</a> <!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
 						<a href="myPage.me">마이페이지</a>
-						<a href="sportsPartnerMain.sp">운동파트너</a>
+						<a href="">운동파트너</a>
            			</c:when>
                 
                 	<c:otherwise>
@@ -62,7 +66,7 @@
 						<a href=""><img src="">내 채팅</a>
 						<a href="">로그아웃</a>
 						<a href="myPage.me">마이페이지</a>
-						<a href="sportsPartnerMain.sp">운동파트너</a>
+						<a href="">운동파트너</a>
                 	</c:otherwise>
            		</c:choose> 
 			</div>
@@ -87,7 +91,8 @@
                     <h4 class="modal-title">Login</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-        
+        		<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"> google 아이디 로그인</div>
+        		<button id="login_info">로그인정보</button>
                 <form action="login.me" method="post">
                     <!-- Modal body -->
                     <div class="modal-body">
@@ -106,7 +111,48 @@
             </div>
         </div>
     </div>
+	
+    <script>
+    $(function(){
+    	
+    		$("#login_info").click(function(){
+    			if (auth2.isSignedIn.get()) {
+    				  var profile = auth2.currentUser.get().getBasicProfile();
+    				  console.log('ID: ' + profile.getId());
+    				  console.log('Full Name: ' + profile.getName());
+    				  console.log('Given Name: ' + profile.getGivenName());
+    				  console.log('Family Name: ' + profile.getFamilyName());
+    				  console.log('Image URL: ' + profile.getImageUrl());
+    				  console.log('Email: ' + profile.getEmail());
+    				}
+    		})
+    	
+    		function onSignIn(googleUser) {
+    		  var profile = googleUser.getBasicProfile();
+    		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    		  console.log('Name: ' + profile.getName());
+    		  console.log('Image URL: ' + profile.getImageUrl());
+    		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    		}
+    	
+    	/* function onSignIn(googleUser) {
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+            console.log('Full Name: ' + profile.getName());
+            console.log('Given Name: ' + profile.getGivenName());
+            console.log('Family Name: ' + profile.getFamilyName());
+            console.log("Image URL: " + profile.getImageUrl());
+            console.log("Email: " + profile.getEmail());
 
+            // The ID token you need to pass to your backend:
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log("ID Token: " + id_token);
+          } 
+    	*/
+    })
+      
+    </script>
 
 
 </body>
