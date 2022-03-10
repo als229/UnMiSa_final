@@ -77,6 +77,14 @@ public class MemberController {
 		
 		return "member/myPaymentList";
 	}
+	@RequestMapping("myMatchSchedule.me")
+	public String selectMyMatchSchedule() {
+		
+		
+		return "member/myMatchSchedule";
+	}
+	
+
 
 	
 	
