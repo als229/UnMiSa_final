@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+.wrap{
+	font-family: 'gmarket_font_medium';
+}
+#calendar{
+	clear: both;
+	border: 1px solid rgb(212,212,212);
+	text-align:center;
+}
+th {
+	height: 115px;
+	width: 170px;
+    background-color: rgb(230, 228, 228);
+}
+td {
+	text-align: center;
+	height: 115px;
+	width: 170px;
+	background-color: white;  
+}
+input {
+	height: 115px;
+	width: 170px;
+	border: none;
+	background-color:rgb(230, 228, 228);
+	font-size: 35px;
+}
+.year_mon{
+	font-size: 35px;
+}
+.colToday{
+	background-color: rgb(229,242,248);
+}
+#content_3{
+	text-align:right;
+	margin-right:10px;
+	margin-top:80px;
+}
+#content_3>button{
+	width:190px;
+	height:65px;
+	margin-left:16px;
+}
+#content_4{
+	width:1200px;
+	height:200px;
+	margin-top:150px;
+	
+}
+#content_4>div{
+	float:left;
+}
+#content_4_text2{
+	margin-left:300px;
+	color:red;
+}
+

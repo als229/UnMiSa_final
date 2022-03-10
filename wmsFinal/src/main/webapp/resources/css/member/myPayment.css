@@ -1,0 +1,32 @@
+@charset "UTF-8";
+#content{
+font-family: 'gmarket_font_medium';
+}
+#content_1{
+	width:1200px;
+	height:150px;
+	text-align:center;
+	padding-top:50px;
+}
+
+div{
+	/*border:1px solid red;*/	
+}
+#content_3{
+	height:100px;
+}
+#paymentList{
+	text-align:center;
+	width:1000px;
+	margin-left:100px;
+}
+#paymentList>thead>tr>th{
+	font-size:22px;
+	border-bottom:2px solid rgb(212, 211, 211);
+}
+#paymentList>tbody>tr>td{
+	font-size:18px;
+	padding-top:15px;
+	padding-bottom:15px;
+	border-bottom:1px solid rgb(212, 211, 211);
+}
