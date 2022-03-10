@@ -73,7 +73,7 @@
 		</div>
 		<div id="header_nav">
 			<ul>
-                <li><a href="">우리동네 운미사</a></li>
+                <li><a href="serchWms.te">우리동네 운미사</a></li>
                 <li><a href="">우리동네 커뮤니티</a></li>
                 <li><a href="">우리동네 이벤트</a></li>
                 <li><a href="markMarket.pm">마크 상점</a></li>
@@ -111,9 +111,37 @@
             </div>
         </div>
     </div>
-	
+	<fieldset>
+		<label>로그인</label> <br>
+		<div id="googleLoginBtn" style="cursor: pointer">
+			<img id="googleLoginImg" src="./images/btn_google_signin_light_pressed_web.png">
+		</div>
+	</fieldset>
     <script>
     $(function(){
+    	
+    	
+    	const onClickGoogleLogin = (e) => {
+        	//구글 인증 서버로 인증코드 발급 요청
+     		window.location.replace("https://accounts.google.com/o/oauth2/v2/auth?client_id=692876068188-7ifibfj5gbk6vdpv3k4n8a3gdq72dnsk.apps.googleusercontent.com&redirect_uri=http://localhost:8555/wms/login.me&response_type=code&scope=email%20profile%20openid&access_type=offline")
+     	}
+    	
+    	const googleLoginBtn = document.getElementById("googleLoginBtn");
+    	googleLoginBtn.addEventListener("click", onClickGoogleLogin);
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     		/* if(GoogleAuth.isSignedIn.get ()) {
     			console.log(GoogleAuth.isSignedIn.get ());
     		}else{
@@ -121,7 +149,7 @@
     		} */
     		
     	
-    		$("#login_info").click(function(){
+    		/* $("#login_info").click(function(){
     			var auth2 = gapi.auth2.getAuthInstance();
     			
     			if (auth2.isSignedIn.get()) {
@@ -134,11 +162,11 @@
     				  console.log('Image URL: ' + profile.getImageUrl());
     				  console.log('Email: ' + profile.getEmail());
     				}
-    		})
-    		
+    		}) */
+    		/* 
     		function onSignIn(googleUser) {
 			  var id_token = googleUser.getAuthResponse().id_token;
-			}
+			} */
     		
     		function googleLogOut(){
     			var auth2 = gapi.auth2.getAuthInstance();
@@ -147,12 +175,10 @@
     				
     			})
     		}
-    		$('#loginBtn').click(function(){
-    			console.log('asdsad');
-	    		$('#connected74tt7i9gkbvh').val('google 로그인');
-    			
-    		})
     		
+			
+			
+			
     		
     	
     })

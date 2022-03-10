@@ -12,6 +12,13 @@ public class TeamController {
 	@Autowired
 	private TeamServiceImpl teamService;
 	
+	@RequestMapping("serchWms.te")
+	public String serchWms() {
+		
+		
+		
+		return "team/searchWms";
+	}
 
 	
 }

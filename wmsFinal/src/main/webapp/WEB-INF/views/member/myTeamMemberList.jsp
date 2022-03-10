@@ -8,9 +8,7 @@
 <title>멤버 관리</title>
 
 <style>
-    div{
-        border: 1px solid red;
-    }
+
     .content{
         height: 400px;
         width: 1200px;
@@ -67,11 +65,11 @@
             <a href="selectListTeam.te">내가 가입한 팀 관리</a> <br>
             <a href="selectListCreateTeam.te">내가 만든 팀</a> <br>
             <a href="">내 결제내역</a> <br>
-            <a href="">내 체육관 예약관리</a> <br>
+            <a href="myMatchSchedule.me">내 경기 일정</a> <br>
         </div>
         
             <div class="team-title">
-                <h1>팀원 관리</h1>
+                <h1 style="margin-left: 20px;">팀원 관리</h1>
                 <div class="buttonArea">
                     <div class="memberButton" style="float: right;">
                         <button class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'myTeamMemberList.te' ">팀원 관리</button>

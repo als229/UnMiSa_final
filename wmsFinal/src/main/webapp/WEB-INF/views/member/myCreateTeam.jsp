@@ -56,11 +56,11 @@
             <a href="selectListTeam.te">내가 가입한 팀 관리</a> <br>
             <a href="selectListCreateTeam.te">내가 만든 팀</a> <br>
             <a href="">내 결제내역</a> <br>
-            <a href="">내 체육관 예약관리</a> <br>
+            <a href="myMatchSchedule.me">내 경기 일정</a> <br>
         </div>
         
             <div class="team-title">
-                <h1>내가 만든 팀 관리</h1>
+                <h1 style="margin-left: 20px;">내가 만든 팀 관리</h1>
             </div>
             <div class="team-list table " style="width: 80%; height: 85%;">
                 <table style="width: 100%;">
