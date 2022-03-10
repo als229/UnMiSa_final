@@ -15,7 +15,7 @@ public class MemberController {
 	
 	
 	
-	
+	// 호형존
 	@RequestMapping(value="login.me")
 	public ModelAndView login(ModelAndView mv, String userId, String userPwd) {
 		
@@ -24,6 +24,94 @@ public class MemberController {
 		System.out.println("로그인 ");
 		mv.setViewName("main");
 		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	// 현빈존
+	@RequestMapping("myPayment.me")
+	public String myPayment() {
+		
+		
+		return "member/myPaymentList";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 관민존
+	@RequestMapping("myMatchSchedule.me")
+	public String selectMyMatchSchedule() {
+		
+		
+		return "member/myMatchSchedule";
 	}
 	
 	@RequestMapping(value="myPage.me")
@@ -71,20 +159,7 @@ public class MemberController {
 		
 		return "member/myTeamMemberJoinList";
 	}
-	@RequestMapping("myPayment.me")
-	public String myPayment() {
-		
-		
-		return "member/myPaymentList";
-	}
-	@RequestMapping("myMatchSchedule.me")
-	public String selectMyMatchSchedule() {
-		
-		
-		return "member/myMatchSchedule";
-	}
 	
-
 
 	
 	
