@@ -13,7 +13,7 @@ z
 <style>
 
 		
-		 div{
+		div{
          /*  border :  1px solid;  */
            box-sizing : border-box;
            font-family: 'gmarket_font_medium';	
@@ -26,6 +26,7 @@ z
             margin: auto;
             background-color: rgb(229,242,248);
         }
+        
         #spmain{
             width : 1000px;
             height : 630px;
@@ -33,6 +34,7 @@ z
             margin-top: 20px;
             background-color: white;
         }
+        
         #purposeBorder{
         	float:left;
             border : 3px solid rgb(176,176,176);
@@ -42,6 +44,7 @@ z
             margin-top : 60px;
             position : relative;
         }
+        
         #pp_header{
         	margin : auto;
         	margin-top : 12px;
