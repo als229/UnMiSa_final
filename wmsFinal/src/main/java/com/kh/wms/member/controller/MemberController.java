@@ -153,13 +153,6 @@ public class MemberController {
 		
 		return "member/myTeamMemberJoinList";
 	}
-	@RequestMapping("gymReservationForm.te")
-	public String gymReservationForm() {
-		
-		
-		return "member/myTeamMemberJoinList";
-	}
-	
 
 	
 	

@@ -70,7 +70,7 @@
                             <th></th>                        
                             <th>팀 이름</th>
                             <th>운동 종목</th>
-                            <th>탈퇴하기</th>
+                            <th>팀 관리하기</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,63 +79,69 @@
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
                         </tr>
-
+                        <tr>
+                            <td style="vertical-align: middle;">1</td>
+                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
+                            <td style="vertical-align: middle;">야구</td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
+                        </tr>
+                        
 
 
                     </tbody>
