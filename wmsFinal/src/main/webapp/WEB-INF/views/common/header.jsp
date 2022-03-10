@@ -55,7 +55,7 @@
            			<c:when test="${ loginUser == null }" >
 		                <!-- 로그인 전 -->
 		                <a href="enroll.me">회원가입</a>
-		                <a data-toggle="modal" data-target="#loginModal">로그인</a> <!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
+		                <a data-toggle="modal" data-target="#loginModal" id="loginBtn">로그인</a> <!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
 						<a href="myPage.me">마이페이지</a>
 						<a href="">운동파트너</a>
            			</c:when>
@@ -91,7 +91,7 @@
                     <h4 class="modal-title">Login</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-        		<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"> google 아이디 로그인</div>
+        		<div class="g-signin2" data-onsuccess="onSignIn"></div>
         		<button id="login_info">로그인정보</button>
                 <form action="login.me" method="post">
                     <!-- Modal body -->
@@ -114,9 +114,18 @@
 	
     <script>
     $(function(){
+    		/* if(GoogleAuth.isSignedIn.get ()) {
+    			console.log(GoogleAuth.isSignedIn.get ());
+    		}else{
+    			console.log(GoogleAuth.isSignedIn.get ());
+    		} */
+    		
     	
     		$("#login_info").click(function(){
+    			var auth2 = gapi.auth2.getAuthInstance();
+    			
     			if (auth2.isSignedIn.get()) {
+    				console.log('asd');
     				  var profile = auth2.currentUser.get().getBasicProfile();
     				  console.log('ID: ' + profile.getId());
     				  console.log('Full Name: ' + profile.getName());
@@ -126,30 +135,26 @@
     				  console.log('Email: ' + profile.getEmail());
     				}
     		})
-    	
+    		
     		function onSignIn(googleUser) {
-    		  var profile = googleUser.getBasicProfile();
-    		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    		  console.log('Name: ' + profile.getName());
-    		  console.log('Image URL: ' + profile.getImageUrl());
-    		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+			  var id_token = googleUser.getAuthResponse().id_token;
+			}
+    		
+    		function googleLogOut(){
+    			var auth2 = gapi.auth2.getAuthInstance();
+    			
+    			auth2.googleLogOut().then(function(){
+    				
+    			})
     		}
+    		$('#loginBtn').click(function(){
+    			console.log('asdsad');
+	    		$('#connected74tt7i9gkbvh').val('google 로그인');
+    			
+    		})
+    		
+    		
     	
-    	/* function onSignIn(googleUser) {
-            // Useful data for your client-side scripts:
-            var profile = googleUser.getBasicProfile();
-            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-            console.log('Full Name: ' + profile.getName());
-            console.log('Given Name: ' + profile.getGivenName());
-            console.log('Family Name: ' + profile.getFamilyName());
-            console.log("Image URL: " + profile.getImageUrl());
-            console.log("Email: " + profile.getEmail());
-
-            // The ID token you need to pass to your backend:
-            var id_token = googleUser.getAuthResponse().id_token;
-            console.log("ID Token: " + id_token);
-          } 
-    	*/
     })
       
     </script>
