@@ -63,7 +63,7 @@
 		<div id="header_nav">
 			<ul>
                 <li><a href="">우리동네 운미사</a></li>
-                <li><a href="">우리동네 커뮤니티</a></li>
+                <li><a href="list.bo">우리동네 커뮤니티</a></li>
                 <li><a href="">우리동네 이벤트</a></li>
                 <li><a href="">마크 상점</a></li>
                 <li><a href="">고객센터</a></li>
