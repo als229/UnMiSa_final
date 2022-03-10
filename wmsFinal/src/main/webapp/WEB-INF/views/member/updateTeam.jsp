@@ -98,7 +98,7 @@
         </div>
         
         <div class="team-title">
-            <h1>팀 수정하기</h1>
+            <h1 style="margin-left: 20px;">팀 수정하기</h1>
             <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " onclick="location.href='myTeamMemberList.te'">팀원관리</button>
         </div>
 		

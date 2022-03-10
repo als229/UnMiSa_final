@@ -60,7 +60,7 @@
         </div>
         
             <div class="team-title">
-                <h1>내가 가입한 팀 관리</h1>
+                <h1 style="margin-left: 20px;">내가 가입한 팀 관리</h1>
             </div>
             <div class="team-list table " style="width: 80%; height: 85%;">
                 <table style="width: 100%;">
@@ -171,10 +171,6 @@
 
     <jsp:include page="../common/footer.jsp" />
 
-
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete-team">
-        Launch demo modal
-      </button>
 
     <div class="modal" id="delete-team" tabindex="-1">
         <div class="modal-dialog">

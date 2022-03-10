@@ -60,7 +60,7 @@
         </div>
         
             <div class="team-title">
-                <h1>내가 만든 팀 관리</h1>
+                <h1 style="margin-left: 20px;">내가 만든 팀 관리</h1>
             </div>
             <div class="team-list table " style="width: 80%; height: 85%;">
                 <table style="width: 100%;">
