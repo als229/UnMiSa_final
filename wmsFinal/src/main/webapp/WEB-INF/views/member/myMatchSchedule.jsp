@@ -43,7 +43,7 @@
             <div class="team-title">
                 <h1 style="margin-left: 20px;">내가 가입한 팀 관리</h1>
             </div>
-
+	</div>
 <jsp:include page="../common/footer.jsp" />
 </body>
 </html>
