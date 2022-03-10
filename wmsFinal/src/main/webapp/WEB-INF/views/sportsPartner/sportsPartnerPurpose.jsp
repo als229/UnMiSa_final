@@ -3,7 +3,7 @@ pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
+z
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -234,7 +234,11 @@ pageEncoding="UTF-8" %>
 </style>
 </head>
 <body>
-<div id="spcontent">
+	<jsp:include page="../common/header.jsp" />
+	
+	<div class="wrap">
+
+	<div id="spcontent">
 		<h1 style="text-align: center; margin-top: 0px; color: gray;">목표 설정</h1>
 		<div id="spmain">
 			<div id="beforePic">
@@ -250,30 +254,30 @@ pageEncoding="UTF-8" %>
 		        		<div class="kg">몸무게</div>
 		        		<div class="eq">:</div>
 		        		<div class="ipkg">
-							<input type="text" class="input" placeholder="     (kg)"></input>		        		
+							<input type="number" class="input" placeholder="현재(kg)"></input>		        		
 		        		</div>
 		        		
 		        		<div class="cgy">체지방률</div>
 		        		<div class="eq2">:</div>
 		        		<div class="ipkg2">
-							<input type="text" class="input" placeholder="     (%)"></input>		        		
+							<input type="number" class="input" placeholder="현재(%)"></input>		        		
 		        		</div>
 		        		
 						<div class="cgy">근육량</div>
 		        		<div class="eq2">:</div>
 		        		<div class="ipkg2">
-							<input type="text" class="input" placeholder="    (kg)"></input>		        		
+							<input type="number" class="input" placeholder="현재(kg)"></input>		        		
 		        		</div>
 		        		
 		        		<div class="sportsBorder">
 		        			<div class="sports1">
-		        				<input type="text" class="sp_input" placeholder="진행할운동1"></input>	
+		        				<input type="text" id="spip1" class="sp_input" placeholder="진행할운동1"></input>	
 		        			</div>
 		        			<div class="sports2">
-		        				<input type="text" class="sp_input" placeholder="진행할운동2"></input>	
+		        				<input type="text" id="spip2" class="sp_input" placeholder="진행할운동2"></input>	
 		        			</div>
 		        			<div class="sports3">
-		        				<input type="text" class="sp_input" placeholder="진행할운동3"></input>	
+		        				<input type="text" id="spip3" class="sp_input" placeholder="진행할운동3"></input>	
 		        			</div>
 		        		</div>
 		        	</div>
@@ -291,13 +295,13 @@ pageEncoding="UTF-8" %>
 		        		<div class="kg">몸무게</div>
 		        		<div class="eq">:</div>
 		        		<div class="ipkg">
-							<input type="text" class="input" placeholder="    (kg)"></input>		        		
+							<input type="number" class="input" placeholder="목표(kg)"></input>		        		
 		        		</div>
 		        		
 		        		<div class="cgy">체지방률</div>
 		        		<div class="eq2">:</div>
 		        		<div class="ipkg2">
-							<input type="text" class="input" placeholder="     (%)"></input>		        		
+							<input type="number" class="input" placeholder="목표(%)"></input>		        		
 		        		</div>
 		        		
 		        		<!-- 숫자만 입력하게 키보드 제한 설정하기 + before 진행할운동 1에 쓰면 after 1에도 써지게 하기 -->
@@ -305,22 +309,45 @@ pageEncoding="UTF-8" %>
 						<div class="cgy">근육량</div>
 		        		<div class="eq2">:</div>
 		        		<div class="ipkg2">
-							<input type="text" class="input" placeholder="    (kg)"></input>		        		
+							<input type="number" class="input" placeholder="목표(kg)"></input>		        		
 		        		</div>
 		        		
 		        		<div class="sportsBorder">
 		        			<div class="sports1">
-		        				<input type="text" class="sp_input" placeholder="진행할운동1"></input>	
+		        				<input type="text" id="spop1" class="sp_input" placeholder="진행할운동1" readonly="readonly"></input>	
 		        			</div>
 		        			<div class="sports2">
-		        				<input type="text" class="sp_input" placeholder="진행할운동2"></input>	
+		        				<input type="text" id="spop2" class="sp_input" placeholder="진행할운동2" readonly="readonly"></input>	
 		        			</div>
 		        			<div class="sports3">
-		        				<input type="text" class="sp_input" placeholder="진행할운동3"></input>	
+		        				<input type="text" id="spop3" class="sp_input" placeholder="진행할운동3" readonly="readonly"></input>	
 		        			</div>
 		        		</div>
 		        	</div>
-		        
+		        	
+		        	
+		        	<script>
+		        		$('#spip1').keydown(function(){
+		        			$('#spop1').val($(this).val());
+		        		});
+	        			$('#spip1').change(function(){
+		        			$('#spop1').val($(this).val());
+		        		});
+		        		$('#spip2').keydown(function(){
+		        			$('#spop2').val($(this).val());
+		        		});
+	        			$('#spip2').change(function(){
+		        			$('#spop2').val($(this).val());
+		        		});
+		        		$('#spip3').keydown(function(){
+		        			$('#spop3').val($(this).val());
+		        		});
+	        			$('#spip3').change(function(){
+		        			$('#spop3').val($(this).val());
+		        		});
+		        	
+		        	</script>
+		        	
 		        	<div id="pp_back" onclick="console.log('3')">다음에 하기</div>
 		        	<button type="submit" id="pp_commit">목표 설정 완료</button>
 		        
@@ -335,6 +362,8 @@ pageEncoding="UTF-8" %>
 	         	<img src="resources/image/sportsPartner/after.png" width="160px" height="240px">
 	        </div>
         </div>
-</div>
+	</div>
+	</div>
+	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

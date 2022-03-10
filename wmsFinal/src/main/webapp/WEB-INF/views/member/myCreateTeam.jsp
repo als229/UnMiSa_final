@@ -60,7 +60,7 @@
         </div>
         
             <div class="team-title">
-                <h1>내가 가입한 팀 관리</h1>
+                <h1>내가 만든 팀 관리</h1>
             </div>
             <div class="team-list table " style="width: 80%; height: 85%;">
                 <table style="width: 100%;">
@@ -79,62 +79,64 @@
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
                             <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">수정하기</button></td>
                         </tr>
+
+
 
                     </tbody>
                         
@@ -172,26 +174,7 @@
     <jsp:include page="../common/footer.jsp" />
 
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete-team">
-        Launch demo modal
-      </button>
 
-    <div class="modal" id="delete-team" tabindex="-1">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">팀 탈퇴하기</h5>
-            </div>
-            <div class="modal-body">
-            <p>정말 팀을 탈퇴하시겠습니까?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">탈퇴하기</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-            </div>
-        </div>
-        </div>
-    </div>
     
 </body>
 </html>

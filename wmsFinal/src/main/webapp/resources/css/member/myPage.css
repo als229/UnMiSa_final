@@ -59,16 +59,43 @@ div {
     font-size: 30px;
 }
 
-.myPage-outer table {
+.myTeam>table {
     margin: auto;
     text-align: center;
     border-spacing : 10px;
     border-collapse: separate;
 }
-.myPage-outer thead{
+.myTeam thead{
     background-color: rgb(229,242,248);
 }
-.myPage-outer td:hover {
+.myTeam td:hover {
     cursor: pointer;
     background-color: rgb(229,242,248);
 }
+.myMark>table {
+    margin: auto;
+    text-align: center;
+    border-spacing : 10px;
+    border-collapse: separate;
+}
+.myMark thead{
+    background-color: rgb(229,242,248);
+}
+.myMark td:hover {
+    cursor: pointer;
+    background-color: rgb(229,242,248);
+}
+.partner>table {
+    margin: auto;
+    text-align: center;
+    border-spacing : 10px;
+    border-collapse: separate;
+}
+.partner thead{
+    background-color: rgb(229,242,248);
+}
+.partner td:hover {
+    cursor: pointer;
+    background-color: rgb(229,242,248);
+}
+

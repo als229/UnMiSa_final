@@ -19,12 +19,7 @@ public class MemberController {
 	@RequestMapping(value="login.me")
 	public ModelAndView login(ModelAndView mv, String userId, String userPwd) {
 		
-		
-		
-		
 		return mv;
-		
-		
 	}
 	
 	@RequestMapping(value="myPage.me")
@@ -33,6 +28,44 @@ public class MemberController {
 		mv.setViewName("member/myPage");
 		
 		return mv;
+	}
+	
+	@RequestMapping("selectListTeam.te")
+	public String selectListTeam() {
+		
+		
+		return "member/myJoinTeam";
+	}
+	@RequestMapping("selectListCreateTeam.te")
+	public String selectListCreateTeam() {
+		
+		
+		return "member/myCreateTeam";
+	}
+	
+	@RequestMapping("updateFormTeam.te")
+	public String updateFormTeam() {
+		
+		
+		return "member/updateTeam";
+	}
+	@RequestMapping("myTeamMemberList.te")
+	public String myTeamMemberList() {
+		
+		
+		return "member/myTeamMemberList";
+	}
+	@RequestMapping("myTeamMemberJoinList.te")
+	public String myTeamMemberJoinList() {
+		
+		
+		return "member/myTeamMemberJoinList";
+	}
+	@RequestMapping("gymReservationForm.te")
+	public String gymReservationForm() {
+		
+		
+		return "member/myTeamMemberJoinList";
 	}
 	
 
