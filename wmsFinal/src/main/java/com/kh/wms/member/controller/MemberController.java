@@ -18,6 +18,9 @@ public class MemberController {
 	
 	@RequestMapping(value="login.me")
 	public ModelAndView login(ModelAndView mv, String userId, String userPwd) {
+		
+		
+		
 		System.out.println("로그인 ");
 		mv.setViewName("main");
 		return mv;
