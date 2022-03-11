@@ -28,6 +28,7 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="692876068188-7ifibfj5gbk6vdpv3k4n8a3gdq72dnsk.apps.googleusercontent.com">
+    <meta name="google-signin-redirect_uri" content="http://localhost:8555/wms/login.me">
 	<!-- header css -->
 	<link rel="stylesheet" href="resources/css/common/header.css"/>
 	<script src="resources/js/common/header.js"></script>
@@ -66,23 +67,19 @@
 						<a href=""><img src="">내 채팅</a>
 						<a href="">로그아웃</a>
 						<a href="myPage.me">마이페이지</a>
-						<a href="sportsPartnerMain.sp">운동파트너</a>
+						<a href="">운동파트너</a>
                 	</c:otherwise>
            		</c:choose> 
 			</div>
 		</div>
 		<div id="header_nav">
 			<ul>
-<<<<<<< HEAD
-                <li><a href="">우리동네 운미사</a></li>
-                <li><a href="list.bo">우리동네 커뮤니티</a></li>
-=======
                 <li><a href="serchWms.te">우리동네 운미사</a></li>
-                <li><a href="">우리동네 커뮤니티</a></li>
->>>>>>> 8d9f287cd52aad7fb69332bf1d935a4a71e5c8a3
-                <li><a href="">우리동네 이벤트</a></li>
+                <li><a href="list.bo">우리동네 커뮤니티</a></li>
+                <li><a href="eventMain.ev">우리동네 이벤트</a></li>
+
                 <li><a href="markMarket.pm">마크 상점</a></li>
-                <li><a href="">고객센터</a></li>
+                <li><a href="noticeFAQ.no">고객센터</a></li>
             </ul>
 		</div>
 	</div>
@@ -96,8 +93,7 @@
                     <h4 class="modal-title">Login</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-        		<div class="g-signin2" data-onsuccess="onSignIn"></div>
-        		<button id="login_info">로그인정보</button>
+        		<div class="g-signin2" data-onsuccess="onSignIn" id=""></div>
                 <form action="login.me" method="post">
                     <!-- Modal body -->
                     <div class="modal-body">
@@ -116,20 +112,19 @@
             </div>
         </div>
     </div>
-	<fieldset>
-		<label>로그인</label> <br>
-		<div id="googleLoginBtn" style="cursor: pointer">
-			<img id="googleLoginImg" src="./images/btn_google_signin_light_pressed_web.png">
-		</div>
-	</fieldset>
     <script>
     $(function(){
     	
     	
     	const onClickGoogleLogin = (e) => {
         	//구글 인증 서버로 인증코드 발급 요청
-     		window.location.replace("https://accounts.google.com/o/oauth2/v2/auth?client_id=692876068188-7ifibfj5gbk6vdpv3k4n8a3gdq72dnsk.apps.googleusercontent.com&redirect_uri=http://localhost:8555/wms/login.me&response_type=code&scope=email%20profile%20openid&access_type=offline")
-     	}
+     		window.location.replace("https://accounts.google.com/o/oauth2/v2/auth?" +
+	        "client_id=692876068188-7ifibfj5gbk6vdpv3k4n8a3gdq72dnsk.apps.googleusercontent.com" + 
+	        "&redirect_uri=http://localhost:8555/wms/login.me" + 
+	        "&response_type=code" + 
+	        "&scope=email%20profile%20openid" + 
+	        "&access_type=offline");
+ 		}
     	
     	const googleLoginBtn = document.getElementById("googleLoginBtn");
     	googleLoginBtn.addEventListener("click", onClickGoogleLogin);

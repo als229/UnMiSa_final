@@ -75,7 +75,7 @@
                         <button class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'myTeamMemberList.te' ">팀원 관리</button>
                     </div>
                     <div class="joinMemberButton" style="float: right; margin-right: 15px;">
-                        <button class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'memberDelete.te' ">가입신청관리</button>
+                        <button class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'myTeamMemberJoinList.te' ">가입신청관리</button>
                     </div>
                 </div>
             </div>
@@ -240,6 +240,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary">가입시키기</button>
+                <button type="button" class="btn btn-primary">거절하기</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
             </div>
         </div>
