@@ -603,8 +603,7 @@
 
 
 
-				<div id="diaryListPlus" onclick="console.log('33')"
-					style="font-size: 12px; line-height: 2px;">더 보기 >></div>
+				<div id="diaryListPlus" style="font-size: 12px; line-height: 2px;" onclick="location.href='sportsPartnerDiaryList.sp'">더 보기 >></div>
 
 			</div>
 

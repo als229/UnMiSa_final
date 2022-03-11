@@ -5,9 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>팀 수정하기</title>
+<title>팀 등록하기</title>
 <link rel="stylesheet" href="resources/css/member/myPage.css?ver=1"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <style>
+    div{
+        border: 1px solid red;
+    }
 
     .content{
         height: 400px;
@@ -71,7 +78,7 @@
     }
     .button-area{
         width: 80%;
-        height: 5%;
+        height: 10%;
     }
     .updateButton{
         width: 50%;
@@ -81,35 +88,44 @@
         width: 50%;
         height: 100%;
     }
+    .team-local-area{
+        width: 80%;
+        height: 10%;
+    }
+    .team-local-area-text{
+        width: 30%;
+        height: 100%;
+    }
+    .inputTeamLocalArea{
+        width: 70%;
+        height: 100%;
+    }
 
 </style>
+
 </head>
 <body>
-    <jsp:include page="../common/header.jsp" />
+	<jsp:include page="../common/header.jsp" />
 	<div class="myPage-outer" style="height: 800px;">
 
-        <div class="side-bar">
-            <a href="myPage.me" class="big-menu">마이페이지</a> <br>
-            <a href="">개인 정보 수정</a> <br>
-            <a href="selectListTeam.te">내가 가입한 팀 관리</a> <br>
-            <a href="selectListCreateTeam.te">내가 만든 팀</a> <br>
-            <a href="">내 결제내역</a> <br>
-            <a href="myMatchSchedule.me">내 경기 일정</a> <br>
+    	<div class="side-bar">
+            <a href="serchWms.te" class="big-menu">우리동네 운미사</a> <br>
+            <a href="serchWms.te">우리동네 운미사 찾기</a> <br>
+            <a href="gymReservation.te">우리동네 체육관 대여하기</a> <br>
+            <a href="createTeamForm.te">팀 등록하기</a> <br>
         </div>
         
         <div class="team-title">
-            <h1 style="margin-left: 20px;">팀 수정하기</h1>
-            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " onclick="location.href='myTeamMemberList.te'">팀원관리</button>
-            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 30px;" class="btn btn-primary " onclick="location.href='myTeamMemberList.te'">경기신청 관리</button>
+            <h1 style="margin-left: 20px;">팀 생성하기</h1>
         </div>
-		<form action="">
+		<form action="" method="post">
 
             <div class="team-name">
                 <div class="team-name-text" style="text-align: right; ">
                     <p>팀 이름 : &nbsp;&nbsp;</p>
                 </div>
                 <div class="inputTeamName">
-                    <p>은평구 불빠따쓰</p>
+                    <input type="text" name="teamName">
                 </div>
             </div>
             <div class="sports-name">
@@ -117,7 +133,7 @@
                     <p>운동 종목 : &nbsp;&nbsp;</p>
                 </div>
                 <div class="inputSportsName">
-                    <p>야구</p>
+                    <input type="text" name="sportsName">
                 </div>
             </div>
             <div class="team-intro">
@@ -125,10 +141,18 @@
                     <p>팀 소개 : &nbsp;&nbsp;</p>
                 </div>
                 <div class="inputTeamIntro">
-                    <textarea cols="50" rows="10" style="resize: none;">우리는 멍멍팀입니다</textarea>
+                    <textarea cols="50" rows="10" style="resize: none;" name="teamIntro"></textarea>
                 </div>
             </div>
-            <div class="team-logo">
+            <div class="team-local-area">
+                <div class="team-local-area-text" style="text-align: right;">
+                    <p>지역 : &nbsp;&nbsp;</p>
+                </div>
+                <div class="inputTeamLocalArea">
+                    <input type="text" name="localArea">
+                </div>
+            </div>
+            <div class="team-logo" style="height: 200px;">
                 <div class="team-logo-text" style="text-align: right;">
                     <p>팀 로고 : &nbsp;&nbsp;</p>
                     
@@ -137,27 +161,25 @@
                     <img src="" alt="팀 로고">
                 </div>
                 <div class="inputTeamLogoArea">
-                    <input type="file">
+                    <input type="file" name="teamLogo">
                 </div>
             </div>
-            <div class="button-area">
+            <div class="button-area" style="margin-top: 20px;">
                 <div class="updateButton" style=" text-align: center;">
-                    <button style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary ">수정하기</button>
+                    <button type="submit" style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary ">생성하기</button>
                 </div>
                 <div class="cancelButton"style=" text-align: center;">
-                <button style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " onclick="location.href='selectListCreateTeam.te'">취소하기</button>
+                    <button type="reset" style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " >취소하기</button>
+                </div>
             </div>
-        </div>
-    </form>
-        
-        
+        </form>
+            
+            
     </div>
 
 
     <jsp:include page="../common/footer.jsp" />
 
-
-
-    
+	
 </body>
 </html>

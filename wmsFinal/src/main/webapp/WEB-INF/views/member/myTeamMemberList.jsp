@@ -106,71 +106,72 @@
                             <td class="team-name" style="vertical-align: middle;">김호</td>
                             <td style="vertical-align: middle;">2001-12-32</td>
                             <td style="vertical-align: middle;">2020-11-23</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'memberDelete.te' ">탈퇴시키기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#deleteMember">탈퇴시키기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">김호</td>
                             <td style="vertical-align: middle;">2001-12-32</td>
                             <td style="vertical-align: middle;">2020-11-23</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'memberDelete.te' ">탈퇴시키기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#deleteMember">탈퇴시키기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">김호</td>
                             <td style="vertical-align: middle;">2001-12-32</td>
                             <td style="vertical-align: middle;">2020-11-23</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'memberDelete.te' ">탈퇴시키기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#deleteMember">탈퇴시키기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">김호</td>
                             <td style="vertical-align: middle;">2001-12-32</td>
                             <td style="vertical-align: middle;">2020-11-23</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'memberDelete.te' ">탈퇴시키기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#deleteMember">탈퇴시키기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">김호</td>
                             <td style="vertical-align: middle;">2001-12-32</td>
                             <td style="vertical-align: middle;">2020-11-23</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'memberDelete.te' ">탈퇴시키기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#deleteMember">탈퇴시키기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">김호</td>
                             <td style="vertical-align: middle;">2001-12-32</td>
                             <td style="vertical-align: middle;">2020-11-23</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'memberDelete.te' ">탈퇴시키기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#deleteMember">탈퇴시키기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">김호</td>
                             <td style="vertical-align: middle;">2001-12-32</td>
                             <td style="vertical-align: middle;">2020-11-23</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'memberDelete.te' ">탈퇴시키기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#deleteMember">탈퇴시키기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">김호</td>
                             <td style="vertical-align: middle;">2001-12-32</td>
                             <td style="vertical-align: middle;">2020-11-23</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'memberDelete.te' ">탈퇴시키기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#deleteMember">탈퇴시키기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">김호</td>
                             <td style="vertical-align: middle;">2001-12-32</td>
                             <td style="vertical-align: middle;">2020-11-23</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'memberDelete.te' ">탈퇴시키기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#deleteMember">탈퇴시키기</button></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">1</td>
                             <td class="team-name" style="vertical-align: middle;">김호</td>
                             <td style="vertical-align: middle;">2001-12-32</td>
                             <td style="vertical-align: middle;">2020-11-23</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'memberDelete.te' ">탈퇴시키기</button></td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#deleteMember">탈퇴시키기</button></td>
                         </tr>
+         
 
 
 
@@ -209,7 +210,29 @@
 
     <jsp:include page="../common/footer.jsp" />
 
-
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteMember">
+    Launch static backdrop modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="deleteMember" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">팀원 탈퇴시키기</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>팀원을 정말 탈퇴시키시겠습니까?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary">탈퇴시기키</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
     
 </body>

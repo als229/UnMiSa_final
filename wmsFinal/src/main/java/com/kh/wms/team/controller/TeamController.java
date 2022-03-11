@@ -19,6 +19,27 @@ public class TeamController {
 		
 		return "team/searchWms";
 	}
+	@RequestMapping("teamDetail.te")
+	public String selectTeamDetail() {
+		
+		
+		
+		return "team/teamDetailView";
+	}
+	@RequestMapping("createTeamForm.te")
+	public String createTeamForm() {
+		
+		
+		
+		return "team/createTeam";
+	}
+	@RequestMapping("gymReservation.te")
+	public String gymReservationForm() {
+		
+		
+		
+		return "team/gymReservation";
+	}
 
 	
 }
