@@ -47,4 +47,12 @@ public class SportsPartnerController {
 		return mv;
 	}
 	
+	@RequestMapping(value="sportsPartnerDetail.sp")
+	public ModelAndView sportsPartnerDetail(ModelAndView mv) {
+		
+		mv.setViewName("sportsPartner/sportsPartnerDetail");
+		
+		return mv;
+	}
+	
 }

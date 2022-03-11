@@ -84,7 +84,7 @@
 			                </thead>
 							<tbody>
 								<!-- 현재 조회수가 가장 높은 상위 5개의 게시글 조회해서 뿌리기(ajax 이용) -->
-								<tr>
+								<tr onclick="location.href='sportsPartnerDetail.sp'">
 									<td width="10px"></td>
 									<td width="400px">상남자특)술마시러감</td>
 									<td width="90px">2022-03-10</td>
