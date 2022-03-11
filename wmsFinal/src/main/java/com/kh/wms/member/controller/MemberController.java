@@ -15,15 +15,152 @@ public class MemberController {
 	
 	
 	
-	
+	// 호형존
 	@RequestMapping(value="login.me")
 	public ModelAndView login(ModelAndView mv, String userId, String userPwd) {
 		
 		
 		
+		System.out.println("로그인 ");
+		mv.setViewName("main");
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	// 현빈존
+	@RequestMapping("myPayment.me")
+	public String myPayment() {
+		
+		
+		return "member/myPaymentList";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 관민존
+	@RequestMapping("myMatchSchedule.me")
+	public String selectMyMatchSchedule() {
+		
+		
+		return "member/myMatchSchedule";
+	}
+	
+	@RequestMapping(value="myPage.me")
+	public ModelAndView selectMyPage(ModelAndView mv) {
+		
+		mv.setViewName("member/myPage");
 		
 		return mv;
-		
-		
 	}
+	
+	@RequestMapping("selectListTeam.te")
+	public String selectListTeam() {
+		
+		
+		return "member/myJoinTeam";
+	}
+	@RequestMapping("selectListCreateTeam.te")
+	public String selectListCreateTeam() {
+		
+		
+		return "member/myCreateTeam";
+	}
+	
+	@RequestMapping("updateFormTeam.te")
+	public String updateFormTeam() {
+		
+		
+		return "member/updateTeam";
+	}
+	@RequestMapping("myTeamMemberList.te")
+	public String myTeamMemberList() {
+		
+		
+		return "member/myTeamMemberList";
+	}
+	@RequestMapping("myTeamMemberJoinList.te")
+	public String myTeamMemberJoinList() {
+		
+		
+		return "member/myTeamMemberJoinList";
+	}
+	@RequestMapping("gymReservationForm.te")
+	public String gymReservationForm() {
+		
+		
+		return "member/myTeamMemberJoinList";
+	}
+	
+
+	
+	
 }

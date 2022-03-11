@@ -139,3 +139,6 @@ div {
 	font-weight: 800;
 	src: url('../../../resources/font/GmarketSansTTFMedium.ttf') format('truetype');
 }
+#header_div_inCenter>span{
+	font-family: 'gmarket_font_medium';
+}

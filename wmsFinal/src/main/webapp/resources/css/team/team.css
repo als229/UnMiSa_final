@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+.side-bar a {
+	text-decoration-line: none;
+	color: black;
+	line-height: 50px;
+	margin-left: 10px;
+}
+
+.side-bar a:hover {
+	text-decoration-line: none;
+	color: rgb(135, 206, 235);
+}
+
+.side-bar {
+	width: 20%;
+	height: 100%;
+	border-right: 1px solid lightgray;
+}
+
+.big-menu {
+	font-size: 30px;
+}
+
+div {
+	box-sizing: border-box;
+	margin: auto;
+	border: 1px solid red;
+}
+
+div {
+	font-family: 'gmarket_font_medium';
+}
+
+.team-outer {
+	margin-top: 50px;
+	width: 1200px;
+	height: 450px;
+}
+
+.team-outer div {
+	float: left;
+}

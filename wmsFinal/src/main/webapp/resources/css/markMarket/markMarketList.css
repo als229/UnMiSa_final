@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+		#content_1{
+            height: 300px;
+            width: 1200px;
+        }
+        #content_2{
+            height: 1100px;
+            width: 1200px;
+            border-left: 3px solid rgb(70, 72, 80);
+            border-right: 3px solid rgb(70, 72, 80);
+        }
+        #content_3{
+            height: 150px;
+            width: 1200px;
+            text-align: center;
+            border-left: 3px solid rgb(70, 72, 80);
+            border-right: 3px solid rgb(70, 72, 80);
+            border-bottom: 3px solid rgb(70, 72, 80);
+
+        }
+        div{
+           /* border : 1px solid red;*/
+            box-sizing : border-box;
+            
+        }
+        #content_2>div{
+            float: left;
+        }
+
+        .content_2_mark{
+            width: 350px;
+            height: 450px;
+        }
+        
+        .content_2_mark{
+            margin: 48px;
+            width: 300px;
+            height: 450px;
+        }
+        .content_2_mark>div{
+            text-align: center;
+        }
+        .content_2_markName{
+            background-color: rgb(229,242,248);
+            color: rgb(17, 3, 80);
+            margin-top: 5px;
+            border-radius: 10px;
+            font-family: 'gmarket_font_medium';
+        }
+        .content_2_markPrice{
+            background-color: rgb(229,242,248);
+            color: steelblue;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-family: 'gmarket_font_medium';
+        }
+       .content_2_markHover{
+           margin-top: -420px;
+           width: 300px;
+           height: 420px;
+           display: none;
+           background-color: rgba(136, 136, 136);
+           opacity: 0.9;
+           border-radius:10px;
+        }
+        .content2_markHover_1{
+            height: 300px;
+            text-align: center;
+            padding-top: 130px;
+            font-family: 'gmarket_font_medium';
+        }
+        .content2_markHover_2{
+            height: 100px;
+        }
+        .content2_markHover_2>button{
+            width: 120px;
+            height: 50px;
+            margin-left: 15px;
+            font-weight: 600;
+            font-family: 'gmarket_font_medium';
+        }

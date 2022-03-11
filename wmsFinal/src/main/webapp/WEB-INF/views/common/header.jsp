@@ -24,8 +24,13 @@
 	<!-- Semantic UI theme -->
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 	
+	<!-- google api 부분 -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="692876068188-7ifibfj5gbk6vdpv3k4n8a3gdq72dnsk.apps.googleusercontent.com">
 	<!-- header css -->
 	<link rel="stylesheet" href="resources/css/common/header.css"/>
+	<script src="resources/js/common/header.js"></script>
 </head>
 <body>
 
@@ -38,17 +43,21 @@
 	<div id="header">
 		<div id="header_div">
 			<div id="header_div_first">
-				<img src="resources/image/common/WMS2.png" alt="">
+                    <img src="resources/image/common/WMS2.png" alt="" id="rogo">
 			</div>
 			<div id="header_div_center">
-			
+                <div id="header_div_inCenter" style="margin-top: 20px; margin-left: 100px;" >
+                    <span style="font-size: 50px;">운</span><span style="font-size: 20px;">동에</span><span style="font-size: 50px;">&nbsp;&nbsp;미</span> <span style="font-size: 20px;">친</span><span style="font-size: 50px;">&nbsp;&nbsp;사</span><span style="font-size: 20px;">람들</span>
+                </div>
 			</div>
 			<div id="header_div_second">
 				<c:choose>
            			<c:when test="${ loginUser == null }" >
 		                <!-- 로그인 전 -->
-		                <a href="">회원가입</a>
-		                <a data-toggle="modal" data-target="#loginModal">로그인</a> <!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
+		                <a href="enroll.me">회원가입</a>
+		                <a data-toggle="modal" data-target="#loginModal" id="loginBtn">로그인</a> <!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
+						<a href="myPage.me">마이페이지</a>
+						<a href="sportsPartnerMain.sp">운동파트너</a>
            			</c:when>
                 
                 	<c:otherwise>
@@ -56,16 +65,23 @@
 						<lable>홍길동님 환영합니다</label> &nbsp;&nbsp;
 						<a href=""><img src="">내 채팅</a>
 						<a href="">로그아웃</a>
+						<a href="myPage.me">마이페이지</a>
+						<a href="sportsPartnerMain.sp">운동파트너</a>
                 	</c:otherwise>
            		</c:choose> 
 			</div>
 		</div>
 		<div id="header_nav">
 			<ul>
+<<<<<<< HEAD
                 <li><a href="">우리동네 운미사</a></li>
                 <li><a href="list.bo">우리동네 커뮤니티</a></li>
+=======
+                <li><a href="serchWms.te">우리동네 운미사</a></li>
+                <li><a href="">우리동네 커뮤니티</a></li>
+>>>>>>> 8d9f287cd52aad7fb69332bf1d935a4a71e5c8a3
                 <li><a href="">우리동네 이벤트</a></li>
-                <li><a href="">마크 상점</a></li>
+                <li><a href="markMarket.pm">마크 상점</a></li>
                 <li><a href="">고객센터</a></li>
             </ul>
 		</div>
@@ -80,7 +96,8 @@
                     <h4 class="modal-title">Login</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-        
+        		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+        		<button id="login_info">로그인정보</button>
                 <form action="login.me" method="post">
                     <!-- Modal body -->
                     <div class="modal-body">
@@ -99,6 +116,80 @@
             </div>
         </div>
     </div>
+	<fieldset>
+		<label>로그인</label> <br>
+		<div id="googleLoginBtn" style="cursor: pointer">
+			<img id="googleLoginImg" src="./images/btn_google_signin_light_pressed_web.png">
+		</div>
+	</fieldset>
+    <script>
+    $(function(){
+    	
+    	
+    	const onClickGoogleLogin = (e) => {
+        	//구글 인증 서버로 인증코드 발급 요청
+     		window.location.replace("https://accounts.google.com/o/oauth2/v2/auth?client_id=692876068188-7ifibfj5gbk6vdpv3k4n8a3gdq72dnsk.apps.googleusercontent.com&redirect_uri=http://localhost:8555/wms/login.me&response_type=code&scope=email%20profile%20openid&access_type=offline")
+     	}
+    	
+    	const googleLoginBtn = document.getElementById("googleLoginBtn");
+    	googleLoginBtn.addEventListener("click", onClickGoogleLogin);
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    		/* if(GoogleAuth.isSignedIn.get ()) {
+    			console.log(GoogleAuth.isSignedIn.get ());
+    		}else{
+    			console.log(GoogleAuth.isSignedIn.get ());
+    		} */
+    		
+    	
+    		/* $("#login_info").click(function(){
+    			var auth2 = gapi.auth2.getAuthInstance();
+    			
+    			if (auth2.isSignedIn.get()) {
+    				console.log('asd');
+    				  var profile = auth2.currentUser.get().getBasicProfile();
+    				  console.log('ID: ' + profile.getId());
+    				  console.log('Full Name: ' + profile.getName());
+    				  console.log('Given Name: ' + profile.getGivenName());
+    				  console.log('Family Name: ' + profile.getFamilyName());
+    				  console.log('Image URL: ' + profile.getImageUrl());
+    				  console.log('Email: ' + profile.getEmail());
+    				}
+    		}) */
+    		/* 
+    		function onSignIn(googleUser) {
+			  var id_token = googleUser.getAuthResponse().id_token;
+			} */
+    		
+    		function googleLogOut(){
+    			var auth2 = gapi.auth2.getAuthInstance();
+    			
+    			auth2.googleLogOut().then(function(){
+    				
+    			})
+    		}
+    		
+			
+			
+			
+    		
+    	
+    })
+      
+    </script>
+
 
 </body>
 </html>
