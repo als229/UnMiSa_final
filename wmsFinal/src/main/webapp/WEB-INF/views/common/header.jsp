@@ -76,9 +76,9 @@
 			<ul>
                 <li><a href="serchWms.te">우리동네 운미사</a></li>
                 <li><a href="">우리동네 커뮤니티</a></li>
-                <li><a href="">우리동네 이벤트</a></li>
+                <li><a href="eventMain.ev">우리동네 이벤트</a></li>
                 <li><a href="markMarket.pm">마크 상점</a></li>
-                <li><a href="">고객센터</a></li>
+                <li><a href="noticeFAQ.no">고객센터</a></li>
             </ul>
 		</div>
 	</div>
