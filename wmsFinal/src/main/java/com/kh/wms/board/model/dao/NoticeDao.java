@@ -29,9 +29,20 @@ public class NoticeDao {
 
 	public int insertNotice(SqlSessionTemplate sqlSession, Notice n) {
 		
-		System.out.println(n);
+		
 		return sqlSession.insert("noticeMapper.insertNotice",n);
 		
 	}
+
+	public Notice noticeDetail(SqlSessionTemplate sqlSession, int noticeNo) {
+		
+		return sqlSession.selectOne("noticeMapper.noticeDetail", noticeNo);
+	}
+
+	public int increaseCount(SqlSessionTemplate sqlSession, int noticeNo) {
+		return sqlSession.update("noticeMapper.increaseCount", noticeNo);
+	}
+
+	 
 
 }

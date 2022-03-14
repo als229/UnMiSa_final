@@ -43,12 +43,22 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="noticeDetail.no")
-	public ModelAndView noticeDetail(ModelAndView mv) {
+	public ModelAndView noticeDetail(ModelAndView mv, int noticeNo) {
 		
-		mv.setViewName("notice/noticeDetail");
 		
+		int result = noticeService.increaseCount(noticeNo);
+		
+		if(result>0) {
+			Notice n = noticeService.noticeDetail(noticeNo);
+			mv.addObject("n",n).setViewName("notice/noticeDetail");
+		}else {
+			mv.addObject("alertMsg", "게시글 조회 실패ㅜ");
+			mv.setViewName("redirect:noticeList.no");
+		}
 		return mv;
 	}
+	
+	
 	@RequestMapping(value="noticeEnrollForm.no")
 	public ModelAndView noticeInsert(ModelAndView mv) {
 		
