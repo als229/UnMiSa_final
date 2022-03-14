@@ -44,7 +44,6 @@
              </form>
             </div>
             <div id="content_3">
-            <!-- location.href = "detail.no?boardNo="+ $(this).children(".bno").text(); 기능구현할때 쓸것 >< -->
             	<table class="table" id = "noticeTable">
             		<thead>
             			<tr>
@@ -56,90 +55,53 @@
             			</tr>
             		</thead>
             		<tbody>
+            		
+            			<c:forEach var="n" items="${ list }">
             			<tr>
-            				<td>18</td>
-            				<td>이세계에서 치트능력을 손에 넣은 나는 현실세계에서도 무쌍한다</td>
-            				<td>2022-02-26</td>
-            				<td>@</td>
-            				<td>18</td>
+            				<td class="nno">${n.noticeNo }</td>
+            				<td>${ n.noticeTitle }</td>
+            				<td>${ n.createDate }</td>
+            				<td>
+            					<c:if test="${ not empty n.originName }">
+            						@
+            					</c:if>
+            				</td>
+            				<td>${ n.count }</td>
             			</tr>
-            			<tr>
-            				<td>17</td>
-            				<td>이세계에서 스킬을 해체했더니 치트인 신부가 증가했습니다</td>
-            				<td>2022-02-26</td>
-            				<td></td>
-            				<td>41</td>
-            			</tr>
-            			<tr>
-            				<td>16</td>
-            				<td>이세계에서 돌아온 전 용사지만 데스게임에 휘말렸습니다</td>
-            				<td>2022-02-26</td>
-            				<td>@</td>
-            				<td>23</td>
-            			</tr>
-            			<tr>
-            				<td>15</td>
-            				<td>이세계에서 돌아온 전 용사지만 데스게임에 휘말렸습니다</td>
-            				<td>2022-02-26</td>
-            				<td></td>
-            				<td>23</td>
-            			</tr>
-            			<tr>
-            				<td>14</td>
-            				<td>이세계에서 돌아온 전 용사지만 데스게임에 휘말렸습니다</td>
-            				<td>2022-02-26</td>
-            				<td>@</td>
-            				<td>23</td>
-            			</tr>
-            			<tr>
-            				<td>13</td>
-            				<td>이세계에서 돌아온 전 용사지만 데스게임에 휘말렸습니다</td>
-            				<td>2022-02-26</td>
-            				<td>@</td>
-            				<td>23</td>
-            			</tr>
-            			<tr>
-            				<td>12</td>
-            				<td>이세계에서 돌아온 전 용사지만 데스게임에 휘말렸습니다</td>
-            				<td>2022-02-26</td>
-            				<td>@</td>
-            				<td>23</td>
-            			</tr>
-            			<tr>
-            				<td>11</td>
-            				<td>이세계에서 돌아온 전 용사지만 데스게임에 휘말렸습니다</td>
-            				<td>2022-02-26</td>
-            				<td>@</td>
-            				<td>23</td>
-            			</tr>
-            			<tr>
-            				<td>10</td>
-            				<td>이세계에서 돌아온 전 용사지만 데스게임에 휘말렸습니다</td>
-            				<td>2022-02-26</td>
-            				<td>@</td>
-            				<td>23</td>
-            			</tr>
-            			<tr>
-            				<td>9</td>
-            				<td>이세계에서 돌아온 전 용사지만 데스게임에 휘말렸습니다</td>
-            				<td>2022-02-26</td>
-            				<td>@</td>
-            				<td>23</td>
-            			</tr>
-            			<tr>
-            				<td>8</td>
-            				<td>이세계에서 돌아온 전 용사지만 데스게임에 휘말렸습니다</td>
-            				<td>2022-02-26</td>
-            				<td>@</td>
-            				<td>23</td>
-            			</tr>
+            			</c:forEach>
+            			
             		</tbody>
             	</table>
             	<div id = "notice_enrollBtnDiv"> <!-- 관리자면 보여주는 등록하기 버튼 -->
             	 <button class="notice_enrollBtn btn btn-primary">공지사항 작성하기</button>
             	</div>
             </div>
-            <div id="content_4"><h4>페이징 처리</h4></div>
+            <div id="content_4">
+            	<div id = "pagin-area">
+            		<ul class="pagination">
+                		<c:choose>
+                			<c:when test="${ pi.currentPage eq 1 }">
+                    			<li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
+                			</c:when>
+                			<c:otherwise>
+                    			<li class="page-item"><a class="page-link" href="noticeList.no?cpage=${ pi.currentPage - 1 }" style="color: rgb(135, 206, 235);">이전</a></li>
+                			</c:otherwise>
+                    	</c:choose>
+                    	<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                    		<li class="page-item"><a class="page-link" href="noticeList.no?cpage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
+                   	 	</c:forEach>
+                         			
+                		<c:choose>
+                			<c:when test="${ pi.currentPage eq pi.maxPage }">
+                    			<li class="page-item disabled"><a class="page-link" href="#">다음</a></li>
+                			</c:when>
+							<c:otherwise>
+                    			<li class="page-item"><a class="page-link" href="noticeList.no?cpage=${ pi.currentPage + 1 }" style="color: rgb(135, 206, 235);">다음</a></li>
+							</c:otherwise>
+                    	</c:choose>
+                	</ul>
+            	</div>
+            </div>
         </div>
         </div>
     <div id="footer_area">

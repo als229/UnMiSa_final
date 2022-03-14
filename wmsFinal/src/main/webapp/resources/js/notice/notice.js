@@ -27,4 +27,9 @@ $(function(){
         }
     })
     
+    
+    $("#noticeTable>tbody>tr").click(function(){
+    	location.href = "noticeDetail.no?noticeNo="+ $(this).children(".nno").text();
+    })
+    
 })

@@ -26,7 +26,7 @@
     					<h3>제목 입력 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
     				</div>
     				<div id="content_2_div2">
-    					<input type="text" id="content_2_title" class="form-control" name="boardTitle" required placeholder="제목을 입력해주세요">
+    					<input type="text" id="content_2_title" class="form-control" name="noticeTitle" required placeholder="제목을 입력해주세요">
     				</div>
     			</div>
     			<div id="content_3">
@@ -34,7 +34,7 @@
     					<h3>내용 입력 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
     				</div>
     				<div id="content_3_div2">
- 		   				<textarea id="content_3_content" class="form-control" rows="20" style="resize:none;" name="boardContent" required placeholder="내용을 입력해주세요"></textarea>
+ 		   				<textarea id="content_3_content" class="form-control" rows="20" style="resize:none;" name="noticeContent" required placeholder="내용을 입력해주세요"></textarea>
     				</div>
     			</div>
     			<div id ="content_4">

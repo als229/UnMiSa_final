@@ -17,7 +17,7 @@
 	</div>
     <div class="wrap">
     	<div id="content_1">
-        	<img src="resources/image/common/markMarket.png" width="1196px" height="300px">
+        	<img src="resources/image/common/eventBanner.png" width="1196px" height="300px">
     	</div>
     	<div id = "content_2">
     		<table id="calendar">
