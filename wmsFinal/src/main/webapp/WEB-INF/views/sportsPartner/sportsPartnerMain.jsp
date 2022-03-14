@@ -537,7 +537,7 @@
 					<div id="profileName">대성이</div>
 					<div id="mark">🥊</div>
 					<div id="profile">
-						<img src="resources/image/sportsPartner/momisterran.jpg" width="180px"
+						<img src="resources/image/sportsPartner/person.jpg" width="180px"
 							height="156px">
 					</div>
 				</div>
@@ -678,5 +678,21 @@
 	</div>
 	</div>
 	<jsp:include page="../common/footer.jsp" />
+	
+<script>
+	$(function(){
+		
+		const i = Math.floor(Math.random() * 10);
+		const famous = ["사람이 자신의 몸이 가질수 있는 아름다움과 강함을 알지 못하고 늙어 버리는 것은 안타까운 일이다. <br> -소크라테스-", "믿음이 부족하기에 사람들은 도전하기를 두려워하지만, 나는 나 자신을 믿는다. <br> -무하마드 알리-", "포기하지 않는 자를 이기는 것은 너무나도 여려운 일이다. <br> -베이브 루스-", "슛은 시도하고 실패할 수 있지만 당신이 시도하지 않은 슛은 100% 실패로 돌아갈 뿐이다. <br> -웨인 그레츠키-", "나를 의심했던 사람들에게 감사하다. 그들은 내가 더 빨리 달릴 수 잇는 자극제가 되었다. <br> -우사인 볼트-", "오늘 당신이 느끼는 고통은 훗날 당신이 느낄 힘이 되어서 돌아온다. <br> -라이트급 챔피언 복서 김관민-", "나는 포기했을 때의 기분을 이미 알고있다. 그래서 포기하지 않았을 때에 무슨 일이 일어날지 알고 싶다. <br> -네일라 레이-", "나는 내가 더 노력할수록 운이 더 좋아진다는 것을 발견했다. <br> -토마스 제퍼슨", "인생이란 자신을 찾는 것이 아니라, 자신을 만드는 것이다. <br> -롤리 다스칼-", "성취의 크기는 목표를 이루기 위해 당신이 극복해야 했던 장애물의 크기로 잰다. <br> –부커 T. 워싱턴-"]
+		
+		
+		$('#famousSaying').html(famous[i]);
+		
+	})
+
+
+</script>
+	
+	
 </body>
 </html>
