@@ -20,7 +20,7 @@
 		<div id = "content_0">
 			<h1>공지사항</h1>
 		</div>
-		
+		<input type = "hidden" value = "${ n.noticeNo }" name="HinoticeNo">
 		<div id= "content_1">
 			<div id="content_1_NoTitle">
 				<h3>${n.noticeTitle }</h3>

@@ -31,5 +31,19 @@ $(function(){
     $("#noticeTable>tbody>tr").click(function(){
     	location.href = "noticeDetail.no?noticeNo="+ $(this).children(".nno").text();
     })
+
+
+    
+    $(".noticeDelete_Btn").click(function(){
+    	location.href = "noticeDelete.no?noticeNo="+$('input[name=HinoticeNo]').val();
+    })
+    
+    
+    
+    
+    $(".noticeUpdate_Btn").click(function(){
+    	location.href = "noticeUpdateForm.no?noticeNo="+$('input[name=HinoticeNo]').val();
+    })
+    
     
 })

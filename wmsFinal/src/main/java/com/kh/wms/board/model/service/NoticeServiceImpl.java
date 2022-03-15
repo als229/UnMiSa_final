@@ -39,6 +39,15 @@ public class NoticeServiceImpl implements NoticeService{
 	public int increaseCount(int noticeNo) {
 		return noticeDao.increaseCount(sqlSession, noticeNo);
 	}
+	@Override
+	public int noticeDelete(int noticeNo) {
+		// TODO Auto-generated method stub
+		return noticeDao.noticeDelete(sqlSession, noticeNo);
+	}
+	@Override
+	public Notice noticeUpdateForm(int noticeNo) {
+		return noticeDao.noticeUpdateForm(sqlSession, noticeNo);
+	}
 	
 
 }

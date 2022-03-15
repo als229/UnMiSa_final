@@ -12,7 +12,7 @@
 
 div{
 	/*border: 1px solid red;*/
-	box-sizing : border-box;
+	
 }
 
 #content_2{
@@ -77,7 +77,7 @@ div{
 }
 #content_5{
 	width:1200px;
-	height:150px;
+	height:200px;
 }
 #content_5>button{
 	margin-top:50px;
@@ -88,4 +88,10 @@ div{
 .Insert_Btn{
 	margin-left:400px;
 	margin-right:30px;
+}
+#content_4_2{
+	width:1200px;
+	padding-left:201px;
+	height:30px;
+	
 }

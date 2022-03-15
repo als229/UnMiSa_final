@@ -122,4 +122,34 @@ public class NoticeController {
 		
 		return mv;
 	}
+	@RequestMapping(value="noticeDelete.no")
+	public ModelAndView noticeDelete(ModelAndView mv, HttpSession session,int noticeNo ) {
+		
+		int result = noticeService.noticeDelete(noticeNo);
+		
+		if(result > 0) {
+			session.setAttribute("alertMsg", "게시글 작성 성공!");
+			mv.setViewName("redirect:noticeList.no");
+		}else {
+			session.setAttribute("alertMsg", "게시글 작성 실패ㅜ");
+			mv.setViewName("redirect:noticeList.no");
+		}
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value="noticeUpdateForm.no")
+	public ModelAndView noticeUpdate(ModelAndView mv, HttpSession session,int noticeNo ) {
+		
+		Notice n = noticeService.noticeUpdateForm(noticeNo);
+		
+		mv.addObject("n",n).setViewName("notice/noticeUpdateForm");
+		
+		return mv;
+	}
+	
+	
+	
+	
 }
