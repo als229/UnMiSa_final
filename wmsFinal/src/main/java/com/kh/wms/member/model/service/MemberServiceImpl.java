@@ -22,10 +22,18 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.ajaxCheckId(sqlSession, memberId);
 	}
 	@Override
-	public int insertMember(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int ajaxAuthEmail(String email) {
+		return memberDao.ajaxAuthEmail(sqlSession, email);
 	}
+	@Override
+	public int insertMember(Member m) {
+		return memberDao.insertMember(sqlSession, m);
+	}
+	@Override
+	public Member loginMember(Member m) {
+		return memberDao.loginMember(sqlSession, m);
+	}
+	
 	
 	
 	

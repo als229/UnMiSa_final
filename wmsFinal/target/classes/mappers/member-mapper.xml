@@ -12,10 +12,9 @@
 		<result column="PHONE" property="phone"/>	
 		<result column="MEMBER_STATUS" property="memberStatus"/>	
 		<result column="MARK" property="mark"/>	
-		<result column="ADDRESS" property="address"/>	
 		<result column="BIRTH_DATE" property="birthDate"/>	
 		<result column="POINT" property="point"/>	
-		<result column="PLATFORM" property="platform"/>	
+		<result column="PLATFORM" property="platForm"/>	
 		<result column="AUTHKEY" property="authKey"/>	
 	</resultMap>
 	
@@ -26,6 +25,30 @@
 		
 	</select>
 	
+	<select id="ajaxAuthEmail" resultType="_int" parameterType="String">
+		
+		SELECT COUNT(*) FROM MEMBER
+		WHERE EMAIL = #{email}
+		
+	</select>
+	
+	<insert id="insertMember" parameterType="member">
+		
+		INSERT INTO 
+		MEMBER
+		(MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NAME, EMAIL, PHONE, BIRTH_DATE, PLATFORM, AUTHKEY)
+		VALUES
+		(SEQ_MNO.NEXTVAL, #{memberId}, #{memberPwd}, #{memberName}, #{email}, #{phone}, #{birthDate}, #{platForm}, #{authKey})
+		
+	</insert>
+	
+	<select id="loginMember" parameterType="member" resultMap="memberResultSet">
+	
+		SELECT * FROM MEMBER 
+		WHERE MEMBER_ID = #{memberId}
+		AND MEMBER_STATUS = 'Y'
+	
+	</select>
 	<!-- 
 	로그인용 쿼리문
 	<select id="loginMember" resultMap="memberResultSet" parameterType="member">

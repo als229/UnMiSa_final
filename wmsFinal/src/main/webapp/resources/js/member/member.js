@@ -75,7 +75,7 @@ $(function(){
 		//전화번호 확인 이벤트
 		$('#phone').focusout(function(){
 			//숫자만 입력 가능
-			var phoneCheck = RegExp(/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/);
+			var phoneCheck = RegExp(/^01([0|1|6|7|8|9]?)([0-9]{3,4})([0-9]{4})$/);
 
 			if(!(phoneCheck.test($('#phone').val()))){
 				$('#phone').val('');
@@ -110,7 +110,7 @@ $(function(){
 			}else{
 				// 중복확인 AJAX
 				$.ajax({
-					url : "idCheck.me",
+					url : "checkId.me",
 					data : { memberId : $('#memberId').val()},
 					type : "post",
 					success : function(result){
@@ -141,7 +141,7 @@ $(function(){
 			}else{
 				// 중복확인 AJAX 및 인증번호 발급 후 이메일 전송
 				$.ajax({
-					url : getContextPath()+"/emailAuth.me",
+					url : "authEmail.me",
 					data : { email : $('#email').val()},
 					type : "post",
 					success : function(result){

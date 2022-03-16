@@ -22,7 +22,7 @@
 		<div class="member-area" align="center">
             <fieldset>
             <legend>회원가입</legend>
-            <form action="/insert.me" method="post">
+            <form action="insert.me" method="post">
                 <ul>
                     <li>
                     	<div class="id-area">
@@ -115,7 +115,7 @@
                     </li>
                      <li class="email_certification_text error_text">
                     </li>
-                    <<li>
+                    <li>
                         <label for="phone">휴대전화</label>
                     </li>
                     <li>
