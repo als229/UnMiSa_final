@@ -7,29 +7,22 @@
 <meta charset="UTF-8">
 <title>header</title>
 <!-- jQuery 라이브러리 -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- 부트스트랩에서 제공하고 있는 스타일 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- 부트스트랩에서 제공하고 있는 스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!-- ALertfy 프레임워크 -->
 <!-- JavaScript -->
-<script
-	src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
 <!-- CSS -->
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
 <!-- Default theme -->
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
 <!-- Semantic UI theme -->
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
 
 <!-- google api 부분 -->
 <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
@@ -77,8 +70,8 @@
 
 					<c:otherwise>
 						<!-- 로그인 후 -->
-						<lable>홍길동님 환영합니다</label> &nbsp;&nbsp; <a href=""><img src="">내
-							채팅</a> <a href="">로그아웃</a> <a href="myPage.me">마이페이지</a> <a href="sportsPartnerMain.sp">운동파트너</a>
+						<lable>${loginUser.memberName}님 환영합니다</label> &nbsp;&nbsp; <a href=""><img src="">내
+							채팅</a> <a href="logOut.me">로그아웃</a> <a href="myPage.me">마이페이지</a> <a href="sportsPartnerMain.sp">운동파트너</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -118,15 +111,17 @@
 				      </a>
 					</li>
 				</ul>
+				<form action="platFormLogin.me" method="post" id="platFormLogin">
+					<input type="hidden" value="" name="authKey" id="authKey">
+				</form>
 				<form action="login.me" method="post">
 					<!-- Modal body -->
 					<div class="modal-body">
-						<label for="memberId" class="mr-sm-2">ID : </label> <input
-							type="text" class="form-control mb-2 mr-sm-2"
-							placeholder="Enter ID" id="memberId" name="memberId"> <br>
-						<label for="memberPwd" class="mr-sm-2">Password : </label> <input
-							type="password" class="form-control mb-2 mr-sm-2"
-							placeholder="Enter Password" id="memberPwd" name="memberPwd">
+						<label for="memberId" class="mr-sm-2">ID : </label> 
+						<input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter ID" id="memberId" name="memberId"> 
+						<br>
+						<label for="memberPwd" class="mr-sm-2">Password : </label> 
+						<input type="password" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="memberPwd" name="memberPwd">
 					</div>
 
 					<!-- Modal footer -->
@@ -138,33 +133,53 @@
 			</div>
 		</div>
 	</div>
-	<script>
+<script>
 	Kakao.init('5d7bca7081de702923386d3aa98982bf'); //발급받은 키 중 javascript키를 사용해준다.
 	console.log(Kakao.isInitialized()); // sdk초기화여부판단
 	//카카오로그인
 	function kakaoLogin() {
-	    Kakao.Auth.login({
-	      success: function (response) {
-	        Kakao.API.request({
-	          url: '/v2/user/me',
-	          success: function (response) {
-	        	  console.log(response)
-	        	  console.log(response.kakao_account)
-	        	  console.log(response.kakao_account.email)
-	        	  //location.href="login.me";
-	          },
-	          fail: function (error) {
-	            console.log(error)
-	          },
-	        })
-	      },
-	      fail: function (error) {
-	        console.log(error)
-	      },
-	    })
-	  }
+		Kakao.Auth.login({
+		success: function (response) {
+			Kakao.API.request({
+			url: '/v2/user/me',
+			success: function (response) {
+				console.log(response)
+				console.log(response.id)
+				var authKey = response.id;
+				platFormLogin(authKey);
+			},
+			fail: function (error) {
+				console.log(error)
+			},
+			})
+		},
+		fail: function (error) {
+			console.log(error)
+		},
+		})
+	}
 	
-	
+	function platFormLogin(authKey){
+		$.ajax({
+			url : "platFormCheck.me",
+			data : { authKey : authKey},
+			type : "post",
+			success : function(result){
+				console.log("성공 ");
+				if(result == 0){
+					alertify.alert("가입 된 회원 아닙니다.");
+				}else{
+					console.log(authKey)
+					$("#authKey").val(authKey);
+					$("#platFormLogin").submit();
+				}
+				
+			},
+			error : function(){
+				console.log('조회 실패');
+			}
+		})
+	}
 	
 	//카카오로그아웃  
 	function kakaoLogout() {

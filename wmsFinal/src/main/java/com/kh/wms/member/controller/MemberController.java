@@ -38,28 +38,42 @@ public class MemberController {
 	private JavaMailSender sender;
 	
 	// 호형존
-	@RequestMapping(value="login.me")
-	public ModelAndView googleAuth(ModelAndView mv, Member m , HttpSession session) throws IOException {
-		
-		System.out.println("로그인");
-		System.out.println(m);
+	@RequestMapping(value="login.me", method=RequestMethod.POST)
+	public ModelAndView login(ModelAndView mv, Member m , HttpSession session) throws IOException {
 		
 		Member loginUser = memberService.loginMember(m);
 
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
-			// 로그인 성공
 			session.setAttribute("alertMsg", "로그인 성공");
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/");
 		} else {
-			// 로그인 실패 !!!
 			mv.addObject("alertMsg", "로그인 정보가 틀립니다.");
 		}
 		
 		mv.setViewName("main");
-
 		return mv;
-
+	}
+	
+	// platForm 로그인 
+	@RequestMapping(value="platFormLogin.me", method=RequestMethod.POST)
+	public ModelAndView login(ModelAndView mv, HttpSession session, String authKey) {
+		
+		Member loginUser = memberService.loginMember(authKey);
+		session.setAttribute("alertMsg", "로그인 성공");
+		session.setAttribute("loginUser", loginUser);
+		mv.setViewName("main");
+		
+		return mv;
+	}
+	
+	//logOut 기능
+	@RequestMapping(value="logOut.me")
+	public ModelAndView logOut(HttpSession session, ModelAndView mv) {
+		
+		session.invalidate();
+		mv.setViewName("redirect:/");
+		return mv;
 	}
 	
 	@RequestMapping(value="loginForm.me")
@@ -67,13 +81,14 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	// 회원가입 Form으로 이동
 	@RequestMapping(value="choice.me")
 	public String choiceEnroll() {
 		return "member/choiceEnroll";
 	}
 	
-	// 플랫폼마다 다르게 처리해서 뷰에 뿌려줌 1.기본 회원 2.카카오 3.네이버 4.페이스북
-	@RequestMapping(value="enroll.me")
+	// 플랫폼마다 다르게 처리해서 뷰에 뿌려줌 1.기본 회원(GET) 
+	@RequestMapping(value="enroll.me", method=RequestMethod.GET)
 	public ModelAndView memberEnroll(ModelAndView mv, int platForm) {
 		
 		mv.addObject("platForm", platForm);
@@ -82,6 +97,20 @@ public class MemberController {
 		return mv;
 	}
 	
+	// 플랫폼마다 다르게 처리해서 뷰에 뿌려줌 2.카카오 3.네이버 4.페이스북(POST)
+	@RequestMapping(value="enroll.me", method=RequestMethod.POST)
+	public ModelAndView memberEnroll(ModelAndView mv, int platForm, String account, String email) {
+		
+		mv.addObject("platForm", platForm);
+		mv.addObject("account", account);
+		mv.addObject("email", email);
+		mv.setViewName("member/memberEnroll");
+		System.out.println(platForm);
+		System.out.println(account);
+		System.out.println(email);
+		
+		return mv;
+	}
 	
 	// id중복체크 기능
 	@ResponseBody
@@ -92,9 +121,30 @@ public class MemberController {
 		return new Gson().toJson(result); 
 	}
 	
+	// emmail 체크
+	@ResponseBody
+	@RequestMapping(value="kakaoEmailCheck.me", produces="application/json; charset=UTF-8", method=RequestMethod.POST)
+	public String ajaxkakaoEmailCheck(String email) {
+		
+		int result = memberService.ajaxAuthEmail(email);
+		System.out.println("result:::"+result);
+		
+		return new Gson().toJson(result);
+	}
+	
+	// platForm authKey 확인 (가입여부)
+	@ResponseBody
+	@RequestMapping(value="platFormCheck.me", method=RequestMethod.POST)
+	public String AjaxPlatFormCheck(String authKey) {
+		
+		int result = memberService.AjaxPlatFormCheck(authKey);
+		return new Gson().toJson(result); 
+	}
+	
+	
+	
 	@RequestMapping(value="insert.me", method=RequestMethod.POST)
 	public ModelAndView insertMember(ModelAndView mv, Member m, int platForm ) {
-		
 		
 		m.setBirthDate(m.getYyyy()+"-"+m.getDd()+"-"+m.getMm());
 		String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
@@ -131,7 +181,6 @@ public class MemberController {
 			helper.setSubject("운미사 인증 번호 발송 입니다.");
 			helper.setText("인증번호 : " + authNumber);
 			sender.send(message);
-			
 			json.addProperty("authNumber", authNumber);
 			
 		}
@@ -140,6 +189,20 @@ public class MemberController {
 		
 		return new Gson().toJson(json);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

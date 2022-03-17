@@ -9,5 +9,7 @@ public interface MemberService {
 	int ajaxAuthEmail(String email);
 	int insertMember(Member m);
 	Member loginMember(Member m);
+	Member loginMember(String authKey);
+	int AjaxPlatFormCheck(String authKey);
 	
 }

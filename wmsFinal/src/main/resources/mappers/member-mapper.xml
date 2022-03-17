@@ -25,6 +25,8 @@
 		
 	</select>
 	
+	
+	
 	<select id="ajaxAuthEmail" resultType="_int" parameterType="String">
 		
 		SELECT COUNT(*) FROM MEMBER
@@ -49,75 +51,25 @@
 		AND MEMBER_STATUS = 'Y'
 	
 	</select>
-	<!-- 
-	로그인용 쿼리문
-	<select id="loginMember" resultMap="memberResultSet" parameterType="member">
-		select
-				USER_ID
-				,USER_PWD
-				,USER_NAME
-				,EMAIL
-				,GENDER
-				,AGE
-				,PHONE
-				,ADDRESS
-				,ENROLL_DATE
-				,MODIFY_DATE
-				,STATUS
-			  FROM
-				MEMBER
-			WHERE
-				USER_ID = #{userId}
-			  AND
-			  	STATUS = 'Y'
+	
+	<select id="loginMemberAuth" parameterType="String" resultMap="memberResultSet">
+	
+		SELECT * FROM MEMBER 
+		WHERE AUTHKEY = #{authKey}
+		AND MEMBER_STATUS = 'Y'
 	
 	</select>
 	
-	회원 가입용 쿼리문
-	<insert id="insertMember" parameterType="member">
-		INSERT INTO
-					 MEMBER
-							(
-							USER_ID
-							,USER_PWD
-							,USER_NAME
-							,EMAIL
-							,GENDER
-							,AGE
-							,PHONE
-							,ADDRESS
-							)
-					VALUES
-							(
-							#{userId}
-							,#{userPwd}
-							,#{userName}
-							,#{email}
-							,#{gender}
-							,#{age}
-							,#{phone}
-							,#{address}
-							)
 	
-	</insert>
+	<select id="AjaxPlatFormCheck" resultType="_int" parameterType="String">
+		
+		SELECT COUNT(*) FROM MEMBER
+		WHERE AUTHKEY = #{authKey}
+		AND MEMBER_STATUS = 'Y'
+	</select>
 	
-	회원 정보 수정용 쿼리문
 	
-	<update id="updateMember" >
-		UPDATE
-				MEMBER
-			SET
-				USER_NAME = #{userName}
-				,EMAIL = #{email}
-				,AGE = #{age}
-				,PHONE = #{phone}
-				,ADDRESS = #{address}
-				,GENDER = #{gender}
-				,MODIFY_DATE = SYSDATE
-			WHERE 
-				USER_ID = #{userId}
-	</update>
-	
+	<!--
 	<update id="deleteMember">
 		UPDATE
 				MEMBER

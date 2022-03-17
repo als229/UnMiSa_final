@@ -29,6 +29,13 @@
                     		<div align="left" style="width: 280px">
                         		<label for="memberId">아이디</label>
                         		<input type="hidden" value="${platForm }" name="platForm">
+                        		<c:choose>
+                        			<c:when test="${ not empty account }">
+		                        		<input type="hidden" value="${account}" name="authKey">
+                        			</c:when>
+                        			<c:otherwise>
+                        			</c:otherwise>
+                        		</c:choose>
                     		</div>
                     		<div align="right" style="width: 120px">
 	                    		<input type="button" class="member_btn id_check_btn" id="idCheck" value="중복체크">
@@ -100,7 +107,14 @@
                         <label for="email">이메일</label>
                     </li>
                     <li>
-                        <input type="text" id="email" name="email" class="member_input" required placeholder="@ 포함으로 입력 해주세요.">
+                    	<c:choose>
+                    		<c:when test="${ not empty email }">
+		                    	<input type="text" id="email" name="email" class="member_input" required readonly value="${email}">
+							</c:when>
+							<c:otherwise>
+		                        <input type="text" id="email" name="email" class="member_input" required placeholder="@ 포함으로 입력 해주세요.">
+							</c:otherwise>
+                    	</c:choose>
                     </li>
                      <li class="email_text error_text">
                     </li>
@@ -119,7 +133,7 @@
                         <label for="phone">휴대전화</label>
                     </li>
                     <li>
-                        <input type="text" name="phone" id="phone" class="member_input" required placeholder="-포함 숫자만 입력해주세요.">
+                        <input type="text" name="phone" id="phone" class="member_input" required placeholder="-없이 숫자만 입력해주세요.">
                     </li>
                     <li class="phone_text error_text">
                     </li>
