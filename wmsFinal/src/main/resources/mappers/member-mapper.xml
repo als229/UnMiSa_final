@@ -71,8 +71,9 @@
 			  AND
 			  	STATUS = 'Y'
 	
-	</select>
 	
+	</select>
+
 	회원 가입용 쿼리문
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO

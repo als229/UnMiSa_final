@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sportsPartnerMapper">
+  
+  
+  	<resultMap id="purposeResultSet" type="purpose">
+		<result column="PURPOSE_NO" property="purposeNo" />
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="CURRENT_WEIGHT" property="currentWeight" />
+		<result column="CURRENT_FAT" property="currentFat" />
+		<result column="CURRENT_MUSCLE" property="currentMuscle" />
+		<result column="PURPOSE_WEIGHT" property="purposeWeight" />
+		<result column="PURPOSE_FAT" property="purposeFat" />
+		<result column="PURPOSE_MUSCLE" property="purposeMuscle" />
+		<result column="SPORTS1" property="sports1" />
+		<result column="SPORTS2" property="sports2" />
+		<result column="SPORTS3" property="sports3" />
+		<result column="SPORTSCOUNT1" property="sportsCount1" />
+		<result column="SPORTSCOUNT2" property="sportsCount2" />
+		<result column="SPORTSCOUNT3" property="sportsCount3" />
+		<result column="PURPOSE_STATUS" property="purposeStatus" />
+	</resultMap>
+  
+  
+  	<select id="selectPurpose" resultMap="purposeResultSet">
+			SELECT
+					CURRENT_WEIGHT
+			        ,CURRENT_FAT
+			        ,CURRENT_MUSCLE
+			        ,PURPOSE_WEIGHT
+			        ,PURPOSE_FAT
+			        ,PURPOSE_MUSCLE
+			        ,SPORTS1
+			        ,SPORTS2
+			        ,SPORTS3
+			        ,SPORTSCOUNT1
+			        ,SPORTSCOUNT2
+			        ,SPORTSCOUNT3
+			FROM
+			        PURPOSE
+			WHERE
+					MEMBER_NO = #{memberNo}
+			      
+
+	</select>
+  
+  
+</mapper>

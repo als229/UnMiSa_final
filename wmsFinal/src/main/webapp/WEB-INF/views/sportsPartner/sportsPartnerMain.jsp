@@ -161,25 +161,7 @@
             border : 3px solid rgb(176,176,176);
             float: left;
         }
-        #weightPercent{
-            background-color: rgb(229,242,248);
-            width: 88px; 
-            /* 
-                총 200px인데 여기에 쿼리를 먹임 
-                ex) 몸무게 목표 달성도가 44%라면 88px
-                달성도가 30이라면 30을 값으로 빼와서 x2 하고 그걸 width px style에 맥이는 방식
 
-                퍼센트 구하는법)
-                몸무게 감량 목표 : 현재 몸무게가 80이고 목표 감량 몸무게가 60이라면
-                80(현재 몸무게) - 60(감량 몸무게) = 20(빼야하는 살)
-                20 / 100 백분율로 나눠서 1kg를 뺄 때마다 %가 5%씩 올라감
-                4kg를 빼서 몸무게가 76kg가 되었다면 16% => 32px 퍼센테이지로 보여주기
-            */
-            height: 24px;
-            text-align: center;
-            font-weight: bold;
-            display: inline-block;
-        }
         #ib2{
             width: 54px;
             height: 30px;
@@ -203,14 +185,7 @@
             border : 3px solid rgb(176,176,176);
     
         }
-        #musclePercent{
-            background-color: rgb(229,242,248);
-            width: 40px; 
-            height: 24px;
-            text-align: center;
-            font-weight: bold;
-            display: inline-block;
-        }
+
         #ib3{
             width: 54px;
             height: 30px;
@@ -232,15 +207,7 @@
             display: inline-block;
             color:rgb(176,176,176);
             border : 3px solid rgb(176,176,176);
-        }
-        #bodyFatPercent{
-            background-color: rgb(229,242,248);
-            width: 200px; 
-            height: 24px;
-            text-align: center;
-            font-weight: bold;
-            display: inline-block;
-        }      
+        } 
         
         #ss1{
             margin-left: 40px;
@@ -314,22 +281,6 @@
             font-size: 13px;
             font-weight: bold;
           
-        }
-        #purposeDetail{
-            background-color: rgb(229,242,248); 
-            margin-left: 40px;
-            margin-top: 20px;
-            width: 271px;
-            height:40px;
-            line-height: 50px;
-            text-align: center;
-            font-size: 24px;
-            line-height: 40px;
-            border-radius:3%;
-        }
-        #purposeDetail:hover{
-        	cursor: pointer;
-            background-color: rgb(176,176,176);
         }
         
         #ago4{
@@ -534,7 +485,7 @@
 			<div id="m3">
 
 				<div id="profileBorder">
-					<div id="profileName">대성이</div>
+					<div id="profileName">${ loginUser.memberName }</div>
 					<div id="mark">🥊</div>
 					<div id="profile">
 						<img src="resources/image/sportsPartner/person.jpg" width="180px"
@@ -551,6 +502,8 @@
 						수 있는 아름다움과 강함을 알지 못하고 늙어 버리는 것은 안타까운 일이다. -소크라테스-</div>
 				</div>
 
+
+				<!-- p.sports 널로 c문 만들어서 알렛으로 못가게 해보리기 이따 해야댐 -->
 				<div id="diaryWrite" onclick="location.href='sportsPartnerDiaryWrite.sp'" >
 					<div
 						style="font-weight: bolder; text-align: center; font-size: 15px; margin-top: 5px;">오늘은
@@ -607,32 +560,189 @@
 
 			</div>
 
-			<div id="inbody">
-				<div id="ib1">몸무게</div>
-				<div id="weight">
-					<div id="weightPercent">44%</div>
-				</div>
-				<div id="ib2">근육량</div>
-				<div id="muscle">
-					<div id="musclePercent">20%</div>
-				</div>
-				<div id="ib3">체지방</div>
-				<div id="bodyFat">
-					<div id="bodyFatPercent">100%</div>
-				</div>
 
-				<div id="ss1" onclick="console.log('1')">헬스장</div>
-				<div id="ss2" onclick="console.log('2')">홈운동</div>
-				<div id="ss3" onclick="console.log('333')">조기축구</div>
+			<c:choose>
+				<c:when test="${ p.sports1 ne null }">
+					<div id="inbody">
+						<div id="ib1">몸무게</div>
+						<div id="weight">
+							<div id="weightPercent">44%</div>
+						</div>
+						<div id="ib2">근육량</div>
+						<div id="muscle">
+							<div id="musclePercent">20%</div>
+						</div>
+						<div id="ib3">체지방</div>
+						<div id="bodyFat">
+							<div id="bodyFatPercent">100%</div>
+						</div>					
 
-				<div id="ssh1">30회</div>
-				<div id="ssh2">11회</div>
-				<div id="ssh3">47회</div>
+						<div id="ss1">${ p.sports1 }</div>
+						<div id="ss2">${ p.sports2 }</div>
+						<div id="ss3">${ p.sports3 }</div>
+		
+						<div id="ssh1">${ p.sportsCount1 }회</div>
+						<div id="ssh2">${ p.sportsCount2 }회</div>
+						<div id="ssh3">${ p.sportsCount3 }회</div>
+						<div id="purposeDetail" onclick="location.href='sportsPartnerPurpose.sp'">목표설정</div>
+						<div id="purposeClear">목표완료</div>
+					</div>
+					<style>
+						#purposeDetail{
+				        	float:left;
+				            background-color: rgb(176,176,176);
+				            margin-left: 40px;
+				            margin-top: 20px;
+				            width: 130px;
+				            height:40px;
+				            line-height: 40px;
+				            text-align: center;
+				            font-size: 14px;
+				            border-radius:3%;
+				        }
+				        
+				        #purposeClear{
+				        	display: inline-block;
+				        	background-color: rgb(229,242,248); 
+				        	margin-left : 10px;
+				        	margin-top : 20px;
+				            width: 130px;
+				            height:40px;
+				        	line-height: 40px;
+				            text-align: center;
+				            font-size: 14px;
+				            border-radius:3%;
+				        }
+				        #purposeClear:hover{
+				        	cursor: pointer;
+				            background-color: rgb(176,176,176);
+				        }
+				        #weightPercent{
+			           		background-color: rgb(229,242,248);
+				            width: 88px; 
+				            /* 
+					                총 200px인데 여기에 쿼리를 먹임 
+					                ex) 몸무게 목표 달성도가 44%라면 88px
+					                달성도가 30이라면 30을 값으로 빼와서 x2 하고 그걸 width px style에 맥이는 방식
+					
+					                퍼센트 구하는법)
+					                몸무게 감량 목표 : 현재 몸무게가 80이고 목표 감량 몸무게가 60이라면
+				                80(현재 몸무게) - 60(감량 몸무게) = 20(빼야하는 살)
+				                20 / 100 백분율로 나눠서 1kg를 뺄 때마다 %가 5%씩 올라감
+				                4kg를 빼서 몸무게가 76kg가 되었다면 16% => 32px 퍼센테이지로 보여주기
+				            */
+				            height: 24px;
+				            text-align: center;
+				            font-weight: bold;
+				            display: inline-block;
+				        }        
+				        
+				        #musclePercent{
+				            background-color: rgb(229,242,248);
+				            width: 40px; 
+				            height: 24px;
+				            text-align: center;
+				            font-weight: bold;
+				            display: inline-block;
+				        }        
+				        
+				        #bodyFatPercent{
+				            background-color: rgb(229,242,248);
+				            width: 200px; 
+				            height: 24px;
+				            text-align: center;
+				            font-weight: bold;
+				            display: inline-block;
+			       		}     	
+					</style>
+				</c:when>
+				<c:otherwise>
+					<div id="inbody">
+						<div id="ib1">몸무게</div>
+						<div id="weight">
+							<div id="weightPercent">0</div>
+						</div>
+						<div id="ib2">근육량</div>
+						<div id="muscle">
+							<div id="musclePercent">0</div>
+						</div>
+						<div id="ib3">체지방</div>
+						<div id="bodyFat">
+							<div id="bodyFatPercent">0</div>
+						</div>					
 
-				<div id="purposeDetail" onclick="location.href='sportsPartnerPurpose.sp'">목표설정</div>
-
-			</div>
-
+						<div id="ss1">운동</div>
+						<div id="ss2">운동</div>
+						<div id="ss3">운동</div>
+		
+						<div id="ssh1">0</div>
+						<div id="ssh2">0</div>
+						<div id="ssh3">0</div>
+						<div id="purposeDetail" onclick="location.href='sportsPartnerPurpose.sp'">목표설정</div>
+						<div id="purposeClear">목표완료</div>
+					</div>
+					<style>
+						#purposeDetail{
+				        	float:left;
+				            background-color: rgb(229,242,248); 
+				            margin-left: 40px;
+				            margin-top: 20px;
+				            width: 130px;
+				            height:40px;
+				            line-height: 40px;
+				            text-align: center;
+				            font-size: 14px;
+				            border-radius:3%;
+				        }
+				        
+				        #purposeClear{
+				        	display: inline-block;
+				        	background-color: rgb(176,176,176);
+				        	margin-left : 10px;
+				        	margin-top : 20px;
+				            width: 130px;
+				            height:40px;
+				        	line-height: 40px;
+				            text-align: center;
+				            font-size: 14px;
+				            border-radius:3%;
+				        }
+				        
+				        #purposeDetail:hover{
+				        	cursor: pointer;
+				            background-color: rgb(135, 206, 235);
+				        }
+				        #weightPercent{
+			           		background-color: rgb(229,242,248);
+				            width: 200px; 
+				            height: 24px;
+				            text-align: center;
+				            font-weight: bold;
+				            display: inline-block;
+				        }        
+				        
+				        #musclePercent{
+				            background-color: rgb(229,242,248);
+				            width: 200px; 
+				            height: 24px;
+				            text-align: center;
+				            font-weight: bold;
+				            display: inline-block;
+				        }        
+				        
+				        #bodyFatPercent{
+				            background-color: rgb(229,242,248);
+				            width: 200px; 
+				            height: 24px;
+				            text-align: center;
+				            font-weight: bold;
+				            display: inline-block;
+			       		} 	
+					</style>
+				</c:otherwise>
+			</c:choose>
+		
+			
 			<div id="graph" onclick="console.log('33')">
 				<div id="ago4">
 					<div id="ago4check"></div>
@@ -693,6 +803,7 @@
 
 </script>
 	
-	
+
+
 </body>
 </html>

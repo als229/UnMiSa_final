@@ -104,6 +104,11 @@ z
         	line-height : 42px;
         	color : white;
         }
+        
+        #pp_back:hover{
+			cursor: pointer;
+			background-color: black;
+        }
         #pp_commit{
         
         	display : inline-block;
@@ -115,6 +120,10 @@ z
         	text-align : center;
         	line-height : 42px;
         
+        }
+        #pp_commit:hover{
+			cursor: pointer;
+			background-color: rgb(135, 206, 235);
         }
         .kg{
       		float : left;
@@ -251,36 +260,36 @@ z
 	        
 	        <form action="test">
 		        <div id="purposeBorder">
-		         	<div id="pp_header">'나'를 바꾸는 것은 '나' 자신 뿐이다.</div> 		
+		         	<div id="pp_header">'${ loginUser.memberName }'를(을) 바꾸는 것은 '${ loginUser.memberName }' 자신 뿐이다.</div> 		
 		        
 		        	<div id="before">
 		        		<div class="kg">몸무게</div>
 		        		<div class="eq">:</div>
 		        		<div class="ipkg">
-							<input type="number" class="input" placeholder="현재(kg)"></input>		        		
+							<input type="number" class="input" placeholder="현재(kg)" max="200" min="20" name="currentWeight" required></input>		        		
 		        		</div>
 		        		
 		        		<div class="cgy">체지방률</div>
 		        		<div class="eq2">:</div>
 		        		<div class="ipkg2">
-							<input type="number" class="input" placeholder="현재(%)"></input>		        		
+							<input type="number" class="input" placeholder="현재(%)" max="100" min="0" name="currentFat" required></input>		        		
 		        		</div>
 		        		
 						<div class="cgy">근육량</div>
 		        		<div class="eq2">:</div>
 		        		<div class="ipkg2">
-							<input type="number" class="input" placeholder="현재(kg)"></input>		        		
+							<input type="number" class="input" placeholder="현재(kg)" max="100" min="0" name="currentMuscle" required></input>		        		
 		        		</div>
 		        		
 		        		<div class="sportsBorder">
 		        			<div class="sports1">
-		        				<input type="text" id="spip1" class="sp_input" placeholder="진행할운동1"></input>	
+		        				<input type="text" id="spip1" class="sp_input" placeholder="진행할운동1" name="sports1"></input>	
 		        			</div>
 		        			<div class="sports2">
-		        				<input type="text" id="spip2" class="sp_input" placeholder="진행할운동2"></input>	
+		        				<input type="text" id="spip2" class="sp_input" placeholder="진행할운동2" name="sports2"></input>	
 		        			</div>
 		        			<div class="sports3">
-		        				<input type="text" id="spip3" class="sp_input" placeholder="진행할운동3"></input>	
+		        				<input type="text" id="spip3" class="sp_input" placeholder="진행할운동3" name="sports3"></input>	
 		        			</div>
 		        		</div>
 		        	</div>
@@ -298,13 +307,13 @@ z
 		        		<div class="kg">몸무게</div>
 		        		<div class="eq">:</div>
 		        		<div class="ipkg">
-							<input type="number" class="input" placeholder="목표(kg)"></input>		        		
+							<input type="number" class="input" placeholder="목표(kg)" max="200" min="20" name="purposeWeight" required></input>		        		
 		        		</div>
 		        		
 		        		<div class="cgy">체지방률</div>
 		        		<div class="eq2">:</div>
 		        		<div class="ipkg2">
-							<input type="number" class="input" placeholder="목표(%)"></input>		        		
+							<input type="number" class="input" placeholder="목표(%)" max="100" min="0" name="purposeFat" required></input>		        		
 		        		</div>
 		        		
 		        		<!-- 숫자만 입력하게 키보드 제한 설정하기 + before 진행할운동 1에 쓰면 after 1에도 써지게 하기 -->
@@ -312,7 +321,7 @@ z
 						<div class="cgy">근육량</div>
 		        		<div class="eq2">:</div>
 		        		<div class="ipkg2">
-							<input type="number" class="input" placeholder="목표(kg)"></input>		        		
+							<input type="number" class="input" placeholder="목표(kg)" max="100" min="0" name="purposeMuscle" required></input>		        		
 		        		</div>
 		        		
 		        		<div class="sportsBorder">
@@ -351,7 +360,7 @@ z
 		        	
 		        	</script>
 		        	
-		        	<div id="pp_back" onclick="console.log('3')">다음에 하기</div>
+		        	<div id="pp_back" onclick="location.href='sportsPartnerMain.sp'">다음에 하기</div>
 		        	<button type="submit" id="pp_commit">목표 설정 완료</button>
 		        
 		        
