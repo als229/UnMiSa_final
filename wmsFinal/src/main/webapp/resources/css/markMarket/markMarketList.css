@@ -27,18 +27,17 @@
         #content_2>div{
             float: left;
         }
+        #pagin-area {width:fit-content; margin:auto;}
 
-        .content_2_mark{
-            width: 350px;
-            height: 450px;
-        }
+       
         
-        .content_2_mark{
+        #content_2_mark{
             margin: 48px;
             width: 300px;
             height: 450px;
+            
         }
-        .content_2_mark>div{
+        #content_2_mark>div{
             text-align: center;
         }
         .content_2_markName{
@@ -55,10 +54,10 @@
             margin-top: 15px;
             font-family: 'gmarket_font_medium';
         }
-       .content_2_markHover{
-           margin-top: -420px;
+       #content_2_markHover{
+           margin-top: -415px;
            width: 300px;
-           height: 420px;
+           height: 415px;
            display: none;
            background-color: rgba(136, 136, 136);
            opacity: 0.9;

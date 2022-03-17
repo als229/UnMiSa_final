@@ -47,9 +47,11 @@ public class NoticeDao {
 		return sqlSession.update("noticeMapper.noticeDelete",noticeNo);
 	}
 
-	public Notice noticeUpdateForm(SqlSessionTemplate sqlSession, int noticeNo) {
-		return sqlSession.selectOne("noticeMapper.noticeDetail", noticeNo);
+	public int noticeUpdate(SqlSessionTemplate sqlSession, Notice n) {
+		return sqlSession.update("noticeMapper.noticeUpdate",n);
 	}
+
+	
 
 	 
 

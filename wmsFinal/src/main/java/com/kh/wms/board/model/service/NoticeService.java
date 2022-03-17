@@ -20,5 +20,5 @@ public interface NoticeService {
 
 	int noticeDelete(int noticeNo);
 
-	Notice noticeUpdateForm(int noticeNo);
+	int noticeUpdate(Notice n);
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="paymentMapper">
+
+	<resultMap id="paymentResultSet" type = "payment">
+		<result column="MARK_NO" property="markNo"/>
+		<result column="MARK_NAME" property="markName"/>
+		<result column="PRICE" property="price"/>
+		<result column="MARK_CONTENT" property="markContent"/>
+	</resultMap>
+	
+	
+	
+	<select id="marketListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MARK
+	</select>
+	
+	<select id = "marketList" resultMap = "paymentResultSet">
+		SELECT MARK_NO
+			  ,MARK_NAME
+			  ,PRICE
+			  ,MARK_CONTENT
+		FROM MARK
+        ORDER BY MARK_NO
+	</select>
+	
+	
+	
+	
+
+</mapper>

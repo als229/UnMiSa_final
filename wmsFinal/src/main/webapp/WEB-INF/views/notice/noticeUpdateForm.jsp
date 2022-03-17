@@ -55,7 +55,7 @@
     				</div>
     			</div>
     			<div id="content_5">
-    				<button type="submit" class="Insert_Btn btn btn-primary">작성완료</button>
+    				<button type="submit" class="Insert_Btn btn btn-primary">수정완료</button>
     				<button class="noticeList_Btn btn btn-secondary">뒤로가기</button>
     			</div>
     		</form>

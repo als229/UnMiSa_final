@@ -3,9 +3,7 @@ $(function(){
     	location.href = "noticeList.no";
     })
     
-    $("#noticeTable>tbody>tr").click(function(){
-    	location.href = "noticeDetail.no";
-    })
+   
     
     $(".notice_enrollBtn").click(function(){
     	location.href = "noticeEnrollForm.no";
@@ -26,7 +24,7 @@ $(function(){
             $an.slideUp(700);
         }
     })
-    
+
     
     $("#noticeTable>tbody>tr").click(function(){
     	location.href = "noticeDetail.no?noticeNo="+ $(this).children(".nno").text();

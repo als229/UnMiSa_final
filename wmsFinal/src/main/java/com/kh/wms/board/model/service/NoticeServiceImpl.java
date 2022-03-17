@@ -45,8 +45,8 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeDao.noticeDelete(sqlSession, noticeNo);
 	}
 	@Override
-	public Notice noticeUpdateForm(int noticeNo) {
-		return noticeDao.noticeUpdateForm(sqlSession, noticeNo);
+	public int noticeUpdate(Notice n) {
+		return noticeDao.noticeUpdate(sqlSession, n);
 	}
 	
 

@@ -140,11 +140,40 @@ public class NoticeController {
 	
 	
 	@RequestMapping(value="noticeUpdateForm.no")
+	
 	public ModelAndView noticeUpdate(ModelAndView mv, HttpSession session,int noticeNo ) {
 		
-		Notice n = noticeService.noticeUpdateForm(noticeNo);
+		Notice n = noticeService.noticeDetail(noticeNo);
 		
 		mv.addObject("n",n).setViewName("notice/noticeUpdateForm");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="noticeUpdate.no")
+	
+	public ModelAndView noticeUpdate(ModelAndView mv, Notice n, HttpSession session, MultipartFile reupfile ) {
+		if(!reupfile.getOriginalFilename().equals("")) {
+		if(n.getOriginName() != null) {
+			new File(session.getServletContext().getRealPath(n.getChangeName())).delete(); //new File(**경로**) 안에 경로를 적어 삭제할 곳 을 적어준다
+		}
+
+		String changeName = saveFile(reupfile,session);
+					
+		// b라는 Board객체에 새로운 정보(원본명, 저장경로) 담기
+		n.setOriginName(reupfile.getOriginalFilename());
+		n.setChangeName("resources/uploadFiles/" + changeName);
+		}
+				
+				
+		int result = noticeService.noticeUpdate(n);
+		if(result > 0) {
+			session.setAttribute("alertMsg", "게시글 수정에 성공했습니다 ^!^");
+			mv.setViewName("redirect:noticeDetail.no?noticeNo=" + n.getNoticeNo());
+		}else {
+			session.setAttribute("alertMsg","게시글 수정에 실패했습니다.");
+			mv.setViewName("redirect:noticeList.no");
+		}
 		
 		return mv;
 	}

@@ -10,7 +10,6 @@
 	<!-- markMarket css -->
 	<link rel="stylesheet" href="resources/css/markMarket/markMarketList.css"/>
 	<script src="resources/js/markMarket/markMarketList.js"></script>
-	
 </head>
 <body>
 	<div id="header_area">
@@ -24,86 +23,74 @@
                 </div>
             </div>
             <div id="content_2">
-                <div class="content_2_mark"> <!--여기에 클래스 추가 시켜서 번호마다 결제 jQuery먹게끔-->
-                    <div class="content_2_markImg">
-                        <img src="resources/image/mark/마크이미지1.png" width="300px" height="310px">
-                    </div>
-                    <div class="content_2_markName">
-                        <h2>쁘띠 발렌타인 컬렉션</h2>
-                    </div>
-                    <div class="content_2_markPrice">
-                        <h2>25000</h2>
-                    </div>
-                    <div class="content_2_markHover">
-                        <div class="content2_markHover_1">
-                            <h4>쁘띠라고? 정말 사고싶다 ㅇㅈ?</h4>
+            	<c:forEach var="p" items="${ list }">
+                	<div id ="content_2_mark" class="content_2_mark${p.markNo }"> <!--여기에 클래스 추가 시켜서 번호마다 결제 jQuery먹게끔-->
+                    	<div class="content_2_markImg">
+                        	<img src="resources/image/mark/${p.markNo }.jpg" width="300px" height="310px"style=" border-radius:10px;">
+                    	</div>
+                    	<div class="content_2_markName">
+                        	<h2>${p.markName }</h2>
+                    	</div>
+                    	<div class="content_2_markPrice">
+                        	<h2>${p.price }</h2>
+                    	</div>
+                    	
+                    	<div id = content_2_markHover class="content_2_markHover${p.markNo }">
+                        	<div class="content2_markHover_1">
+                            	<h4>${p.markContent }</h4>
 
-                        </div>
-                        <div class="content2_markHover_2">
-                            <button class="markHover_btn1 btn btn-secondary">포인트 구매</button>
-                            <button class="markHover_btn2 btn btn-primary">카카오페이</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="content_2_mark">
-                    <div class="content_2_markImg">
-                        <img src="resources/image/mark/마크이미지2.png" width="300px" height="310px">
-                    </div>
-                    <div class="content_2_markName">
-                        <h2>쁘띠 발렌타인 컬렉션</h2>
-                    </div>
-                    <div class="content_2_markPrice">
-                        <h2>10000</h2>
-                    </div>
-                </div>
-                <div class="content_2_mark">
-                    <div class="content_2_markImg">
-                        <img src="resources/image/mark/마크이미지3.png" width="300px" height="310px">
-                    </div>
-                    <div class="content_2_markName">
-                        <h2>쁘띠 발렌타인 컬렉션</h2>
-                    </div>
-                    <div class="content_2_markPrice">
-                        <h2>15000</h2>
-                    </div>
-                </div>
-                <div class="content_2_mark">
-                    <div class="content_2_markImg">
-                        <img src="resources/image/mark/마크이미지1.png"width="300px" height="310px">
-                    </div>
-                    <div class="content_2_markName">
-                        <h2>쁘띠 발렌타인 컬렉션</h2>
-                    </div>
-                    <div class="content_2_markPrice">
-                        <h2>25000</h2>
-                    </div>
-                </div>
-                <div class="content_2_mark">
-                    <div class="content_2_markImg">
-                        <img src="resources/image/mark/마크이미지2.png"width="300px" height="310px">
-                    </div>
-                    <div class="content_2_markName">
-                        <h2>쁘띠 발렌타인 컬렉션</h2>
-                    </div>
-                    <div class="content_2_markPrice">
-                        <h2>10000</h2>
-                    </div>
-                </div>
-                <div class="content_2_mark">
-                    <div class="content_2_markImg">
-                        <img src="resources/image/mark/마크이미지3.png" width="300px" height="310px">
-                    </div>
-                    <div class="content_2_markName">
-                        <h2>쁘띠 발렌타인 컬렉션</h2>
-                    </div>
-                    <div class="content_2_markPrice">
-                        <h2>15000</h2>
-                    </div>
-                </div>
-
-            </div>
+                        	</div>
+                        	<div class="content2_markHover_2">
+                            	<button class="markHover_btn1 btn btn-secondary">포인트 구매</button>
+                            	<input type=hidden value="${p.markNo }">
+                            	<button class="markHover_btn2 btn btn-primary">카카오페이</button>
+                        	</div>
+                    	</div>
+                	</div>
+                	<script>
+                		$(function(){
+                			$('.content_2_mark${ p.markNo }').mouseenter(function() {
+                	       	$(".content_2_markHover${p.markNo }").show();
+                	  	  })
+                	   	 $('.content_2_mark${p.markNo }').mouseleave(function() {
+                	        $(".content_2_markHover${p.markNo }").hide();
+                	    })
+                	})
+                	
+                	$(".markHover_btn1").click(function(){
+                		    	location.href = "paymentPoint.pm?markNo="+$(this).next().val();
+                		    })
+                			$(".markHover_btn2").click(function(){
+                		    	location.href = "paymentPoint.pm?markNo="+$(this).prev().val();
+                		    })
+                	</script>
+                </c:forEach>
+               </div>
             <div id="content_3">
-               <h2>페이징 처리</h2> 
+               <div id = "pagin-area">
+            		<ul class="pagination">
+                		<c:choose>
+                			<c:when test="${ pi.currentPage eq 1 }">
+                    			<li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
+                			</c:when>
+                			<c:otherwise>
+                    			<li class="page-item"><a class="page-link" href="markMarket.pm?cpage=${ pi.currentPage - 1 }" style="color: rgb(135, 206, 235);">이전</a></li>
+                			</c:otherwise>
+                    	</c:choose>
+                    	<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                    		<li class="page-item"><a class="page-link" href="markMarket.pm?cpage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
+                   	 	</c:forEach>
+                         			
+                		<c:choose>
+                			<c:when test="${ pi.currentPage eq pi.maxPage }">
+                    			<li class="page-item disabled"><a class="page-link" href="#">다음</a></li>
+                			</c:when>
+							<c:otherwise>
+                    			<li class="page-item"><a class="page-link" href="markMarket.pm?cpage=${ pi.currentPage + 1 }" style="color: rgb(135, 206, 235);">다음</a></li>
+							</c:otherwise>
+                    	</c:choose>
+                	</ul>
+            	</div>
             </div>
         </div>
     </div>
