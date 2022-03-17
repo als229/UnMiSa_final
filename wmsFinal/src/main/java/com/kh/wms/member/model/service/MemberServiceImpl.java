@@ -33,6 +33,15 @@ public class MemberServiceImpl implements MemberService{
 	public Member loginMember(Member m) {
 		return memberDao.loginMember(sqlSession, m);
 	}
+	@Override
+	public Member loginMember(String autyKey) {
+		return memberDao.loginMember(sqlSession, autyKey);
+	}
+	
+	@Override
+	public int AjaxPlatFormCheck(String authKey) {
+		return memberDao.AjaxPlatFormCheck(sqlSession, authKey);
+	}
 	
 	
 	

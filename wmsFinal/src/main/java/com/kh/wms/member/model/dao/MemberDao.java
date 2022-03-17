@@ -23,5 +23,17 @@ public class MemberDao {
 	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
+	
+	public Member loginMember(SqlSessionTemplate sqlSession, String authKey) {
+		return sqlSession.selectOne("memberMapper.loginMemberAuth", authKey);
+	}
+
+	public int ajaxkakaoEmailCheck(SqlSessionTemplate sqlSession, String email) {
+		return sqlSession.selectOne("memberMapper.ajaxkakaoEmailCheck", email);
+	}
+
+	public int AjaxPlatFormCheck(SqlSessionTemplate sqlSession, String authKey) {
+		return sqlSession.selectOne("memberMapper.AjaxPlatFormCheck", authKey);
+	}
 
 }
