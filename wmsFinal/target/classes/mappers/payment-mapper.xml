@@ -2,11 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="paymentMapper">
 
-	<resultMap id="paymentResultSet" type = "payment">
+	<resultMap id="markResultSet" type = "payment">
 		<result column="MARK_NO" property="markNo"/>
 		<result column="MARK_NAME" property="markName"/>
 		<result column="PRICE" property="price"/>
 		<result column="MARK_CONTENT" property="markContent"/>
+	</resultMap>
+	
+	<resultMap id="paymentResultSet" type = "payment">
+		<result column="PAYMENT_NO" property="paymentNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="MARK_NO" property="markNo"/>
+		<result column="PAYMENT_DATE" property="paymentDate"/>
+		<result column="PAYMENT_METHOD" property="paymentMethod"/>
 	</resultMap>
 	
 	
@@ -16,7 +24,7 @@
 		FROM MARK
 	</select>
 	
-	<select id = "marketList" resultMap = "paymentResultSet">
+	<select id = "marketList" resultMap = "markResultSet">
 		SELECT MARK_NO
 			  ,MARK_NAME
 			  ,PRICE
@@ -24,6 +32,75 @@
 		FROM MARK
         ORDER BY MARK_NO
 	</select>
+	
+	<insert id = "paymentPoint" parameterType="payment">
+		INSERT INTO PAYMENT(
+					PAYMENT_NO
+					,MEMBER_NO
+					,MARK_NO
+					,PAYMENT_DATE
+					,PAYMENT_METHOD
+					)
+					VALUES (
+ 					SEQ_PNO.NEXTVAL
+					,#{memberNo}
+					,#{markNo}
+					,SYSDATE
+					,0
+					)
+	</insert>
+	
+	<update id="buyMark" parameterType="payment">
+		UPDATE MEMBER
+		SET POINT = POINT - #{price}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<insert id = "paymentKakaopay" parameterType="payment">
+		INSERT INTO PAYMENT(
+					PAYMENT_NO
+					,MEMBER_NO
+					,MARK_NO
+					,PAYMENT_DATE
+					,PAYMENT_METHOD
+					)
+					VALUES (
+ 					SEQ_PNO.NEXTVAL
+					,#{memberNo}
+					,#{markNo}
+					,SYSDATE
+					,1
+					)
+	</insert>
+	
+	<select id = "marketList2" parameterType="payment" resultMap = "paymentResultSet">
+		SELECT PAYMENT_NO
+			  ,MEMBER_NO
+			  ,MARK_NO
+			  ,TO_CHAR(PAYMENT_DATE , 'YYYY-MM-DD') AS "PAYMENT_DATE"
+              ,PAYMENT_METHOD
+		FROM PAYMENT
+        ORDER BY PAYMENT_NO
+	</select>
+	
+	
+	<!-- 현빈존 -->
+	
+	<select id="paymentListCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*)
+		FROM PAYMENT
+		WHERE MEMBER_NO=#{memberNo}
+	</select>
+	<select id = "paymentList" parameterType="_int" resultMap = "paymentResultSet">
+		SELECT PAYMENT_NO
+			  ,MEMBER_NO
+			  ,MARK_NO
+			  ,TO_CHAR(PAYMENT_DATE , 'YYYY-MM-DD') AS "PAYMENT_DATE"
+              ,PAYMENT_METHOD
+		FROM PAYMENT
+		WHERE MEMBER_NO = #{memberNo}
+        ORDER BY PAYMENT_NO DESC
+	</select>	
 	
 	
 	

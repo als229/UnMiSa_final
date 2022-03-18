@@ -19,7 +19,7 @@
             <a href="">개인 정보 수정</a> <br>
             <a href="selectListTeam.te">내가 가입한 팀 관리</a> <br>
             <a href="selectListCreateTeam.te">내가 만든 팀</a> <br>
-            <a href="myPayment.me">내 결제내역</a> <br>
+            <a href="myPayment.pm?memberNo=${ loginUser.memberNo }">내 결제내역</a> <br>
             <a href="myMatchSchedule.me">내 경기 일정</a> <br>
         </div>
         <div class="myTeam">

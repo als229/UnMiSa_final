@@ -1,6 +1,10 @@
 package com.kh.wms.member.model.service;
 
+import java.util.ArrayList;
+
+import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.member.model.vo.Member;
+import com.kh.wms.payment.model.vo.Payment;
 
 public interface MemberService {
 
@@ -11,5 +15,12 @@ public interface MemberService {
 	Member loginMember(Member m);
 	Member loginMember(String authKey);
 	int AjaxPlatFormCheck(String authKey);
+	
+	
+	
+	
+	
+	
+	
 	
 }

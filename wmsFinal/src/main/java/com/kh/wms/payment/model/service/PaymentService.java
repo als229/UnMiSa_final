@@ -9,6 +9,13 @@ public interface PaymentService {
 
 	int marketListCount();
 	ArrayList<Payment> marketList(PageInfo pi);
+	ArrayList<Payment> marketList2();
+	int paymentPoint(Payment p);
+	int buyMark(Payment p);
+	void paymentKakaopay(Payment p);
+	int paymentListCount(int memberNo);
+	ArrayList<Payment> paymentList(PageInfo pi, int memberNo);
+		
 	
 
 

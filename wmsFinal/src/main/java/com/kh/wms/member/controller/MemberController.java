@@ -3,6 +3,7 @@ package com.kh.wms.member.controller;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.Format;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -17,13 +18,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.kh.wms.common.model.vo.PageInfo;
+import com.kh.wms.common.template.Pagination;
 import com.kh.wms.member.model.service.MemberService;
 import com.kh.wms.member.model.vo.Member;
+import com.kh.wms.payment.model.vo.Payment;
 
 @Controller
 public class MemberController {
@@ -210,13 +215,7 @@ public class MemberController {
 	
 	
 	
-	// 현빈존
-	@RequestMapping("myPayment.me")
-	public String myPayment() {
-		
-		
-		return "member/myPaymentList";
-	}
+	
 	
 	
 	

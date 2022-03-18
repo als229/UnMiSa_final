@@ -1,9 +1,14 @@
 package com.kh.wms.member.model.dao;
 
+import java.util.ArrayList;
+
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.member.model.vo.Member;
+import com.kh.wms.payment.model.vo.Payment;
 
 @Repository
 public class MemberDao {
@@ -35,5 +40,19 @@ public class MemberDao {
 	public int AjaxPlatFormCheck(SqlSessionTemplate sqlSession, String authKey) {
 		return sqlSession.selectOne("memberMapper.AjaxPlatFormCheck", authKey);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
