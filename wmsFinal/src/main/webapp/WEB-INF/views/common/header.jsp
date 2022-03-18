@@ -105,11 +105,6 @@
 				          <span>카카오 로그인</span>
 				      </a>
 					</li>
-					<li onclick="kakaoLogout();">
-				      <a href="javascript:void(0)">
-				          <span>카카오 로그아웃</span>
-				      </a>
-					</li>
 				</ul>
 				<form action="platFormLogin.me" method="post" id="platFormLogin">
 					<input type="hidden" value="" name="authKey" id="authKey">
