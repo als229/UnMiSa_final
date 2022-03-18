@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.wms.sportsPartner.model.dao.SportsPartnerDao;
 import com.kh.wms.sportsPartner.model.vo.Purpose;
+import com.kh.wms.sportsPartner.model.vo.SportsDiary;
 
 @Service
 public class SportsPartnerServiceImpl implements SportsPartnerService {
@@ -31,8 +32,19 @@ public class SportsPartnerServiceImpl implements SportsPartnerService {
 
 		return sportsPartnerDao.insertPurpose(sqlSession, p);
 	}
+
+
+	@Override
+	public int insertDiary(SportsDiary sd) {
 	
+		return sportsPartnerDao.insertDiary(sqlSession, sd);
+	}
 	
+	@Override
+	public int updatePurpose(Purpose p) {
+	
+		return sportsPartnerDao.updatePurpose(sqlSession, p);
+	}
 	
 	
 }

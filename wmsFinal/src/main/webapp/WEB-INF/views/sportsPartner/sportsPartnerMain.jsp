@@ -665,39 +665,56 @@
 						var bw = ${ p.beginningWeight }; // 초기 몸무게
 						var cw = ${ p.currentWeight }; // 현재 몸무게
 						var pw = ${ p.purposeWeight }; // 목표 몸무게
-						var bf = ${ p.beginningFat }; // 초기 체지방
-						var cf = ${ p.currentFat }; // 현재 체지방
-						var pf = ${ p.purposeFat }; // 목표 체지방
+						
 						var bm = ${ p.beginningMuscle }; // 초기 근육량
 						var cm = ${ p.currentMuscle }; // 현재 근육량
 						var pm = ${ p.purposeMuscle }; // 목표 근육량		
 						
+						var bf = ${ p.beginningFat }; // 초기 체지방
+						var cf = ${ p.currentFat }; // 현재 체지방
+						var pf = ${ p.purposeFat }; // 목표 체지방
+						
+					
+						
 						var gw = bw - pw; // 감량해야될 몸무게
-						var gf = bf - pf; // 감량해야될 체지방
 						var jm = pm - bm; // 증가해야될 근육량
-						
-						var weightPercent = 100 / gw;
-						
-						console.log(weightPercent);
-						
+						var gf = pf - bf; // 감량해야될 체지방
+
 						if( cw == pw ){
 							
 							$('#weightPercent').width('200px');
 							$('#weightPercent').html('100%');
 							
+						}else{
+							
+							$('#weightPercent').width('0px');
+							$('#weightPercent').html('0%');
+							
 						};
+						
 						
 						if( cf == pf ){
 							
 							$('#bodyFatPercent').width('200px');
 							$('#bodyFatPercent').html('100%');
 							
+						}else{
+							
+							$('#bodyFatPercent').width('0px');
+							$('#bodyFatPercent').html('0%');
 						};
+						
+						
+						
 						if( cm == pm ){
 							
 							$('#musclePercent').width('200px');
 							$('#musclePercent').html('100%');
 							
+						}else{
+							
+							$('#musclePercent').width('0px');
+							$('#musclePercent').html('0%');
 						};
 						
 						

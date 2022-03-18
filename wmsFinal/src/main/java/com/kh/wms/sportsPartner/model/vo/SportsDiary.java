@@ -13,8 +13,6 @@ public class SportsDiary {
 
 	private int diaryNo;
 	private int memberNo;
-	private String memberName;
-	private String mark;
 	private String diaryTitle;
 	private String diaryContent;
 	private String diaryPhoto;
