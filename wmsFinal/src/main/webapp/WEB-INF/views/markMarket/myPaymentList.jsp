@@ -8,8 +8,8 @@
 <title>결제내역</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- myPayment css -->
-	<link rel="stylesheet" href="resources/css/member/myPayment.css"/>
-	<script src="resources/js/member/maPayment.js"></script>
+	<link rel="stylesheet" href="resources/css/markMarket/myPayment.css"/>
+	<script src="resources/js/markMarket/maPayment.js"></script>
 </head>
 <body>
 	<div id="header_area">
@@ -31,24 +31,14 @@
     					</tr>
     				</thead>
     				<tbody>
-    					<tr>
-    						<td><img src="resources/image/mark/마크이미지1.png" width="130px" height="130px"></td>
-    						<td>포인트</td>
-    						<td>25000</td>
-    						<td>2022-03-03</td>
-    					</tr>
-    					<tr>
-    						<td><img src="resources/image/mark/마크이미지2.png" width="130px" height="130px"></td>
-    						<td>포인트</td>
-    						<td>25000</td>
-    						<td>2022-03-01</td>
-    					</tr>
-    					<tr>
-    						<td><img src="resources/image/mark/마크이미지3.png" width="130px" height="130px"></td>
-    						<td>포인트</td>
-    						<td>25000</td>
-    						<td>2022-02-06</td>
-    					</tr>
+    					<c:forEach var="p" items="${ list }">
+    						<tr>
+    							<td><img src="resources/image/mark/${p.markNo }.jpg" width="130px" height="130px"></td>
+    							<td>${p.paymentMethod }</td>
+    							<td>${p.price }</td>
+    							<td>${p.paymentDate }</td>
+    						</tr>
+    					</c:forEach>
     				</tbody>
     			</table>
     		</div>

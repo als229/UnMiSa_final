@@ -1,15 +1,9 @@
 package com.kh.wms.payment.model.vo;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@NoArgsConstructor
-@Setter
-@Getter
-@ToString
 
+@Data
 public class Payment {
 
 	private int paymentNo;
@@ -21,6 +15,7 @@ public class Payment {
 	private String markName;
 	private String markContent;
 	private int price;
+	private int rownum;
 	
 	
 	

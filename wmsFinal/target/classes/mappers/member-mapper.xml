@@ -18,6 +18,16 @@
 		<result column="AUTHKEY" property="authKey"/>	
 	</resultMap>
 	
+	<resultMap id="paymentResultSet" type = "payment">
+		<result column="PAYMENT_NO" property="paymentNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="MARK_NO" property="markNo"/>
+		<result column="PAYMENT_DATE" property="paymentDate"/>
+		<result column="PAYMENT_METHOD" property="paymentMethod"/>
+	</resultMap>
+	
+	
+	
 	<select id="ajaxCheckId" resultType="_int" parameterType="String">
 		
 		SELECT COUNT(*) FROM MEMBER
@@ -127,6 +137,12 @@
 			WHERE
 				USER_Id = #{userId}
 	</update> -->
+	
+	
+	
+	
+	
+	
 	
 
 </mapper>

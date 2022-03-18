@@ -1,11 +1,15 @@
 package com.kh.wms.member.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.member.model.dao.MemberDao;
 import com.kh.wms.member.model.vo.Member;
+import com.kh.wms.payment.model.vo.Payment;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -42,6 +46,14 @@ public class MemberServiceImpl implements MemberService{
 	public int AjaxPlatFormCheck(String authKey) {
 		return memberDao.AjaxPlatFormCheck(sqlSession, authKey);
 	}
+	
+	
+	
+	
+	
+	
+	
+
 	
 	
 	

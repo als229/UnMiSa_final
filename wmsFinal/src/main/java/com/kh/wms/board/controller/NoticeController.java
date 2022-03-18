@@ -125,6 +125,9 @@ public class NoticeController {
 	@RequestMapping(value="noticeDelete.no")
 	public ModelAndView noticeDelete(ModelAndView mv, HttpSession session,int noticeNo ) {
 		
+		
+		
+		
 		int result = noticeService.noticeDelete(noticeNo);
 		
 		if(result > 0) {

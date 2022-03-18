@@ -26,4 +26,34 @@ public class PaymentServiceImpl implements PaymentService{
 	public ArrayList<Payment> marketList(PageInfo pi) {
 		return paymentDao.marketList(sqlSession,pi);
 	}
+
+	@Override
+	public ArrayList<Payment> marketList2() {
+		return paymentDao.marketList2(sqlSession);
+	}
+
+	@Override
+	public int paymentPoint(Payment p) {
+		return paymentDao.paymentPoint(sqlSession, p);
+	}
+
+	@Override
+	public int buyMark(Payment p) {
+		return paymentDao.buyMark(sqlSession, p);
+	}
+
+	@Override
+	public void paymentKakaopay(Payment p) {
+		 paymentDao.paymentKakaopay(sqlSession, p);
+	}
+	
+	@Override
+	public int paymentListCount(int memberNo) {
+		return paymentDao.paymentListCount(sqlSession,memberNo);
+	}
+	@Override
+	public ArrayList<Payment> paymentList(PageInfo pi, int memberNo) {
+		return paymentDao.paymentList(sqlSession,memberNo,pi);
+	}
+
 }

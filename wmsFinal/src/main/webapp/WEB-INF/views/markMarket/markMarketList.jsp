@@ -41,30 +41,74 @@
 
                         	</div>
                         	<div class="content2_markHover_2">
+                            	<input type=hidden value="${p.price }" id="hiidenPrice">
                             	<button class="markHover_btn1 btn btn-secondary">포인트 구매</button>
+                            	<input type=hidden value="${p.markNo}">
+                            	<input type=hidden value="${p.price }">
+                            		<button class="markHover_btn2 btn btn-primary">카카오페이</button>
                             	<input type=hidden value="${p.markNo }">
-                            	<button class="markHover_btn2 btn btn-primary">카카오페이</button>
                         	</div>
                     	</div>
                 	</div>
                 	<script>
-                		$(function(){
-                			$('.content_2_mark${ p.markNo }').mouseenter(function() {
-                	       	$(".content_2_markHover${p.markNo }").show();
-                	  	  })
-                	   	 $('.content_2_mark${p.markNo }').mouseleave(function() {
-                	        $(".content_2_markHover${p.markNo }").hide();
-                	    })
-                	})
-                	
-                	$(".markHover_btn1").click(function(){
-                		    	location.href = "paymentPoint.pm?markNo="+$(this).next().val();
-                		    })
-                			$(".markHover_btn2").click(function(){
-                		    	location.href = "paymentPoint.pm?markNo="+$(this).prev().val();
-                		    })
+                				$(function(){
+                					$('.content_2_mark${ p.markNo }').mouseenter(function(){
+                	       				$(".content_2_markHover${p.markNo }").show();
+                	  	  			})
+                	   			 	$('.content_2_mark${p.markNo }').mouseleave(function(){
+                	      		 		$(".content_2_markHover${p.markNo }").hide();
+                	    			})
+                				})
                 	</script>
+                	<c:forEach var="m" items="${ list2 }">
+                		<c:if test="${ loginUser.memberNo == m.memberNo && p.markNo == m.markNo }">
+                			<script>
+                				$(function(){
+                	      		 		$(".content_2_markHover${p.markNo }").remove();
+                				})
+                			</script>
+                	    		
+                		</c:if>
+                		
+                	</c:forEach>
+                	<c:if test="${ loginUser != null }">
+                	<script>
+                	$(function(){
+                		$(".markHover_btn1").click(function(){
+                			if(${loginUser.point > p.price }){
+                		    	location.href = "paymentPoint.pm?markNo="+$(this).next().val()+"&&memberNo="+${ loginUser.memberNo } +"&&price="+$(this).prev("#hiidenPrice").val();
+                			}else{
+                				alertify.alert("포인트가 부족합니다.");
+                			}
+                		})
+                	})
+                	</script>
+                	</c:if>
                 </c:forEach>
+                	<c:if test="${ loginUser != null }">	
+                	<script>
+                	$(function(){
+                		$(".markHover_btn2").click(function(){
+                		  $.ajax({
+                			  url:'kakaopay.pm',
+                			  data : {
+                				  	price:$(this).prev().val(),
+                				  	markNo:$(this).next().val(),
+                				  	memberNo:${loginUser.memberNo}},
+                			  dataType:'json',
+                			  success:function(result){
+                				  var box = result.next_redirect_pc_url;
+                				  window.open(box);
+                			  },
+                			  error:function(error){
+                				  alert(error);
+                			  }
+                		  });
+                		})
+                		
+                	})
+                	</script>
+                	</c:if>
                </div>
             <div id="content_3">
                <div id = "pagin-area">
