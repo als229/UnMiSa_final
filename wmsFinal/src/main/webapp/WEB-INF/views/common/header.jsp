@@ -154,7 +154,7 @@
 	    		var auth = naverLogin.user.id;
 				console.log(naverLogin.user); 
 				console.log('asdasd');
-				console.log(auth);
+				//platFormLogin(auth);
 	    		
 	            if( email == undefined || email == null) {
 					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
