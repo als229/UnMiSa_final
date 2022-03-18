@@ -97,6 +97,7 @@
                 				  	memberNo:${loginUser.memberNo}},
                 			  dataType:'json',
                 			  success:function(result){
+                				  console.log(result);
                 				  var box = result.next_redirect_pc_url;
                 				  window.open(box);
                 			  },

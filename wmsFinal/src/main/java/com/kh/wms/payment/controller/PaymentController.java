@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.common.template.Pagination;
+import com.kh.wms.member.model.vo.Member;
 import com.kh.wms.payment.model.service.PaymentService;
 import com.kh.wms.payment.model.vo.Payment;
 
@@ -82,7 +83,7 @@ public class PaymentController {
 			serverConnection.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=UTF-8");
 			serverConnection.setDoOutput(true);
 			
-			String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=MARK&quantity=1&total_amount="+p.getPrice()+"&tax_free_amount=0&approval_url=http://localhost:8555/wms/markMarket.pm&cancel_url=http://localhost:8555/wms/markMarket.pm&fail_url=http://localhost:8555/wms/markMarket.pm";
+			String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=MARK&quantity=1&total_amount="+p.getPrice()+"&tax_free_amount=0&approval_url=http://localhost:8555/wms/markMarket.pm&cancel_url=http://localhost:8555/wms/cancle.pm&fail_url=http://localhost:8555/wms/markMarket.pm";
 			OutputStream os = serverConnection.getOutputStream();
 			DataOutputStream dataos = new DataOutputStream(os); 
 			dataos.writeBytes(parameter);
@@ -142,6 +143,22 @@ public class PaymentController {
 			
 			ArrayList<Payment> list = paymentService.paymentList(pi,memberNo);
 			mv.addObject("list",list).addObject("pi",pi).setViewName("markMarket/myPaymentList");
+			
+			return mv;
+		}
+		
+		@RequestMapping("cancle.pm")
+		public ModelAndView canclePayment(ModelAndView mv,HttpSession session) {
+			
+			Member member = (Member) session.getAttribute("loginUser");
+			int memberNo = member.getMemberNo();
+			
+			paymentService.canclePayment(memberNo);
+			
+			
+			
+			
+			mv.setViewName("markMarket/cancle");
 			
 			return mv;
 		}
