@@ -6,6 +6,8 @@ $(function(){
 	$('#header_div_center').click(function(){
 		location.href="index.jsp";
 	})
-		
+	
+	
+	
 		
 })

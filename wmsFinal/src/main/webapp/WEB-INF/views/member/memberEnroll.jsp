@@ -138,7 +138,7 @@
                     <li class="phone_text error_text">
                     </li>
                 </ul>
-                <div>
+                <div align="center" style="width: 400px">
                     <input class="member_input member_btn insert_btn" type="submit" value="가입">
                 </div>
             </form>
@@ -147,15 +147,5 @@
 	</div>
 	<br>
 	
-	<script type="text/javascript">
-		$(function(){
-			<%-- 
-			$('.search-btn').on('click', function(){
-				var search = $('#search').val();
-				loaction.href("<%=contextPath%>/search.all?search="+search);
-			}) --%>
-			
-		})
-	</script>
 </body>
 </html>
