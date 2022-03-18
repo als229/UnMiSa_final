@@ -45,4 +45,43 @@
 	</select>
   
   
+  	<insert id="insertPurpose" parameterType="purpose">
+  			
+  			INSERT INTO PURPOSE(
+  					PURPOSE_NO
+  					,MEMBER_NO
+  					,BEGINNING_WEIGHT
+  					,BEGINNING_FAT
+  					,BEGINNING_MUSCLE
+  					,CURRENT_WEIGHT
+  					,CURRENT_FAT
+  					,CURRENT_MUSCLE
+  					,PURPOSE_WEIGHT
+  					,PURPOSE_FAT
+  					,PURPOSE_MUSCLE
+  					,SPORTS1
+  					,SPORTS2
+  					,SPORTS3			
+  					)
+  					VALUES
+  					(
+  					#{purposeNo}
+  					,#{purposeNo}
+  					,#{beginningWeight}
+  					,#{beginningFat}
+  					,#{beginningMuscle}
+  					,#{beginningWeight}
+  					,#{beginningFat}
+  					,#{beginningMuscle}
+  					,#{purposeWeight}
+  					,#{purposeFat}
+  					,#{purposeMuscle}
+  					,#{sports1}
+  					,#{sports2}
+  					,#{sports3}
+  					)
+  			
+  	</insert>
+  
+  
 </mapper>

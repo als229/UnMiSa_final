@@ -13,6 +13,9 @@ public class Purpose {
 
 	private int purposeNo;
 	private int memberNo;
+	private double beginningWeight;
+	private double beginningFat;
+	private double beginningMuscle;
 	private double currentWeight;
 	private double currentFat;
 	private double currentMuscle;

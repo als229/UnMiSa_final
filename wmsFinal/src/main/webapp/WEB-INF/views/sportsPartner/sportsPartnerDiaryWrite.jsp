@@ -277,7 +277,6 @@
 					<div class="diaryBt" id="diaryPicture">사진</div>
 					<input type="file" id="file"></input>
 					
-					
 					<button type="button" class="btn btn-primary " id="modal_box" data-bs-toggle="modal" data-bs-target="#inbody-update">
 						인바디 변동
 					</button>

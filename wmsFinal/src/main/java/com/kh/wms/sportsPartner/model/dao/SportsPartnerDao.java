@@ -15,4 +15,9 @@ public class SportsPartnerDao {
 		return sqlSession.selectOne("sportsPartnerMapper.selectPurpose", memberNo);
 	}
 
+	public int insertPurpose(SqlSessionTemplate sqlSession, Purpose p) {
+		
+		return sqlSession.insert("sportsPartnerMapper.insertPurpose", p);
+	}
+
 }

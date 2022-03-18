@@ -7,6 +7,8 @@ public interface SportsPartnerService {
 	// 목표  조회
 	Purpose selectPurpose(int memberNo);
 
+	int insertPurpose(Purpose p);
+
 
 	
 	

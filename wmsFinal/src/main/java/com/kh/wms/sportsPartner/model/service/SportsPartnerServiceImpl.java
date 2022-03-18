@@ -24,6 +24,13 @@ public class SportsPartnerServiceImpl implements SportsPartnerService {
 
 		return sportsPartnerDao.selectPurpose(sqlSession, memberNo);
 	}
+
+
+	@Override
+	public int insertPurpose(Purpose p) {
+
+		return sportsPartnerDao.insertPurpose(sqlSession, p);
+	}
 	
 	
 	

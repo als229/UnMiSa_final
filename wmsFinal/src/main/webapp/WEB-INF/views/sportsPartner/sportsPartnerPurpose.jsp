@@ -258,7 +258,8 @@ z
 	        </div>
 	        
 	        
-	        <form action="test">
+	        <form id="enrollPurpose" action="insert.pp" method="post">
+	        <input type = "hidden" name ="purposeNo" value="${ loginUser.memberNo }"></input>
 		        <div id="purposeBorder">
 		         	<div id="pp_header">'${ loginUser.memberName }'를(을) 바꾸는 것은 '${ loginUser.memberName }' 자신 뿐이다.</div> 		
 		        
@@ -266,19 +267,19 @@ z
 		        		<div class="kg">몸무게</div>
 		        		<div class="eq">:</div>
 		        		<div class="ipkg">
-							<input type="number" class="input" placeholder="현재(kg)" max="200" min="20" name="currentWeight" required></input>		        		
+							<input type="number" class="input" placeholder="현재(kg)" max="200" min="20" name="beginningWeight" required></input>		        		
 		        		</div>
 		        		
 		        		<div class="cgy">체지방률</div>
 		        		<div class="eq2">:</div>
 		        		<div class="ipkg2">
-							<input type="number" class="input" placeholder="현재(%)" max="100" min="0" name="currentFat" required></input>		        		
+							<input type="number" class="input" placeholder="현재(%)" max="100" min="0" name="beginningFat" required></input>		        		
 		        		</div>
 		        		
 						<div class="cgy">근육량</div>
 		        		<div class="eq2">:</div>
 		        		<div class="ipkg2">
-							<input type="number" class="input" placeholder="현재(kg)" max="100" min="0" name="currentMuscle" required></input>		        		
+							<input type="number" class="input" placeholder="현재(kg)" max="100" min="0" name="beginningMuscle" required></input>		        		
 		        		</div>
 		        		
 		        		<div class="sportsBorder">
