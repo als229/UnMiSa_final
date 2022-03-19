@@ -101,13 +101,10 @@
 				</div>
 				<ul>
 					<li onclick="kakaoLogin();">
-				      <a href="javascript:void(0)">
-				          <span>카카오 로그인</span>
-				      </a>
+						<a href="javascript:void(0)"><span>카카오 로그인</span></a>
 					</li>
 					<li>
-      					<!-- 아래와같이 아이디를 꼭 써준다. -->
-      					<a id="naverIdLogin_loginButton" href="javascript:void(0)"><span>네이버 로그인</span></a>
+      					<a id="naverIdLogin_loginButton"><span>네이버 로그인</span></a>
 					</li>
 				</ul>
 				<form action="platFormLogin.me" method="post" id="platFormLogin">
@@ -133,55 +130,59 @@
 		</div>
 	</div>
 <script>
-	
-	
-	
-	//네이버 관련 
-	var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "tWsurTOkArLeKJufP8n7", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-			callbackUrl: "http://localhost:8555/wms/index.jsp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
-			isPopup: false,
-			callbackHandle: true
-		}
-	);	
-	
-	naverLogin.init();
-	window.addEventListener('load', function () {
-		naverLogin.getLoginStatus(function (status) {
-			if (status) {
-				var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
-	    		var auth = naverLogin.user.id;
-				console.log(naverLogin.user); 
-				console.log('asdasd');
-				//platFormLogin(auth);
-	    		
-	            if( email == undefined || email == null) {
-					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-					naverLogin.reprompt();
-					return;
-				}
-			} else {
-				console.log("callback 처리에 실패하였습니다.");
+
+	$(function(){
+		$('#naverIdLogin_loginButton').click(function(){
+			location.href="javascript:void(0)";
+		})
+		
+		
+		//네이버 관련 
+		var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "tWsurTOkArLeKJufP8n7", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
+				callbackUrl: "http://localhost:8555/wms/index.jsp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+				isPopup: false,
+				callbackHandle: true
 			}
+		);	
+		
+		naverLogin.init();
+		window.addEventListener('load', function () {
+			naverLogin.getLoginStatus(function (status) {
+				if (status) {
+					var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
+		    		var auth = naverLogin.user.id;
+					platFormLogin(auth);
+		    		
+		            if( email == undefined || email == null) {
+						alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+						naverLogin.reprompt();
+						return;
+					}
+				} else {
+					console.log("callback 처리에 실패하였습니다.");
+				}
+			});
 		});
-	});
-
-
 	var testPopUp;
-	function openPopUp() {
-	    testPopUp= window.open("https://nid.naver.com/nidlogin.logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
+		function openPopUp() {
+		    testPopUp= window.open("https://nid.naver.com/nidlogin.logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
+		}
+		function closePopUp(){
+		    testPopUp.close();
+		}
+		
+		function naverLogout() {
+			openPopUp();
+			setTimeout(function() {
+				closePopUp();
+				}, 1000);
 	}
-	function closePopUp(){
-	    testPopUp.close();
-	}
+	})
 	
-	function naverLogout() {
-		openPopUp();
-		setTimeout(function() {
-			closePopUp();
-			}, 1000);
-	}
+		
+	
 
 
 	// 카카오 관련
@@ -190,21 +191,21 @@
 	//카카오로그인
 	function kakaoLogin() {
 		Kakao.Auth.login({
-		success: function (response) {
-			Kakao.API.request({
-			url: '/v2/user/me',
 			success: function (response) {
-				var authKey = response.id;
-				platFormLogin(authKey);
+				Kakao.API.request({
+				url: '/v2/user/me',
+				success: function (response) {
+					var authKey = response.id;
+					platFormLogin(authKey);
+				},
+				fail: function (error) {
+					console.log(error)
+				},
+				})
 			},
 			fail: function (error) {
 				console.log(error)
 			},
-			})
-		},
-		fail: function (error) {
-			console.log(error)
-		},
 		})
 	}
 	
@@ -216,7 +217,7 @@
 			success : function(result){
 				console.log("성공 ");
 				if(result == 0){
-					alertify.alert("가입 된 회원 아닙니다.");
+					alertify.alert("가입 된 회원이 아닙니다.");
 				}else{
 					console.log(authKey)
 					$("#authKey").val(authKey);
