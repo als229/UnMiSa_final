@@ -149,7 +149,30 @@
                     <p>지역 : &nbsp;&nbsp;</p>
                 </div>
                 <div class="inputTeamLocalArea">
-                    <input type="text" name="localArea">
+
+					<select id="siDoSelect">
+						<option>서울특별시</option>
+						<option>부산광역시</option>
+						<option>대구광역시</option>
+						<option>인천광역시</option>
+						<option>광주광역시</option>
+						<option>대전광역시</option>
+						<option>울산광역시</option>
+						<option>세종특별자치시</option>
+						<option>경기도</option>
+						<option>강원도</option>
+						<option>충청북도</option>
+						<option>충청남도</option>
+						<option>전락북도</option>
+						<option>전라남도</option>
+						<option>경상북도</option>
+						<option>경상남도</option>
+						<option>제주특별자치지도</option>
+
+					</select> 
+					<select id="siGunGuSelect" style="margin-left:40px;">
+						
+                    </select>
                 </div>
             </div>
             <div class="team-logo" style="height: 200px;">
@@ -177,9 +200,31 @@
             
     </div>
 
-
     <jsp:include page="../common/footer.jsp" />
+	 
+	<script>
+	
 
+		var siDoSelect = document.querySelector("#siDoSelect");
+
+		siDoSelect.onchange = function() {
+			var siGunGuSelect = document.querySelector("#siGunGuSelect");
+			var siDoSelectOption = siDoSelect.options[siDoSelect.selectedIndex].innerText;
+		}
+
+		$.getJSON('resources/json/team/address.json', function(address) {
+
+				for (key in address) {
+					if (address[key].sidoName == "서울특별시") {
+					let seoul = address[key].gu;
+					console.log(seoul);
+				}
+
+			}
+
+		});
+	</script>
+	
 	
 </body>
 </html>

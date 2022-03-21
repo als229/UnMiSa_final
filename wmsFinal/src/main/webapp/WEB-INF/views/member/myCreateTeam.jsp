@@ -150,7 +150,7 @@
                 </div>
             
         </div>
-        <div class="team-paging-area" style="height: 50px; " >
+        <div class="team-paging-area" style="height: 50px; margin-top:50px" >
             <ul class="pagination" style="justify-content : center;" >
                 <c:choose >
                      <c:when test="${ pi.currentPage eq 1 }">

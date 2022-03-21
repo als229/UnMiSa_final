@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="teamMapper">
+
+	<resultMap type="address" id="addressResultSet">
+		<result column="ADDRESS_NO" property="addressNo"/>
+		<result column="SIDO" property="siDo"/>
+		<result column="GU" property="gu"/>
+		<result column="SIGUN" property="siGun"/>
+	</resultMap>
+
+	<select id="selectAddressList" resultMap="addressResultSet">
+		SELECT *
+		FROM ADDRESS
+	</select>
+
+	
+
+
+
+
+
+
+
+</mapper>
