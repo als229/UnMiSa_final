@@ -15,7 +15,7 @@
 
 <link rel="stylesheet" href="resources/css/common/header.css"/>
 <meta charset="UTF-8">
-<title>zz</title>
+<title>디테일뷰</title>
 <style>
 
         div{
@@ -204,22 +204,33 @@
 			<div id="spmain">
 				<br>
 				<div id="diaryTop">
-					3월 10일의 땀방울
+					${ sd.diaryDate }의 땀방울
 				</div>
 				<div id="diaryBorder">
 		
-					<div id="titleInput">앙 기무띠 오늘 운동 좋아써</div>		
+					<div id="titleInput">${ sd.diaryTitle }</div>		
 					<div id="contentInput">
-						ㅇㅇ
+						${ sd.diaryContent }
 					</div>
-					<div class="diaryBt" id="diaryPicture">
-					사진
-						<div>
-							d
-						</div>
-					</div>
-				
 					
+					<c:choose>
+						<c:when test="${ not empty sd.diaryPhoto }">
+							<div class="diaryBt" id="diaryPicture">
+									
+								<div>
+									<a href="${pageContext.request.contextPath}/${ sd.diaryPhoto }" download="${ sd.diaryPhoto }">${ sd.diaryPhoto }</a>
+								</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+								<div class="diaryBt" id="diaryPicture">
+									
+								<div>
+									첨파X
+								</div>
+						</c:otherwise>
+				
+					</c:choose>
 				
 					<div id="checkBorder">
 						<div id="sports1" class="sportsBox">

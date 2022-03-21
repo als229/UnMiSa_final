@@ -266,6 +266,10 @@
 					
 					<form id="enrollDiary" action="insert.sd" method="post" enctype="multipart/form-data">
 					<input type="hidden" value="${ loginUser.memberNo }" name="memberNo">
+					<input id="hdspc1" type ="hidden" name ="sportsCount1" value="0"></input>
+					<input id="hdspc2" type ="hidden" name ="sportsCount2" value="0"></input>
+					<input id="hdspc3" type ="hidden" name ="sportsCount3" value="0"></input>
+					
 					<div id="titleInput">
 						<input type="text" id="tt_input" placeholder="제목" maxlength="20" name="diaryTitle" required></input>	
 					</div>		
@@ -292,6 +296,8 @@
 						</div>
 										  
 					</div>
+					
+					
 					
 						<div class="modal" id="inbody-update" tabindex="-1">
 					        <div class="modal-dialog">
@@ -334,13 +340,75 @@
 					                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">돌아가기</button>
 					            </div>
 					           
+					           	<script>
+									$(function(){
+										
+										var i=0;
+										var o=0;
+										var p=0;
+										var color=["rgb(135, 206, 235)","rgb(176,176,176)"];
+										
+										
+										
+										$('#sports1').click(function(){
+											$(this).css("color",color[i]);
+											
+											i++;
+											if(i==2){i=0};
+											
+											if(i==1){
+												$('#hdspc1').attr('value', 1);
+											};
+							
+							
+										});
+										
+							
+										
+										// 선택되어 있을경우 히든으로 보내는 카운트의 밸루를 1로 보내서 카운트에 추가하게해줌
+										
+										
+										
+										
+										$('#sports2').click(function(){
+											$(this).css("color",color[o]);
+											
+											o++;
+											if(o==2){o=0};
+											
+											
+											if(o==1){
+												$('#hdspc2').attr('value', 1);
+											}
+							
+										});
+
+										
+										
+										$('#sports3').click(function(){
+											$(this).css("color",color[p]);
+											
+											p++;
+											if(p==2){p=0};
+											
+											if(p==1){
+												$('#hdspc3').attr('value', 1);
+											}
+							
+										});
+										
+										
+
+										
+									});
+									
+								</script>
+					           
 					            
 					        </div>
 					        </div>
 					    </div>
-					<input id="hdspc1" type ="hidden" name ="sportsCount1" value="0"></input>
-					<input id="hdspc2" type ="hidden" name ="sportsCount2" value="0"></input>
-					<input id="hdspc3" type ="hidden" name ="sportsCount3" value="0"></input>
+
 					<div id="back" onclick="location.href='sportsPartnerMain.sp'">다음에 하기</div>
 					<button type="submit" id="diary_commit">땀방울 기록</button>
 					</form>
@@ -352,63 +420,6 @@
 	</div>
 	
 
-	
-	<script>
-		$(function(){
-			
-			var i=0;
-			var o=0;
-			var p=0;
-			var color=["rgb(135, 206, 235)","rgb(176,176,176)"];
-			
-			
-			
-			$('#sports1').click(function(){
-				$(this).css("color",color[i]);
-				
-				i++;
-				if(i==2){i=0};
-
-			});
-			
-			if(i==1){
-				$('#hdspc1').value='1';
-			}
-			
-			// 선택되어 있을경우 히든으로 보내는 카운트의 밸루를 1로 보내서 카운트에 추가하게해줌
-			
-			
-			
-			
-			$('#sports2').click(function(){
-				$(this).css("color",color[o]);
-				
-				o++;
-				if(o==2){o=0};
-
-			});
-			
-			
-			
-			
-			$('#sports3').click(function(){
-				$(this).css("color",color[p]);
-				
-				p++;
-				if(p==2){p=0};
-
-			});
-			
-			
-			
-			
-		});
-		
-	</script>
-	
-	
-	
-	
 	
 	
 	

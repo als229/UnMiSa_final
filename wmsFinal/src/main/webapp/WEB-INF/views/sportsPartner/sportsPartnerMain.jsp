@@ -334,7 +334,7 @@
             margin-left: 24px;
         }
         #ago3check{
-            background-color: rgb(176,176,176);
+            background-color: rgb(135, 206, 235);
             float: left;
             width: 20px;
             height: 70px;
@@ -366,44 +366,7 @@
             margin-top: 30px;
             margin-left: 24px;
         }
-        .sports1{
-            background-color: rgb(176,176,176);
-            width: 50px;
-            height: 20px;
-            border-radius: 30px;
-            text-align: center;
 
-            position: absolute;
-            bottom: 0px;
-            margin-left: 48px;
-            margin-bottom: 25px;
-        }
-        .sports2{
-            background-color: rgb(176,176,176);
-            width: 50px;
-            height: 20px;
-            float:right;
-            border-radius: 30px;
-            text-align: center;
-
-            position: absolute;
-            bottom: 0px;
-            margin-left: 48px;
-            margin-bottom: 45px;
-        }
-        .sports3{
-            background-color: rgb(176,176,176);
-            width: 50px;
-            height: 20px;
-            float:right;
-            border-radius: 30px;
-            text-align: center;
-            position: absolute;
-            bottom: 0px;
-            margin-left: 48px;
-            margin-bottom: 65px;
-           
-        }
         #ago4day{
             background-color: rgb(229,242,248);
             width: 50px;
@@ -411,22 +374,20 @@
             float:right;
             border-radius: 30px;
             text-align: center;
-            position: absolute;
-            bottom: 0px;
-            margin-left: 48px;
-            margin-bottom: 5px;
+            margin-right:3px;
+            margin-top : 80px;
+            display : inline-block;
         }
         #ago3day{
-            background-color: rgb(176,176,176);
+            background-color: rgb(229,242,248);
             width: 50px;
             height: 20px;
             float:right;
             border-radius: 30px;
             text-align: center;
-            position: absolute;
-            bottom: 0px;
-            margin-left: 48px;
-            margin-bottom: 5px;
+            margin-right:3px;
+            margin-top : 80px;
+            display : inline-block;
         }
         #ago2day{
             background-color: rgb(229,242,248);
@@ -435,10 +396,9 @@
             float:right;
             border-radius: 30px;
             text-align: center;
-            position: absolute;
-            bottom: 0px;
-            margin-left: 48px;
-            margin-bottom: 5px;
+            margin-right:3px;
+            margin-top : 80px;
+            display : inline-block;
         }
         #ago1day{
             background-color: rgb(229,242,248);
@@ -447,10 +407,9 @@
             float:right;
             border-radius: 30px;
             text-align: center;
-            position: absolute;
-            bottom: 0px;
-            margin-left: 48px;
-            margin-bottom: 5px;
+            margin-right:3px;
+            margin-top : 80px;
+            display : inline-block;
         }
         #ago0day{
             background-color: rgb(229,242,248);
@@ -459,10 +418,9 @@
             float:right;
             border-radius: 30px;
             text-align: center;
-            position: absolute;
-            bottom: 0px;
-            margin-left: 48px;
-            margin-bottom: 5px;
+            margin-right:3px;
+            margin-top : 80px;
+            display : inline-block;
         }
         
 		#diaryWrite:hover {
@@ -571,6 +529,7 @@
 						</tr>
 					</thead>
 					<tbody>
+					<!-- 
 						<tr>
 							<th>이젠 알아요</th>
 							<th>23일</th>
@@ -591,6 +550,32 @@
 							<th>그대여 빌게요</th>
 							<th>27일</th>
 						</tr>
+					 -->	
+						<c:forEach var="sd" items="${ list }">
+							
+			
+							<tr id="${ sd.diaryNo }">
+								<th style="text-align:center;">${ sd.diaryTitle }</th>
+								<th style="width:60px;">${ sd.diaryDate }일 </th>
+							</tr>
+							
+							<!-- 
+							
+											<script>
+								${ sd.diaryDate } = new Date();
+								
+								f
+							</script>
+							
+		                    <input type="hidden" name="diaryNo" value="${ sd.diaryNo }">
+		                    <script>
+		             			$('#$sd.diaryNo}').click(function(){
+		             				
+		             				location.href = "detail.sd?sdno=${ sd.diaryNo }";
+		             			})
+		                    </script>
+		                     -->
+						</c:forEach>
 					</tbody>
 				</table>
 
@@ -812,45 +797,45 @@
 			</c:choose>
 		
 			
-			<div id="graph" onclick="console.log('33')">
+			<div id="graph">
+				
+				
+						<c:forEach var="sd" items="${ list }">
+							
+							<div id="ago4">
+								<div id="ago4check"></div>
+								<div id="ago4day">${ sd.diaryDate }일</div>
+							</div>
+							
+						</c:forEach>
+						
+						<!-- 
+						
 				<div id="ago4">
 					<div id="ago4check"></div>
-					<div class="sports1">헬스장</div>
-					<div class="sports2">홈운동</div>
-					<div class="sports3">조기축구</div>
-					<div id="ago4day">23일</div>
+					<div id="ago4day">${ list[4].diaryDate }일</div>
 				</div>
 				<div id="ago3">
 					<div id="ago3check"></div>
-					<!-- <div class="sports1">헬스장</div>
-                            <div class="sports2">홈운동</div>
-                            <div class="sports3">조기축구</div>-->
-					<div id="ago3day">24일</div>
+					<div id="ago3day">${ list[3].diaryDate }일</div>
 				</div>
 				<div id="ago2">
 					<div id="ago2check"></div>
-					<div class="sports1">헬스장</div>
-					<!--     <div class="sports2">홈운동</div>
-                            <div class="sports3">조기축구</div>-->
-					<div id="ago2day">25일</div>
+					<div id="ago2day">${ list[2].diaryDate }일</div>
 				</div>
+				-
 				<div id="ago1">
 
 					<div id="ago1check"></div>
-
-					<div class="sports1">헬스장</div>
-					<div class="sports2">홈운동</div>
-					<!--  <div class="sports3">조기축구</div> -->
-
-					<div id="ago1day">26일</div>
+					<div id="ago1day">${ list[1].diaryDate }일</div>
 				</div>
+					
 				<div id="ago0">
 					<div id="ago0check"></div>
-					<div class="sports1">헬스장</div>
-					<div class="sports2">홈운동</div>
-					<div class="sports3">조기축구</div>
-					<div id="ago0day">27일</div>
+					<div id="ago0day">${ list[0].diaryDate }일</div>
 				</div>
+				
+				 -->
 			</div>
 
 		</div>

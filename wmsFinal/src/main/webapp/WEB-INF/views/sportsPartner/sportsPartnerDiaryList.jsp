@@ -83,7 +83,29 @@
 			                    </tr>
 			                </thead>
 							<tbody>
+							
+			                  <c:forEach var="sd" items="${ list }">
+			                  		<tr id="${ sd.diaryNo }">
+				                        <td width="15px">
+				                          
+					                         <c:if test="${ not empty sd.diaryPhoto }">
+					                  			    📷
+					                        </c:if>
+				                        </td>
+				                        <td width="400px">${ sd.diaryTitle }</td>
+				                        <td width="90px">${ sd.diaryDate }</td>
+				                    </tr>
+				                    <input type="hidden" name="diaryNo" value="${ sd.diaryNo }">
+				                    <script>
+				             			$('#${ sd.diaryNo }').click(function(){
+				             				
+				             				location.href = "detail.sd?diaryNo=${ sd.diaryNo }";
+				             			})
+				                    </script>
+			                  </c:forEach>
+								
 								<!-- 현재 조회수가 가장 높은 상위 5개의 게시글 조회해서 뿌리기(ajax 이용) -->
+								<!-- 
 								<tr onclick="location.href='sportsPartnerDetail.sp'">
 									<td width="10px"></td>
 									<td width="400px">상남자특)술마시러감</td>
@@ -134,8 +156,10 @@
 									<td width="400px">하남자특)집에서 코딩함</td>
 									<td width="90px">2022-03-10</td>
 								<tr>
+								 -->
 							</tbody>
 			            </table>
+			            
 					</div>
 					
 					<div class="team-paging-area" style="height: 50px; " >
@@ -145,12 +169,12 @@
 			                         <li class="page-item disabled"><a class="page-link" href="#"><Previous></a></li>
 			                     </c:when>
 			                     <c:otherwise>
-			                         <li class="page-item"><a class="page-link" href="list.bo?cpage=${ pi.currentPage -1 }" style="color: rgb(135, 206, 235);">이전</a></li>
+			                         <li class="page-item"><a class="page-link" href="sportsPartnerDiaryList.sp?cpage=${ pi.currentPage -1 }" style="color: rgb(135, 206, 235);">이전</a></li>
 			                     </c:otherwise>
 			                </c:choose>
 			                
 			                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-			                     <li class="page-item"><a class="page-link" href="list.bo?cpage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
+			                     <li class="page-item"><a class="page-link" href="sportsPartnerDiaryList.sp?cpage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
 			                </c:forEach>
 			
 			                <c:choose>
@@ -158,7 +182,7 @@
 			                         <li class="page-item disabled"><a class="page-link" href="#"  >다음</a></li>
 			                     </c:when>
 			                     <c:otherwise>
-			                         <li class="page-item"><a class="page-link" href="list.bo?cpage=${ pi.currentPage +1 }" style="color: rgb(135, 206, 235);">다음</a></li>
+			                         <li class="page-item"><a class="page-link" href="sportsPartnerDiaryList.sp?cpage=${ pi.currentPage +1 }" style="color: rgb(135, 206, 235);">다음</a></li>
 			                     </c:otherwise>
 			                </c:choose>
 			           

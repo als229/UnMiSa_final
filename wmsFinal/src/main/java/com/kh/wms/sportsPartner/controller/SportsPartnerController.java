@@ -3,6 +3,7 @@ package com.kh.wms.sportsPartner.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -10,9 +11,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.wms.common.model.vo.PageInfo;
+import com.kh.wms.common.template.Pagination;
 import com.kh.wms.member.model.vo.Member;
 import com.kh.wms.sportsPartner.model.service.SportsPartnerService;
 import com.kh.wms.sportsPartner.model.vo.Purpose;
@@ -36,8 +40,11 @@ public class SportsPartnerController {
 		Purpose p = sp.selectPurpose(memberNo);
 		// 멤버넘버를 식별자 역할로 매개변수에 같이 서비스로 넘김
 		
-		mv.addObject("p", p);
+		ArrayList<SportsDiary> list = sp.selectDiary(memberNo);
 		
+		mv.addObject("p", p);
+		mv.addObject("list", list);
+	
 		mv.setViewName("sportsPartner/sportsPartnerMain");
 		
 		return mv;
@@ -46,7 +53,7 @@ public class SportsPartnerController {
 	@RequestMapping(value="sportsPartnerPurpose.sp")
 	public ModelAndView sportsPartnerPurpose(ModelAndView mv) {
 		
-		mv.setViewName("sportsPartner/sportsPartnerPurpose");
+		mv.setViewName("redirect:sportsPartnerMain.sp");
 		
 		return mv;
 	}
@@ -80,9 +87,22 @@ public class SportsPartnerController {
 		Purpose p = sp.selectPurpose(memberNo);
 		// 멤버넘버를 식별자 역할로 매개변수에 같이 서비스로 넘김
 		
-		mv.addObject("p", p);
 		
-		mv.setViewName("sportsPartner/sportsPartnerDiaryWrite");
+		SportsDiary sd = sp.check(memberNo);
+
+		
+		if(sd == null) {
+			
+			mv.addObject("p", p);
+		
+			mv.setViewName("sportsPartner/sportsPartnerDiaryWrite");
+			
+		} else {
+			
+			mv.setViewName("redirect:sportsPartnerMain.sp");
+			session.setAttribute("alertMsg", "오늘은 이미 일기를 작성하였습니당!");
+		}
+		
 		
 		return mv;
 	}
@@ -117,6 +137,8 @@ public class SportsPartnerController {
 	@RequestMapping("insert.sd")
 	public ModelAndView insertSportsDiary(Purpose p, SportsDiary sd, MultipartFile upfile, ModelAndView mv, HttpSession session) {
 		
+		
+		
 		if(!upfile.getOriginalFilename().equals("")) {
 			
 			String changeName = saveFile(upfile, session);
@@ -150,16 +172,32 @@ public class SportsPartnerController {
 	
 	
 	@RequestMapping(value="sportsPartnerDiaryList.sp")
-	public ModelAndView sportsPartnerDiaryList(ModelAndView mv) {
+	public ModelAndView sportsPartnerDiaryList(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session) {
+		
+		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		// 세션에서 로그인유저 갖고와서 멤버넘버를 다운캐스팅하고(멤벼형으로) 멤버형의 멤버넘버를 인트형 겟으로 갖고옴
+		int listCount = sp.selectListCount();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+		
+		ArrayList<SportsDiary> list = sp.selectDiary2(memberNo, pi);
+	
+		mv.addObject("list", list);
+		mv.addObject("pi", pi);
 		
 		mv.setViewName("sportsPartner/sportsPartnerDiaryList");
 		
 		return mv;
 	}
 	
-	@RequestMapping(value="sportsPartnerDetail.sp")
-	public ModelAndView sportsPartnerDetail(ModelAndView mv) {
+	@RequestMapping(value="detail.sd")
+	public ModelAndView sportsPartnerDetail(ModelAndView mv, int diaryNo) {
 		
+		System.out.println(diaryNo);
+		SportsDiary sd = sp.detailDiary(diaryNo);
+
+		mv.addObject("sd", sd);
+		
+		System.out.println(sd);
 		mv.setViewName("sportsPartner/sportsPartnerDetail");
 		
 		return mv;
