@@ -87,8 +87,15 @@ public class SportsPartnerServiceImpl implements SportsPartnerService {
 
 	@Override
 	public int clearPurpose(int memberNo) {
-		// TODO Auto-generated method stub
+	
 		return sportsPartnerDao.clearPurpose(sqlSession, memberNo);
+	}
+
+
+	@Override
+	public int clearDiary(int memberNo) {
+	
+		return sportsPartnerDao.clearDiary(sqlSession, memberNo);
 	}
 	
 	

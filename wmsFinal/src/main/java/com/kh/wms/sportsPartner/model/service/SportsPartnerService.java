@@ -27,6 +27,8 @@ public interface SportsPartnerService {
 	SportsDiary detailDiary(int diaryNo);
 
 	int clearPurpose(int memberNo);
+
+	int clearDiary(int memberNo);
 	
 	
 }

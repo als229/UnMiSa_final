@@ -230,7 +230,7 @@ public class SportsPartnerController {
 		
 		
 		int result = sp.clearPurpose(memberNo);
-
+		int result2 = sp.clearDiary(memberNo);
 		
 		if(result > 0) {
 			

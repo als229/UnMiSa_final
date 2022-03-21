@@ -210,10 +210,14 @@
     	WHERE
     		MEMBER_NO = #{memberNo}
     			
-    
-    
-    
     </delete>
     
-    
+    <delete id="clearDiary">
+    	DELETE
+    		FROM
+    			SPORTS_DIARY
+    	WHERE
+    		MEMBER_NO = #{memberNo}
+    			
+    </delete>
 </mapper>
