@@ -8,27 +8,40 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <style type="text/css">
-	
+	.choice-list{
+		margin-top:100px;
+		width:300px;
+	}
+	.wrap{
+		height:500px;
+	}
 
 </style>
 <title>회원가입 선택</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div id="header_area">
 		<jsp:include page="../common/header.jsp"/>
 	</div>
-	<div class="wrap">
-		<div>
-			<ul>
-				<li>
+	<div class="wrap" align="center">
+		<div class="choice-list" align="center">
+			<ul class="list-group">
+				<li class="list-group-item">
 					<a href="enroll.me?platForm=1"><span>일반 회원 가입</span></a>
 				</li>
-				<li onclick="kakaoEnroll();">
+				<li onclick="kakaoEnroll();" class="list-group-item">
 					<a href="javascript:void(0)"><span>카카오 회원가입</span></a>
 					
 				</li>
-				<li>
+				<li class="list-group-item">
 					<a id="naverIdLogin_loginButton"><span>네이버 회원가입</span></a>
+				</li>
+				<li class="list-group-item">
+					<a id="facebookIdLogin_loginButton"><span>페이스북 회원가입</span></a>
 				</li>
 				
 			</ul>
