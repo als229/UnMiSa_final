@@ -29,14 +29,7 @@
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id" content="692876068188-7ifibfj5gbk6vdpv3k4n8a3gdq72dnsk.apps.googleusercontent.com">
 
-<!-- 카카오 -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-<!-- 네이버 스크립트 -->
-<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-
-<!-- 페이스북 -->
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v10.0&appId=699377614579818" nonce="SiOBIhLG"></script>
 
 <!-- header css -->
 <link rel="stylesheet" href="resources/css/common/header.css" />
@@ -69,9 +62,12 @@
 			<div id="header_div_second">
 				<c:choose>
 					<c:when test="${ loginUser == null }">
+						
 						<!-- 로그인 전 -->
-						<a href="choice.me">회원가입</a>
-						<a href="loginForm.me">로그인</a>
+						<div style="float:right">
+							<a href="choice.me">&nbsp;&nbsp;회원가입</a>
+							<a href="loginForm.me">&nbsp;&nbsp;로그인</a>
+						</div>
 						<!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
 					</c:when>
 
@@ -80,8 +76,11 @@
 						<div style="float:right">${loginUser.memberName}님 환영합니다</div>
 						<br>
 						<div style="float:right">
-						 &nbsp;&nbsp; <a href=""><img src="">&nbsp;&nbsp;내
-							채팅</a> <a href="logOut.me">&nbsp;&nbsp;로그아웃</a> <a href="myPage.me">&nbsp;&nbsp;마이페이지</a> <a href="sportsPartnerMain.sp">&nbsp;&nbsp;운동파트너</a>
+						 &nbsp;&nbsp; 
+						 <a href=""><img src="">&nbsp;&nbsp;내 채팅</a> 
+						 <a href="logOut.me">&nbsp;&nbsp;로그아웃</a> 
+						 <a href="myPage.me">&nbsp;&nbsp;마이페이지</a> 
+						 <a href="sportsPartnerMain.sp">&nbsp;&nbsp;운동파트너</a>
 						</div>
 					</c:otherwise>
 				</c:choose>

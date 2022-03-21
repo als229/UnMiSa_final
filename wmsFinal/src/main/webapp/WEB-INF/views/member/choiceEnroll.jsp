@@ -6,7 +6,14 @@
 
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- 카카오 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<!-- 네이버 스크립트 -->
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+
+<!-- 페이스북 -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v10.0&appId=699377614579818" nonce="SiOBIhLG"></script>
 <style type="text/css">
 	.choice-list{
 		margin-top:100px;
@@ -41,7 +48,7 @@
 					<a id="naverIdLogin_loginButton"><span>네이버 회원가입</span></a>
 				</li>
 				<li class="list-group-item">
-					<a id="facebookIdLogin_loginButton"><span>페이스북 회원가입</span></a>
+					<a id="facebookIdLogin_btn"><span>페이스북 회원가입</span></a>
 				</li>
 				
 			</ul>
@@ -59,6 +66,48 @@
 <script type="text/javascript">
 	
 $(function(){
+	// 페이스 북
+	$('#facebookIdLogin_btn').click(function(){
+		fnFbCustomLogin();
+	})
+	
+	//기존 로그인 상태를 가져오기 위해 Facebook에 대한 호출
+	function statusChangeCallback(res){
+		statusChangeCallback(response);
+	}
+
+	function fnFbCustomLogin(){
+		FB.login(function(response) {
+			if (response.status === 'connected') {
+				FB.api('/me', 'get', {fields: 'name,email'}, function(r) {
+					var email = r.email;
+					var account = r.id;
+					var platForm = 4;
+					platFormmEmailCheck(account, email, platForm);
+					
+				})
+			} else if (response.status === 'not_authorized') {
+				// 사람은 Facebook에 로그인했지만 앱에는 로그인하지 않았습니다.
+				alert('앱에 로그인해야 이용가능한 기능입니다.');
+			} else {
+				// 그 사람은 Facebook에 로그인하지 않았으므로이 앱에 로그인했는지 여부는 확실하지 않습니다.
+				alert('페이스북에 로그인해야 이용가능한 기능입니다.');
+			}
+		}, {scope: 'public_profile,email'});
+	}
+
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId      : '699377614579818', // 내 앱 ID를 입력한다.
+			cookie     : true,
+			xfbml      : true,
+			version    : 'v10.0'
+		});
+		FB.AppEvents.logPageView();   
+	};
+	
+	
+	
 	$('#naverIdLogin_loginButton').click(function(){
 		console.log("asdasd");
 		location.href="javascript:void(0)";
@@ -81,7 +130,8 @@ $(function(){
 			if (status) {
 				var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
 	    		var account = naverLogin.user.id;
-	    		kakaoEmailCheck(account, email);
+				var platForm = 3;
+	    		platFormmEmailCheck(account, email, platForm);
 	    		
 	            if( email == undefined || email == null) {
 					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
@@ -109,7 +159,8 @@ $(function(){
 	        	  console.log(response)
 	        	  var account = response.id;
 	        	  var email = response.kakao_account.email;
-	        	  kakaoEmailCheck(account, email);
+	        	  var platForm = 2;
+	        	  platFormmEmailCheck(account, email, platForm);
 	          },
 	          fail: function (error) {
 	            console.log(error)
@@ -121,8 +172,7 @@ $(function(){
 	      },
 	    })
 	  }
-	function kakaoEmailCheck(account, email){
-		console.log("kakaoEmailCheck")
+	function platFormmEmailCheck(account, email, platForm){
 		$.ajax({
 			url : "kakaoEmailCheck.me",
 			data : { email : email},
@@ -135,7 +185,7 @@ $(function(){
 					console.log('else 실행')
 					$("#account").val(account);
 					$("#email").val(email);
-					$("#platForm").val(3);
+					$("#platForm").val(platForm);
 					$("#enroll").submit();
 				}
 				

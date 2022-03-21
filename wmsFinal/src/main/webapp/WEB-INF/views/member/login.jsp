@@ -102,6 +102,14 @@
 	left: 450px;
 }
 </style>
+<!-- 카카오 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<!-- 네이버 스크립트 -->
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+
+<!-- 페이스북 -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v10.0&appId=699377614579818" nonce="SiOBIhLG"></script>
 </head>
 <body>
 	<div id="header_area">
@@ -162,11 +170,10 @@
 				FB.login(function(response) {
 					if (response.status === 'connected') {
 						FB.api('/me', 'get', {fields: 'name,email'}, function(r) {
-							console.log(r);
-							console.log(r.name)
 							console.log(r.id)
+							var authKey = r.id;
+							platFormLogin(authKey);
 							
-							console.log(r.email)
 						})
 					} else if (response.status === 'not_authorized') {
 						// 사람은 Facebook에 로그인했지만 앱에는 로그인하지 않았습니다.
@@ -275,7 +282,6 @@
 				},
 				type : "post",
 				success : function(result) {
-					console.log("성공 ");
 					if (result == 0) {
 						alertify.alert("가입 된 회원이 아닙니다.");
 					} else {
