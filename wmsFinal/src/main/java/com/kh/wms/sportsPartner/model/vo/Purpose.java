@@ -29,7 +29,7 @@ public class Purpose {
 	private double beginningWeight;
 	private double beginningFat;
 	private double beginningMuscle;
-	
+	private String purposeName;
 
 	
 	

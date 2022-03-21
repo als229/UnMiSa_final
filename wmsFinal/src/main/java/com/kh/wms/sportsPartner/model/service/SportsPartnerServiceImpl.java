@@ -83,6 +83,13 @@ public class SportsPartnerServiceImpl implements SportsPartnerService {
 	
 		return sportsPartnerDao.detailDiary(sqlSession, diaryNo);
 	}
+
+
+	@Override
+	public int clearPurpose(int memberNo) {
+		// TODO Auto-generated method stub
+		return sportsPartnerDao.clearPurpose(sqlSession, memberNo);
+	}
 	
 	
 }

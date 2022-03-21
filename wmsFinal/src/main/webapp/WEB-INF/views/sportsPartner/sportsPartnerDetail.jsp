@@ -108,8 +108,8 @@
         	float : left;
         	margin-left : 150px;
         	margin-top : 20px;
-        	width : 200px;
-        	height : 140px;
+        	width : 520px;
+        	height : 160px;
         	text-align : center;
         	background-color : rgb(176,176,176);
         	color : white;
@@ -219,35 +219,19 @@
 									
 								<div>
 									<a href="${pageContext.request.contextPath}/${ sd.diaryPhoto }" download="${ sd.diaryPhoto }">${ sd.diaryPhoto }</a>
+									<img src="${pageContext.request.contextPath}/${ sd.diaryPhoto }" width="360" height="110">
 								</div>
 							</div>
 						</c:when>
 						<c:otherwise>
-								<div class="diaryBt" id="diaryPicture">
-									
-								<div>
-									첨파X
-								</div>
+
 						</c:otherwise>
 				
 					</c:choose>
 				
-					<div id="checkBorder">
-						<div id="sports1" class="sportsBox">
-							홈운동
-						</div>
-						
-						<div id="sports2" class="sportsBox">
-							조기축구
-						</div>
-		
-						<div id="sports3" class="sportsBox">
-							헬스장
-						</div>
-						
-					</div>
+			
 					
-					<div id="back">수건으로 돌아가기</div>
+					<div id="back" onclick="location.href='sportsPartnerMain.sp'">운동파트너로 돌아가기</div>
 			
 				</div>
 			</div>

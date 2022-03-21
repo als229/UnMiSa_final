@@ -31,7 +31,7 @@ public class SportsPartnerController {
 
 	
 	@RequestMapping(value="sportsPartnerMain.sp")
-	public ModelAndView sportsPartnerMain(ModelAndView mv, HttpSession session) {
+	public ModelAndView sportsPartnerMain(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session) {
 			
 		
 		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
@@ -39,6 +39,13 @@ public class SportsPartnerController {
 		
 		Purpose p = sp.selectPurpose(memberNo);
 		// 멤버넘버를 식별자 역할로 매개변수에 같이 서비스로 넘김
+		
+		int listCount = sp.selectListCount();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 10);
+		
+		ArrayList<SportsDiary> list2 = sp.selectDiary2(memberNo, pi);
+	
+		mv.addObject("list2", list2);
 		
 		ArrayList<SportsDiary> list = sp.selectDiary(memberNo);
 		
@@ -53,7 +60,7 @@ public class SportsPartnerController {
 	@RequestMapping(value="sportsPartnerPurpose.sp")
 	public ModelAndView sportsPartnerPurpose(ModelAndView mv) {
 		
-		mv.setViewName("redirect:sportsPartnerMain.sp");
+		mv.setViewName("sportsPartner/sportsPartnerPurpose");
 		
 		return mv;
 	}
@@ -192,7 +199,7 @@ public class SportsPartnerController {
 	@RequestMapping(value="detail.sd")
 	public ModelAndView sportsPartnerDetail(ModelAndView mv, int diaryNo) {
 		
-		System.out.println(diaryNo);
+		
 		SportsDiary sd = sp.detailDiary(diaryNo);
 
 		mv.addObject("sd", sd);
@@ -200,6 +207,46 @@ public class SportsPartnerController {
 		System.out.println(sd);
 		mv.setViewName("sportsPartner/sportsPartnerDetail");
 		
+		return mv;
+	}
+	
+	@RequestMapping("purposeClear.pp")
+	public ModelAndView sportsPartnerPurposeClear(ModelAndView mv, HttpSession session) {
+		
+		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		Purpose p = sp.selectPurpose(memberNo);
+		
+		
+		String sp1 = p.getSports1();
+		String sp2 = p.getSports2();
+		String sp3 = p.getSports3();
+		int SPC1 = p.getSportsCount1();
+		int SPC2 = p.getSportsCount2();
+		int SPC3 = p.getSportsCount3();
+		double CW = p.getCurrentWeight();
+		double CF = p.getCurrentFat();
+		double CM = p.getCurrentMuscle();
+		
+		
+		
+		int result = sp.clearPurpose(memberNo);
+
+		
+		if(result > 0) {
+			
+		
+			session.setAttribute("alertMsg", "수고 많으셨습니다!! n 완료");
+			mv.setViewName("redirect:sportsPartnerMain.sp");
+			
+			
+		} else {
+			
+			
+		}
+		
+
+		
+		mv.setViewName("redirect:sportsPartnerMain.sp");
 		return mv;
 	}
 	

@@ -251,7 +251,7 @@ z
 	<div class="wrap">
 
 	<div id="spcontent">
-		<h1 style="text-align: center; margin-top: 0px; color: gray;">목표 설정</h1>
+		<h3 style="text-align: center; margin-top: 0px; color: gray;">'${ loginUser.memberName }'를(을) 바꾸는 것은 '${ loginUser.memberName }' 자신 뿐이다.</h3>
 		<div id="spmain">
 			<div id="beforePic">
 	         	<img src="resources/image/sportsPartner/before.png" width="160px" height="240px">
@@ -261,7 +261,9 @@ z
 	        <form id="enrollPurpose" action="insert.pp" method="post">
 	        <input type = "hidden" name ="purposeNo" value="${ loginUser.memberNo }"></input>
 		        <div id="purposeBorder">
-		         	<div id="pp_header">'${ loginUser.memberName }'를(을) 바꾸는 것은 '${ loginUser.memberName }' 자신 뿐이다.</div> 		
+		         	<div id="pp_header">운동 목표  :  
+						<input type="text" id="" style="height:30px; text-align:center" placeholder="올해는 꼭 다이어트" name="purposeName" required></input>
+					</div> 		
 		        
 		        	<div id="before">
 		        		<div class="kg">몸무게</div>
