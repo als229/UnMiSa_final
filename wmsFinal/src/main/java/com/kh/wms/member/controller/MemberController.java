@@ -54,9 +54,9 @@ public class MemberController {
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/");
 		} else {
-			mv.addObject("alertMsg", "로그인 정보가 틀립니다.");
+			session.setAttribute("alertMsg", "로그인 정보가 틀립니다.");
 		}
-		
+			
 		mv.setViewName("main");
 		return mv;
 	}
@@ -64,8 +64,9 @@ public class MemberController {
 	// platForm 로그인 
 	@RequestMapping(value="platFormLogin.me", method=RequestMethod.POST)
 	public ModelAndView login(ModelAndView mv, HttpSession session, String authKey) {
-		
+		System.out.println(authKey);
 		Member loginUser = memberService.loginMember(authKey);
+		System.out.println(loginUser);
 		session.setAttribute("alertMsg", "로그인 성공");
 		session.setAttribute("loginUser", loginUser);
 		mv.setViewName("main");
@@ -81,6 +82,7 @@ public class MemberController {
 		mv.setViewName("main");
 		
 		return mv;
+		
 	}
 	
 	
