@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="eventMapper">
+
+	<resultMap id="attendanceresultSet" type = "attendance">
+		<result column="MARK_NO" property="markNo"/>
+		
+	</resultMap>
+	
+	
+	
+	<insert id = "insertAt" parameterType="_int">
+		INSERT INTO ATTENDANCE
+                    (
+                    ATTENDANCE_NO,
+					MEMBER_NO
+					)
+					VALUES (
+ 					SEQ_ANO.NEXTVAL
+					,#{memberNo}
+					)
+	</insert>
+	
+	<select id = "selectCount" parameterType = "_int" resultType = "_int">
+		SELECT COUNT(*)
+		FROM ATTENDANCE
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	<update id="increaseCount" parameterType = "_int">
+	UPDATE MEMBER
+	SET POINT = POINT + 1000
+	WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+</mapper>

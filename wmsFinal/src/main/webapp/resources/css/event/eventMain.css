@@ -37,7 +37,12 @@ input {
 	margin-right:10px;
 	margin-top:80px;
 }
-#content_3>button{
+#execute{
+	width:190px;
+	height:65px;
+	margin-left:16px;
+}
+#check{
 	width:190px;
 	height:65px;
 	margin-left:16px;
@@ -54,4 +59,194 @@ input {
 	margin-left:300px;
 	color:red;
 }
+
+
+
+
+
+
+/* QR CSS */
+
+
+
+
+
+
+
+
+.videoModal{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 1000;
+	/* 숨기기 */
+	z-index: -1;
+	opacity: 0;
+}
+.show {
+	opacity: 1;
+	z-index: 1000;
+	transition: all 0.5s;
+}
+.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #ffffff;
+	box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+	border-radius: 7px;
+	/* 임시 지정 */
+	width: 700px;
+	height: 500px;
+	text-align: center;
+	/* 초기에 약간 아래에 배치 */
+	transform: translate(-50%, -40%);
+}
+.show .popup{
+	transform: translate(-50%, -50%);
+	transition: all 0.5s;
+}
+.col-md-6{
+	widht: 340px;
+	height: 200px;
+}
+.selectbox {
+	display: inline-block;
+	position: relative;
+	width: 320px;
+	height: 30px;
+	line-height: 30px;
+	background:
+		url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg)
+		no-repeat 95% 50%;
+	border: 1px solid #DEDCEE;
+	z-index: 1;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.selectbox label {
+	position: absolute;
+	top: 0px;
+	left: 5px;
+	height: 30px;
+	line-height: 30px;
+	color: #999;
+	z-index: -1;
+	border-radius: 3px;
+}
+
+.selectbox select {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-family: inherit;
+	border: 0;
+	opacity: 0;
+	border-radius: 3px;
+	filter: alpha(opacity = 0);
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}
+/* focus 효과 */
+.selectbox.focus {
+  border-color: #66afe9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+
+/*입실 video 모달,qr생성 css */
+.rc_background2{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 1000;
+	/* 숨기기 */
+	z-index: -1;
+	opacity: 0;
+}
+
+.show2 {
+	opacity: 1;
+	z-index: 1000;
+	transition: all 0.5s;
+}
+
+.popup2 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #ffffff;
+	box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+	border-radius: 7px;
+	/* 임시 지정 */
+	width: 400px;
+	height: 400px;
+	text-align: center;
+	/* 초기에 약간 아래에 배치 */
+	transform: translate(-50%, -40%);
+}
+
+.popup2{
+	transform: translate(-50%, -50%);
+	transition: all 0.5s;
+}
+.rc_cont2{
+	widht: 400px;
+	height: 60px;
+}
+
+
+
+
+ol,.cd-buttons2 {
+	list-style: none;
+	cursor: pointer;	
+}
+
+.rn_li2:first-child a, .rc_li2:first-child a {
+	background: #fc7169;
+	float: left;
+	/* margin-left: -32px; */
+	border-radius: 0 0 5px 5px;
+	color: white;
+	height: 60px;
+	line-height: 60px;
+	text-decoration: none;
+	position : absolute;
+	bottom:0px;
+	left:0px;
+}
+
+.rn_li2:last-child a, .rc_li2:last-child a {
+	/* background: #b6bece; */
+	background: #b6bece;
+	float: right;
+	border-radius: 0 0 5px 5px;
+	color: white;
+	height: 60px;
+	line-height: 60px;
+	text-decoration: none;
+	position : absolute;
+	bottom:0px;
+	right:0px;
+}
+
+
+
 

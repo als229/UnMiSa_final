@@ -57,6 +57,87 @@ $(function(){
             }
             buildCalendar();
            
+           
+           
+           
+           /* QR코드 */
+           
+           
+           
+           $("#check").click(function(){
+				document.querySelector(".videoModal").className = "videoModal show";
+        
+        
+	
+				/* 입실video모달창 닫기 */
+				document.querySelector("#closeScan").addEventListener("click", removeclose2);
+				function removeclose2() {
+        			document.querySelector(".videoModal").className = "videoModal";
+      			}
+	
+				/* 입실video 키기 */
+				var content = $("#content").val();
+				let scanner = new Instascan.Scanner({ video: document.getElementById('preview')});
+			    Instascan.Camera.getCameras().then(function(cameras){
+			        if(cameras.length > 0 ){
+			            scanner.start(cameras[0]);
+			        } else{
+			            alert('No cameras found');
+			        }
+			    }).catch(function(e) {
+			        console.error(e);
+			    });
+			    
+				/* 입실video 키기 */
+				scanner.addListener('scan',function(c){
+			    	var content = $("#content").val();
+			    	var container = document.getElementById("container");
+			        document.getElementById('text').value=c;
+			        if(content==c){
+			        	document.querySelector(".videoModal").className = "videoModal";
+			        	attend();
+			        }else{
+			        	swal("Fail","올바른 qr을 입력해주세요.","warning");
+			        	/* alert("올바른 qr을 입력해주세요.") */
+			        	document.querySelector(".videoModal").className = "videoModal";
+			        }
+    			}); 
+			   
+			});
+	
+			/* 일실 update */
+			function attend(){
+				var frm = document.getElementById("frm");
+				frm.action = "eventAttend.ev";
+				frm.method = "POST";
+				frm.submit();
+			};
+
+	
+			/* qr생성하기 */
+	 		$("#execute").click(function(){
+	 			/* document.querySelector(".rc_background2").className = "rc_background2 show2"; */
+				console.log("되나 ..?");
+				url="qr.ev";
+				$("#img").attr("src",url);
+				$.ajax({
+					url:'qr2.ev'
+			 			,type:'post'
+			 			,success :function(data){
+			 				if($("#content").val() == ""){
+			 					$("#content").val(data);	
+			 				}
+			 			}
+				}); 
+				document.querySelector(".rc_background2").className = "rc_background2 show2";
+			}); 
+	     
+			/* qr창 닫기 */
+			document.querySelector("#rc_close2").addEventListener("click", removeclose);
+			function removeclose() {
+		        document.querySelector(".rc_background2").className = "rc_background2";
+		    }
+
 
 
         })
