@@ -53,7 +53,8 @@ $(function(){
                     // $(".date").eq(index).text()은 (text니까 eq 0~30까지중에 getDate맞는 날짜일 때 색깔이 들어있는 클래스 속성 추가)
                         $(".date").eq(index).addClass('colToday');
                     }
-                }) 
+                })
+                 
             }
             buildCalendar();
            

@@ -32,6 +32,11 @@ input {
 .colToday{
 	background-color: rgb(229,242,248);
 }
+.colAttend{
+	background-image: url('../../../resources/image/common/attendanceImg.png');
+	background-repeat : no-repeat;
+    background-size : 170px 115px;
+}
 #content_3{
 	text-align:right;
 	margin-right:10px;
