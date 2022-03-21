@@ -15,6 +15,7 @@ public interface PaymentService {
 	void paymentKakaopay(Payment p);
 	int paymentListCount(int memberNo);
 	ArrayList<Payment> paymentList(PageInfo pi, int memberNo);
+	void canclePayment(int memberNo);
 		
 	
 

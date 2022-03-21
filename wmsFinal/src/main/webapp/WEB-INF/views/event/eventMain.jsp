@@ -6,6 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>이벤트</title>
+<script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js " > </script> 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+<script type="text/javascript"
+	src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- Event css -->
 	<link rel="stylesheet" href="resources/css/event/eventMain.css"/>
@@ -41,10 +49,33 @@
         		</tbody>
     		</table>
     	</div>
-    	<div id="content_3">
-    		<button class="QrRe_Btn btn btn-primary">QR코드 받기</button>
-    		<button class="QrAt_Btn btn btn-primary">QR코드 출석하기</button>
-    	</div>
+    	<c:if test="${loginUser != null }">
+    	<form id="frm">
+    		<div id="content_3">
+    			<input id="content" type="hidden" name="content" value="${content }"/>
+    			<input type = "button" class="QrRe_Btn btn btn-primary chbutton" id="execute" value = "QR코드 받기"/>
+    			<input type = "button" class="QrAt_Btn btn btn-primary chbutton" id="check"value = "QR코드 출석하기"/>
+    		</div>
+    		<!-- 받아들인 qr 값-->
+			<div class="scan_con" style="display: none;">
+				<label>SCAN QR CODE</label> <input type="text" name="text" id="text"
+					 placeholder="scan qrcode" class="form-control">
+			</div>
+    			<!-- qr박스 -->
+			<div class="rc_background2">
+				<div class="popup2">
+					<div class="cd-popup-container2">
+						<div class="rc_cont2">
+							<img id="img" style=" width: 350px; height: 350px;" onload="this.style.display = 'inline-block'" />
+						</div>
+						<ul id="close2" class="cd-buttons2">
+							<li class="rc_li2"><a class="rc_a2" id="rc_close2">닫기</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+    	</form>
+    	</c:if>
     	<div id="content_4">
     		<div id="content_4_text1">
     		<p>
@@ -63,8 +94,20 @@
     	</div>
     	
     </div>
+    <div class="videoModal">
+		<div class="container" id="container" >
+			<p id="closeScan" style="cursor: pointer;  font-size:30px;">&#120;</p>
+			<div class="col-md-6" style="width: 100%; text-align:center;">
+				<video id="preview" width="130%" style="margin-left:190px;"></video>
+			</div>
+		</div>
+	</div>
+    
+    
     <div id="footer_area">
     	<jsp:include page="../common/footer.jsp"/>
     </div>
+    
+    
 </body>
 </html>

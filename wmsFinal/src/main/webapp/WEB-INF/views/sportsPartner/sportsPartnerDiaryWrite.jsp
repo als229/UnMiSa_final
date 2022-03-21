@@ -223,9 +223,6 @@
 	    	hegiht : 100px;
 	    }
 	    
-	    
-	    
-	    
         #md_gb{
         	float : left;
         	margin-left : 20px;
@@ -238,8 +235,6 @@
 	    	width : 80px;
 	    	hegiht : 100px;
 	    }
-	    
-	    
         
     	#md_gy{
         	float : left;
@@ -268,82 +263,163 @@
 				</div>
 				<div id="diaryBorder">
 					<div id="diaryTitle">제목</div>
+					
+					<form id="enrollDiary" action="insert.sd" method="post" enctype="multipart/form-data">
+					<input type="hidden" value="${ loginUser.memberNo }" name="memberNo">
+					<input id="hdspc1" type ="hidden" name ="sportsCount1" value="0"></input>
+					<input id="hdspc2" type ="hidden" name ="sportsCount2" value="0"></input>
+					<input id="hdspc3" type ="hidden" name ="sportsCount3" value="0"></input>
+					
 					<div id="titleInput">
-						<input type="text" id="tt_input" placeholder="제목"></input>	
+						<input type="text" id="tt_input" placeholder="제목" maxlength="20" name="diaryTitle" required></input>	
 					</div>		
 					<div id="contentInput">
-						<textarea id="ct_input" placeholder="내용"></textarea>
+						<textarea id="ct_input" placeholder="내용" name="diaryContent" required></textarea>
 					</div>
 					<div class="diaryBt" id="diaryPicture">사진</div>
-					<input type="file" id="file"></input>
+					<input type="file" id="file" name="upfile"></input>
 					
-					<button type="button" class="btn btn-primary " id="modal_box" data-bs-toggle="modal" data-bs-target="#inbody-update">
+					<button type="button" class="btn btn-primary" id="modal_box" data-bs-toggle="modal" data-bs-target="#inbody-update">
 						인바디 변동
 					</button>
 					<div id="checkBorder">
 						<div id="sports1" class="sportsBox">
-							홈운동
+							${ p.sports1 }
 						</div>
 						
 						<div id="sports2" class="sportsBox">
-							조기축구
+							${ p.sports2 }
 						</div>
 		
 						<div id="sports3" class="sportsBox">
-							헬스장
+							${ p.sports3 }
 						</div>
-						
+										  
 					</div>
 					
-					<div id="back">다음에 하기</div>
-					<div id="diary_commit">땀방울 기록</div>
+					
+					
+						<div class="modal" id="inbody-update" tabindex="-1">
+					        <div class="modal-dialog">
+					        <div class="modal-content">
+					            <div class="modal-header">
+					            <h5 class="modal-title">인바디 변동</h5>
+					            </div>
+					            <div class="modal-body">
+					     		<br>
+					            
+					            <div id="md_kg">
+					            	몸무게 
+					            </div>
+					            <div id="ip_kg">
+					            	<input type="number" class="input" placeholder="몸무게(kg)" max="200" min="20" name="currentWeight" value="${ p.beginningWeight }" required></input>
+					            </div>
+					            <br>
+					            
+					            
+					            <div id="md_gb">
+					            	체지방률
+					            </div>
+					            <div id="ip_gb">
+					            	<input type="number" class="input" placeholder="체지방률(%)" max="100" min="0" name="currentFat" value="${ p.beginningFat }" required></input>
+					            </div>
+								<br>
+					
+					            <div id="md_gy">
+					            	근육량
+					            </div>
+					            <div id="ip_gy">	
+					            	<input type="number" class="input" placeholder="근육량(kg)" max="100" min="0" name="currentMuscle" value="${ p.beginningMuscle }" required></input>
+					            </div>
+					            
+					            
+					            
+					            </div>
+					            <div class="modal-footer">
+					                <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">인바디 변동</button>
+					                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">돌아가기</button>
+					            </div>
+					           
+					           	<script>
+									$(function(){
+										
+										var i=0;
+										var o=0;
+										var p=0;
+										var color=["rgb(135, 206, 235)","rgb(176,176,176)"];
+										
+										
+										
+										$('#sports1').click(function(){
+											$(this).css("color",color[i]);
+											
+											i++;
+											if(i==2){i=0};
+											
+											if(i==1){
+												$('#hdspc1').attr('value', 1);
+											};
+							
+							
+										});
+										
+							
+										
+										// 선택되어 있을경우 히든으로 보내는 카운트의 밸루를 1로 보내서 카운트에 추가하게해줌
+										
+										
+										
+										
+										$('#sports2').click(function(){
+											$(this).css("color",color[o]);
+											
+											o++;
+											if(o==2){o=0};
+											
+											
+											if(o==1){
+												$('#hdspc2').attr('value', 1);
+											}
+							
+										});
+
+										
+										
+										$('#sports3').click(function(){
+											$(this).css("color",color[p]);
+											
+											p++;
+											if(p==2){p=0};
+											
+											if(p==1){
+												$('#hdspc3').attr('value', 1);
+											}
+							
+										});
+										
+										
+
+										
+									});
+									
+								</script>
+					           
+					            
+					        </div>
+					        </div>
+					    </div>
+
+					<div id="back" onclick="location.href='sportsPartnerMain.sp'">다음에 하기</div>
+					<button type="submit" id="diary_commit">땀방울 기록</button>
+					</form>
 				</div>
+				
+
 			</div>
     	</div>
 	</div>
 	
 
-	
-	<script>
-		$(function(){
-			
-			var i=0;
-			var o=0;
-			var p=0;
-			var color=["rgb(135, 206, 235)","rgb(176,176,176)"];
-			
-			$('#sports1').click(function(){
-				$(this).css("color",color[i]);
-				
-				i++;
-				if(i==2){i=0};
-
-			});
-			
-			$('#sports2').click(function(){
-				$(this).css("color",color[o]);
-				
-				o++;
-				if(o==2){o=0};
-
-			});
-			
-			$('#sports3').click(function(){
-				$(this).css("color",color[p]);
-				
-				p++;
-				if(p==2){p=0};
-
-			});
-			
-			
-		});
-		
-	</script>
-	
-	
-	
-	
 	
 	
 	
@@ -351,48 +427,7 @@
 	
 	
 
-    <div class="modal" id="inbody-update" tabindex="-1">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">인바디 변동</h5>
-            </div>
-            <div class="modal-body">
-     		<br>
-            
-            <div id="md_kg">
-            	몸무게 
-            </div>
-            <div id="ip_kg">
-            	<input type="number" class="input" placeholder="몸무게(kg)"></input>
-            </div>
-            <br>
-            
-            
-            <div id="md_gb">
-            	체지방률
-            </div>
-            <div id="ip_gb">
-            	<input type="number" class="input" placeholder="체지방률(%)"></input>
-            </div>
-			<br>
 
-            <div id="md_gy">
-            	근육량
-            </div>
-            <div id="ip_gy">	
-            	<input type="number" class="input" placeholder="근육량(kg)"></input>
-            </div>
-            
-            
-            
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">인바디 변동</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">돌아가기</button>
-            </div>
-        </div>
-        </div>
-    </div>
+   
 </body>
 </html>

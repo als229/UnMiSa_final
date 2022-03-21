@@ -28,6 +28,7 @@ import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.common.template.Pagination;
 import com.kh.wms.member.model.service.MemberService;
 import com.kh.wms.member.model.vo.Member;
+import com.kh.wms.member.model.vo.User;
 import com.kh.wms.payment.model.vo.Payment;
 
 @Controller
@@ -53,9 +54,9 @@ public class MemberController {
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/");
 		} else {
-			mv.addObject("alertMsg", "로그인 정보가 틀립니다.");
+			session.setAttribute("alertMsg", "로그인 정보가 틀립니다.");
 		}
-		
+			
 		mv.setViewName("main");
 		return mv;
 	}
@@ -63,14 +64,28 @@ public class MemberController {
 	// platForm 로그인 
 	@RequestMapping(value="platFormLogin.me", method=RequestMethod.POST)
 	public ModelAndView login(ModelAndView mv, HttpSession session, String authKey) {
-		
+		System.out.println(authKey);
 		Member loginUser = memberService.loginMember(authKey);
+		System.out.println(loginUser);
 		session.setAttribute("alertMsg", "로그인 성공");
 		session.setAttribute("loginUser", loginUser);
 		mv.setViewName("main");
 		
 		return mv;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="naverLogin.me", method=RequestMethod.GET)
+	public ModelAndView naverLogin(ModelAndView mv, HttpSession session, User user ) {
+		System.out.println("네이버 로그인 실행");
+		System.out.println(user);
+		mv.setViewName("main");
+		
+		return mv;
+		
+	}
+	
+	
 	
 	//logOut 기능
 	@RequestMapping(value="logOut.me")

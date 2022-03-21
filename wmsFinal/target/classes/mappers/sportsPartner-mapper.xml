@@ -19,8 +19,19 @@
 		<result column="SPORTSCOUNT2" property="sportsCount2" />
 		<result column="SPORTSCOUNT3" property="sportsCount3" />
 		<result column="PURPOSE_STATUS" property="purposeStatus" />
+		<result column="BEGINNING_WEIGHT" property="beginningWeight" />
+		<result column="BEGINNING_FAT" property="beginningFat" />
+		<result column="BEGINNING_MUSCLE" property="beginningMuscle" />
 	</resultMap>
   
+	 <resultMap id="sportsDiaryResultSet" type="sportsDiary">
+			<result column="DIARY_NO" property="diaryNo" />
+			<result column="MEMBER_NO" property="memberNo" />
+			<result column="DIARY_TITLE" property="diaryTitle" />
+			<result column="DIARY_CONTENT" property="diaryContent" />
+			<result column="DIARY_PHOTO" property="diaryPhoto" />
+			<result column="DIARY_DATE" property="diaryDate" />
+		</resultMap>
   
   	<select id="selectPurpose" resultMap="purposeResultSet">
 			SELECT
@@ -36,6 +47,12 @@
 			        ,SPORTSCOUNT1
 			        ,SPORTSCOUNT2
 			        ,SPORTSCOUNT3
+			        ,BEGINNING_WEIGHT
+			        ,BEGINNING_FAT
+			        ,BEGINNING_MUSCLE
+			        
+			        
+			        
 			FROM
 			        PURPOSE
 			WHERE
@@ -50,9 +67,6 @@
   			INSERT INTO PURPOSE(
   					PURPOSE_NO
   					,MEMBER_NO
-  					,BEGINNING_WEIGHT
-  					,BEGINNING_FAT
-  					,BEGINNING_MUSCLE
   					,CURRENT_WEIGHT
   					,CURRENT_FAT
   					,CURRENT_MUSCLE
@@ -61,15 +75,15 @@
   					,PURPOSE_MUSCLE
   					,SPORTS1
   					,SPORTS2
-  					,SPORTS3			
+  					,SPORTS3		
+  					,BEGINNING_WEIGHT
+  					,BEGINNING_FAT
+  					,BEGINNING_MUSCLE	
   					)
   					VALUES
   					(
   					#{purposeNo}
   					,#{purposeNo}
-  					,#{beginningWeight}
-  					,#{beginningFat}
-  					,#{beginningMuscle}
   					,#{beginningWeight}
   					,#{beginningFat}
   					,#{beginningMuscle}
@@ -79,9 +93,110 @@
   					,#{sports1}
   					,#{sports2}
   					,#{sports3}
+  					,#{beginningWeight}
+  					,#{beginningFat}
+  					,#{beginningMuscle}
   					)
   			
   	</insert>
-  
-  
+  	
+  	<insert id="insertDiary" parameterType="sportsDiary">
+  		
+  		INSERT INTO SPORTS_DIARY(
+  					DIARY_NO
+  					,MEMBER_NO
+  					,DIARY_TITLE
+  					,DIARY_CONTENT
+  					,DIARY_PHOTO
+  					,DIARY_DATE
+  					)
+  					VALUES
+  					(
+  					SEQ_BNO.NEXTVAL
+  					,#{memberNo}
+  					,#{diaryTitle}
+  					,#{diaryContent}
+  					,#{diaryPhoto}
+  					,TO_CHAR(SYSDATE, 'YYYY/MM/DD')
+  					)	
+
+  	</insert>
+
+	<update id="updatePurpose" parameterType="purpose">
+		UPDATE
+				PURPOSE
+			SET
+				SPORTSCOUNT1 = SPORTSCOUNT1 + #{sportsCount1},
+				SPORTSCOUNT2 = SPORTSCOUNT2 + #{sportsCount2},
+				SPORTSCOUNT3 = SPORTSCOUNT3 + #{sportsCount3},
+				CURRENT_WEIGHT = #{currentWeight},
+				CURRENT_FAT = #{currentFat},
+				CURRENT_MUSCLE = #{currentMuscle}
+			WHERE
+				PURPOSE_NO = #{memberNo}
+	
+	
+	</update>
+    
+    <select id="check" resultMap="sportsDiaryResultSet">
+    		SELECT DIARY_DATE
+			FROM SPORTS_DIARY
+			WHERE MEMBER_NO = #{memberNo}
+			AND DIARY_DATE = TO_CHAR(SYSDATE, 'YYYY/MM/DD')
+    
+    </select>
+   
+    <select id="selectDiary" resultMap="sportsDiaryResultSet">
+        	      SELECT *
+        FROM
+            (SELECT
+                DIARY_TITLE,
+                TO_CHAR(DIARY_DATE, 'DD') DIARY_DATE
+                FROM
+                    SPORTS_DIARY
+                WHERE MEMBER_NO = #{memberNo}
+                ORDER BY
+                    DIARY_NO
+                    DESC)
+        <![CDATA[ WHERE ROWNUM <= 5]]> 
+    
+    
+    </select>
+    
+    <select id="selectDiary2" resultMap="sportsDiaryResultSet">
+        	      SELECT *
+        FROM
+            (SELECT
+            	DIARY_NO,
+                DIARY_TITLE,
+                TO_CHAR(DIARY_DATE, 'YYYY-MM-DD') DIARY_DATE,
+                DIARY_PHOTO
+                FROM
+                    SPORTS_DIARY
+                WHERE MEMBER_NO = #{memberNo}
+                ORDER BY
+                    DIARY_NO
+                    DESC)
+    
+    
+    </select>
+    
+    <select id="selectListCount" resultType="_int">
+		SELECT COUNT(*)
+			FROM SPORTS_DIARY
+	</select>
+    
+    <select id="detailDiary" resultMap="sportsDiaryResultSet">
+    	    SELECT
+                DIARY_TITLE,
+                DIARY_CONTENT,
+                DIARY_PHOTO,
+                DIARY_DATE
+            FROM
+                SPORTS_DIARY
+            WHERE
+                DIARY_NO = #{ diaryNo }
+    </select>
+    
+    
 </mapper>

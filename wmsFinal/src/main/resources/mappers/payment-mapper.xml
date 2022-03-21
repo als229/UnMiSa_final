@@ -56,6 +56,19 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 	
+	<delete id="canclePayment" parameterType="_int">
+		DELETE
+		FROM PAYMENT
+		WHERE PAYMENT_NO IN
+		(SELECT PAYMENT_NO
+		FROM(
+		SELECT PAYMENT_NO
+		FROM PAYMENT
+		WHERE MEMBER_NO=#{memberNo}
+		ORDER BY PAYMENT_NO DESC)
+		WHERE ROWNUM = 1)
+	</delete>
+	
 	<insert id = "paymentKakaopay" parameterType="payment">
 		INSERT INTO PAYMENT(
 					PAYMENT_NO
@@ -101,6 +114,9 @@
 		WHERE MEMBER_NO = #{memberNo}
         ORDER BY PAYMENT_NO DESC
 	</select>	
+	
+	
+	
 	
 	
 	

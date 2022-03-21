@@ -53,6 +53,13 @@ public class PaymentDao {
 			
 		return (ArrayList)sqlSession.selectList("paymentMapper.paymentList",memberNo,rowBounds);
 		}
+	
+	
+	public void canclePayment(SqlSessionTemplate sqlSession, int memberNo) {
+		
+		sqlSession.delete("paymentMapper.canclePayment",memberNo);
+		
+	}
 
 
 }

@@ -56,4 +56,9 @@ public class PaymentServiceImpl implements PaymentService{
 		return paymentDao.paymentList(sqlSession,memberNo,pi);
 	}
 
+	@Override
+	public void canclePayment(int memberNo) {
+		paymentDao.canclePayment(sqlSession,memberNo);
+	}
+
 }

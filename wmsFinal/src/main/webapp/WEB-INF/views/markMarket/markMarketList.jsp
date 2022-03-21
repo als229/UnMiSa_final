@@ -75,7 +75,7 @@
                 	<script>
                 	$(function(){
                 		$(".markHover_btn1").click(function(){
-                			if(${loginUser.point > p.price }){
+                			if(${loginUser.point} > ${p.price }){
                 		    	location.href = "paymentPoint.pm?markNo="+$(this).next().val()+"&&memberNo="+${ loginUser.memberNo } +"&&price="+$(this).prev("#hiidenPrice").val();
                 			}else{
                 				alertify.alert("포인트가 부족합니다.");
@@ -97,6 +97,7 @@
                 				  	memberNo:${loginUser.memberNo}},
                 			  dataType:'json',
                 			  success:function(result){
+                				  console.log(result);
                 				  var box = result.next_redirect_pc_url;
                 				  window.open(box);
                 			  },

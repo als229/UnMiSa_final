@@ -13,5 +13,14 @@ public class EventServiceImpl implements EventService {
 	private EventDao eventDao;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	@Override
+	public int insertAt(int memberNo) {
+		return eventDao.insertAt(sqlSession, memberNo);
+	}
+	@Override
+	public void increasePoint(int memberNo) {
+		eventDao.increasePoint(sqlSession, memberNo);
+		
+	}
 	
 }
