@@ -35,6 +35,9 @@
 <!-- 네이버 스크립트 -->
 <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
+<!-- 페이스북 -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v10.0&appId=699377614579818" nonce="SiOBIhLG"></script>
+
 <!-- header css -->
 <link rel="stylesheet" href="resources/css/common/header.css" />
 <script src="resources/js/common/header.js"></script>
@@ -55,11 +58,12 @@
 			<div id="header_div_center">
 				<div id="header_div_inCenter"
 					style="margin-top: 20px; margin-left: 100px;">
-					<span style="font-size: 50px;">운</span><span
-						style="font-size: 20px;">동에</span><span style="font-size: 50px;">&nbsp;&nbsp;미</span>
-					<span style="font-size: 20px;">친</span><span
-						style="font-size: 50px;">&nbsp;&nbsp;사</span><span
-						style="font-size: 20px;">람들</span>
+					<span style="font-size: 50px;">운</span>
+					<span style="font-size: 20px;">동에</span>
+					<span style="font-size: 50px;">&nbsp;&nbsp;미</span>
+					<span style="font-size: 20px;">친</span>
+					<span style="font-size: 50px;">&nbsp;&nbsp;사</span>
+					<span style="font-size: 20px;">람들</span>
 				</div>
 			</div>
 			<div id="header_div_second">
