@@ -16,7 +16,6 @@ public class Address {
 	private int addressNo;
 	private String siDo;
 	private String gu;
-	
 	private String siGun;
 
 }

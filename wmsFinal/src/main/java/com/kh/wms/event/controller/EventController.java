@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.wms.event.model.service.EventService;
+import com.kh.wms.event.model.vo.Attendance;
 import com.kh.wms.member.model.vo.Member;
 
 @Controller
@@ -27,10 +29,19 @@ public class EventController {
 	
 	
 	@RequestMapping(value="eventMain.ev")
-	public ModelAndView eventMain(ModelAndView mv) {
+	public ModelAndView eventMain(ModelAndView mv, HttpSession session) {
 		
-		mv.setViewName("event/eventMain");
+		Member m = (Member)session.getAttribute("loginUser");
 		
+		
+		if(m != null) {
+			int memberNo= m.getMemberNo();
+			ArrayList<Attendance> list = eventService.eventMain(memberNo);
+			mv.addObject("list",list).setViewName("event/eventMain");
+		}else {
+			mv.setViewName("event/eventMain");
+		}
+			
 		return mv;
 	}
 	
@@ -77,8 +88,8 @@ public class EventController {
 	
 	@RequestMapping(value = "eventAttend.ev")
 	public String editAttend(HttpServletRequest re,RedirectAttributes rttr, HttpSession session) throws ParseException  {
-		String content = re.getParameter("content");
 		
+		String content = re.getParameter("content");
 		
 		String[] str = content.split("&");
 		
@@ -97,8 +108,11 @@ public class EventController {
 				
 		if( now < 70000) {
 			session.setAttribute("alertMsg", "출석시간 07:00 부터 가능합니다");
+			
 		}else if(now > 71059) {
 			session.setAttribute("alertMsg", "출석 가능한 시간이 지나셨습니다. 내일 다시 도전하세요");
+			
+			
 			int result = eventService.insertAt(memberNo);
 			
 			if(result % 10 == 0) {
@@ -107,6 +121,10 @@ public class EventController {
 			
 		}else {
 			int result = eventService.insertAt(memberNo);
+			
+			if(result % 10 == 0) {
+				eventService.increasePoint(memberNo);
+			}
 		}
 		//강의사작 5분 전 시간 구함 => 변수명 bStart
 //		Date lectureclass_start = sdf.parse(vo.getLectureclass_start());

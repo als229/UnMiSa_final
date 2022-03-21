@@ -2,10 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="eventMapper">
 
-	<resultMap id="attendanceresultSet" type = "attendance">
-		<result column="MARK_NO" property="markNo"/>
+	<resultMap id="attendanceResultSet" type = "attendance">
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="ATTENDANCE_YEAR" property="attendanceYear"/>
+		<result column="ATTENDANCE_MONTH" property="attendanceMonth"/>
+		<result column="ATTENDANCE_DATE" property="attendanceDate"/>
 		
 	</resultMap>
+	
+	
+	
+	
+	
+	<select id = "attendance" resultMap = "attendanceResultSet" parameterType="_int">
+		SELECT 	ATTENDANCE_NO
+              	,MEMBER_NO
+				,TO_CHAR(ATTENDANCE_DATE, 'YYYY') AS "ATTENDANCE_YEAR"
+			  	,TO_CHAR(ATTENDANCE_DATE, 'MM') AS "ATTENDANCE_MONTH"
+			  	,TO_CHAR(ATTENDANCE_DATE, 'DD') AS "ATTENDANCE_DATE"
+		FROM ATTENDANCE
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
 	
 	
 	
@@ -22,7 +39,7 @@
 	</insert>
 	
 	<select id = "selectCount" parameterType = "_int" resultType = "_int">
-		SELECT COUNT(*)
+		SELECT COUNT(DISTINCT TO_CHAR(ATTENDANCE_DATE, 'YYYY-MM-DD'))
 		FROM ATTENDANCE
 		WHERE MEMBER_NO = #{memberNo}
 	</select>

@@ -8,6 +8,6 @@
 <title>결제취소</title>
 </head>
 <body>
-		<h1 style="color:red;">결제가 취소되었습니다 창을 닫아주세요</h1>
+		<h1 style="color:red;">결제가 취소되었습니다 창을 닫아주세요.</h1>
 </body>
 </html>

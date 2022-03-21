@@ -29,11 +29,7 @@
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id" content="692876068188-7ifibfj5gbk6vdpv3k4n8a3gdq72dnsk.apps.googleusercontent.com">
 
-<!-- 카카오 -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-<!-- 네이버 스크립트 -->
-<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
 <!-- header css -->
 <link rel="stylesheet" href="resources/css/common/header.css" />
@@ -54,27 +50,38 @@
 			</div>
 			<div id="header_div_center">
 				<div id="header_div_inCenter"
-					style="margin-top: 20px; margin-left: 100px;">
-					<span style="font-size: 50px;">운</span><span
-						style="font-size: 20px;">동에</span><span style="font-size: 50px;">&nbsp;&nbsp;미</span>
-					<span style="font-size: 20px;">친</span><span
-						style="font-size: 50px;">&nbsp;&nbsp;사</span><span
-						style="font-size: 20px;">람들</span>
+					style="margin-top: 20px; margin-left: 25px;">
+					<span style="font-size: 50px;">운</span>
+					<span style="font-size: 20px;">동에</span>
+					<span style="font-size: 50px;">&nbsp;&nbsp;미</span>
+					<span style="font-size: 20px;">친</span>
+					<span style="font-size: 50px;">&nbsp;&nbsp;사</span>
+					<span style="font-size: 20px;">람들</span>
 				</div>
 			</div>
 			<div id="header_div_second">
 				<c:choose>
 					<c:when test="${ loginUser == null }">
+						
 						<!-- 로그인 전 -->
-						<a href="choice.me">회원가입</a>
-						<a href="loginForm.me">로그인</a>
+						<div style="float:right">
+							<a href="choice.me">&nbsp;&nbsp;회원가입</a>
+							<a href="loginForm.me">&nbsp;&nbsp;로그인</a>
+						</div>
 						<!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
 					</c:when>
 
 					<c:otherwise>
 						<!-- 로그인 후 -->
-						<lable>${loginUser.memberName}님 환영합니다</label> &nbsp;&nbsp; <a href=""><img src="">내
-							채팅</a> <a href="logOut.me">로그아웃</a> <a href="myPage.me">마이페이지</a> <a href="sportsPartnerMain.sp">운동파트너</a>
+						<div style="float:right">${loginUser.memberName}님 환영합니다</div>
+						<br>
+						<div style="float:right">
+						 &nbsp;&nbsp; 
+						 <a href=""><img src="">&nbsp;&nbsp;내 채팅</a> 
+						 <a href="logOut.me">&nbsp;&nbsp;로그아웃</a> 
+						 <a href="myPage.me">&nbsp;&nbsp;마이페이지</a> 
+						 <a href="sportsPartnerMain.sp">&nbsp;&nbsp;운동파트너</a>
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -82,10 +89,10 @@
 		<div id="header_nav">
 			<ul>
 				<li><a href="serchWms.te">우리동네 운미사</a></li>
-				<li><a href="list.bo">우리동네 커뮤니티</a></li>
+				<li><a href="list.bo" >우리동네 커뮤니티</a></li>
 				<li><a href="eventMain.ev">우리동네 이벤트</a></li>
 				<li><a href="markMarket.pm?">마크 상점</a></li>
-				<li><a href="noticeFAQ.no">고객센터</a></li>
+				<li><a href="noticeFAQ.no" >고객센터</a></li>
 			</ul>
 		</div>
 	</div>

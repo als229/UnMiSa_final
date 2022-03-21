@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>이벤트</title>
 <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js " > </script> 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
 <script type="text/javascript"
@@ -36,7 +35,7 @@
                 		<th><input name="nextMon" type="button" value=">"></th>
             		</tr>
             		<tr>
-                		<th>일</th>
+                		<th>일 </th>
                 		<th>월</th>
                 		<th>화</th>
                 		<th>수</th>
@@ -49,6 +48,53 @@
         		</tbody>
     		</table>
     	</div>
+    	<c:forEach var="a" items="${ list }">
+    	<script>
+    	
+    	
+    	$(function(){
+    		var attYear = $(".year_mon").text().substring(0,4);
+    		var attMonth = $(".year_mon").text().substring($(".year_mon").text().indexOf("년")+1,$(".year_mon").text().indexOf("월"));
+    		
+    		
+    		//
+    		//console.log(${a.attendanceYear});
+    		 $("input[name=preMon]").click(function() { // 이전달
+    		 attYear = $(".year_mon").text().substring(0,4);
+    	     attMonth = $(".year_mon").text().substring($(".year_mon").text().indexOf("년")+1,$(".year_mon").text().indexOf("월"));
+    	     $(".date").each(function(index){
+                 if(attYear==${a.attendanceYear} && attMonth==${a.attendanceMonth} && $(".date").eq(index).text()==${a.attendanceDate}) { 
+                    
+                 	$(".date").eq(index).addClass('colAttend');
+                 }
+             })  		
+             })
+    		 $("input[name=nextMon]").click(function() { // 이전달
+    		 attYear = $(".year_mon").text().substring(0,4);
+    	     attMonth = $(".year_mon").text().substring($(".year_mon").text().indexOf("년")+1,$(".year_mon").text().indexOf("월"));
+    	     $(".date").each(function(index){
+                 if(attYear==${a.attendanceYear} && attMonth==${a.attendanceMonth} && $(".date").eq(index).text()==${a.attendanceDate}) { 
+                    
+                 	$(".date").eq(index).addClass('colAttend');
+                 }
+             })  		
+             })
+    		 
+    		
+			$(".date").each(function(index){
+                if(attYear==${a.attendanceYear} && attMonth==${a.attendanceMonth} && $(".date").eq(index).text()==${a.attendanceDate}) { 
+                   
+                	$(".date").eq(index).addClass('colAttend');
+                }
+            })  		
+    	
+    		
+    	})
+    	</script>
+    	</c:forEach>
+    	
+    	
+    	
     	<c:if test="${loginUser != null }">
     	<form id="frm">
     		<div id="content_3">
