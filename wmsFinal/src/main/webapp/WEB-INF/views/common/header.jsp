@@ -57,7 +57,7 @@
 			</div>
 			<div id="header_div_center">
 				<div id="header_div_inCenter"
-					style="margin-top: 20px; margin-left: 100px;">
+					style="margin-top: 20px; margin-left: 25px;">
 					<span style="font-size: 50px;">운</span>
 					<span style="font-size: 20px;">동에</span>
 					<span style="font-size: 50px;">&nbsp;&nbsp;미</span>
@@ -77,8 +77,12 @@
 
 					<c:otherwise>
 						<!-- 로그인 후 -->
-						<lable>${loginUser.memberName}님 환영합니다</label> &nbsp;&nbsp; <a href=""><img src="">내
-							채팅</a> <a href="logOut.me">로그아웃</a> <a href="myPage.me">마이페이지</a> <a href="sportsPartnerMain.sp">운동파트너</a>
+						<div style="float:right">${loginUser.memberName}님 환영합니다</div>
+						<br>
+						<div style="float:right">
+						 &nbsp;&nbsp; <a href=""><img src="">&nbsp;&nbsp;내
+							채팅</a> <a href="logOut.me">&nbsp;&nbsp;로그아웃</a> <a href="myPage.me">&nbsp;&nbsp;마이페이지</a> <a href="sportsPartnerMain.sp">&nbsp;&nbsp;운동파트너</a>
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -86,10 +90,10 @@
 		<div id="header_nav">
 			<ul>
 				<li><a href="serchWms.te">우리동네 운미사</a></li>
-				<li><a href="list.bo">우리동네 커뮤니티</a></li>
+				<li><a href="list.bo" >우리동네 커뮤니티</a></li>
 				<li><a href="eventMain.ev">우리동네 이벤트</a></li>
 				<li><a href="markMarket.pm?">마크 상점</a></li>
-				<li><a href="noticeFAQ.no">고객센터</a></li>
+				<li><a href="noticeFAQ.no" >고객센터</a></li>
 			</ul>
 		</div>
 	</div>

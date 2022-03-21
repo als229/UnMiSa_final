@@ -217,10 +217,12 @@
 				for (key in address) {
 					if (address[key].sidoName == "서울특별시") {
 					let seoul = address[key].gu;
-					console.log(seoul);
+					
 				}
 
 			}
+				
+				
 
 		});
 	</script>
