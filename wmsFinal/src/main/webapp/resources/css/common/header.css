@@ -18,10 +18,6 @@ div {
 }
 
 #header_div {
-	height: 80%;
-}
-
-#header_div {
 	height: 60%;
 }
 
@@ -36,11 +32,11 @@ div {
 }
 
 #header_div_center {
-	width: 40%;
+	width: 30%;
 }
 
 #header_div_second {
-	width: 30%;
+	width: 40%;
 }
 
 #header_div_first>img {
