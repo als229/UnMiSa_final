@@ -25,6 +25,10 @@ public interface SportsPartnerService {
 	int selectListCount();
 
 	SportsDiary detailDiary(int diaryNo);
+
+	int clearPurpose(int memberNo);
+
+	int clearDiary(int memberNo);
 	
 	
 }

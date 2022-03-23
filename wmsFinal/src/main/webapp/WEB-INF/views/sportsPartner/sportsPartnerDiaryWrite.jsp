@@ -259,7 +259,7 @@
 			<div id="spmain">
 				<br>
 				<div id="diaryTop">
-					3월 10일의 땀방울
+					오늘의 일기 작성
 				</div>
 				<div id="diaryBorder">
 					<div id="diaryTitle">제목</div>
@@ -312,7 +312,7 @@
 					            	몸무게 
 					            </div>
 					            <div id="ip_kg">
-					            	<input type="number" class="input" placeholder="몸무게(kg)" max="200" min="20" name="currentWeight" value="${ p.beginningWeight }" required></input>
+					            	<input type="number" step="0.1" class="input" placeholder="몸무게(kg)" max="200" min="20" name="currentWeight" value="${ p.currentWeight }" required></input>
 					            </div>
 					            <br>
 					            
@@ -321,7 +321,7 @@
 					            	체지방률
 					            </div>
 					            <div id="ip_gb">
-					            	<input type="number" class="input" placeholder="체지방률(%)" max="100" min="0" name="currentFat" value="${ p.beginningFat }" required></input>
+					            	<input type="number" step="0.1" class="input" placeholder="체지방률(%)" max="100" min="0" name="currentFat" value="${ p.currentFat }" required></input>
 					            </div>
 								<br>
 					
@@ -329,7 +329,7 @@
 					            	근육량
 					            </div>
 					            <div id="ip_gy">	
-					            	<input type="number" class="input" placeholder="근육량(kg)" max="100" min="0" name="currentMuscle" value="${ p.beginningMuscle }" required></input>
+					            	<input type="number" step="0.1" class="input" placeholder="근육량(kg)" max="100" min="0" name="currentMuscle" value="${ p.currentMuscle }" required></input>
 					            </div>
 					            
 					            

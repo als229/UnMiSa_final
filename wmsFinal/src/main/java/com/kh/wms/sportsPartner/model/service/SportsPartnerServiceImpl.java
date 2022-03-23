@@ -83,6 +83,20 @@ public class SportsPartnerServiceImpl implements SportsPartnerService {
 	
 		return sportsPartnerDao.detailDiary(sqlSession, diaryNo);
 	}
+
+
+	@Override
+	public int clearPurpose(int memberNo) {
+	
+		return sportsPartnerDao.clearPurpose(sqlSession, memberNo);
+	}
+
+
+	@Override
+	public int clearDiary(int memberNo) {
+	
+		return sportsPartnerDao.clearDiary(sqlSession, memberNo);
+	}
 	
 	
 }

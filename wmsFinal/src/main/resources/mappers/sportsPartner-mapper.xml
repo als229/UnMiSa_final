@@ -22,6 +22,7 @@
 		<result column="BEGINNING_WEIGHT" property="beginningWeight" />
 		<result column="BEGINNING_FAT" property="beginningFat" />
 		<result column="BEGINNING_MUSCLE" property="beginningMuscle" />
+		<result column="PURPOSE_NAME" property="purposeName" />
 	</resultMap>
   
 	 <resultMap id="sportsDiaryResultSet" type="sportsDiary">
@@ -50,6 +51,7 @@
 			        ,BEGINNING_WEIGHT
 			        ,BEGINNING_FAT
 			        ,BEGINNING_MUSCLE
+			        ,PURPOSE_NAME
 			        
 			        
 			        
@@ -78,7 +80,8 @@
   					,SPORTS3		
   					,BEGINNING_WEIGHT
   					,BEGINNING_FAT
-  					,BEGINNING_MUSCLE	
+  					,BEGINNING_MUSCLE
+  					,PURPOSE_NAME	
   					)
   					VALUES
   					(
@@ -96,6 +99,7 @@
   					,#{beginningWeight}
   					,#{beginningFat}
   					,#{beginningMuscle}
+  					,#{purposeName}
   					)
   			
   	</insert>
@@ -150,6 +154,7 @@
         	      SELECT *
         FROM
             (SELECT
+            DIARY_NO,
                 DIARY_TITLE,
                 TO_CHAR(DIARY_DATE, 'DD') DIARY_DATE
                 FROM
@@ -191,12 +196,28 @@
                 DIARY_TITLE,
                 DIARY_CONTENT,
                 DIARY_PHOTO,
-                DIARY_DATE
+                TO_CHAR(DIARY_DATE, 'YYYY-MM-DD') DIARY_DATE
             FROM
                 SPORTS_DIARY
             WHERE
                 DIARY_NO = #{ diaryNo }
     </select>
     
+    <delete id="clearPurpose">
+    	DELETE
+    		FROM
+    			PURPOSE
+    	WHERE
+    		MEMBER_NO = #{memberNo}
+    			
+    </delete>
     
+    <delete id="clearDiary">
+    	DELETE
+    		FROM
+    			SPORTS_DIARY
+    	WHERE
+    		MEMBER_NO = #{memberNo}
+    			
+    </delete>
 </mapper>

@@ -64,4 +64,14 @@ public class SportsPartnerDao {
 		return sqlSession.selectOne("sportsPartnerMapper.detailDiary", diaryNo);
 	}
 
+	public int clearPurpose(SqlSessionTemplate sqlSession, int memberNo) {
+		
+		return sqlSession.delete("sportsPartnerMapper.clearPurpose", memberNo);
+	}
+
+	public int clearDiary(SqlSessionTemplate sqlSession, int memberNo) {
+	
+		return sqlSession.delete("sportsPartnerMapper.clearDiary", memberNo);
+	}
+
 }

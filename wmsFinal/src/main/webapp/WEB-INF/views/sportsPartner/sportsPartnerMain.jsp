@@ -142,7 +142,7 @@
             width: 54px;
             height: 30px;
             line-height: 27px;
-            margin-top: 30px;
+            margin-top: 10px;
             margin-left: 40px;
             display: inline-block;
             font-weight: bold;
@@ -154,7 +154,7 @@
         #weight{
             width: 206px;
             height: 30px;
-            margin-top: 30px;
+            margin-top: 10px;
             margin-left: 10px;
             display: inline-block;
             color:rgb(176,176,176);
@@ -217,8 +217,9 @@
             float: left;
             background-color: rgb(229,242,248);
             border : 3px solid rgb(176,176,176);
-            margin-top: 22px;
+            margin-top: 12px;
             font-weight: bold;
+            font-size : 4px;
 
         }
         #ss2{
@@ -229,8 +230,9 @@
             display: inline-block;
             background-color: rgb(229,242,248);
             border : 3px solid rgb(176,176,176);
-            margin-top: 22px;
             font-weight: bold;
+ margin-top: 12px;
+            font-size : 14px;
       
         }
         #ss3{
@@ -241,9 +243,9 @@
             display: inline-block;
             background-color: rgb(229,242,248);
             border : 3px solid rgb(176,176,176);
-            margin-top: 22px;
             font-weight: bold;
-
+            font-size : 14px;
+	        margin-top: 12px;
         }
         #ssh1{
             margin-left: 40px;
@@ -499,21 +501,37 @@
 					<div id="famousSaying" style="font-size: 12px;">사람이 자신의 몸이 가질
 						수 있는 아름다움과 강함을 알지 못하고 늙어 버리는 것은 안타까운 일이다. -소크라테스-</div>
 				</div>
-
-
-				<!-- p.sports 널로 c문 만들어서 알렛으로 못가게 해보리기 이따 해야댐 -->
-				<div id="diaryWrite" onclick="location.href='sportsPartnerDiaryWrite.sp'" >
-					<div
-						style="font-weight: bolder; text-align: center; font-size: 15px; margin-top: 5px;">오늘은
-						어떤 운동을 했어?💪</div>
-					<div id="ment" style="font-size: 11px;">
-						<div style="margin-top: 6px;">
-							당신일 흘린 땀을 기록하여 보관하고 추억하는것은 얼마나 멋진 일일까요 .. ? <br> 당신이 흘린 땀방울을
-							기록해주세요!
+				
+				
+			<c:choose>
+				<c:when test="${ p.beginningWeight ne null }">
+					<div id="diaryWrite" onclick="location.href='sportsPartnerDiaryWrite.sp'" >
+						<div
+							style="font-weight: bolder; text-align: center; font-size: 15px; margin-top: 5px;">오늘은
+							어떤 운동을 했어?💪</div>
+						<div id="ment" style="font-size: 11px;">
+							<div style="margin-top: 6px;">
+								당신일 흘린 땀을 기록하여 보관하고 추억하는것은 얼마나 멋진 일일까요 .. ? <br> 당신이 흘린 땀방울을
+								기록해주세요!
+							</div>
 						</div>
 					</div>
-				</div>
-
+				</c:when>
+					<c:otherwise>
+						<div id="diaryWrite" onclick="alert('운동 목표를 먼저 설정해주세요!');">
+							<div
+								style="font-weight: bolder; text-align: center; font-size: 15px; margin-top: 5px;">운동 일지 작성
+								</div>
+							<div id="ment" style="font-size: 11px;">
+								<div style="margin-top: 6px; text-align:center;">
+									운동목표를 먼저 설정한 후에 운동 일지를 작성할수 있습니다. <br> 운동 목표를 먼저 설정해주세요!
+								</div>
+							</div>
+						</div>
+					</c:otherwise>
+			</c:choose>
+			
+			
 			</div>
 
 
@@ -575,6 +593,12 @@
 		             			})
 		                    </script>
 		                     -->
+				                    <script>
+				             			$('#${ sd.diaryNo }').click(function(){
+				             				
+				             				location.href = "detail.sd?diaryNo=${ sd.diaryNo }";
+				             			})
+				                    </script>   
 						</c:forEach>
 					</tbody>
 				</table>
@@ -589,6 +613,9 @@
 			<c:choose>
 				<c:when test="${ p.sports1 ne null }">
 					<div id="inbody">
+						<div id="purposeName" style="margin-left : 10px; margin-top : 15px; text-align:center;">
+							${ p.purposeName }
+						</div>
 						<div id="ib1">몸무게</div>
 						<div id="weight">
 							<div id="weightPercent">44%</div>
@@ -610,14 +637,14 @@
 						<div id="ssh2">${ p.sportsCount2 }회</div>
 						<div id="ssh3">${ p.sportsCount3 }회</div>
 						<div id="purposeDetail">목표진행중</div>
-						<div id="purposeClear">목표완료</div>
+						<div id="purposeClear" onclick="location.href='purposeClear.pp'">목표완료</div>
 					</div>
 					<style>
 						#purposeDetail{
 				        	float:left;
 				            background-color: rgb(176,176,176);
 				            margin-left: 40px;
-				            margin-top: 20px;
+				            margin-top: 15px;
 				            width: 130px;
 				            height:40px;
 				            line-height: 40px;
@@ -630,7 +657,7 @@
 				        	display: inline-block;
 				        	background-color: rgb(229,242,248); 
 				        	margin-left : 10px;
-				        	margin-top : 20px;
+				        	margin-top : 15px;
 				            width: 130px;
 				            height:40px;
 				        	line-height: 40px;
@@ -712,6 +739,9 @@
 				</c:when>
 				<c:otherwise>
 					<div id="inbody">
+						<div id="purposeName" style="margin-left : 10px; margin-top : 15px; text-align:center;">
+							운동목표를 설정해 주세요!💪
+						</div>
 						<div id="ib1">몸무게</div>
 						<div id="weight">
 							<div id="weightPercent">0</div>
@@ -740,7 +770,7 @@
 				        	float:left;
 				            background-color: rgb(229,242,248); 
 				            margin-left: 40px;
-				            margin-top: 20px;
+				            margin-top: 15px;
 				            width: 130px;
 				            height:40px;
 				            line-height: 40px;
@@ -753,7 +783,7 @@
 				        	display: inline-block;
 				        	background-color: rgb(176,176,176);
 				        	margin-left : 10px;
-				        	margin-top : 20px;
+				        	margin-top : 15px;
 				            width: 130px;
 				            height:40px;
 				        	line-height: 40px;
