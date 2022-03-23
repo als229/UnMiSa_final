@@ -37,6 +37,7 @@ div {
 
 #header_div_second {
 	width: 40%;
+	padding-top:20px;
 }
 
 #header_div_first>img {
@@ -52,7 +53,7 @@ div {
 #header_div_second {
 	text-align: center;
 	line-height: 35px;
-	font-size: 12px;
+	font-size: 14px;
 	text-indent: 35px;
 }
 
@@ -63,7 +64,10 @@ div {
 #header_div_second>a:hover {
 	cursor: pointer;
 }
+#header_div_second>div>a:hover {
 
+	background-color: rgb(229, 242, 248);
+}
 #header_div_first>img {
 	height: 100%;
 	position: absolute;
@@ -81,7 +85,14 @@ div {
 	margin: auto;
 	padding: 0;
 }
-
+#header_point{
+	border-radius:10px;
+	background-color: rgb(229, 242, 248);
+	padding-right:30px;
+	margin-left:5px;
+	margin-bottom:7px;
+	height:30px;
+}
 #header_nav>ul>li {
 	float: left;
 	width: 20%;
