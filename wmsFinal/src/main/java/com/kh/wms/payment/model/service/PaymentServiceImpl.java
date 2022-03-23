@@ -53,12 +53,18 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 	@Override
 	public ArrayList<Payment> paymentList(PageInfo pi, int memberNo) {
+		
 		return paymentDao.paymentList(sqlSession,memberNo,pi);
 	}
 
 	@Override
+	public int selectMark(Payment p) {
+		return paymentDao.selectMark(sqlSession, p);
+	}
+	@Override
 	public void canclePayment(int memberNo) {
 		paymentDao.canclePayment(sqlSession,memberNo);
 	}
+
 
 }

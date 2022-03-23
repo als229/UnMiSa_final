@@ -73,7 +73,9 @@
             		</tbody>
             	</table>
             	<div id = "notice_enrollBtnDiv"> <!-- 관리자면 보여주는 등록하기 버튼 -->
-            	 <button class="notice_enrollBtn btn btn-primary">공지사항 작성하기</button>
+            	<c:if test="${loginUser.memberNo == 1 }">
+	            	 <button class="notice_enrollBtn btn btn-primary">공지사항 작성하기</button>
+            	</c:if>
             	</div>
             </div>
             <div id="content_4">

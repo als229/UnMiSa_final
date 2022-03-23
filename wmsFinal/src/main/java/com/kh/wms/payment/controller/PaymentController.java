@@ -142,7 +142,39 @@ public class PaymentController {
 			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 6);
 			
 			ArrayList<Payment> list = paymentService.paymentList(pi,memberNo);
+			
+			
+						
 			mv.addObject("list",list).addObject("pi",pi).setViewName("markMarket/myPaymentList");
+			
+			
+			
+			return mv;
+		}
+		
+		@RequestMapping(value="selectMark.pm")
+		public ModelAndView selectMark(Payment p, ModelAndView mv, HttpSession session) {
+			
+			
+			
+			Member m = (Member)session.getAttribute("loginUser");
+			
+			int memberNo= m.getMemberNo();
+			
+			p.setMemberNo(memberNo);
+			
+			
+			int result = paymentService.selectMark(p);
+			
+			if(result > 0){
+				session.setAttribute("alertMsg", "마크 설정 성공!");
+				mv.addObject("memberNo", memberNo).setViewName("redirect:myPayment.pm");
+			}else {
+				session.setAttribute("alertMsg", "마크 설정 실패ㅜ");
+				mv.addObject("memberNo", memberNo).setViewName("redirect:myPayment.pm");
+			
+			}
+			
 			
 			return mv;
 		}
