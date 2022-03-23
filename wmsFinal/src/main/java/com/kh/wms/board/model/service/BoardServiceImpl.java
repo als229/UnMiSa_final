@@ -15,23 +15,26 @@ import com.kh.wms.common.model.vo.PageInfo;
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
-	private SqlSessionTemplate sqlSession; 
+	private SqlSessionTemplate sqlSession;
+	
 	@Autowired
 	private BoardDao boardDao;
+
 	@Override
 	public int selectListCount() {
-		
-		
 		return boardDao.selectListCount(sqlSession);
+	
 	}
+
 	@Override
 	public ArrayList<Board> selectList(PageInfo pi) {
-		
-		return boardDao.selectListCount(sqlSession, pi);
+		return boardDao.selectList(sqlSession, pi);
 	}
+	
 	@Override
 	public int insertBoard(Board b) {
 		
+		//return boardDao.insertBoard(sqlSession, b);
 		return 0;
 	}
 	@Override
