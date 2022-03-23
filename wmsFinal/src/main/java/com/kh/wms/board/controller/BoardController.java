@@ -45,8 +45,8 @@ public class BoardController {
 	public String enrollForm() {
 		return "board/boardEnrollForm";
 	}
-	/*
-	@RequestMapping("insert.bo")
+	
+	@RequestMapping("nomalInsert.bo")
 	public String insertBoard(Board b, MultipartFile upfile, HttpSession session, Model model) {
 		
 		if( !upfile.getOriginalFilename().equals("")) {
@@ -89,5 +89,5 @@ public class BoardController {
 		}
 		return changeName;
 	}
-	*/
+	
 }

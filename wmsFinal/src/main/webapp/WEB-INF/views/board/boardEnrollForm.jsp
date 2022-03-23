@@ -23,7 +23,7 @@
             <h2 align="center">게시글 작성하기</h2>
             <br>
 
-            <form id="enrollForm" method="post" action="insert.bo" enctype="multipart/form-data" align="center">
+            <form id="enrollForm" method="post" action="nomalInsert.bo" enctype="multipart/form-data" align="center">
                 <table algin="center">
                     <tr>
                         <th><label for="title" style="margin-left: 100px;" >제목</label></th>
@@ -31,7 +31,9 @@
                     </tr>
                     <tr>
                         <th><label for="writer" style="margin-left: 100px;">작성자</label></th>
-                        <td><input type="text" id="writer" class="form-control" value="${loginUser.userId }" name="boardWriter" readonly></td>
+                        <td><input type="text" id="writer" class="form-control" value="${loginUser.memberId }"  readonly> 
+                        	<input type= "hidden" name="memberNo" value="${loginUser.memberNo }">
+                        </td>
                     </tr>
                     <tr>
                         <th><label for="upfile" style="margin-left: 100px;">첨부파일</label></th>

@@ -22,46 +22,48 @@
 		<result column="create_date" property="createDate" />
 	</resultMap>
 
-	<select id="selectListCount" resultType="_int">
+	<select id="nomalSelectListCount" resultType="_int">
 		select count(*)
 		  from board
 		 where board_status = 'Y'
 	</select>
-<!--  
-	<select id="selectList" resultMap="boardResultSet">
+
+	<select id="nomalSelectList" resultMap="boardResultSet">
 		SELECT  BOARD_NO, 
 				BOARD_TITLE, 
 				M.MEMBER_ID, 
 				COUNT,
 		       TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "CREATE_DATE", ORIGIN_NAME
 		  FROM BOARD B
-		  WHERE BOARD_STATUS = 'Y' 
 		   JOIN MEMBER M ON (M.MEMBER_NO = B.MEMBER_NO)
+             WHERE BOARD_STATUS = 'Y' 
 		  ORDER BY BOARD_NO DESC
 	</select>
--->
-<!--  
-	<insert id="insertBoard" parameterType="board">
+
+
+	<insert id="nomalInsertBoard" parameterType="board">
 			INSERT INTO BOARD(
 							BOARD_NO
 							,BOARD_TITLE
-							,MEMBER_ID
+							,MEMBER_NO
 							,BOARD_CONTENT
 							,ORIGIN_NAME
-							,CHANGE_NAME	
+							,CHANGE_NAME
+							,BOARD_TYPE	
 							)
 							VALUES
 							(
 							SEQ_BNO.NEXTVAL
 							,#{boardTitle}
-							,#{member_Id}
+							,#{memberNo}
 							,#{boardContent}
 							,#{originName}
 							,#{changeName}
+							,0
 							)
 	
 	</insert>
 	
- --> 	
+ 
   	
 </mapper>

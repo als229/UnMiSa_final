@@ -71,8 +71,8 @@
                         <th>글번호</th>
                         <th>제목</th>
                         <th>작성자</th>
-                        <th>조회수</th>
                         <th>작성일</th>
+                        <th>조회수</th>
                         <th>첨부파일</th>
                     </tr>
                 </thead>
@@ -82,8 +82,8 @@
                         <td>${ b.boardNo } </td>
                         <td>${ b.boardTitle }</td>
                         <td>${ b.memberId }</td>
+                        <td>${ b.createDate }</td>
                         <td>${ b.count }</td>
-                        <td>${ b.crateDate }</td>
                         <td>
                         	<c:if test="${ not empty b.originName }">
                         	 ★

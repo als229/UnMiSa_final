@@ -13,7 +13,7 @@ import com.kh.wms.common.model.vo.PageInfo;
 public class BoardDao {
 	
 	public int selectListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("boardMapper.selectListCount");
+		return sqlSession.selectOne("boardMapper.nomalSelectListCount");
 	}
 	
 	public ArrayList<Board> selectList(SqlSessionTemplate sqlSession, PageInfo pi){
@@ -23,10 +23,10 @@ public class BoardDao {
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-	 return (ArrayList)sqlSession.selectList("boardMapper.selectList", null, rowBounds);
+	 return (ArrayList)sqlSession.selectList("boardMapper.nomalSelectList", null, rowBounds);
 		
 	}
-	//public int insertBoard(SqlSessionTemplate sqlSession, Board b) {
-	//	return sqlSession.insert("boardMapper.insertBoard",b);
-	//}
+	public int insertBoard(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.insert("boardMapper.nomalInsertBoard",b);
+	}
 }
