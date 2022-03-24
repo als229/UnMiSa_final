@@ -43,5 +43,7 @@ $(function(){
     	location.href = "noticeUpdateForm.no?noticeNo="+$('input[name=HinoticeNo]').val();
     })
     
+   
+    
     
 })

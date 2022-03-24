@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -180,6 +181,26 @@ public class NoticeController {
 			session.setAttribute("alertMsg","게시글 수정에 실패했습니다.");
 			mv.setViewName("redirect:noticeList.no");
 		}
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value="search.no")
+	public ModelAndView searchNotice(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, String condition, String keyword) {
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		
+		int searchCount = noticeService.searchCount(map);
+		
+		PageInfo pi = Pagination.getPageInfo(searchCount, currentPage, 10, 5);
+		
+		ArrayList<Notice> list = noticeService.searchNotice(map,pi);
+		
+		mv.addObject("list", list).addObject("pi",pi).addObject("condition", condition).addObject("keyword",keyword).setViewName("notice/noticeList");
+		
 		
 		return mv;
 	}

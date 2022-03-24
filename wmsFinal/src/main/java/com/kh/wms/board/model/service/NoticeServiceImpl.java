@@ -1,6 +1,7 @@
 package com.kh.wms.board.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,14 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public int noticeUpdate(Notice n) {
 		return noticeDao.noticeUpdate(sqlSession, n);
+	}
+	@Override
+	public int searchCount(HashMap<String, String> map) {
+		return noticeDao.searchCount(sqlSession,map);
+	}
+	@Override
+	public ArrayList<Notice> searchNotice(HashMap<String, String> map, PageInfo pi) {
+		return noticeDao.searchNotice(sqlSession,map,pi);
 	}
 	
 
