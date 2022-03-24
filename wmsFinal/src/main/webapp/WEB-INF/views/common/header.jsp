@@ -73,7 +73,6 @@
 
 					<c:otherwise>
 						<!-- 로그인 후 -->
-						<div id="header_point"style="float:right; font-size:12px;">포인트  ${loginUser.point}</div>
 						<div style="float:right">${loginUser.memberName}님 환영합니다</div>
 						<br>
 						<div style="float:right">

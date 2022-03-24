@@ -85,14 +85,7 @@ div {
 	margin: auto;
 	padding: 0;
 }
-#header_point{
-	border-radius:10px;
-	background-color: rgb(229, 242, 248);
-	padding-right:30px;
-	margin-left:5px;
-	margin-bottom:7px;
-	height:30px;
-}
+
 #header_nav>ul>li {
 	float: left;
 	width: 20%;

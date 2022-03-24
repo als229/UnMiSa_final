@@ -31,6 +31,11 @@ public class PaymentServiceImpl implements PaymentService{
 	public ArrayList<Payment> marketList2() {
 		return paymentDao.marketList2(sqlSession);
 	}
+	
+	@Override
+	public int viewPoint(int memberNo) {
+		return paymentDao.viewPoint(sqlSession,memberNo);
+	}
 
 	@Override
 	public int paymentPoint(Payment p) {
@@ -65,6 +70,8 @@ public class PaymentServiceImpl implements PaymentService{
 	public void canclePayment(int memberNo) {
 		paymentDao.canclePayment(sqlSession,memberNo);
 	}
+
+	
 
 
 }
