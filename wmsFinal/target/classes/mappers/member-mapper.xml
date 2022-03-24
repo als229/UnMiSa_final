@@ -26,6 +26,29 @@
 		<result column="PAYMENT_METHOD" property="paymentMethod"/>
 	</resultMap>
 	
+		<resultMap type="team" id="teamResultSet">
+		<result column="TEAM_NO" property="teamNo"/>
+		<result column="SPORTS_NO" property="sportsNo"/>
+		<result column="TEAM_NAME" property="teamName"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="WIN_COUNT" property="winCount"/>
+		<result column="DRAW_COUNT" property="drawCount"/>
+		<result column="LOSE_COUNT" property="loseCount"/>
+		<result column="WIN_POINT" property="winPoint"/>
+		<result column="TEAM_INTRO" property="teamIntro"/>
+		<result column="TEAM_STATUS" property="teamStatus"/>
+		<result column="ADDRESS_NO" property="addressNo"/>
+		<result column="SIDO_NAME" property="sidoName"/>
+		<result column="SIGUNGU_NAME" property="siGunGuName"/>
+		<result column="SPORTS_NAME" property="sportsName"/>
+		<result column="ORIGIN_NAME" property="logoOriginName"/>
+		<result column="CHANGE_NAME" property="logoChangeName"/>
+		<result column="BOSS_ID" property="bossId"/>
+		<result column="ROWNUM" property="rNum"/>
+		
+
+	</resultMap>
+	
 	
 	
 	<select id="ajaxCheckId" resultType="_int" parameterType="String">
@@ -75,6 +98,30 @@
 	
 	</select>
 	
+	
+	<!-- 관민존 -->
+	<select id="selectMyTeamCount" parameterType="member" resultType="_int">
+	
+	    SELECT COUNT(*)
+	    FROM MEMBER_TEAM
+	    JOIN TEAM T USING(TEAM_NO)
+	    JOIN MEMBER USING(MEMBER_NO)
+	    WHERE MEMBER_ID = #{memberId}
+    	AND TEAM_STATUS = 'Y'
+	    
+	</select>
+	
+	<select id="selectmyJoinTeamList" parameterType="member" resultMap="teamResultSet">
+	
+		SELECT TEAM_NAME, SPORTS_NAME, ROWNUM
+	    FROM MEMBER_TEAM
+	    JOIN TEAM T USING(TEAM_NO)
+	    JOIN MEMBER USING(MEMBER_NO)
+	    WHERE MEMBER_ID = #{memberId}
+    	AND TEAM_STATUS = 'Y'
+    	ORDER BY TEAM_NO DESC
+	
+	</select>
 	
 	
 

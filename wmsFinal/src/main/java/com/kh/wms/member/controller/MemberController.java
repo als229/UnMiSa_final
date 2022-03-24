@@ -29,7 +29,7 @@ import com.kh.wms.common.template.Pagination;
 import com.kh.wms.member.model.service.MemberService;
 import com.kh.wms.member.model.vo.Member;
 import com.kh.wms.member.model.vo.User;
-import com.kh.wms.payment.model.vo.Payment;
+import com.kh.wms.team.model.vo.Team;
 
 @Controller
 public class MemberController {
@@ -290,12 +290,24 @@ public class MemberController {
 		
 		return mv;
 	}
-	
-	@RequestMapping("selectListTeam.te")
-	public String selectListTeam() {
+
+	@RequestMapping("selectmyJoinTeamList.te")
+	public ModelAndView selectmyJoinTeamList(@RequestParam(value="myJoinPage", defaultValue="1")int currentPage, ModelAndView mv,Member m) {
 		
+		System.out.println(m);
+		int myJoinTeamCount = memberService.selectMyTeamCount(m);
 		
-		return "member/myJoinTeam";
+		System.out.println("멍멍");
+		System.out.println(myJoinTeamCount);
+		PageInfo pi = Pagination.getPageInfo(myJoinTeamCount, currentPage, 10, 5);
+		
+		ArrayList<Team> myJoinTeamList = memberService.selectmyJoinTeamList(m, pi);
+		
+		mv.addObject("myJoinTeamList", myJoinTeamList);
+		mv.addObject("pi",pi);
+		System.out.println(myJoinTeamList);
+		mv.setViewName("member/myJoinTeam");
+		return mv;
 	}
 	@RequestMapping("selectListCreateTeam.te")
 	public String selectListCreateTeam() {
@@ -321,6 +333,12 @@ public class MemberController {
 		
 		
 		return "member/myTeamMemberJoinList";
+	}
+	@RequestMapping("battleApplyList.te")
+	public String battleApplyList() {
+		
+		
+		return "member/battleApplyList";
 	}
 
 	
