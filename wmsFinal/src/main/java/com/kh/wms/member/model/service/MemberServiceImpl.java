@@ -10,6 +10,7 @@ import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.member.model.dao.MemberDao;
 import com.kh.wms.member.model.vo.Member;
 import com.kh.wms.payment.model.vo.Payment;
+import com.kh.wms.team.model.vo.Team;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -47,6 +48,16 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.AjaxPlatFormCheck(sqlSession, authKey);
 	}
 	
+	// 관민존
+	@Override
+	public int selectMyTeamCount(Member m) {
+		return memberDao.selectMyTeamCount(sqlSession,m);
+	}
+	
+	@Override
+	public ArrayList<Team> selectmyJoinTeamList(Member m,PageInfo pi) {
+		return memberDao.selectmyJoinTeamList(sqlSession, m, pi);
+	}
 	
 	
 	

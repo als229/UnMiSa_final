@@ -25,9 +25,13 @@ public class Team {
 	private String teamStatus;
 	private int addressNo;
 	private String sidoName;
-	private String gu;
-	private String dong;
+	private String siGunGuName;
 	private String sportsName;
+	private String logoOriginName;
+	private String logoChangeName;
+	private String bossId;
+	private int rNum;
+	
 	
 
 }

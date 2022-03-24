@@ -53,7 +53,7 @@
         <div class="side-bar">
             <a href="myPage.me" class="big-menu">마이페이지</a> <br>
             <a href="">개인 정보 수정</a> <br>
-            <a href="selectListTeam.te">내가 가입한 팀 관리</a> <br>
+            <a href="selectmyJoinTeamList.te">내가 가입한 팀 관리</a> <br>
             <a href="selectListCreateTeam.te">내가 만든 팀</a> <br>
             <a href="">내 결제내역</a> <br>
             <a href="myMatchSchedule.me">내 경기 일정</a> <br>
@@ -67,75 +67,23 @@
                     <thead>
                         
                         <tr>
-                            <th></th>                        
+                            <th>No.</th>                        
                             <th>팀 이름</th>
                             <th>운동 종목</th>
                             <th>탈퇴하기</th>
                         </tr>
                     </thead>
                     <tbody>
+						<c:forEach var="t" items="${ myJoinTeamList }">
+	                        <tr>
+	                            <td style="vertical-align: middle;"></td>
+	                            <td class="team-name" style="vertical-align: middle;">${ t.teamName }</td>
+	                            <td style="vertical-align: middle;">${ t.sportsName }</td>
+	                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
+	                        </tr>
+							
 
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
-                        </tr>
-
+						</c:forEach>
                     </tbody>
                         
                     </table>
@@ -149,12 +97,12 @@
                          <li class="page-item disabled"><a class="page-link" href="#"><Previous></a></li>
                      </c:when>
                      <c:otherwise>
-                         <li class="page-item"><a class="page-link" href="list.bo?cpage=${ pi.currentPage -1 }" style="color: rgb(135, 206, 235);">이전</a></li>
+                         <li class="page-item"><a class="page-link" href="selectmyJoinTeamList.te?myJoinPage=${ pi.currentPage -1 }" style="color: rgb(135, 206, 235);">이전</a></li>
                      </c:otherwise>
                 </c:choose>
                 
                 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                     <li class="page-item"><a class="page-link" href="list.bo?cpage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
+                     <li class="page-item"><a class="page-link" href="selectmyJoinTeamList.te?myJoinPage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
                 </c:forEach>
 
                 <c:choose>
@@ -162,7 +110,7 @@
                          <li class="page-item disabled"><a class="page-link" href="#"  >다음</a></li>
                      </c:when>
                      <c:otherwise>
-                         <li class="page-item"><a class="page-link" href="list.bo?cpage=${ pi.currentPage +1 }" style="color: rgb(135, 206, 235);">다음</a></li>
+                         <li class="page-item"><a class="page-link" href="selectmyJoinTeamList.te?myJoinPage=${ pi.currentPage +1 }" style="color: rgb(135, 206, 235);">다음</a></li>
                      </c:otherwise>
                 </c:choose>
            

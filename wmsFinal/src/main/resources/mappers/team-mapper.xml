@@ -8,12 +8,59 @@
 		<result column="GU" property="gu"/>
 		<result column="SIGUN" property="siGun"/>
 	</resultMap>
+	
+	<resultMap type="team" id="teamResultSet">
+		<result column="TEAM_NO" property="teamNo"/>
+		<result column="SPORTS_NO" property="sportsNo"/>
+		<result column="TEAM_NAME" property="teamName"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="WIN_COUNT" property="winCount"/>
+		<result column="DRAW_COUNT" property="drawCount"/>
+		<result column="LOSE_COUNT" property="loseCount"/>
+		<result column="WIN_POINT" property="winPoint"/>
+		<result column="TEAM_INTRO" property="teamIntro"/>
+		<result column="TEAM_STATUS" property="teamStatus"/>
+		<result column="ADDRESS_NO" property="addressNo"/>
+		<result column="SIDO_NAME" property="sidoName"/>
+		<result column="SIGUNGU_NAME" property="siGunGuName"/>
+		<result column="SPORTS_NAME" property="sportsName"/>
+		<result column="ORIGIN_NAME" property="logoOriginName"/>
+		<result column="CHANGE_NAME" property="logoChangeName"/>
+		<result column="BOSS_ID" property="bossId"/>
+
+	</resultMap>
 
 	<select id="selectAddressList" resultMap="addressResultSet">
 		SELECT *
 		FROM ADDRESS
 	</select>
 
+	<insert id="insertTeam" parameterType="team">
+		INSERT INTO TEAM
+				(
+				TEAM_NO 
+				,TEAM_NAME
+				,SPORTS_NAME
+				,TEAM_INTRO
+				,SIDO_NAME
+				,SIGUNGU_NAME
+				,ORIGIN_NAME
+				,CHANGE_NAME
+				,BOSS_ID
+
+				)
+			VALUES(
+					SEQ_TNO.NEXTVAL
+					,#{teamName}
+					,#{sportsName}
+					,#{teamIntro}
+					,#{sidoName}
+					,#{siGunGuName}
+					,#{logoOriginName}
+					,#{logoChangeName}
+					,#{bossId}
+					)
+	</insert>
 	
 
 
