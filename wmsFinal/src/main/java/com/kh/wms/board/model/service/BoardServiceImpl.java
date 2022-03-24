@@ -20,53 +20,51 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDao boardDao;
 
+
+
 	@Override
-	public int selectListCount() {
-		return boardDao.selectListCount(sqlSession);
+	public int nomalSelectListCount() {
 	
+		return boardDao.nomalSelectListCount(sqlSession);
 	}
 
 	@Override
-	public ArrayList<Board> selectList(PageInfo pi) {
-		return boardDao.selectList(sqlSession, pi);
-	}
-	
-	@Override
-	public int insertBoard(Board b) {
-		
-		return boardDao.insertBoard(sqlSession, b);
-		
+	public ArrayList<Board> nomalSelectList(PageInfo pi) {
+		return boardDao.nomalSelectList(sqlSession, pi);
 	}
 	@Override
-	public int increaseCount(int boardNo) {
-		
-		return 0;
+	public int nomalInsertBoard(Board b) {
+		return boardDao.nomalInsertBoard(sqlSession, b);
 	}
+
 	@Override
-	public Board selectBoard(int boardNo) {
-		
+	public int nomalIncreaseCount(int boardNo) {
+		return boardDao.nomalIncreaseCount(sqlSession,boardNo);
+	}
+
+	@Override
+	public Board nomalSelectBoard(int boardNo) {
+		return boardDao.nomalSelectBoard(sqlSession,boardNo);
+	}
+
+	@Override
+	public int nomalDeleteBoard(int boardNo) {
+		return boardDao.nomalDelteBoard(sqlSession,boardNo);
+	}
+
+	@Override
+	public int nomalUpdateBoard(Board b) {
+		return boardDao.nomalUpdateBoard(sqlSession,b);
+	}
+
+	@Override
+	public ArrayList<Reply> nomalSelectReplyList(int boardNo) {
 		return null;
 	}
+
 	@Override
-	public int deleteBoard(int boardNo) {
-		
+	public int nomalInsertReply(Reply r) {
 		return 0;
 	}
-	@Override
-	public int updateBoard(Board b) {
-		
-		return 0;
-	}
-	@Override
-	public ArrayList<Reply> selectReplyList(int boardNo) {
-		
-		return null;
-	}
-	@Override
-	public int insertReply(Reply r) {
-		
-		return 0;
-	}
-	
 	
 }

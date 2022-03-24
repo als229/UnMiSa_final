@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wms.board.model.service.BoardService;
 import com.kh.wms.board.model.vo.Board;
+import com.kh.wms.board.model.vo.Notice;
 import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.common.template.Pagination;
 
@@ -27,14 +28,14 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@RequestMapping(value="list.bo")
+	@RequestMapping(value="nomalList.bo")
 	public ModelAndView selectList(@RequestParam(value = "cpage", defaultValue="1") int currentPage, ModelAndView mv) {
 		
-		int listCount = boardService.selectListCount();
+		int listCount = boardService.nomalSelectListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
 	
-		ArrayList<Board> list = boardService.selectList(pi);
+		ArrayList<Board> list = boardService.nomalSelectList(pi);
 		
 		mv.addObject("pi", pi).addObject("list", list).setViewName("board/boardListView");
 		
@@ -57,7 +58,7 @@ public class BoardController {
 			b.setChangeName("resources/uploadFiles" + changeName);
 		}
 		
-		int result = boardService.insertBoard(b);
+		int result = boardService.nomalInsertBoard(b);
 			
 		if(result > 0) { 
 			session.setAttribute("alertMsg", "게시글 작성 성공");
@@ -89,5 +90,67 @@ public class BoardController {
 		}
 		return changeName;
 	}
+	@RequestMapping(value="nomalDetail.bo")
+	public ModelAndView nomalDetail(ModelAndView mv ,int boardNo,HttpSession session) {
+		
+		int result = boardService.nomalIncreaseCount(boardNo);
+		if(result>0) {
+			Board b = boardService.nomalSelectBoard(boardNo);
+			if(b != null ){
+				mv.addObject("b",b);
+			}else {
+				session.setAttribute("alertMsg", "조회실패");				
+			}
+		}else {
+			session.setAttribute("alertMsg", "조회실패");
+		}
+		
+		
+		
+		mv.setViewName("board/boardDetailView");
+		
+		return mv;
+		
+	}
+	@RequestMapping(value="nomalUpdateForm.bo")
+	public ModelAndView nomalUpdateForm(ModelAndView mv ,int boardNo) {
+		
+		Board b = boardService.nomalSelectBoard(boardNo);
+		mv.addObject("b",b);
+		mv.setViewName("board/boardUpdateForm");
+		return mv;
+	}
 	
+	@RequestMapping(value="nomalUpdate.bo")
+	public ModelAndView nomalUpdate(ModelAndView mv, Board b, HttpSession session, MultipartFile reupfile ) {
+		if(!reupfile.getOriginalFilename().equals("")) {
+		if(b.getOriginName() != null) {
+			new File(session.getServletContext().getRealPath(b.getChangeName())).delete(); //new File(**경로**) 안에 경로를 적어 삭제할 곳 을 적어준다
+		}
+
+		String changeName = saveFile(reupfile,session);
+					
+		// b라는 Board객체에 새로운 정보(원본명, 저장경로) 담기
+		b.setOriginName(reupfile.getOriginalFilename());
+		b.setChangeName("resources/uploadFiles/" + changeName);
+		}
+				
+				
+		int result = boardService.nomalUpdateBoard(b);
+		if(result > 0) {
+			session.setAttribute("alertMsg", "게시글 수정에 성공했습니다 ^!^");
+			mv.setViewName("redirect:nomalDetail.bo?boardNo=" + b.getBoardNo());
+		}else {
+			session.setAttribute("alertMsg","게시글 수정에 실패했습니다.");
+			mv.setViewName("redirect:nomalList.bo");
+		}
+		
+		return mv;
+	}
+	@RequestMapping(value="nomalDelete.bo")
+	public String nomalDelete(int boardNo) {
+		
+		int result = boardService.nomalDeleteBoard(boardNo);
+		return "redirect:nomalList.bo";
+	}
 }

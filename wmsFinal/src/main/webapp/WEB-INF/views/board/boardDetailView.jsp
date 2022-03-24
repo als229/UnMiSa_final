@@ -23,18 +23,27 @@
             <table id="contentArea" algin="center" class="table">
                 <tr>
                     <th width="100">제목</th>
-                    <td colspan="3">다이어트는 내일부터</td>
+                    <td colspan="3">${ b.boardTitle }</td>
                 </tr>
                 <tr>
                     <th>작성자</th>
-                    <td>admin</td>
+                    <td>${b.memberId }</td>
                     <th>작성일</th>
-                    <td>2020-02-07</td>
+                    <td>${b.createDate }</td>
                 </tr>
                 <tr>
                     <th>첨부파일</th>
                     <td colspan="3">
-                        <a href="" download="">파일명.jpg</a>
+                       	<c:choose>
+							<c:when test="${ empty b.originName }">                    
+		                    	<!-- 첨부파일이 없을경우 -->
+		                    	첨부파일이 없습니다.
+                    		</c:when>
+                    		<c:otherwise>
+		                    	<!-- 첨부파일이 있을경우 -->
+		                        <a href="${ b.changeName }" download="${ b.originName }">${ b.originName }</a>
+                    		</c:otherwise>
+                    	</c:choose>
                     </td>
                 </tr>
                 <tr>
@@ -42,14 +51,16 @@
                     <td colspan="3"></td>
                 </tr>
                 <tr>
-                    <td colspan="4"><p style="height:150px;">응 운동 안해~</p></td>
+                    <td colspan="4"><p style="height:150px;">${b.boardContent }</p></td>
                 </tr>
             </table>
             <br>
 
             <div align="center">
-           
-                <a class="btn btn-primary" href="">수정</a>
+           		 <c:if test="${loginUser.memberId eq b.memberId }">
+                <a class="btn btn-primary" href="nomalUpdateForm.bo?boardNo=${b.boardNo }">수정</a>
+                <a class="btn btn-primary" href="nomalDelete.bo?boardNo=${b.boardNo }">삭제</a>
+                </c:if>
                 <a class="btn btn-danger" href="">취소</a>
             </div>
             <br><br>

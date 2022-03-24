@@ -12,11 +12,11 @@ import com.kh.wms.common.model.vo.PageInfo;
 @Repository
 public class BoardDao {
 	
-	public int selectListCount(SqlSessionTemplate sqlSession) {
+	public int nomalSelectListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("boardMapper.nomalSelectListCount");
 	}
 	
-	public ArrayList<Board> selectList(SqlSessionTemplate sqlSession, PageInfo pi){
+	public ArrayList<Board> nomalSelectList(SqlSessionTemplate sqlSession, PageInfo pi){
 		
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
@@ -26,7 +26,23 @@ public class BoardDao {
 	 return (ArrayList)sqlSession.selectList("boardMapper.nomalSelectList", null, rowBounds);
 		
 	}
-	public int insertBoard(SqlSessionTemplate sqlSession, Board b) {
+	public int nomalInsertBoard(SqlSessionTemplate sqlSession, Board b) {
 		return sqlSession.insert("boardMapper.nomalInsertBoard",b);
+	}
+
+	public int nomalIncreaseCount(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.update("boardMapper.nomalIncreaseCount",boardNo);
+	}
+
+	public Board nomalSelectBoard(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.selectOne("boardMapper.nomalSelectBoard",boardNo);
+	}
+
+	public int nomalUpdateBoard(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("boardMapper.nomalUpdate",b);
+	}
+
+	public int nomalDelteBoard(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.delete("boardMapper.nomalDelete",boardNo);
 	}
 }

@@ -78,7 +78,7 @@
                 </thead>
                 <tbody>
                  <c:forEach var="b" items="${list }">
-                    <tr>
+                    <tr onclick="location.href='nomalDetail.bo?boardNo=${b.boardNo}'">
                         <td>${ b.boardNo } </td>
                         <td>${ b.boardTitle }</td>
                         <td>${ b.memberId }</td>
@@ -134,5 +134,6 @@
     <div id="footer_area">
     	<jsp:include page="../common/footer.jsp"/>
     </div>
+
 </body>
 </html>

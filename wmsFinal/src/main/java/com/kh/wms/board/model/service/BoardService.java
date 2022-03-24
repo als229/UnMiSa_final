@@ -10,33 +10,33 @@ public interface BoardService {
 
 	//자유게시판 리스트조회 +페이징
 	//게시글 총 갯수 조회
-	int selectListCount();
+	int nomalSelectListCount();
 	//게시글 리스트 조회
-	ArrayList<Board> selectList(PageInfo pi);
+	ArrayList<Board> nomalSelectList(PageInfo pi);
 	
 	//자유게시판 작성
 	
-	int insertBoard(Board b);
+	int nomalInsertBoard(Board b);
 	
 	//자유게시판 상세조회
 	//조회수 증가
-	int increaseCount(int boardNo);
-	Board selectBoard(int boardNo);
+	int nomalIncreaseCount(int boardNo);
+	Board nomalSelectBoard(int boardNo);
 	
 	//게시글 삭제
 	
-	int deleteBoard(int boardNo);
+	int nomalDeleteBoard(int boardNo);
 	
 	//게시글 수정
 	
-	int updateBoard(Board b);
+	int nomalUpdateBoard(Board b);
 	
 	//댓글 리스트 조회(Ajax)
 	
-	ArrayList<Reply> selectReplyList(int boardNo);
+	ArrayList<Reply> nomalSelectReplyList(int boardNo);
 	
 	//댓글 작성(Ajax)
 	
-	int insertReply(Reply r);
+	int nomalInsertReply(Reply r);
 	
 }
