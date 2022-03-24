@@ -76,7 +76,7 @@
                     <tbody>
 						<c:forEach var="t" items="${ myJoinTeamList }">
 	                        <tr>
-	                            <td style="vertical-align: middle;">${ t.rNum }</td>
+	                            <td style="vertical-align: middle;"></td>
 	                            <td class="team-name" style="vertical-align: middle;">${ t.teamName }</td>
 	                            <td style="vertical-align: middle;">${ t.sportsName }</td>
 	                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
