@@ -15,6 +15,8 @@
 		<typeAlias type = "com.kh.wms.common.model.vo.Address" alias = "address"/>
 		<typeAlias type = "com.kh.wms.sportsPartner.model.vo.SportsDiary" alias = "sportsDiary"/>
 		<typeAlias type = "com.kh.wms.event.model.vo.Attendance" alias = "attendance"/>
+		<typeAlias type=  "com.kh.wms.board.model.vo.Board" alias = "board" />
+
 	</typeAliases>
 	<!-- 유의사항 : 미리 등록해두려면 해당 클래스가 진짜 존재하고 있는 상태여야 함 -->
 
@@ -31,6 +33,9 @@
 		<mapper resource="/mappers/sportsPartner-mapper.xml" />
 		<mapper resource="/mappers/team-mapper.xml" />
 		<mapper resource="/mappers/event-mapper.xml" />
+		<mapper resource="/mappers/board-mapper.xml" />
+		
+
 	</mappers>
 	<!-- 유의사항 : 미리 등록해두려면 해당 mapper파일이 진짜 존재하고 있는 상태여야 함(namespace까지) -->
 

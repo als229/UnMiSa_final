@@ -2,32 +2,103 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="boardMapper">
   	
-  	<resultMap id="boardResultSet" type="board">
-  		<result column="BOARD_NO" property="boardNo"/>
-  		<result column="BOARD_TITLE" property="boardTitle"/>
-  		<result column="BOARD_WRITER" property="boardWriter"/>
-  		<result column="COUNT" property="count"/>
-  		<result column="CREATE_DATE" property="createDate"/>
-  		<result column="ORIGIN_NAME" property="originName"/>
-  	</resultMap>
-  	
-  	<select id="selectListCount" resultType="_int">
-  		select count(*)
-  			from board
-  			where status = 'Y'
+	<resultMap id="boardResultSet" type="board">
+		<result column="BOARD_NO" property="boardNo" />
+		<result column="BOARD_TITLE" property="boardTitle" />
+		<result column="BOARD_CONTENT" property="boardContent" />
+		<result column="MEMBER_ID" property="memberId" />
+		<result column="COUNT" property="count" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="ORIGIN_NAME" property="originName" />
+		<result column="CHANGE_NAME" property="changeName" />
+		
+		
+	</resultMap>
+	
+	<resultMap id="replyResultSet" type="com.kh.wms.board.model.vo.Reply">
+		<result column="reply_no" property="replyNo" />
+		<result column="reply_writer" property="replyWriter" />
+		<result column="reply_content" property="replyContent" />
+		<result column="create_date" property="createDate" />
+	</resultMap>
 
-  	</select>
+	<select id="nomalSelectListCount" resultType="_int">
+		select count(*)
+		  from board
+		 where board_status = 'Y'
+	</select>
+
+	<select id="nomalSelectList" resultMap="boardResultSet">
+		SELECT  BOARD_NO, 
+				BOARD_TITLE, 
+				M.MEMBER_ID, 
+				COUNT,
+		       TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "CREATE_DATE", ORIGIN_NAME
+		  FROM BOARD B
+		   JOIN MEMBER M ON (M.MEMBER_NO = B.MEMBER_NO)
+             WHERE BOARD_STATUS = 'Y' 
+		  ORDER BY BOARD_NO DESC
+	</select>
+
+
+	<insert id="nomalInsertBoard" parameterType="board">
+			INSERT INTO BOARD(
+							BOARD_NO
+							,BOARD_TITLE
+							,MEMBER_NO
+							,BOARD_CONTENT
+							,ORIGIN_NAME
+							,CHANGE_NAME
+							,BOARD_TYPE	
+							)
+							VALUES
+							(
+							SEQ_BNO.NEXTVAL
+							,#{boardTitle}
+							,#{memberNo}
+							,#{boardContent}
+							,#{originName}
+							,#{changeName}
+							,0
+							)
+	
+	</insert>
+	
+ 	<update id="nomalIncreaseCount">
+		update
+			   board
+		   set count = count + 1
+		 where board_no = #{boardNo}
+	   
+	</update>
   	
-  	<select id="selectList">
-  		select board_no,board_title,member_no,count,
-  		to_char(create_date,'YYYY-MM-DD')as "CREATE_DATE", origin_name
-  		
-  		from board
-  		where status = 'Y'
-  		order by board_no desc
-  	
-  	
-  	</select>
-  	
-  	
+	<select id="nomalSelectBoard" resultMap="boardResultSet" parameterType="_int">
+	SELECT 		 BOARD_NO, 
+				BOARD_TITLE, 
+				M.MEMBER_ID, 
+				BOARD_CONTENT,
+		       TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "CREATE_DATE",
+				ORIGIN_NAME,
+				CHANGE_NAME
+		  FROM BOARD B
+		   JOIN MEMBER M ON (M.MEMBER_NO = B.MEMBER_NO)
+             WHERE BOARD_STATUS = 'Y' 
+             AND BOARD_NO=#{boardNo}
+	</select>
+	
+	<update id="nomalUpdate" parameterType="board">
+		UPDATE BOARD
+			SET BOARD_TITLE = #{boardTitle}
+				,BOARD_CONTENT = #{boardContent}
+				,ORIGIN_NAME = #{originName}
+				,CHANGE_NAME = #{changeName}
+			WHERE BOARD_NO = #{boardNo}
+	
+	</update>
+	
+	<delete id="nomalDelete" parameterType="_int">
+		DELETE FROM BOARD
+		 WHERE BOARD_NO = #{boardNo}
+
+	</delete>
 </mapper>
