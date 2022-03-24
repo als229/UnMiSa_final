@@ -123,20 +123,23 @@ public class NoticeController {
 		return mv;
 	}
 	@RequestMapping(value="noticeDelete.no")
-	public ModelAndView noticeDelete(ModelAndView mv, HttpSession session,int noticeNo ) {
-		
-		
+	public ModelAndView noticeDelete(ModelAndView mv, HttpSession session,int noticeNo ,String filePath) {
 		
 		
 		int result = noticeService.noticeDelete(noticeNo);
 		
 		if(result > 0) {
+			
+			if(!filePath.equals("")) {
+				new File(session.getServletContext().getRealPath(filePath)).delete();
+			}
 			session.setAttribute("alertMsg", "게시글 작성 성공!");
 			mv.setViewName("redirect:noticeList.no");
 		}else {
 			session.setAttribute("alertMsg", "게시글 작성 실패ㅜ");
 			mv.setViewName("redirect:noticeList.no");
 		}
+		
 		
 		return mv;
 	}

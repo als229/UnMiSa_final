@@ -41,7 +41,7 @@
 
                         	</div>
                         	<div class="content2_markHover_2">
-                            	<input type=hidden value="${p.price }" id="hiidenPrice">
+                            	<input type=hidden value="${p.price }" id="hiddenPrice">
                             	<button class="markHover_btn1 btn btn-secondary">포인트 구매</button>
                             	<input type=hidden value="${p.markNo}">
                             	<input type=hidden value="${p.price }">
@@ -76,7 +76,7 @@
                 	$(function(){
                 		$(".markHover_btn1").click(function(){
                 			if(${loginUser.point} > ${p.price }){
-                		    	location.href = "paymentPoint.pm?markNo="+$(this).next().val()+"&&memberNo="+${ loginUser.memberNo } +"&&price="+$(this).prev("#hiidenPrice").val();
+                		    	location.href = "paymentPoint.pm?markNo="+$(this).next().val()+"&&memberNo="+${ loginUser.memberNo } +"&&price="+$(this).prev("#hiddenPrice").val();
                 			}else{
                 				alertify.alert("포인트가 부족합니다.");
                 			}
