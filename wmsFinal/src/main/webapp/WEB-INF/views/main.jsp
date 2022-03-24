@@ -12,6 +12,7 @@
 <title>메인</title>
 <style>
     div{
+    
     }
     
     .wrap{
@@ -82,22 +83,56 @@
     .event-content{
         width: 100%;
         height: 20%;
+    	border: 4px solid rgb(229, 242, 248);
+    	border-radius:10px;
     }
     .event-picture{
-        width: 35%;
+        width: 40%;
         height: 100%;
+        opacity:0.9;
+
     }
     .event-bigContent{
-        width: 65%;
+        width: 60%;
         height: 100%;
+        
     }
     .evnet-miniTitle{
+        padding-top:20px;
         width: 100%;
         height: 20%;
+        border-bottom: 4px solid rgb(229, 242, 248);
+        text-align:center;
     }
     .event-minContent{
+        padding-top:60px;
+        padding-left:20px;
         width: 100%;
-        height: 80%;
+        height: 60%;
+        font-size:19px;
+    }
+    .event-miniButton{
+     	width: 100%;
+        height: 20%;
+    	padding-right:40px;
+    }
+    .event-miniButton>div{
+        float:right;
+    }
+    #event-content_Btn{
+    	height:70px;
+    	width:300px;
+    	background: rgb(229, 242, 248);
+    	border-radius:10px;
+    	font-size:18px;
+    	text-align:center;
+    	padding-top:22px;
+    	cursor:pointer;
+    	color: skyblue;
+    }
+    #event-content_Btn:hover{
+    	background: skyblue;
+    	color: steelblue;
     }
 </style>
     <link rel="stylesheet" href="resources/css/member/myPage.css"/>
@@ -168,17 +203,31 @@
         <div class="event-content">
             <!-- 이벤트 사진 영역 -->
             <div class="event-picture">
-                
+                <img src="resources/image/common/eventImg.jpg" width="100%" height="100%" style="border-radius:10px;">
             </div>
             <!-- 이벤트 제목, 내용 들어가는 영역 -->
             <div class="event-bigContent">
 
                 <div class="evnet-miniTitle">
-                    
+                    <h2>아침형 인간이 되자!!<br> 상쾌한 산책으로 아침 시작하기</h2>
                 </div>
                 <div class="event-minContent">
-                    
+                    <p>
+                    	아침 출석 이벤트를 완료한 후 아침 조깅을 뛰어보세요!<br><br>
+                    	아침 공복(빈 속)의 15~30분 정도의 운동은 장 건강에 정말 좋으며<br><br>
+                    	기억력 증강, 엔돌핀 분비 유도/기억력/집중력 향상 등 뇌 건강, 정신건강 향상 등등,<br><br>
+                    	 아침에 하는 가벼운 운동 자체는 그 유익성을 일일이 열거하기도 힘들 정도입니다!  </p>
                 </div>
+                <div class="event-miniButton">
+                	<div id="event-content_Btn">이벤트 참여하러 바로가기</div>
+                </div>
+                <script>
+               	 	$(function(){
+                		$("#event-content_Btn").click(function(){
+                    		location.href = "eventMain.ev";
+                    	})
+               	 	})
+                </script>
             </div>
         </div>
     </div>
