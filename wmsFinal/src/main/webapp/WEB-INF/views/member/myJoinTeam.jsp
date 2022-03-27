@@ -53,7 +53,7 @@
         <div class="side-bar">
             <a href="myPage.me" class="big-menu">마이페이지</a> <br>
             <a href="">개인 정보 수정</a> <br>
-            <a href="selectmyJoinTeamList.te">내가 가입한 팀 관리</a> <br>
+            <a href="selectmyJoinTeamList.te?memberId=${ loginUser.memberId }">내가 가입한 팀 관리</a> <br>
             <a href="selectListCreateTeam.te">내가 만든 팀</a> <br>
             <a href="">내 결제내역</a> <br>
             <a href="myMatchSchedule.me">내 경기 일정</a> <br>
@@ -75,11 +75,13 @@
                     </thead>
                     <tbody>
 						<c:forEach var="t" items="${ myJoinTeamList }">
-	                        <tr>
-	                            <td style="vertical-align: middle;"></td>
+	                        <tr class="team-info">
+	                            <td style="vertical-align: middle;">${ t.rowNum }</td>
 	                            <td class="team-name" style="vertical-align: middle;">${ t.teamName }</td>
+	                        	<input type="hidden" name="teamNo" value="${ t.teamNo }">
 	                            <td style="vertical-align: middle;">${ t.sportsName }</td>
-	                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team">탈퇴하기</button></td>
+	                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#delete-team" data-test="${ t.teamNo }"data-test2="${ loginUser.memberNo }">탈퇴하기</button></td>
+	                        	
 	                        </tr>
 							
 
@@ -94,16 +96,22 @@
             <ul class="pagination" style="justify-content : center;" >
                 <c:choose >
                      <c:when test="${ pi.currentPage eq 1 }">
-                         <li class="page-item disabled"><a class="page-link" href="#"><Previous></a></li>
+                         <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
                      </c:when>
                      <c:otherwise>
                          <li class="page-item"><a class="page-link" href="selectmyJoinTeamList.te?myJoinPage=${ pi.currentPage -1 }" style="color: rgb(135, 206, 235);">이전</a></li>
                      </c:otherwise>
                 </c:choose>
-                
-                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                     <li class="page-item"><a class="page-link" href="selectmyJoinTeamList.te?myJoinPage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
-                </c:forEach>
+	            <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+	                <c:choose>
+	                	<c:when test="${ pi.currentPage eq p }">
+	                    	 <li class="page-item disabled"><a class="page-link" href="selectmyJoinTeamList.te?myJoinPage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
+	                	</c:when>
+	                	<c:otherwise>
+		                     <li class="page-item"><a class="page-link" href="selectmyJoinTeamList.te?myJoinPage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
+	                	</c:otherwise>
+	                </c:choose>
+	            </c:forEach>
 
                 <c:choose>
                      <c:when test="${ pi.currentPage eq  pi.endPage }">
@@ -119,23 +127,53 @@
 
     <jsp:include page="../common/footer.jsp" />
 
-
-    <div class="modal" id="delete-team" tabindex="-1">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">팀 탈퇴하기</h5>
-            </div>
-            <div class="modal-body">
+  <div class="modal fade" id="delete-team" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">팀 탈퇴하기</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
             <p>정말 팀을 탈퇴하시겠습니까?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">탈퇴하기</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-            </div>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="quitTeam();">탈퇴하기</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
         </div>
+      </div>
     </div>
+  </div>
+
+
+
+
+    
+    <script>
+    var TEAMNO = "";
+    var MEMBERNO = "";
+    $(document).ready(function() {     
+        $('#delete-team').on('show.bs.modal', function(event) {          
+        	TEAMNO = $(event.relatedTarget).data('test');
+        	MEMBERNO = $(event.relatedTarget).data('test2');
+        });
+    });
+    
+    
+	    function quitTeam(){
+	    	location.href="quitTeam.te?teamNo="+TEAMNO+"&memberNo="+MEMBERNO;
+	    	
+	    };
+	    
+        $(function(){
+        	
+        	$(".team-name").click(function(){
+	        	location.href='teamDetail.te?teamNo= ' + $(this).next().val();        	
+        	})
+        })
+    
+    
+    </script>
     
 </body>
 </html>

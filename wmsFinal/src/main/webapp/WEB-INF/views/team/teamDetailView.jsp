@@ -12,9 +12,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <style>
-    div{
-        border: 1px solid red;
-    }
     .team-detail-header{
         width: 80%;
         height: 20%;
@@ -68,6 +65,11 @@
         width: 50%;
         height: 100%;
     }
+    .team-detail-logo img{
+    	width: 280px;
+        height: 175px;
+    
+    }
 
 </style>
 </head>
@@ -84,10 +86,10 @@
         <div class="team-detail-header">
 
             <div class="team-detail-logo">
-                <img src="" alt="팀 로고">
+                <img src="${ t.logoChangeName }" alt="팀 로고">
             </div>
             <div class="team-detail-name">
-                <p style="font-size: 40px; font-weight: bold;">은평구 불빠따쓰</p>
+                <p style="font-size: 40px; font-weight: bold;">${ t.teamName }</p>
             </div>
         </div>
         <div class="team-detail-content">
@@ -95,19 +97,19 @@
                 <p>생성 날짜 : &nbsp; &nbsp;</p>
             </div>
             <div class="team-detaile-inputDate">
-                <p>2020-12-13</p>
+                <p>${ t.createDate }</p>
             </div>
             <div class="team-detail-record-text" style="text-align: right;">
                 <p>전적 :  &nbsp; &nbsp;</p>
             </div>
             <div class="team-detail-recordInput">
-                <p>46승 4패</p>
+                <p>${ t.winCount }승 ${ t.loseCount }패</p>
             </div>
             <div class="team-detail-intro-text" style="text-align: right;">
                 <p>팀 소개 : &nbsp; &nbsp;</p>
             </div>
             <div class="team-detail-inputIntro">
-                <textarea cols="50" rows="12" style="resize: none;" >안녕하세염 은평구 불빠따쓰 입니다. 항상 빠이링해요 저희 헤헿 사랑합니다~</textarea>
+                <textarea cols="50" rows="12" style="resize: none;" >${ t.teamIntro }</textarea>
             </div>
         </div>
         <div class="team-detail-buttonArea">

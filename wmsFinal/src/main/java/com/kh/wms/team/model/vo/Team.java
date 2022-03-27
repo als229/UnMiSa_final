@@ -30,7 +30,10 @@ public class Team {
 	private String logoOriginName;
 	private String logoChangeName;
 	private String bossId;
-	private int rNum;
+	private int rowNum;
+	private int winPercent;
+
+	
 	
 	
 

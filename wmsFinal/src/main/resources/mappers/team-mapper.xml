@@ -62,6 +62,69 @@
 					)
 	</insert>
 	
+	<select id="selectTeamCount" resultType="_int">
+	
+		SELECT COUNT(*)
+		FROM TEAM
+		
+	</select>
+	
+	<select id="selectTeamList" resultMap="teamResultSet">
+	
+		SELECT 
+		    WIN_POINT
+		    ,WIN_COUNT
+		    ,TEAM_STATUS
+		    ,TEAM_NO
+		    ,TEAM_NAME
+		    ,TEAM_INTRO
+		    ,SPORTS_NAME
+		    ,SIGUNGU_NAME
+		    ,SIDO_NAME
+		    ,ORIGIN_NAME
+		    ,LOSE_COUNT
+		    ,DRAW_COUNT
+		    ,SUBSTR(CREATE_DATE, 1,10) CREATE_DATE
+		    ,CHANGE_NAME
+		    ,BOSS_ID
+		FROM TEAM
+		
+	</select>
+	
+	<select id="serchSelectWmsCount" parameterType="HashMap" resultType="_int" >
+		
+		SELECT COUNT(*)
+		FROM TEAM
+		WHERE SIDO_NAME = #{sidoName}
+		AND SIGUNGU_NAME = #{siGunGuName}
+		AND SPORTS_NAME = #{sportsName}
+	
+	</select>
+	
+	<select id="serchSelectWms" parameterType="HashMap" resultMap="teamResultSet" resultType="arraylist">
+		
+		SELECT 
+		    WIN_POINT
+		    ,WIN_COUNT
+		    ,TEAM_STATUS
+		    ,TEAM_NO
+		    ,TEAM_NAME
+		    ,TEAM_INTRO
+		    ,SPORTS_NAME
+		    ,SIGUNGU_NAME
+		    ,SIDO_NAME
+		    ,ORIGIN_NAME
+		    ,LOSE_COUNT
+		    ,DRAW_COUNT
+		    ,SUBSTR(CREATE_DATE, 1,10) CREATE_DATE
+		    ,CHANGE_NAME
+		    ,BOSS_ID
+		FROM TEAM
+			WHERE SIDO_NAME = #{sidoName}
+			AND SIGUNGU_NAME = #{siGunGuName}
+			AND SPORTS_NAME = #{sportsName}
+	
+	</select>
 
 
 

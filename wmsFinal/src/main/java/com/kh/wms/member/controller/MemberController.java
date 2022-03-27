@@ -1,9 +1,14 @@
 package com.kh.wms.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -20,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -279,35 +285,97 @@ public class MemberController {
 	}
 
 	@RequestMapping("selectmyJoinTeamList.te")
-	public ModelAndView selectmyJoinTeamList(@RequestParam(value="myJoinPage", defaultValue="1")int currentPage, ModelAndView mv,Member m) {
+	public ModelAndView selectmyJoinTeamList(@RequestParam(value="myJoinPage", defaultValue="1")int currentPage, ModelAndView mv, Member m) {
 		
-		System.out.println(m);
 		int myJoinTeamCount = memberService.selectMyTeamCount(m);
 		
-		System.out.println("멍멍");
-		System.out.println(myJoinTeamCount);
 		PageInfo pi = Pagination.getPageInfo(myJoinTeamCount, currentPage, 10, 5);
 		
 		ArrayList<Team> myJoinTeamList = memberService.selectmyJoinTeamList(m, pi);
 		
 		mv.addObject("myJoinTeamList", myJoinTeamList);
 		mv.addObject("pi",pi);
-		System.out.println(myJoinTeamList);
 		mv.setViewName("member/myJoinTeam");
 		return mv;
 	}
+	
+	@RequestMapping("quitTeam.te")
+	public ModelAndView quitTeam(int teamNo,int memberNo, ModelAndView mv) {
+		
+		Map <String, Object> map =  new HashMap<String, Object>();
+		map.put("teamNo", teamNo);
+		map.put("memberNo", memberNo);
+		
+		int result = memberService.quitTeam(map);
+		
+		if(result > 0) {
+			mv.addObject("alertMsg","팀 탈퇴에 성공하셨습니다.");
+		}else {
+			mv.addObject("alertMsg", "팀탈퇴에 실패하셨습니다.");
+		}
+		mv.setViewName("member/myJoinTeam");
+		
+		return mv;
+	}
+	
 	@RequestMapping("selectListCreateTeam.te")
-	public String selectListCreateTeam() {
+	public ModelAndView selectListCreateTeam(@RequestParam(value="myCreateTeamPage", defaultValue="1")int currentPage, Member m, ModelAndView mv) {
 		
+		int myCreateTeamCount = memberService.selectMyCreateTeamCount(m);
 		
-		return "member/myCreateTeam";
+		PageInfo pi = Pagination.getPageInfo(myCreateTeamCount, currentPage, 10, 5);
+		
+		ArrayList<Team> myCreateTeamList = memberService.selectListCreateTeam(m,pi);
+		
+		mv.addObject("pi",pi);
+		mv.addObject("myCreateTeamList",myCreateTeamList);
+		mv.setViewName("member/myCreateTeam");
+		
+		return mv;
 	}
 	
 	@RequestMapping("updateFormTeam.te")
-	public String updateFormTeam() {
+	public ModelAndView updateFormTeam(ModelAndView mv, int teamNo) {
+
+		Team t = memberService.memberSelectTeam(teamNo);
 		
+		mv.addObject("t",t);
+		mv.setViewName("member/updateTeam");
+		return mv;
+	}
+	@RequestMapping("updateTeam.te")
+	public ModelAndView updateTeam(Team team, MultipartFile reupfile, HttpSession session, ModelAndView mv) {
 		
-		return "member/updateTeam";
+		if(!reupfile.getOriginalFilename().equals("") || reupfile.getOriginalFilename()==team.getLogoOriginName()) {
+			
+			if(team.getLogoOriginName() != null) {
+				new File(session.getServletContext().getRealPath(team.getLogoChangeName())).delete();
+			}
+			
+			// 새로 넘어온 첨부파일 서버 업로드 시키기
+			// saveFile 메서드를 통해 현재 넘어온 첨부파일을 서버에 저장시키자
+			String changeName = teamSaveFile(reupfile, session);
+			
+			// b라는 Board 객체에 새로운 정보(원본명, 저장 경로) 담기
+			team.setLogoOriginName(reupfile.getOriginalFilename());
+			team.setLogoChangeName("resources/uploadFiles/" + changeName);
+			
+		}
+		
+		int result = memberService.updateTeam(team);
+		
+		System.out.println(team.toString());
+		if(result > 0) {
+			mv.addObject("alertMsg", "수정에 성공하셨습니다!!");
+		}else {
+			mv.addObject("alertMsg","수정에 실패했습니다...");
+		}
+		
+		Team t = memberService.memberSelectTeam(team.getTeamNo());
+		
+		mv.addObject("t",t);
+		mv.setViewName("member/updateTeam");
+		return mv;
 	}
 	@RequestMapping("myTeamMemberList.te")
 	public String myTeamMemberList() {
@@ -327,6 +395,40 @@ public class MemberController {
 		
 		return "member/battleApplyList";
 	}
+	
+	@RequestMapping("memberSelectTeam.te")
+	public ModelAndView memberSelectTeam(ModelAndView mv, int teamNo) {
+		
+		Team t = memberService.memberSelectTeam(teamNo);
+		
+		mv.addObject("t",t);
+		
+		return mv;
+	}
+	
+	public String teamSaveFile(MultipartFile reupfile, HttpSession session) {
+		
+		String originName = reupfile.getOriginalFilename();
+		
+		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		
+		int ranNum = (int)(Math.random() * 90000 + 10000);
+
+		String ext = originName.substring(originName.lastIndexOf("."));
+
+		String changeName = currentTime + ranNum + ext;
+
+		String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
+
+		try { // savePath 라는 경로에 changeName 이라는 이름으로 저장을 하겠따.
+			reupfile.transferTo(new File(savePath + changeName));
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return changeName;
+	}
+	
 
 	
 	
