@@ -90,21 +90,21 @@
             </div>
             <div class="search3"style="margin-left: 40px;" >
                 <select id="sports-name"class="form-select form-select-sm" style="margin-top: 5px;"required>
-                    	<option>축구</option>
-                    	<option>야구</option>
-                    	<option>농구</option>
-                    	<option>탁구</option>
-                    	<option>볼링</option>
-                    	<option>배드민턴</option>
-                    	<option>당구</option>
-                    	<option>런닝</option>
-                    	<option>사이클</option>
-                    	<option>등산</option>
-                    	<option>테니스</option>
+                    	<option value="축구">축구</option>
+                    	<option value="야구">야구</option>
+                    	<option value="농구">농구</option>
+                    	<option value="탁구">탁구</option>
+                    	<option value="볼링">볼링</option>
+                    	<option value="배드민턴">배드민턴</option>
+                    	<option value="당구">당구</option>
+                    	<option value="런닝">런닝</option>
+                    	<option value="사이클">사이클</option>
+                    	<option value="등산">등산</option>
+                    	<option value="테니스">테니스</option>
                 </select>
             </div>
             <div class="search-button">
-                <button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick="serchSelectWms();">검색하기</button>
+                <button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "serchSelectWms();">검색하기</button>
             </div>
         </div>
         <div class="teamList-area">
@@ -122,7 +122,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<c:forEach var="t" items="${ tList }">
+                	<c:forEach var="t" items="${ serchSelectWmsList }">
 	                    <tr class="teamTable">
 	                        <td>${ t.teamNo }</td>
 	                        <c:choose>
@@ -156,16 +156,16 @@
                          <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
                      </c:when>
                      <c:otherwise>
-                         <li class="page-item"><a class="page-link" href="serchWms.te?serchWmsPage=${ pi.currentPage -1 }" style="color: rgb(135, 206, 235);">이전</a></li>
+                         <li class="page-item"><a class="page-link" href="serchSelectWms.te?serchWmsPage=${ pi.currentPage -1 }" style="color: rgb(135, 206, 235);">이전</a></li>
                      </c:otherwise>
                 </c:choose>
 	            <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 	                <c:choose>
 	                	<c:when test="${ pi.currentPage eq p }">
-	                    	 <li class="page-item disabled"><a class="page-link" href="serchWms.te?serchWmsPage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
+	                    	 <li class="page-item disabled"><a class="page-link" href="serchSelectWms.te?serchWmsPage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
 	                	</c:when>
 	                	<c:otherwise>
-		                     <li class="page-item"><a class="page-link" href="serchWms.te?serchWmsPage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
+		                     <li class="page-item"><a class="page-link" href="serchSelectWms.te?serchWmsPage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
 	                	</c:otherwise>
 	                </c:choose>
 	            </c:forEach>
@@ -175,7 +175,7 @@
                          <li class="page-item disabled"><a class="page-link" href="#"  >다음</a></li>
                      </c:when>
                      <c:otherwise>
-                         <li class="page-item"><a class="page-link" href="serchWms.te?serchWmsPage=${ pi.currentPage +1 }" style="color: rgb(135, 206, 235);">다음</a></li>
+                         <li class="page-item"><a class="page-link" href="serchSelectWms.te?serchWmsPage=${ pi.currentPage +1 }" style="color: rgb(135, 206, 235);">다음</a></li>
                      </c:otherwise>
                 </c:choose>
            
@@ -211,9 +211,12 @@
 	            	// option의 innerText에 opt(value) 값을 넣어준다.
 	                siGunGuSelect.append(option);
 	            	// append를 사용해 value를 추가해준다. 반복문으로 돌리면 option 애덜이 계속 들어간다.
+		            
+
 	            }
+
 	        }
-	        
+			
 	        siDoSelect.onchange = function() {
 	            createSelection();
 	            // siDoSelect에 변화가 있을때 createSelection 메서드가 호출된다.
@@ -239,27 +242,40 @@
 	                set.add(address[key].gu);
 	            }
 	        }
-	        createSelection();
-	        // createSelection 메서드를 한번 호출해 줌으로써 맨 처음 들어오면 서울이 자동으로 선택되고 실행되서 값이 자동으로 들어가짐 
-		
+            createSelection();
+			
+    		let selectSiDoName = '${map1.sidoName}';
+    		let selectSiGunGuName = '${map1.siGunGuName}';
+    		let selectSportsName = '${map1.sportsName}';
+    		$('#siDoSelect').val(selectSiDoName).prop("selected",true);
+    		$('#siGunGuSelect').val(selectSiGunGuName).prop("selected",true);
+    		$('#sports-name').val(selectSportsName).prop("selected",true);
+		});
 
-        	
-        	
-        	});
-        	
         $(function(){
-        	
         	$(".team-name-inTable").click(function(){
         		
 	        	location.href='teamDetail.te?teamNo= ' + $(this).next().val();        	
         	
         	})
-        	
-
         })
-        
-        
-	        function serchSelectWms(){
+
+        $(function(){
+        	
+	        function settingSelect(){
+	        	
+	    		let selectSiDoName = '${map1.sidoName}';
+	    		let selectSiGunGuName = '${map1.siGunGuName}';
+	    		let selectSportsName = '${map1.sportsName}';
+	        	
+	    		$('#siDoSelect').val(selectSiDoName).prop("selected",true);
+	    		$('#siGunGuSelect').val(selectSiGunGuName).prop("selected",true);
+	    		$('#sports-name').val(selectSportsName).prop("selected",true);
+	
+	        	
+	        }
+        })
+        function serchSelectWms(){
 	        		
         		var selectSiDoName = $("#siDoSelect").val();
         		var selectSiGunGuName = $("#siGunGuSelect").val();
@@ -268,7 +284,6 @@
 	        	location.href="serchSelectWms.te?sidoName=" + selectSiDoName +"&siGunGuName=" + selectSiGunGuName + "&sportsName=" + selectSportsName;
 	        		
 	        }
-        	
     </script>
     
     
