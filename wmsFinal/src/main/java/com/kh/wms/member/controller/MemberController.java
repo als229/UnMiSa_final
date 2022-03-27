@@ -28,7 +28,6 @@ import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.common.template.Pagination;
 import com.kh.wms.member.model.service.MemberService;
 import com.kh.wms.member.model.vo.Member;
-import com.kh.wms.member.model.vo.User;
 import com.kh.wms.team.model.vo.Team;
 
 @Controller
@@ -73,18 +72,6 @@ public class MemberController {
 		
 		return mv;
 	}
-	
-	@ResponseBody
-	@RequestMapping(value="naverLogin.me", method=RequestMethod.GET)
-	public ModelAndView naverLogin(ModelAndView mv, HttpSession session, User user ) {
-		System.out.println("네이버 로그인 실행");
-		System.out.println(user);
-		mv.setViewName("main");
-		
-		return mv;
-		
-	}
-	
 	
 	
 	//logOut 기능

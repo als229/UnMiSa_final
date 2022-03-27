@@ -77,7 +77,7 @@
 						<br>
 						<div style="float:right">
 						 &nbsp;&nbsp; 
-						 <a href=""><img src="">&nbsp;&nbsp;내 채팅</a> 
+						 <a href="myChat.ct"><img src="">&nbsp;&nbsp;내 채팅</a> 
 						 <a href="logOut.me">&nbsp;&nbsp;로그아웃</a> 
 						 <a href="myPage.me">&nbsp;&nbsp;마이페이지</a> 
 						 <a href="sportsPartnerMain.sp">&nbsp;&nbsp;운동파트너</a>
