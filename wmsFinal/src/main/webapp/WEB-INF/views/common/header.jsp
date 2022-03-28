@@ -65,20 +65,19 @@
 						
 						<!-- 로그인 전 -->
 						<div style="float:right">
-							<a href="choice.me">&nbsp;&nbsp;회원가입</a>
-							<a href="loginForm.me">&nbsp;&nbsp;로그인</a>
+							<a href="choice.me">회원가입</a>
+							<a href="loginForm.me" style="margin-left:20px; margin-right:20px;">로그인</a>
 						</div>
 						<!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
 					</c:when>
 
 					<c:otherwise>
 						<!-- 로그인 후 -->
-						<div id="header_point"style="float:right; font-size:12px;">포인트  ${loginUser.point}</div>
 						<div style="float:right">${loginUser.memberName}님 환영합니다</div>
 						<br>
 						<div style="float:right">
 						 &nbsp;&nbsp; 
-						 <a href=""><img src="">&nbsp;&nbsp;내 채팅</a> 
+						 <a href="myChat.ct"><img src="">&nbsp;&nbsp;내 채팅</a> 
 						 <a href="logOut.me">&nbsp;&nbsp;로그아웃</a> 
 						 <a href="myPage.me">&nbsp;&nbsp;마이페이지</a> 
 						 <a href="sportsPartnerMain.sp">&nbsp;&nbsp;운동파트너</a>

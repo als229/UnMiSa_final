@@ -33,7 +33,7 @@ $(function(){
 
     
     $(".noticeDelete_Btn").click(function(){
-    	location.href = "noticeDelete.no?noticeNo="+$('input[name=HinoticeNo]').val();
+    	location.href = "noticeDelete.no?filePath="+ $('#hidden_filePath').val() + "&&noticeNo="+$('input[name=HinoticeNo]').val();
     })
     
     
@@ -42,6 +42,8 @@ $(function(){
     $(".noticeUpdate_Btn").click(function(){
     	location.href = "noticeUpdateForm.no?noticeNo="+$('input[name=HinoticeNo]').val();
     })
+    
+   
     
     
 })

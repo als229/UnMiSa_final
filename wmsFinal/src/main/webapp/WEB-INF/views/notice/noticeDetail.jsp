@@ -45,6 +45,7 @@
 					</c:when>
 					<c:otherwise>
 						<a href="${n.changeName }" download="${n.originName }">${n.originName }</a>
+			 			<input type = "hidden" value="${ n.changeName }" id="hidden_filePath">
 					</c:otherwise>
 				</c:choose>
 			</p>

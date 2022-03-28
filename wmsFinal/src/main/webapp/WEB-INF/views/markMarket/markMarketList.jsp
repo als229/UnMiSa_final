@@ -19,8 +19,11 @@
     	    <div id="content">
             <div id="content_1">
                 <div id="content_1_header">
-                    <img src="resources/image/common/markMarket.png" width="1200px" height="300px">
+                    <img src="resources/image/common/markMarket.png" width="1197px" height="300px">
                 </div>
+            <div id="point_view">
+            	포인트: ${ viewPoint }
+            </div>
             </div>
             <div id="content_2">
             	<c:forEach var="p" items="${ list }">
@@ -41,7 +44,7 @@
 
                         	</div>
                         	<div class="content2_markHover_2">
-                            	<input type=hidden value="${p.price }" id="hiidenPrice">
+                            	<input type=hidden value="${p.price }" id="hiddenPrice">
                             	<button class="markHover_btn1 btn btn-secondary">포인트 구매</button>
                             	<input type=hidden value="${p.markNo}">
                             	<input type=hidden value="${p.price }">
@@ -71,20 +74,21 @@
                 		</c:if>
                 		
                 	</c:forEach>
-                	<c:if test="${ loginUser != null }">
-                	<script>
-                	$(function(){
-                		$(".markHover_btn1").click(function(){
-                			if(${loginUser.point} > ${p.price }){
-                		    	location.href = "paymentPoint.pm?markNo="+$(this).next().val()+"&&memberNo="+${ loginUser.memberNo } +"&&price="+$(this).prev("#hiidenPrice").val();
-                			}else{
-                				alertify.alert("포인트가 부족합니다.");
-                			}
-                		})
-                	})
-                	</script>
-                	</c:if>
                 </c:forEach>
+                
+                <c:if test="${ loginUser != null }">
+		             <script>
+		               	$(function(){
+		                	$(".markHover_btn1").click(function(){
+		                		if(${loginUser.point} > $(this).prev().val()){
+			                		location.href = "paymentPoint.pm?markNo="+$(this).next().val()+"&&memberNo="+${ loginUser.memberNo } +"&&price="+$(this).prev("#hiddenPrice").val();
+		                		}else{
+			                			alertify.alert("포인트가 부족합니다.");
+		                		}
+		                	})
+		                })
+		                	</script>
+                	</c:if>
                 	<c:if test="${ loginUser != null }">	
                 	<script>
                 	$(function(){
@@ -114,6 +118,7 @@
             <div id="content_3">
                <div id = "pagin-area">
             		<ul class="pagination">
+            		
                 		<c:choose>
                 			<c:when test="${ pi.currentPage eq 1 }">
                     			<li class="page-item disabled"><a class="page-link" href="#">이전</a></li>

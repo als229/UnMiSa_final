@@ -1,6 +1,7 @@
 package com.kh.wms.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -50,6 +51,22 @@ public class NoticeDao {
 	public int noticeUpdate(SqlSessionTemplate sqlSession, Notice n) {
 		return sqlSession.update("noticeMapper.noticeUpdate",n);
 	}
+
+	public int searchCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("noticeMapper.searchCount",map);
+	}
+	
+	public ArrayList<Notice> searchNotice(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.searchNotice", map,rowBounds);
+	}
+
 
 	
 

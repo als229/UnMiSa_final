@@ -53,8 +53,8 @@
         <div class="side-bar">
             <a href="myPage.me" class="big-menu">마이페이지</a> <br>
             <a href="">개인 정보 수정</a> <br>
-            <a href="selectListTeam.te">내가 가입한 팀 관리</a> <br>
-            <a href="selectListCreateTeam.te">내가 만든 팀</a> <br>
+            <a href="selectmyJoinTeamList.te?memberId=${ loginUser.memberId }">내가 가입한 팀 관리</a> <br>
+            <a href="selectListCreateTeam.te?memberId=${ loginUser.memberId }">내가 만든 팀</a> <br>
             <a href="">내 결제내역</a> <br>
             <a href="myMatchSchedule.me">내 경기 일정</a> <br>
         </div>
@@ -67,80 +67,23 @@
                     <thead>
                         
                         <tr>
-                            <th></th>                        
+                            <th>팀 번호</th>                        
                             <th>팀 이름</th>
                             <th>운동 종목</th>
                             <th>팀 관리하기</th>
                         </tr>
                     </thead>
                     <tbody>
-
+					<c:forEach var="t" items="${ myCreateTeamList }">
                         <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
+                            <td style="vertical-align: middle;">${ t.teamNo }</td>
+                            <td class="team-name" style="vertical-align: middle;">${ t.teamName }</td>
+                            <input type="hidden" value="${ t.teamNo }">
+                            <td style="vertical-align: middle;">${ t.sportsName }</td>
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "updateForm(${t.teamNo});">팀 관리하기</button></td>
                         </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">은평구 불 빠따쓰</td>
-                            <td style="vertical-align: middle;">야구</td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'updateFormTeam.te' ">팀 관리하기</button></td>
-                        </tr>
+					</c:forEach>
+                       
                         
 
 
@@ -150,27 +93,33 @@
                 </div>
             
         </div>
-        <div class="team-paging-area" style="height: 50px; margin-top:50px" >
+        <div class="team-paging-area" style="height: 50px; " >
             <ul class="pagination" style="justify-content : center;" >
                 <c:choose >
                      <c:when test="${ pi.currentPage eq 1 }">
-                         <li class="page-item disabled"><a class="page-link" href="#"><Previous></a></li>
+                         <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
                      </c:when>
                      <c:otherwise>
-                         <li class="page-item"><a class="page-link" href="list.bo?cpage=${ pi.currentPage -1 }" style="color: rgb(135, 206, 235);">이전</a></li>
+                         <li class="page-item"><a class="page-link" href="selectListCreateTeam.te?myCreateTeamPage=${ pi.currentPage -1 }" style="color: rgb(135, 206, 235);">이전</a></li>
                      </c:otherwise>
                 </c:choose>
-                
-                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                     <li class="page-item"><a class="page-link" href="list.bo?cpage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
-                </c:forEach>
+	            <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+	                <c:choose>
+	                	<c:when test="${ pi.currentPage eq p }">
+	                    	 <li class="page-item disabled"><a class="page-link" href="selectListCreateTeam.te?myCreateTeamPage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
+	                	</c:when>
+	                	<c:otherwise>
+		                     <li class="page-item"><a class="page-link" href="selectListCreateTeam.te?myCreateTeamPage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
+	                	</c:otherwise>
+	                </c:choose>
+	            </c:forEach>
 
                 <c:choose>
                      <c:when test="${ pi.currentPage eq  pi.endPage }">
                          <li class="page-item disabled"><a class="page-link" href="#"  >다음</a></li>
                      </c:when>
                      <c:otherwise>
-                         <li class="page-item"><a class="page-link" href="list.bo?cpage=${ pi.currentPage +1 }" style="color: rgb(135, 206, 235);">다음</a></li>
+                         <li class="page-item"><a class="page-link" href="selectListCreateTeam.te?myCreateTeamPage=${ pi.currentPage +1 }" style="color: rgb(135, 206, 235);">다음</a></li>
                      </c:otherwise>
                 </c:choose>
            
@@ -179,6 +128,20 @@
 
     <jsp:include page="../common/footer.jsp" />
 
+	<script>
+	
+    $(function(){
+    	
+    	$(".team-name").click(function(){
+        	location.href='teamDetail.te?teamNo= ' + $(this).next().val();        	
+    	})
+    })
+    
+    function updateForm(teamNo){
+    	location.href="updateFormTeam.te?teamNo="+teamNo;
+    }
+	
+	</script>
 
 
     

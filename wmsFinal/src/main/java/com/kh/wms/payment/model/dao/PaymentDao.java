@@ -63,6 +63,9 @@ public class PaymentDao {
 	public int selectMark(SqlSessionTemplate sqlSession, Payment p) {
 		return sqlSession.update("paymentMapper.selectMark",p);
 	}
+	public int viewPoint(SqlSessionTemplate sqlSession, int memberNo) {
+		return sqlSession.selectOne("paymentMapper.viewPoint",memberNo);
+	}
 
 
 }

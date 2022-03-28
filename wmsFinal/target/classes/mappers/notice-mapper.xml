@@ -93,7 +93,45 @@
 			
 	</update>
 	
-
+	 <select id = "searchCount" parameterType = "hashmap" resultType = "_int"> 
+  	SELECT COUNT(*)
+ 	  FROM NOTICE N
+ 	 WHERE NOTICE_STATUS = 'Y'
+	<if test = "condition == 'content'">
+ 	   AND NOTICE_CONTENT
+	</if>
+	<if test="condition == 'title'">
+ 	   AND NOTICE_TITLE
+	</if>
+  	  LIKE '%' || #{keyword} || '%'
+  </select>
+  
+  
+  
+  <select id = "searchNotice" parameterType="hashmap" resultMap ="noticeResultSet">
+  	SELECT
+        NOTICE_NO
+        ,NOTICE_TITLE
+        ,COUNT
+        ,CHANGE_NAME
+        ,ORIGIN_NAME
+        ,TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "CREATE_DATE"
+    FROM NOTICE N
+    WHERE NOTICE_STATUS = 'Y'
+    <choose>
+		<when test = "condition =='title'">
+			AND NOTICE_TITLE
+		</when>    
+		<otherwise>
+			AND NOTICE_CONTENT
+		</otherwise>
+    </choose>
+			like '%' || #{keyword} || '%'
+		
+ 	ORDER BY 
+          NOTICE_NO DESC   
+  
+  </select>
 	
 	
 	

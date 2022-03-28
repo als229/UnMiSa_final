@@ -12,9 +12,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <style>
-    div{
-        border: 1px solid red;
-    }
 
     .content{
         height: 400px;
@@ -123,14 +120,14 @@
         <div class="team-title">
             <h1 style="margin-left: 20px;">팀 생성하기</h1>
         </div>
-		<form action="" method="post"  enctype="multipart/form-data">
+		<form action="insertTeam.te" method="post"  enctype="multipart/form-data">
 
             <div class="team-name">
                 <div class="team-name-text" style="text-align: right; ">
                     <p>팀 이름 : &nbsp;&nbsp;</p>
                 </div>
                 <div class="inputTeamName">
-                    <input type="text" name="teamName">
+					<input type="text" name="teamName" required>
                 </div>
             </div>
             <div class="sports-name">
@@ -138,7 +135,19 @@
                     <p>운동 종목 : &nbsp;&nbsp;</p>
                 </div>
                 <div class="inputSportsName">
-                    <input type="text" name="sportsName">
+					<select name="sportsName" required>
+                    	<option>축구</option>
+                    	<option>야구</option>
+                    	<option>농구</option>
+                    	<option>탁구</option>
+                    	<option>볼링</option>
+                    	<option>배드민턴</option>
+                    	<option>당구</option>
+                    	<option>런닝</option>
+                    	<option>사이클</option>
+                    	<option>등산</option>
+                    	<option>테니스</option>
+                    </select>
                 </div>
             </div>
             <div class="team-intro">
@@ -146,8 +155,10 @@
                     <p>팀 소개 : &nbsp;&nbsp;</p>
                 </div>
                 <div class="inputTeamIntro">
-                    <textarea cols="50" rows="10" style="resize: none;" name="teamIntro"></textarea>
+                    <textarea cols="50" rows="10" style="resize: none;" name="teamIntro" required></textarea>
                 </div>
+                
+                 
             </div>
             <div class="team-local-area">
                 <div class="team-local-area-text" style="text-align: right;">
@@ -155,8 +166,8 @@
                 </div>
                 <div class="inputTeamLocalArea">
 
-					<select id="siDoSelect" name="sidoName">
-						<option value="">서울특별시</option>
+					<select id="siDoSelect" name="sidoName" required>
+						<option>서울특별시</option>
 						<option>부산광역시</option>
 						<option>대구광역시</option>
 						<option>인천광역시</option>
@@ -175,7 +186,7 @@
 						<option>제주특별자치도</option>
 
 					</select> 
-					<select id="siGunGuSelect" style="margin-left:40px;" name="siGunGu">
+					<select id="siGunGuSelect" style="margin-left:40px;" name="siGunGuName" required>
 						
                     </select>
                 </div>
@@ -188,7 +199,8 @@
                 <div class="inputImgTeamLogo" >
                 </div>
                 <div class="inputTeamLogoArea">
-                    <input type="file" name="teamLogo" onchange="setLogo(event)">
+                    <input type="file" name="upfile" onchange="setLogo(event)" required>
+		            <input type="hidden" name="bossId" value="${ loginUser.memberId }">
                 </div>
             </div>
             <div class="button-area" style="margin-top: 20px;">

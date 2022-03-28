@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chatMapper">
+
+	<resultMap type="teamChat" id="teamChatResultSet">
+		<result column="MEMBER_NO" property="memberNo"/>	
+		<result column="MEMBER_ID" property="memberId"/>	
+		<result column="MEMBER_NAME" property="memberName"/>	
+		<result column="TEAM_NO" property="teamNo"/>	
+		<result column="TEAM_NAME" property="teamName"/>	
+		<result column="BOSS_ID" property="bossId"/>	
+		<result column="CHANGE_NAME" property="changeName"/>	
+	</resultMap>
+	
+	<select id="teamChatList" resultMap="teamChatResultSet" parameterType="String">
+		SELECT M.MEMBER_NO, M.MEMBER_ID, T.TEAM_NO, T.TEAM_NAME, T.BOSS_ID, T.CHANGE_NAME
+		FROM MEMBER M
+		JOIN TEAM T ON (M.MEMBER_ID = T.BOSS_ID)
+		WHERE BOSS_ID = #{bossId}
+	</select>
+	
+	<select id="teamChatCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*)
+		FROM MEMBER M
+		JOIN TEAM T ON (M.MEMBER_ID = T.BOSS_ID)
+		WHERE BOSS_ID = #{bossId}
+	</select>
+	
+	<select id="teamMember" resultMap="teamChatResultSet" parameterType="_int">
+		SELECT M.MEMBER_NO, M.MEMBER_ID, M.MEMBER_NAME 
+		FROM 
+		MEMBER_TEAM MT
+		JOIN MEMBER M ON (MT.MEMBER_NO = M.MEMBER_NO)
+		WHERE JOIN_STATUS = 'Y'
+		AND TEAM_NO = #{teamNo}
+	</select>
+	
+</mapper>

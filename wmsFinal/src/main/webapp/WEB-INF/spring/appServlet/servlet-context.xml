@@ -25,12 +25,14 @@
 	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
 	<beans:bean id="qrcodeview" class="com.kh.wms.event.controller.QRCodeView"/>
 	
-	<!-- 
+
 	<interceptors>
 	  		<interceptor>
-	  			<mapping path="/insert.me"/>
+	  			<mapping path="/insertTeam.te"/>
 				<beans:bean class="com.kh.wms.common.intercepter.LoginIntercepter" id="LoginIntercepter"></beans:bean>	  
 	  		</interceptor>
 	</interceptors>
-	-->
+
+	
+	
 </beans:beans>

@@ -31,18 +31,22 @@
                 </div>
             </div>
             <div id="content_2">
-             <form id="content_2_searchForm" action="" method="get" align="center">
+             <form id="content_2_searchForm" action="search.no" method="get" align="center">
                 <div class="content2_searchDiv">
-                    <select name="notice_search" id="notice_search">
-                        <option value="while">전체</option>
+                    <select name="condition" id="notice_search">
                         <option value="title">제목</option>
                         <option value="content">내용</option>
                     </select>
-                    <input type="text" placeholder="검색어를 입력하세요" id="notice_searchBar">
+                    <input type="text" placeholder="검색어를 입력하세요" id="notice_searchBar" name = "keyword" value="${ keyword }">
                     <button class="notice_searchBtn btn btn-secondary">검색</button>
                 </div>
              </form>
             </div>
+            <script>
+            	$(function(){
+            		 $("#content_2 option[value=${condition}]").attr("selected", true);
+            	})
+            </script>
             <div id="content_3">
             	<table class="table" id = "noticeTable">
             		<thead>
