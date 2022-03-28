@@ -13,12 +13,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.wms.board.model.service.BoardService;
 import com.kh.wms.board.model.vo.Board;
 import com.kh.wms.board.model.vo.Notice;
+import com.kh.wms.board.model.vo.Reply;
 import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.common.template.Pagination;
 
@@ -153,4 +156,17 @@ public class BoardController {
 		int result = boardService.nomalDeleteBoard(boardNo);
 		return "redirect:nomalList.bo";
 	}
+	@ResponseBody
+	@RequestMapping(value="rlist.bo", produces="application/json; charset=utf-8" )
+	public String ajaxNomalSelectReplyList(int bno) {
+		return new Gson().toJson(boardService.nomalSelectReplyList(bno));
+		
+	}
+	@ResponseBody
+	@RequestMapping(value="rinsert.bo" )
+	public String ajaxNomalInsertReply(Reply r) {
+		return	boardService.nomalInsertReply(r) > 0 ? "success" : "fail";
+	}
+	
+	
 }
