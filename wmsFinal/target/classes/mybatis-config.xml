@@ -12,6 +12,8 @@
 		<typeAlias type = "com.kh.wms.member.model.vo.Member" alias = "member"/>
 		<typeAlias type = "com.kh.wms.sportsPartner.model.vo.Purpose" alias = "purpose"/>
 		<typeAlias type = "com.kh.wms.team.model.vo.Team" alias = "team"/>
+		<typeAlias type = "com.kh.wms.team.model.vo.MemberTeam" alias = "memberTeam"/>
+		<typeAlias type = "com.kh.wms.team.model.vo.Battle" alias = "battle"/>
 		<typeAlias type = "com.kh.wms.common.model.vo.Address" alias = "address"/>
 		<typeAlias type = "com.kh.wms.sportsPartner.model.vo.SportsDiary" alias = "sportsDiary"/>
 		<typeAlias type = "com.kh.wms.event.model.vo.Attendance" alias = "attendance"/>

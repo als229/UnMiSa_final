@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.member.model.vo.Member;
+import com.kh.wms.team.model.vo.MemberTeam;
 import com.kh.wms.team.model.vo.Team;
 
 @Repository
@@ -83,6 +84,19 @@ public class MemberDao {
 
 	public int updateTeam(Team team, SqlSessionTemplate sqlSession) {
 		return sqlSession.update("memberMapper.updateTeam", team);
+	}
+
+	public int applyTeamJoin(SqlSessionTemplate sqlSession, MemberTeam tm) {
+		return sqlSession.insert("memberMapper.applyTeamJoin", tm);
+	}
+
+	public ArrayList<MemberTeam> myTeamMemberJoinList(SqlSessionTemplate sqlSession, int teamNo) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("memberMapper.myTeamMemberJoinList", teamNo, rowBounds);
 	}
 	
 	

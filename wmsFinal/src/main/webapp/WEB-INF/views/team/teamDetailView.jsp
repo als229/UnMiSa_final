@@ -137,10 +137,10 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <textarea cols="30" rows="10" style="resize: none;">자기 소개 : 저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠슴다저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠슴다저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠슴다저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠슴다저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠다</textarea>
+          <textarea class="applyTextArea" cols="30" rows="10" style="resize: none;"></textarea>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">팀 가입 신청하기</button>
+            <button type="button" class="btn btn-primary" onclick="teamJoinApply();">팀 가입 신청하기</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
         </div>
       </div>
@@ -158,7 +158,7 @@
         </div>
         <div class="modal-body" style="text-align: center;">
             <input type="date">
-            <textarea cols="30" rows="10" style="resize: none;">상대에게 할 말 : 재밌는 게임 한번 해봐영 ^^ 즐겜해영 저희 </textarea>
+            <textarea cols="30" rows="10" style="resize: none;"> </textarea>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary">대전 신청하기</button>
@@ -167,6 +167,21 @@
       </div>
     </div>
   </div>
+  
+  <script>
+  
+  	function teamJoinApply(){
+  		
+  		var applyText = $(".applyTextArea").val();
+  		var teamNo = '${t.teamNo}';
+  		var memberNo = '${loginUser.memberNo}';
+  		var sportsNo = '${t.sportsNo}';
+  		
+  		location.href="teamJoinApply.te?introMyself=" + applyText + "&teamNo=" + teamNo + "&memberNo=" + memberNo + "&sportsNo=" + sportsNo;
+  	}
+  
+  
+  </script>
 
     
 </body>

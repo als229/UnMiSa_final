@@ -65,14 +65,9 @@
         
             <div class="team-title">
                 <h1 style="margin-left: 20px;">경기 신청 관리</h1>
-                <div class="buttonArea">
-                    <div class="memberButton" style="float: right;">
-                        <button class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'myTeamMemberList.te' ">팀원 관리</button>
-                    </div>
-                    <div class="joinMemberButton" style="float: right; margin-right: 15px;">
-                        <button class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'myTeamMemberJoinList.te' ">경기 신청 관리</button>
-                    </div>
-                </div>
+            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " onclick="location.href='myTeamMemberList.te'">팀원 관리</button>
+            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 30px;" class="btn btn-primary " onclick="location.href='battleApplyList.te'">경기 신청 관리</button>
+            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 30px;" class="btn btn-primary " onclick="location.href='myTeamMemberJoinList.te?teamNo=${t.teamNo}'">멤버 신청 관리</button>
             </div>
             <div class="teamHeader">
                 <div class="teamLogo">
