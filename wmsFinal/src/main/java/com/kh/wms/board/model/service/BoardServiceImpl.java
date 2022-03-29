@@ -59,12 +59,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public ArrayList<Reply> nomalSelectReplyList(int boardNo) {
-		return null;
+		return boardDao.nomalSelectReplyList(sqlSession,boardNo);
 	}
 
 	@Override
 	public int nomalInsertReply(Reply r) {
-		return 0;
+		return boardDao.nomalInsertReply(sqlSession, r);
 	}
 	
 }

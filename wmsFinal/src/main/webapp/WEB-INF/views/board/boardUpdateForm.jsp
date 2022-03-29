@@ -7,7 +7,20 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 	<style>
-   #updateForm>table {width:100%;}
+    .content {
+            background-color:rgb(247, 245, 245);
+            width:80%;
+            margin:auto;
+        }
+        .innerOuter {
+            border:1px solid lightgray;
+            width:80%;
+            margin:auto;
+            padding:5% 10%;
+            background-color:white;
+        }
+
+        #updateForm>table {width:100%;}
         #updateForm>table * {margin:5px;}
     </style>
 </head>
@@ -18,7 +31,7 @@
     <div class="content">
         <br><br>
         <div class="innerOuter">
-            <h2>게시글 수정하기</h2>
+            <h2 align="center">게시글 수정하기</h2>
             <br>
 
             <form id="updateForm" method="post" action="nomalUpdate.bo" enctype="multipart/form-data">
