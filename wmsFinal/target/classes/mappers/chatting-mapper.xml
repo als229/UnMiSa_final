@@ -21,6 +21,7 @@
 		<result property="messageTime" column="MESSAGE_TIME"/>
 		<result property="memberId" column="MEMBER_ID"/>
 		<result property="roomName" column="ROOM_NAME"/>
+		<result property="memberName" column="MEMBER_NAME"/>
 	</resultMap>
 	
 	<select id="teamChatList" resultMap="teamChatResultSet" parameterType="String">
@@ -93,12 +94,19 @@
 		(SEQ_CTMNO.NEXTVAL, #{roomNo}, #{memberNo}, #{message}, #{messageTime})
 	</insert>
 	
-	<select id="selectMessageList" parameterType="_int" resultMap="chat">
+	<select id="selectMessageList" parameterType="_int" resultMap="chatResultSet">
 		SELECT CM.MESSAGE_NO, CM.ROOM_NO, M.MEMBER_NO, CM.MESSAGE, CM.MESSAGE_TIME, M.MEMBER_ID, M.MEMBER_NAME
 		FROM CHATTINGMESSAGE CM 
 		JOIN MEMBER M ON (CM.MEMBER_NO = M.MEMBER_NO)
 		WHERE CM.ROOM_NO = #{roomNo}
-		ORDER BY CR.ROOM_NO DESC
+		ORDER BY CM.ROOM_NO DESC
+	</select>
+	
+	<select id="selectRoomMembers" parameterType="_int" resultMap="chatResultSet">
+		SELECT C.ROOM_NO, M.MEMBER_NO, M.MEMBER_NAME, M.MEMBER_ID
+		FROM CHATTING C
+		JOIN MEMBER M ON (C.MEMBER_NO = M.MEMBER_NO)
+		WHERE C.ROOM_NO = #{roomNo}
 	</select>
 	
 	

@@ -167,7 +167,7 @@ h2 {
 				</thead>
 				<tbody>
 		        <c:forEach var="cr" items="${list }">
-		            <tr class="chat_window_tr" data-room-no="${cr.roomNo }">
+		            <tr class="chat_window_tr" data-room-no="${cr.roomNo }" data-room-name="${cr.roomName }">
 		            	<td>${cr.roomName }</td>
 		            	<td></td>
 		            	<td></td>
@@ -224,7 +224,8 @@ h2 {
 $(function(){
 	$(".chat_window_tr").on("click", function(){
 		var roomNo = $(this).attr("data-room-no");
-		window.open("chatWindow.ct?roomNo="+roomNo, "채팅창", "width=500 , height=600");
+		var roomName = $(this).attr("data-room-name");
+		window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName, "채팅창", "width=550 , height=800");
 	});
 });
 //chat_message/28
