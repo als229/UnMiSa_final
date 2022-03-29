@@ -39,4 +39,26 @@ public interface BoardService {
 	
 	int nomalInsertReply(Reply r);
 	
+	
+	//용병게시판 영역
+	
+	//용병게시판 게시글 총 갯수 조회
+	int mercenarySelectListCount();
+	//용병게시판 게시글 리스트 조회
+	ArrayList<Board> mercenarySelectList(PageInfo pi);
+	//용병게시판 작성
+	int mercenaryInsertBoard(Board b);
+	//용병게시판 조회수증가
+	int mercenaryIncreaseCount(int boardNo);
+	//용병게시판 상세조회
+	Board mercenarySelectBoard(int boardNo);
+	//용병게시판 삭제
+	int mercenaryDeleteBoard(int boardNo);
+	//용병게시판 수정
+	int mercenaryUpdateBoard(Board b);
+	//용병게시판 댓글 리스트조회
+	ArrayList<Reply> mercenarySelectReplyList(int boardNo);
+	//용병게시판 댓글 작성
+	int mercenaryInsertReply(Reply r);
+	
 }

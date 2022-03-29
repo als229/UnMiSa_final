@@ -16,9 +16,7 @@
 		<typeAlias type = "com.kh.wms.sportsPartner.model.vo.SportsDiary" alias = "sportsDiary"/>
 		<typeAlias type = "com.kh.wms.event.model.vo.Attendance" alias = "attendance"/>
 		<typeAlias type=  "com.kh.wms.board.model.vo.Board" alias = "board" />
-
 		<typeAlias type=  "com.kh.wms.board.model.vo.Reply" alias = "reply" />
-
 		<typeAlias type=  "com.kh.wms.chatting.model.vo.TeamChat" alias = "teamChat" />
 
 

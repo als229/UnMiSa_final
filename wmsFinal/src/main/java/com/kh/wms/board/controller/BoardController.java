@@ -158,8 +158,8 @@ public class BoardController {
 	}
 	@ResponseBody
 	@RequestMapping(value="rlist.bo", produces="application/json; charset=utf-8" )
-	public String ajaxNomalSelectReplyList(int bno) {
-		return new Gson().toJson(boardService.nomalSelectReplyList(bno));
+	public String ajaxNomalSelectReplyList(int boardNo) {
+		return new Gson().toJson(boardService.nomalSelectReplyList(boardNo));
 		
 	}
 	@ResponseBody
@@ -168,5 +168,119 @@ public class BoardController {
 		return	boardService.nomalInsertReply(r) > 0 ? "success" : "fail";
 	}
 	
+	//용병게시판
 	
+	
+	@RequestMapping(value="mercenaryList.mbo")
+	public ModelAndView mercenarySelectList(@RequestParam(value = "cpage", defaultValue="1") int currentPage, ModelAndView mv) {
+		
+		int listCount = boardService.mercenarySelectListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+	
+		ArrayList<Board> list = boardService.mercenarySelectList(pi);
+		
+		mv.addObject("pi", pi).addObject("list", list).setViewName("board/mercenaryListView");
+		
+		return mv;
+	}
+	
+	@RequestMapping("mercenaryEnrollForm.mbo")
+	public String mercenaryEnrollForm() {
+		return "board/mercenaryEnrollForm";
+	}
+	
+	@RequestMapping("mercenaryInsert.mbo")
+	public String mercenaryInsertBoard(Board b, MultipartFile upfile, HttpSession session, Model model) {
+		System.out.println(b);
+		if( !upfile.getOriginalFilename().equals("")) {
+		
+			String changeName = saveFile(upfile,session);
+			
+			b.setOriginName(upfile.getOriginalFilename());
+			b.setChangeName("resources/uploadFiles" + changeName);
+		}
+		
+		int result = boardService.mercenaryInsertBoard(b);
+			
+		if(result > 0) { 
+			session.setAttribute("alertMsg", "게시글 작성 성공");
+			return "redirect:mercenaryList.mbo";
+		}else {
+			model.addAttribute("errorMsg","게시글 작성 실패");
+			return null; 
+		}
+		
+	}
+	
+	@RequestMapping(value="mercenaryDetail.mbo")
+	public ModelAndView mercenaryDetail(ModelAndView mv ,int boardNo,HttpSession session) {
+		
+		int result = boardService.mercenaryIncreaseCount(boardNo);
+		if(result>0) {
+			Board b = boardService.mercenarySelectBoard(boardNo);
+			if(b != null ){
+				mv.addObject("b",b);
+			}else {
+				session.setAttribute("alertMsg", "조회실패");				
+			}
+		}else {
+			session.setAttribute("alertMsg", "조회실패");
+		}
+		
+		
+		
+		mv.setViewName("board/mercenaryDetailView");
+		
+		return mv;
+		
+	}
+	@RequestMapping(value="mercenaryUpdateForm.mbo")
+	public ModelAndView mercenaryUpdateForm(ModelAndView mv ,int boardNo) {
+		
+		Board b = boardService.mercenarySelectBoard(boardNo);
+		mv.addObject("b",b);
+		mv.setViewName("board/mercenaryUpdateForm");
+		return mv;
+	}
+	
+	@RequestMapping(value="mercenaryUpdate.mbo")
+	public ModelAndView mercenaryUpdate(ModelAndView mv, Board b, HttpSession session, MultipartFile reupfile ) {
+		if(!reupfile.getOriginalFilename().equals("")) {
+		if(b.getOriginName() != null) {
+			new File(session.getServletContext().getRealPath(b.getChangeName())).delete(); //new File(**경로**) 안에 경로를 적어 삭제할 곳 을 적어준다
+		}
+
+		String changeName = saveFile(reupfile,session);
+					
+		// b라는 Board객체에 새로운 정보(원본명, 저장경로) 담기
+		b.setOriginName(reupfile.getOriginalFilename());
+		b.setChangeName("resources/uploadFiles/" + changeName);
+		}
+				
+				
+		int result = boardService.mercenaryUpdateBoard(b);
+		if(result > 0) {
+			session.setAttribute("alertMsg", "게시글 수정에 성공했습니다 ^!^");
+			mv.setViewName("redirect:mercenaryDetail.mbo?boardNo=" + b.getBoardNo());
+		}else {
+			session.setAttribute("alertMsg","게시글 수정에 실패했습니다.");
+			mv.setViewName("redirect:mercenaryList.mbo");
+		}
+		
+		return mv;
+	
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="mrlist.mbo", produces="application/json; charset=utf-8" )
+	public String ajaxMercenarySelectReplyList(int boardNo) {
+		return new Gson().toJson(boardService.mercenarySelectReplyList(boardNo));
+		
+	}
+	@ResponseBody
+	@RequestMapping(value="mrinsert.mbo" )
+	public String ajaxMercenaryInsertReply(Reply r) {
+		return	boardService.mercenaryInsertReply(r) > 0 ? "success" : "fail";
+	}
 }

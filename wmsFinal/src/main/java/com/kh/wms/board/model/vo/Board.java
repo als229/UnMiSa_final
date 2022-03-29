@@ -18,6 +18,7 @@ public class Board {
 	private String boardType;
 	private String createDate;
 	private String boardStatus;
+	private int boardSelect;
 	private String memberId;
 	private int addressNo;
 	private String sidoName;

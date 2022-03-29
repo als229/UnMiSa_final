@@ -110,7 +110,7 @@
 				FROM REPLY R
 				JOIN MEMBER M ON (M.MEMBER_NO = R.MEMBER_NO)
 				WHERE REPLY_STATUS = 'Y'
-					AND	REF_BNO = #{boardNo}
+					AND	BOARD_NO = #{bno}
 				ORDER
 					BY REPLY_NO DESC	
 	</select>
@@ -119,18 +119,132 @@
 				(
 				REPLY_NO
 				,REPLY_CONTENT
-				,REF_BNO
+				,BOARD_NO
 				,MEMBER_NO
 				)
 				VALUES
 				(
 				seq_rno.nextval
 				,#{replyContent}
-				,#{refBoardNo}
+				,#{boardNo}
 				,#{memberNo}
-				
 				)
+	
+	
+	</insert>
+	<!-- 용병게시판 -->
+		<select id="mercenarySelectListCount" resultType="_int">
+		select count(*)
+		  from mercenary_board
+		 where board_status = 'Y'
+	</select>
+
+	<select id="mercenarySelectList" resultMap="boardResultSet">
+		SELECT  BOARD_NO, 
+				BOARD_TITLE, 
+				M.MEMBER_ID, 
+				COUNT,
+		       TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "CREATE_DATE", ORIGIN_NAME
+		  FROM MERCENARY_BOARD B
+		   JOIN MEMBER M ON (M.MEMBER_NO = B.MEMBER_NO)
+             WHERE BOARD_STATUS = 'Y' 
+		  ORDER BY BOARD_NO DESC
+	</select>
+
+
+	<insert id="mercenaryInsertBoard" parameterType="board">
+			INSERT INTO MERCENARY_BOARD(
+							BOARD_NO
+							,BOARD_TITLE
+							,MEMBER_NO
+							,BOARD_CONTENT
+							,ORIGIN_NAME
+							,CHANGE_NAME
+							,BOARD_TYPE	
+							,BOARD_SELECT
+							)
+							VALUES
+							(
+							SEQ_MBNO.NEXTVAL
+							,#{boardTitle}
+							,#{memberNo}
+							,#{boardContent}
+							,#{originName}
+							,#{changeName}
+							,0
+							,#{boardSelect}
+							)
 	
 	</insert>
 	
+ 	<update id="mercenaryIncreaseCount">
+		update
+			   mercenary_board
+		   set count = count + 1
+		 where board_no = #{boardNo}
+	   
+	</update>
+  	
+	<select id="mercenarySelectBoard" resultMap="boardResultSet" parameterType="_int">
+	SELECT 		 BOARD_NO, 
+				BOARD_TITLE, 
+				M.MEMBER_ID, 
+				BOARD_CONTENT,
+		       TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "CREATE_DATE",
+				ORIGIN_NAME,
+				CHANGE_NAME
+		  FROM MERCENARY_BOARD B
+		   JOIN MEMBER M ON (M.MEMBER_NO = B.MEMBER_NO)
+             WHERE BOARD_STATUS = 'Y' 
+             AND BOARD_NO=#{boardNo}
+	</select>
+	
+	<update id="mercenaryUpdate" parameterType="board">
+		UPDATE MERCENARY_BOARD
+			SET BOARD_TITLE = #{boardTitle}
+				,BOARD_CONTENT = #{boardContent}
+				,ORIGIN_NAME = #{originName}
+				,CHANGE_NAME = #{changeName}
+			WHERE BOARD_NO = #{boardNo}
+	
+	</update>
+	
+	<delete id="mercenaryDelete" parameterType="_int">
+		DELETE FROM MERCENARY_BOARD
+		 WHERE BOARD_NO = #{boardNo}
+
+	</delete>
+	
+	<select id="mercenaryReplyList" resultMap="replyResultSet" parameterType="_int">
+			SELECT
+					REPLY_NO
+					,M.MEMBER_ID
+					,REPLY_CONTENT
+					,TO_CHAR(CREATE_DATE,'YYYY-MM-DD') AS "CREATE_DATE"
+				FROM REPLY R
+				JOIN MEMBER M ON (M.MEMBER_NO = R.MEMBER_NO)
+				WHERE REPLY_STATUS = 'Y'
+					AND	BOARD_NO = #{bno}
+				ORDER
+					BY REPLY_NO DESC	
+	</select>
+	<insert id="mercenaryInsertReply" parameterType="reply">
+		INSERT INTO REPLY
+				(
+				REPLY_NO
+				,REPLY_CONTENT
+				,BOARD_NO
+				,MEMBER_NO
+				)
+				VALUES
+				(
+				seq_rno.nextval
+				,#{replyContent}
+				,#{boardNo}
+				,#{memberNo}
+				)
+	
+	
+	
+	</insert>
 </mapper>

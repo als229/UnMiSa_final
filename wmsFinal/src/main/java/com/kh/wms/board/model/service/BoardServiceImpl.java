@@ -49,7 +49,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int nomalDeleteBoard(int boardNo) {
-		return boardDao.nomalDelteBoard(sqlSession,boardNo);
+		return boardDao.nomalDeleteBoard(sqlSession,boardNo);
 	}
 
 	@Override
@@ -67,4 +67,51 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.nomalInsertReply(sqlSession, r);
 	}
 	
+	//용병게시판
+	
+	
+	@Override
+	public int mercenarySelectListCount() {
+	
+		return boardDao.mercenarySelectListCount(sqlSession);
+	}
+	
+	@Override
+	public ArrayList<Board> mercenarySelectList(PageInfo pi) {
+		return boardDao.mercenarySelectList(sqlSession, pi);
+	}
+	@Override
+	public int mercenaryInsertBoard(Board b) {
+		return boardDao.mercenaryInsertBoard(sqlSession, b);
+	}
+
+	@Override
+	public int mercenaryIncreaseCount(int boardNo) {
+		return boardDao.mercenaryIncreaseCount(sqlSession,boardNo);
+	}
+
+	@Override
+	public Board mercenarySelectBoard(int boardNo) {
+		return boardDao.mercenarySelectBoard(sqlSession,boardNo);
+	}
+
+	@Override
+	public int mercenaryDeleteBoard(int boardNo) {
+		return boardDao.mercenaryDeleteBoard(sqlSession,boardNo);
+	}
+
+	@Override
+	public int mercenaryUpdateBoard(Board b) {
+		return boardDao.mercenaryUpdateBoard(sqlSession,b);
+	}
+
+	@Override
+	public ArrayList<Reply> mercenarySelectReplyList(int boardNo) {
+		return boardDao.mercenaryReplyList(sqlSession,boardNo);
+	}
+
+	@Override
+	public int mercenaryInsertReply(Reply r) {
+		return boardDao.mercenaryInsertReply(sqlSession, r);
+	}
 }

@@ -3,8 +3,11 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-
-  <style>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <style>
+          <style>
  
         #boardList {text-align:center;}
         #boardList>tbody>tr:hover {cursor:pointer ;
@@ -28,14 +31,19 @@
 		text-decoration-line: none;
 		color: black;
         font-size: 20px;   
-        
+      
 		}
 	
 		.side-bar a:hover {
 		text-decoration-line: none;
 		color: rgb(135, 206, 235);
 		}
-        
+       
+       	.region-select{
+ 		float:right;
+ 		width:150px;	      	
+       	
+       	}
     </style>
 <head>
 <meta charset="UTF-8">
@@ -51,14 +59,27 @@
 	</div>
     <div class="wrap">
     	<div class="content">
+    	
             <div class="side-bar" align="center">
-                <a href="myPage.me" class="">운미사 사진게시판</a> 
+                <a href="" class="" align="center">운미사 사진게시판</a> 
                 &nbsp&nbsp&nbsp&nbsp&nbsp
-                <a href="mercenaryList.mbo">운미사 용병게시판</a> <br>
+                <a href="nomalList.bo"align="center">자유게시판</a> <br>
                 </div>
+                   <div class="region-select">
+                
+                    <select class="region-select" name="condition" >
+                        <option value="">서울</option>
+                        <option value="">경기</option>
+                        <option value="">부산</option>
+                    </select>
+                </div>
+                <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" >구해요</a>
+
+    	        <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" >끼워주세요</a>
                 <br> 
                 <br>
                  <br>
+                
              <form id="searchForm" action="" method="get" align="center">
                 <div class="select">
                 
@@ -80,7 +101,7 @@
             <!-- 로그인 상태일 경우만 보여지는 글쓰기 버튼 -->
             
            <c:if test="${not empty loginUser }">
-	            <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;float:right;" href="enrollForm.bo">글쓰기</a>
+	            <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;float:right;" href="mercenaryEnrollForm.mbo">글쓰기</a>
 	            <br>
             </c:if> 
             <br>
@@ -97,7 +118,7 @@
                 </thead>
                 <tbody>
                  <c:forEach var="b" items="${list }">
-                    <tr onclick="location.href='nomalDetail.bo?boardNo=${b.boardNo}'">
+                    <tr onclick="location.href='mercenaryDetail.mbo?boardNo=${b.boardNo}'">
                         <td>${ b.boardNo } </td>
                         <td>${ b.boardTitle }</td>
                         <td>${ b.memberId }</td>
@@ -121,12 +142,12 @@
                     <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                     </c:when>
                     <c:otherwise>
-                    	<li class="page-item"><a class="page-link" href="/list.bo?cpage=${pi.cureentPage - 1 }">Previous</a>
+                    	<li class="page-item"><a class="page-link" href="/mercenaryList.mbo?cpage=${pi.cureentPage - 1 }">Previous</a>
                     </c:otherwise>
                     
                     </c:choose>
                 <c:forEach var="p" begin="${pi.startPage }" end= "${ pi.endPage}">
-                    <li class="page-item"><a class="page-link" href="/list.bo?cpage=${ p }">${ p }</a></li>
+                    <li class="page-item"><a class="page-link" href="/mercenaryList.mbo?cpage=${ p }">${ p }</a></li>
                 </c:forEach> 
          
                     <c:choose>
@@ -134,7 +155,7 @@
                     <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
                     	</c:when>
                     	<c:otherwise>
-                    	 <li class="page-item"><a class="page-link" href="/list.bo?cpage=${ pi.currentPage + 1 }">Next</a></li>	
+                    	 <li class="page-item"><a class="page-link" href="/mercenaryList.mbo?cpage=${ pi.currentPage + 1 }">Next</a></li>	
                     	</c:otherwise>
                     </c:choose>
                 </ul>
@@ -153,6 +174,7 @@
     <div id="footer_area">
     	<jsp:include page="../common/footer.jsp"/>
     </div>
+
 
 </body>
 </html>
