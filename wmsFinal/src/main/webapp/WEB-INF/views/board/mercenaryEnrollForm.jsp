@@ -12,15 +12,11 @@
         #enrollForm>table * {margin:5px;}
        
         .region-select{
- 		margin-left:550px;
- 		width:100px;	      	
+ 		float: right;
+ 		width: 100px;	      	
        	
        	} 
-       	.board-select{
- 		margin-left:500px;
- 		width:100px;	      	
-       	
-       	}
+     
 </style>
 </head>
 <body>
@@ -39,7 +35,7 @@
                   
                
             <form id="enrollForm" method="post" action="mercenaryInsert.mbo" enctype="multipart/form-data" align="center">
-             <div class="region-select" >
+             <div class="region-select" style="margin-right: 320px;">
                 
                     <select class="region-select" name="location" >
                         <option value="서울">서울</option>
@@ -55,11 +51,7 @@
                         <option value="경상">경상</option>
                         <option value="제주">제주</option>
                     </select>
-                      
-                </div>
-                   <div class="board-select" >
-                
-                    <select class="board-select" name="boardSelect" >
+                     <select class="board-select" name="boardSelect" style="width: 100px;" >
                      
                         <option value="0">구해요</option>
                      
@@ -67,7 +59,8 @@
                      
                     </select>
                       
-                </div>  
+                </div>
+                 
                 <table algin="center">
                     <tr>
                         <th><label for="title" style="margin-left: 100px;" >제목</label></th>

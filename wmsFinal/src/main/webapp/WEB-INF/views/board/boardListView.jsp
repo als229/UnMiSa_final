@@ -35,47 +35,33 @@
 		text-decoration-line: none;
 		color: rgb(135, 206, 235);
 		}
-        
+ 
+   
     </style>
+  
+	
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+  
 <body>
+	
 	<div id="header_area">
+	  	
 		<jsp:include page="../common/header.jsp"/>
 		
 		<div class="innerOuter" style="padding:5% 10%;">
-            <h2 align="center">우리동네 커뮤니티</h2>
+            <h2 >우리동네 커뮤니티</h2>
            
 	</div>
     <div class="wrap">
     	<div class="content">
-            <div class="side-bar" align="center">
+            <div class="side-bar">
                 
                 <a href="mercenaryList.mbo">운미사 용병게시판</a> <br>
                 </div>
-                <br> 
-                <br>
-                 <br>
-             <form id="searchForm" action="" method="get" align="center">
-                <div class="select">
-                
-                    <select class="custom-select" name="condition">
-                        <option value="writer">작성자</option>
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
-                    </select>
-                </div>
-                <div class="text">
-                    <input type="text" class="form-control" name="keyword">
-                </div>
-                <button type="submit" class="searchBtn btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;">검색</button>
-            </form>
-            <br>
-            <br>
-            <br>
-            <br>
+          
             <!-- 로그인 상태일 경우만 보여지는 글쓰기 버튼 -->
             
            <c:if test="${not empty loginUser }">

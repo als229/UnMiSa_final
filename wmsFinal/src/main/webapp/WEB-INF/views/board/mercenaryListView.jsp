@@ -8,21 +8,16 @@
 <title>Insert title here</title>
  <style>
           <style>
- 
-        #boardList {text-align:center;}
+ 		
+ 		.pagination{ font-family: 'gmarket_font_medium';}
+        #boardList {text-align:center;
+        			font-family: 'gmarket_font_medium';}
         #boardList>tbody>tr:hover {cursor:pointer ;
                                     background-color:lightblue;    }
 
         #pagingArea {width:fit-content; margin:auto;}
         
-        #searchForm {
-            width:80%;
-            margin:auto;
-        }
-        #searchForm>* {
-            float:left;
-            margin:5px;
-        }
+     	
         .select {width:20%;}
         .text {width:53%;}
         .searchBtn {width:20%;}
@@ -31,6 +26,7 @@
 		text-decoration-line: none;
 		color: black;
         font-size: 20px;   
+        
       
 		}
 	
@@ -54,42 +50,25 @@
 		<jsp:include page="../common/header.jsp"/>
 		
 		<div class="innerOuter" style="padding:5% 10%;">
-            <h2 align="center">우리동네 커뮤니티</h2>
+            <h2>우리동네 커뮤니티</h2>
            
 	</div>
     <div class="wrap">
     	<div class="content">
     	
-            <div class="side-bar" align="center">
+            <div class="side-bar" >
 
-                <a href="nomalList.bo"align="center">자유게시판</a> <br>
+                <a href="nomalList.bo">자유게시판</a>
+                <br>
+                <br>
+                <br>
                 </div>
              
                 <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?boardSelect=0">구해요</a>
 
     	        <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?boardSelect=1">끼워주세요</a>
-                <br> 
                 <br>
-                 <br>
-                
-             <form id="searchForm" action="" method="get" align="center">
-                <div class="select">
-                
-                    <select class="custom-select" name="condition">
-                        <option value="writer">작성자</option>
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
-                    </select>
-                </div>
-                <div class="text">
-                    <input type="text" class="form-control" name="keyword">
-                </div>
-                <button type="submit" class="searchBtn btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;">검색</button>
-            </form>
-            <br>
-            <br>
-            <br>
-            <br>
+                <br>
             <!-- 로그인 상태일 경우만 보여지는 글쓰기 버튼 -->
             
            <c:if test="${not empty loginUser }">
