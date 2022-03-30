@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.member.model.dao.MemberDao;
 import com.kh.wms.member.model.vo.Member;
+import com.kh.wms.team.model.vo.Battle;
 import com.kh.wms.team.model.vo.MemberTeam;
 import com.kh.wms.team.model.vo.Team;
 
@@ -85,8 +86,28 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.applyTeamJoin(sqlSession, tm);
 	}
 	@Override
-	public ArrayList<MemberTeam> myTeamMemberJoinList(int teamNo) {
-		return memberDao.myTeamMemberJoinList(sqlSession, teamNo);
+	public ArrayList<MemberTeam> myTeamMemberJoinList(int teamNo, PageInfo pi) {
+		return memberDao.myTeamMemberJoinList(sqlSession, teamNo, pi);
+	}
+	@Override
+	public int memberCount(int teamNo) {
+		return memberDao.memberCount(sqlSession,teamNo);
+	}
+	@Override
+	public int insertTeamMember(Map<String, Object> map) {
+		return memberDao.insertTeamMember(map, sqlSession);
+	}
+	@Override
+	public int applyBattle(Battle bt) {
+		return memberDao.applyBattle(sqlSession, bt);
+	}
+	@Override
+	public int battleCount(int teamNo) {
+		return memberDao.battleCount(sqlSession, teamNo);
+	}
+	@Override
+	public ArrayList<Battle> selectBattleApplyList(int teamNo, PageInfo pi) {
+		return memberDao.selectBattleApplyList(teamNo, pi, sqlSession);
 	}
 	
 	

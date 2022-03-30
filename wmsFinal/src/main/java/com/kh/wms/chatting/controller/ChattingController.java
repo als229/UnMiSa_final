@@ -8,10 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,17 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.kh.wms.chatting.model.service.ChattingService;
-import com.kh.wms.chatting.model.vo.ChatRoom;
 import com.kh.wms.chatting.model.vo.ChattingMessage;
 import com.kh.wms.chatting.model.vo.TeamChat;
 import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.common.template.Pagination;
 import com.kh.wms.member.model.vo.Member;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Controller
 public class ChattingController {
 
@@ -106,15 +96,18 @@ public class ChattingController {
 	
 	
 	@RequestMapping(value="chatWindow.ct")
-	public ModelAndView chatWindow(int roomNo, ModelAndView mv) {
+	public ModelAndView chatWindow(int roomNo, String roomName, ModelAndView mv) {
 		
 		ArrayList<ChattingMessage> clist = chattingService.selectMessageList(roomNo);
 		ArrayList<Member> mlist = chattingService.selectRoomMembers(roomNo);
 		
 		mv.addObject("clist", clist);
+		System.out.println(clist);
 		mv.addObject("mlist", mlist);
+		System.out.println(mlist);
 		mv.addObject("count", mlist.size());
 		mv.addObject("roomNo",roomNo);
+		mv.addObject("roomName",roomName);
 		mv.setViewName("chatting/chatWindow");
 		return mv;
 	}

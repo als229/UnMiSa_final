@@ -59,10 +59,27 @@
 		<result column="JOIN_DATE" property="joinDate"/>
 		<result column="JOIN_STATUS" property="joinStatus"/>
 		<result column="INTRO_MYSELF" property="introMyself"/>
+		<result column="rownum" property="rownum"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="BIRTH_DATE" property="birthDate"/>
 		
 
 	</resultMap>
 	
+	<resultMap type="battle" id="battleResultSet">
+	
+		<result column="BATTLE_NO" property="battleNo"/>
+		<result column="HOMETEAM_NO" property="homeTeamNo"/>
+		<result column="AWAYTEAM_NO" property="awayTeamNo"/>
+		<result column="SPORTS_NO" property="sportsNo"/>
+		<result column="BATTLE_DATE" property="battleDate"/>
+		<result column="AGREE_STATUS" property="agreeStatus"/>
+		<result column="RESULT_STATUS" property="resultStatus"/>
+		<result column="TEAM_INTRO" property="teamIntro"/>
+		<result column="TEAM_NAME" property="awayTeamName"/>
+		<result column="MEMBER_NO" property="awayBossNo"/>
+
+	</resultMap>
 	
 	
 	<select id="ajaxCheckId" resultType="_int" parameterType="String">
@@ -235,6 +252,86 @@
 	
 	</insert>
 	
+	<select id="memberCount" parameterType="_int" resultType="_int">
+		
+		SELECT COUNT(*)
+		FROM MEMBER_TEAM
+		WHERE TEAM_NO = #{teamNo}
+		AND JOIN_STATUS = 'H'
+	
+	</select>
+	
+	<select id="myTeamMemberJoinList" parameterType="_int" resultMap="memberTeamResultSet">
+	
+		SELECT  M.MEMBER_NAME, SUBSTR(M.BIRTH_DATE, 1,10) BIRTH_DATE, T.INTRO_MYSELF, ROWNUM AS "rownum", MEMBER_NO,JOIN_STATUS
+		FROM MEMBER_TEAM T
+        JOIN MEMBER M USING(MEMBER_NO)
+		WHERE T.TEAM_NO = #{teamNo}
+		AND T.JOIN_STATUS = 'H'
+		
+	</select>
+	
+	<update id="insertTeamMember" parameterType="HashMap">
+		
+		UPDATE MEMBER_TEAM
+		SET
+		JOIN_STATUS = 'Y'
+		WHERE TEAM_NO = #{teamNo}
+		AND MEMBER_NO = #{memberNo}
+	
+	</update>
+	
+	<insert id="applyBattle" parameterType="HashMap">
+		
+		INSERT INTO
+			BATTLE
+			(
+			BATTLE_NO,
+			TEAM_INTRO,
+			SPORTS_NAME,
+			HOMETEAM_NO,
+			AWAYTEAM_NO,
+			BATTLE_DATE
+			)
+			VALUES
+			(
+			SEQ_BTNO.NEXTVAL,
+			#{teamIntro},
+			#{sportsName},
+			#{homeTeamNo},
+			#{awayTeamNo},
+			#{battleDate}
+			)
+	
+	</insert>
+	
+	<select id="battleCount" parameterType="_int" resultType="_int">
+	
+		SELECT COUNT(*)
+		FROM BATTLE
+		WHERE HOMETEAM_NO = #{teamNo}
+		AND AGREE_STATUS = '1'
+		
+	</select>	
+	
+	<select id="selectBattleApplyList" parameterType="_int" resultMap="battleResultSet">
+	
+		SELECT *
+		FROM (
+		        SELECT SUBSTR(BATTLE_DATE, 1,10) BATTLE_DATE, MEMBER_NO 
+		        , AGREE_STATUS
+		        ,HOMETEAM_NO
+		        ,TEAM_NAME
+		        ,T.SPORTS_NAME
+		        ,B.TEAM_INTRO
+		        FROM TEAM  T
+		        JOIN BATTLE B ON (TEAM_NO = AWAYTEAM_NO)
+		        JOIN MEMBER ON (BOSS_ID = MEMBER_ID)
+		        )
+		WHERE HOMETEAM_NO = #{teamNo}
+		AND AGREE_STATUS = '1'
+	
+	</select>
 	
 
 </mapper>

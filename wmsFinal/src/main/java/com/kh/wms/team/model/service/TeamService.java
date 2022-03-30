@@ -16,7 +16,7 @@ public interface TeamService {
 	ArrayList<Team> selectTeamList(PageInfo pi);
 	int serchSelectWmsCount(Map<String, Object> map);
 	ArrayList<Team> serchSelectWms(Map<String, Object> map, PageInfo pi);
-
+	ArrayList<Team> selectOptionTeamList(Map<String, Object> map);
 
 	
 	

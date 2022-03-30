@@ -113,11 +113,9 @@
                     <!-- 승률	운동종목	지역	팀 이름 	 승점	팀 등록 날짜	 동네 순위 -->
                     <tr>
                         <th>팀 번호</th>
-                        <th>승률</th>
                         <th>운동종목</th>
                         <th>지역</th>
                         <th>팀 이름</th>
-                        <th>승점</th>
                         <th>팀 등록 날짜</th>
                     </tr>
                 </thead>
@@ -125,20 +123,10 @@
                 	<c:forEach var="t" items="${ serchSelectWmsList }">
 	                    <tr class="teamTable">
 	                        <td>${ t.teamNo }</td>
-	                        <c:choose>
-	                        	<c:when test="${ t.winCount + t.loseCount + t.drawCount  ne 0}">
-		                        	<td> ${ t.winPercent }%</td>
-	                        	</c:when>
-	                        	<c:otherwise>
-		                        	<td>0%</td>
-	                        	</c:otherwise>
-	                        	
-	                        </c:choose>
 	                        <td>${ t.sportsName }</td>
 	                        <td>${ t.sidoName }  ${t.siGunGuName }</td>
 	                        <td class="team-name-inTable">${ t.teamName }</td>
 	                        <input type="hidden" value="${ t.teamNo }">
-	                        <td>${ t.winPoint }</td>
 	                        <td>${ t.createDate }</td>
 	                    </tr>
 					</c:forEach>

@@ -14,6 +14,7 @@ public class ChattingMessage {
 	private String messageTime;
 	private String memberId;
 	private String roomName;
+	private String memberName;
 	
 	
 }

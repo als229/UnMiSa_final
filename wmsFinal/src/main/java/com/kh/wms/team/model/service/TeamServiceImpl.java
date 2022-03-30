@@ -49,6 +49,12 @@ public class TeamServiceImpl implements TeamService{
 	public ArrayList<Team> serchSelectWms(Map<String, Object> map, PageInfo pi) {
 		return teamDao.serchSelectWms(sqlSession, map, pi);
 	}
+	
+	@Override
+	public ArrayList<Team> selectOptionTeamList(Map<String, Object> map) {
+		return teamDao.selectOptionTeamList(sqlSession,map);
+	}
+
 
 
 	
