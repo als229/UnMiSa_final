@@ -41,7 +41,7 @@
             <form id="enrollForm" method="post" action="mercenaryInsert.mbo" enctype="multipart/form-data" align="center">
              <div class="region-select" >
                 
-                    <select class="region-select" name="sidoName" >
+                    <select class="region-select" name="location" >
                         <option value="서울">서울</option>
                         <option value="경기">경기</option>
                         <option value="부산">부산</option>
@@ -88,6 +88,7 @@
                         <th><label for="content" style="margin-left: 100px;">내용</label></th>
                         <td><textarea id="content" class="form-control" rows="10" style="resize:none;" name="boardContent" required></textarea></td>
                     </tr>
+                 
                 </table>
                 <br>
 

@@ -114,4 +114,15 @@ public class BoardServiceImpl implements BoardService {
 	public int mercenaryInsertReply(Reply r) {
 		return boardDao.mercenaryInsertReply(sqlSession, r);
 	}
+
+	@Override
+	public int mercenaryChoiceListCount(int boardSelect) {
+		
+		return boardDao.mercenaryChoiceListCount(sqlSession,  boardSelect);
+	}
+
+	@Override
+	public ArrayList<Board> mercenaryChoiceList(PageInfo pi, int boardSelect) {
+		return boardDao.mercenaryChoiceList(sqlSession, pi,boardSelect);
+	}
 }

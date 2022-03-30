@@ -24,6 +24,7 @@ public class Board {
 	private String sidoName;
 	private String gu;
 	private String dong;
+	private String location;
 	
 
 }

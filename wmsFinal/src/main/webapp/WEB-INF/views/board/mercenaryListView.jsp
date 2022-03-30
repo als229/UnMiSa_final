@@ -61,21 +61,13 @@
     	<div class="content">
     	
             <div class="side-bar" align="center">
-                <a href="" class="" align="center">운미사 사진게시판</a> 
-                &nbsp&nbsp&nbsp&nbsp&nbsp
+
                 <a href="nomalList.bo"align="center">자유게시판</a> <br>
                 </div>
-                   <div class="region-select">
-                
-                    <select class="region-select" name="condition" >
-                        <option value="">서울</option>
-                        <option value="">경기</option>
-                        <option value="">부산</option>
-                    </select>
-                </div>
-                <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" >구해요</a>
+             
+                <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?boardSelect=0">구해요</a>
 
-    	        <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" >끼워주세요</a>
+    	        <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?boardSelect=1">끼워주세요</a>
                 <br> 
                 <br>
                  <br>
@@ -113,7 +105,7 @@
                         <th>작성자</th>
                         <th>작성일</th>
                         <th>조회수</th>
-                        <th>첨부파일</th>
+                        <th>지역</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -124,11 +116,10 @@
                         <td>${ b.memberId }</td>
                         <td>${ b.createDate }</td>
                         <td>${ b.count }</td>
-                        <td>
-                        	<c:if test="${ not empty b.originName }">
-                        	 ★
-                        	</c:if>
-                        </td>
+                        <td>${ b.location }</td>
+                        	 
+                        	
+                        
                     </tr>
                    </c:forEach> 
                 </tbody>

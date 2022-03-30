@@ -98,6 +98,18 @@ public class BoardDao {
 	public int mercenaryInsertReply(SqlSessionTemplate sqlSession, Reply r) {
 		return sqlSession.insert("boardMapper.mercenaryInsertReply", r);
 	}
+
+	public int mercenaryChoiceListCount(SqlSessionTemplate sqlSession, int boardSelect) {
+		return sqlSession.selectOne("boardMapper.mercenaryChoiceListCount",boardSelect);
+	}
+
+	public ArrayList<Board> mercenaryChoiceList(SqlSessionTemplate sqlSession, PageInfo pi, int boardSelect) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+	 return (ArrayList)sqlSession.selectList("boardMapper.mercenaryChoiceList", boardSelect, rowBounds);
 	
-	
+	}
 }

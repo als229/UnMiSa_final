@@ -60,5 +60,8 @@ public interface BoardService {
 	ArrayList<Reply> mercenarySelectReplyList(int boardNo);
 	//용병게시판 댓글 작성
 	int mercenaryInsertReply(Reply r);
-	
+	//용병게시판 선택 리스트
+	int mercenaryChoiceListCount(int boardSelect);
+	//용병게시판 선택
+	ArrayList<Board> mercenaryChoiceList(PageInfo pi,int boardSelect);
 }

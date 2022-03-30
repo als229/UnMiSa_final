@@ -52,8 +52,7 @@
     <div class="wrap">
     	<div class="content">
             <div class="side-bar" align="center">
-                <a href="myPage.me" class="">운미사 사진게시판</a> 
-                &nbsp&nbsp&nbsp&nbsp&nbsp
+                
                 <a href="mercenaryList.mbo">운미사 용병게시판</a> <br>
                 </div>
                 <br> 
@@ -117,26 +116,26 @@
             <div id="pagingArea">
                 <ul class="pagination">
                 <c:choose>
-                	<c:when test="${pi.currentPage eq 1 }">
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    </c:when>
-                    <c:otherwise>
-                    	<li class="page-item"><a class="page-link" href="/list.bo?cpage=${pi.cureentPage - 1 }">Previous</a>
-                    </c:otherwise>
-                    
-                    </c:choose>
-                <c:forEach var="p" begin="${pi.startPage }" end= "${ pi.endPage}">
-                    <li class="page-item"><a class="page-link" href="/list.bo?cpage=${ p }">${ p }</a></li>
-                </c:forEach> 
-         
-                    <c:choose>
-                    	<c:when test="${ pi.currentPage eq pi.maxPage }">
-                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                    	</c:when>
-                    	<c:otherwise>
-                    	 <li class="page-item"><a class="page-link" href="/list.bo?cpage=${ pi.currentPage + 1 }">Next</a></li>	
-                    	</c:otherwise>
-                    </c:choose>
+						<c:when test="${ pi.currentPage eq 1 }">
+	                    	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li><!-- 1번페이지일경우 -->
+	                    </c:when>
+	                    <c:otherwise>
+	                    	<li class="page-item"><a class="page-link" href="nomalList.bo?cpage=${ pi.currentPage - 1 }">Previous</a></li>
+	                    </c:otherwise>
+					</c:choose>
+
+					<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                    	<li class="page-item"><a class="page-link" href="nomalList.bo?cpage=${ p }">${ p }</a></li>
+					</c:forEach>
+
+					<c:choose>
+						<c:when test="${ pi.currentPage eq pi.maxPage }">
+		                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li><!-- 마지막페이지일경우 -->
+						</c:when>
+						<c:otherwise>
+		                    <li class="page-item"><a class="page-link" href="nomalList.bo?cpage=${ pi.currentPage + 1 }">Next</a></li><!-- 마지막페이지일경우 -->
+						</c:otherwise>
+					</c:choose>
                 </ul>
             </div>
 

@@ -172,15 +172,25 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="mercenaryList.mbo")
-	public ModelAndView mercenarySelectList(@RequestParam(value = "cpage", defaultValue="1") int currentPage, ModelAndView mv) {
-		
-		int listCount = boardService.mercenarySelectListCount();
-		
-		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
-	
-		ArrayList<Board> list = boardService.mercenarySelectList(pi);
-		
-		mv.addObject("pi", pi).addObject("list", list).setViewName("board/mercenaryListView");
+	public ModelAndView mercenarySelectList(@RequestParam(value = "cpage", defaultValue="1") int currentPage, ModelAndView mv, @RequestParam(value = "boardSelect", defaultValue="2") int boardSelect) {
+		if(boardSelect == 2) {
+			
+			int listCount = boardService.mercenarySelectListCount();
+			
+			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+			
+			ArrayList<Board> list = boardService.mercenarySelectList(pi);
+			
+			mv.addObject("pi", pi).addObject("list", list).setViewName("board/mercenaryListView");
+		}else {
+			int listCount = boardService.mercenaryChoiceListCount(boardSelect);
+			
+			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 10, 5);
+			
+			ArrayList<Board> list = boardService.mercenaryChoiceList(pi,boardSelect);
+			
+			mv.addObject("pi", pi).addObject("list", list).setViewName("board/mercenaryListView");
+		}
 		
 		return mv;
 	}

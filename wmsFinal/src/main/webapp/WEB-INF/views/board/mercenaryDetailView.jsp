@@ -34,7 +34,7 @@
             <h2>게시글 상세보기</h2>
             <br>
 
-            <a class="btn btn-secondary" style="float:right;" href="mercenaryListView.mbo">목록으로</a>
+            <a class="btn btn-secondary" style="float:right;" href="mercenaryList.mbo">목록으로</a>
             <br><br>
 
             <table id="contentArea" algin="center" class="table">
