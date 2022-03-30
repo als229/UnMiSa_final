@@ -67,7 +67,7 @@
                     <thead>
                         
                         <tr>
-                            <th>No.</th>                        
+                            <th>팀 번호</th>                        
                             <th>팀 이름</th>
                             <th>운동 종목</th>
                             <th>탈퇴하기</th>
@@ -76,7 +76,7 @@
                     <tbody>
 						<c:forEach var="t" items="${ myJoinTeamList }">
 	                        <tr class="team-info">
-	                            <td style="vertical-align: middle;">${ t.rowNum }</td>
+	                            <td style="vertical-align: middle;">${ t.teamNo }</td>
 	                            <td class="team-name" style="vertical-align: middle;">${ t.teamName }</td>
 	                        	<input type="hidden" name="teamNo" value="${ t.teamNo }">
 	                            <td style="vertical-align: middle;">${ t.sportsName }</td>

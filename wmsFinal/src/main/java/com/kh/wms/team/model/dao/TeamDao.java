@@ -48,6 +48,10 @@ public class TeamDao {
 		return (ArrayList)sqlSession.selectList("teamMapper.serchSelectWms", map, rowBounds);
 	}
 
+	public ArrayList<Team> selectOptionTeamList(SqlSessionTemplate sqlSession, Map<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("teamMapper.selectOptionTeamList", map);
+	}
+
 
 	
 }
