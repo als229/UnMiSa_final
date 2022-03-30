@@ -143,6 +143,9 @@ h2 {
 	background-color: white;
 	border: 1px solid #1A237E;
 }
+.pager_area{
+	margin-left: 45%;
+}
 
 
 </style>
