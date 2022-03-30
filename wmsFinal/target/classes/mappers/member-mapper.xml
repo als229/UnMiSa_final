@@ -26,7 +26,7 @@
 		<result column="PAYMENT_METHOD" property="paymentMethod"/>
 	</resultMap>
 	
-		<resultMap type="team" id="teamMemberResultSet">
+	<resultMap type="team" id="teamMemberResultSet">
 		<result column="TEAM_NO" property="teamNo"/>
 		<result column="SPORTS_NO" property="sportsNo"/>
 		<result column="TEAM_NAME" property="teamName"/>
@@ -45,6 +45,20 @@
 		<result column="CHANGE_NAME" property="logoChangeName"/>
 		<result column="BOSS_ID" property="bossId"/>
 		<result column="rNum" property="rowNum"/>
+		
+
+	</resultMap>
+	
+	
+	<resultMap type="memberTeam" id="memberTeamResultSet">
+	
+		<result column="TEAM_NO" property="teamNo"/>
+		<result column="SPORTS_NO" property="sportsNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_GRADE" property="memberGrade"/>
+		<result column="JOIN_DATE" property="joinDate"/>
+		<result column="JOIN_STATUS" property="joinStatus"/>
+		<result column="INTRO_MYSELF" property="introMyself"/>
 		
 
 	</resultMap>
@@ -203,6 +217,23 @@
 			TEAM_NO = #{teamNo}
 			
 	</update>
+	
+	<insert id="applyTeamJoin" parameterType = "memberTeam" >
+	
+		INSERT INTO MEMBER_TEAM 
+				(
+				MEMBER_NO
+				,TEAM_NO
+				,INTRO_MYSELF
+				)
+				VALUES
+				(
+				#{memberNo}
+				,#{teamNo}
+				,#{introMyself}
+				)
+	
+	</insert>
 	
 	
 

@@ -90,10 +90,7 @@ public class TeamController {
 	}
 	@RequestMapping("createTeamForm.te")
 	public ModelAndView createTeamForm(ModelAndView mv) {
-		
-
 		mv.setViewName("team/createTeam");
-		
 		return mv;
 	}
 	@RequestMapping("gymReservation.te")

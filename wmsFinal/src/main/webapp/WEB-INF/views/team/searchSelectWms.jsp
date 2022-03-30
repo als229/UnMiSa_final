@@ -85,7 +85,7 @@
             </div>
             <div class="search2"style="margin-left: 40px;">
                 <select id="siGunGuSelect"class="form-select form-select-sm" style="margin-top: 5px;">
-
+					<option>${ map1.siGunGuName }</option>
                 </select>
             </div>
             <div class="search3"style="margin-left: 40px;" >
@@ -220,6 +220,7 @@
 	        siDoSelect.onchange = function() {
 	            createSelection();
 	            // siDoSelect에 변화가 있을때 createSelection 메서드가 호출된다.
+	            
 	        }
 			
 			let map = new Map();
@@ -242,7 +243,6 @@
 	                set.add(address[key].gu);
 	            }
 	        }
-            createSelection();
 			
     		let selectSiDoName = '${map1.sidoName}';
     		let selectSiGunGuName = '${map1.siGunGuName}';

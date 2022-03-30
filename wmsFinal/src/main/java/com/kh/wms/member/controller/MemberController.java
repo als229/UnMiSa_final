@@ -34,6 +34,7 @@ import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.common.template.Pagination;
 import com.kh.wms.member.model.service.MemberService;
 import com.kh.wms.member.model.vo.Member;
+import com.kh.wms.team.model.vo.MemberTeam;
 import com.kh.wms.team.model.vo.Team;
 
 @Controller
@@ -384,10 +385,19 @@ public class MemberController {
 		return "member/myTeamMemberList";
 	}
 	@RequestMapping("myTeamMemberJoinList.te")
-	public String myTeamMemberJoinList() {
+	public ModelAndView myTeamMemberJoinList(ModelAndView mv, int teamNo) {
 		
 		
-		return "member/myTeamMemberJoinList";
+		Team t = memberService.memberSelectTeam(teamNo);
+		
+		int memberCount = memberService
+		
+		ArrayList <MemberTeam> mtList = memberService.myTeamMemberJoinList(teamNo);
+
+		mv.addObject("t",t);
+		mv.setViewName("member/myTeamMemberJoinList");
+		
+		return mv;
 	}
 	@RequestMapping("battleApplyList.te")
 	public String battleApplyList() {
@@ -396,6 +406,20 @@ public class MemberController {
 		return "member/battleApplyList";
 	}
 	
+	@RequestMapping("teamJoinApply.te")
+	public ModelAndView applyTeamJoin(ModelAndView mv, MemberTeam tm) {
+		
+		int result = memberService.applyTeamJoin(tm);
+		
+		if(result > 0) {
+			mv.addObject("alertMsg","신청에 성공하셨습니다!!");
+		}else {
+			mv.addObject("alertMsg", "신청에 실패했습니다...");
+		}
+		
+		mv.setViewName("team/searchWms");
+		return mv;
+	}
 	@RequestMapping("memberSelectTeam.te")
 	public ModelAndView memberSelectTeam(ModelAndView mv, int teamNo) {
 		
@@ -428,7 +452,7 @@ public class MemberController {
 		
 		return changeName;
 	}
-	
+
 
 	
 	
