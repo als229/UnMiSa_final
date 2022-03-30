@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.member.model.vo.Member;
+import com.kh.wms.team.model.vo.Battle;
 import com.kh.wms.team.model.vo.MemberTeam;
 import com.kh.wms.team.model.vo.Team;
 
@@ -28,7 +29,12 @@ public interface MemberService {
 	ArrayList<Team> selectListCreateTeam(Member m, PageInfo pi);
 	int updateTeam(Team team);
 	int applyTeamJoin(MemberTeam tm);
-	ArrayList<MemberTeam> myTeamMemberJoinList(int teamNo);
+	ArrayList<MemberTeam> myTeamMemberJoinList(int teamNo, PageInfo pi);
+	int memberCount(int teamNo);
+	int insertTeamMember(Map<String, Object> map);
+	int applyBattle(Battle bt);
+	int battleCount(int teamNo);
+	ArrayList<Battle> selectBattleApplyList(int teamNo, PageInfo pi);
 	
 	
 	

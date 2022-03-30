@@ -71,7 +71,7 @@
             <div class="team-title">
                 <h1 style="margin-left: 20px;">멤버 신청 관리</h1>
 	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " onclick="location.href='myTeamMemberList.te'">팀원 관리</button>
-	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 30px;" class="btn btn-primary " onclick="location.href='battleApplyList.te'">경기 신청 관리</button>
+	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 30px;" class="btn btn-primary " onclick="location.href='battleApplyList.te?teamNo=${t.teamNo}'">경기 신청 관리</button>
 	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 30px;" class="btn btn-primary " onclick="location.href='myTeamMemberJoinList.te?teamNo=${t.teamNo}'">멤버 신청 관리</button>
 	        </div>
             <div class="teamHeader">
@@ -87,7 +87,7 @@
                     <thead>
                         
                         <tr>
-                            <th>No.</th>                        
+                            <th>멤버 번호</th>                        
                             <th>이름</th>
                             <th>생년월일</th>
                             <th>자기소개</th>
@@ -95,78 +95,17 @@
                         </tr>
                     </thead>
                     <tbody>
-
+					<c:forEach var="mt" items="${ mtList }" >
                         <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">김호</td>
-                            <td style="vertical-align: middle;">2001-12-32</td>
-                            <td style="vertical-align: middle;"><buttontype="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"data-bs-toggle="modal" data-bs-target="#memberIntro">자기소개 보기</button></td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"  data-bs-toggle="modal" data-bs-target="#insert-member">가입시키기</button></td>
+                            <td style="vertical-align: middle;">${ mt.memberNo }</td>
+                            <td class="team-name" style="vertical-align: middle;">${ mt.memberName }</td>
+                            <td style="vertical-align: middle;">${ mt.birthDate }</td>
+                            <td style="vertical-align: middle;"><buttontype="button" class="btn btn-primary introMyself" style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"data-bs-toggle="modal" data-bs-target="#memberIntro" data-intro="${ mt.introMyself }">자기소개 보기</button></td>
+                            <input type="hidden" value="${ mt.introMyself }">
+                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"  data-bs-toggle="modal" data-bs-target="#insert-member" data-test1="${ t.teamNo }" data-test2="${ mt.memberNo }">가입시키기</button></td>
                         </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">김호</td>
-                            <td style="vertical-align: middle;">2001-12-32</td>
-                            <td style="vertical-align: middle;"><buttontype="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"data-bs-toggle="modal" data-bs-target="#memberIntro">자기소개 보기</button></td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"  data-bs-toggle="modal" data-bs-target="#insert-member">가입시키기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">김호</td>
-                            <td style="vertical-align: middle;">2001-12-32</td>
-                            <td style="vertical-align: middle;"><buttontype="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"data-bs-toggle="modal" data-bs-target="#memberIntro">자기소개 보기</button></td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"  data-bs-toggle="modal" data-bs-target="#insert-member">가입시키기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">김호</td>
-                            <td style="vertical-align: middle;">2001-12-32</td>
-                            <td style="vertical-align: middle;"><buttontype="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"data-bs-toggle="modal" data-bs-target="#memberIntro">자기소개 보기</button></td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"  data-bs-toggle="modal" data-bs-target="#insert-member">가입시키기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">김호</td>
-                            <td style="vertical-align: middle;">2001-12-32</td>
-                            <td style="vertical-align: middle;"><buttontype="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"data-bs-toggle="modal" data-bs-target="#memberIntro">자기소개 보기</button></td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"  data-bs-toggle="modal" data-bs-target="#insert-member">가입시키기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">김호</td>
-                            <td style="vertical-align: middle;">2001-12-32</td>
-                            <td style="vertical-align: middle;"><buttontype="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"data-bs-toggle="modal" data-bs-target="#memberIntro">자기소개 보기</button></td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"  data-bs-toggle="modal" data-bs-target="#insert-member">가입시키기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">김호</td>
-                            <td style="vertical-align: middle;">2001-12-32</td>
-                            <td style="vertical-align: middle;"><buttontype="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"data-bs-toggle="modal" data-bs-target="#memberIntro">자기소개 보기</button></td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"  data-bs-toggle="modal" data-bs-target="#insert-member">가입시키기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">김호</td>
-                            <td style="vertical-align: middle;">2001-12-32</td>
-                            <td style="vertical-align: middle;"><buttontype="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"data-bs-toggle="modal" data-bs-target="#memberIntro">자기소개 보기</button></td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"  data-bs-toggle="modal" data-bs-target="#insert-member">가입시키기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">김호</td>
-                            <td style="vertical-align: middle;">2001-12-32</td>
-                            <td style="vertical-align: middle;"><buttontype="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"data-bs-toggle="modal" data-bs-target="#memberIntro">자기소개 보기</button></td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"  data-bs-toggle="modal" data-bs-target="#insert-member">가입시키기</button></td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">김호</td>
-                            <td style="vertical-align: middle;">2001-12-32</td>
-                            <td style="vertical-align: middle;"><buttontype="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"data-bs-toggle="modal" data-bs-target="#memberIntro">자기소개 보기</button></td>
-                            <td ><button type="button" class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;"  data-bs-toggle="modal" data-bs-target="#insert-member">가입시키기</button></td>
-                        </tr>
-
+					</c:forEach>
+                        
 
 
 
@@ -180,23 +119,29 @@
             <ul class="pagination" style="justify-content : center;" >
                 <c:choose >
                      <c:when test="${ pi.currentPage eq 1 }">
-                         <li class="page-item disabled"><a class="page-link" href="#"><Previous></a></li>
+                         <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
                      </c:when>
                      <c:otherwise>
-                         <li class="page-item"><a class="page-link" href="list.bo?cpage=${ pi.currentPage -1 }" style="color: rgb(135, 206, 235);">이전</a></li>
+                         <li class="page-item"><a class="page-link" href="myTeamMemberJoinList.te?cPage=${ pi.currentPage -1 }" style="color: rgb(135, 206, 235);">이전</a></li>
                      </c:otherwise>
                 </c:choose>
-                
-                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                     <li class="page-item"><a class="page-link" href="list.bo?cpage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
-                </c:forEach>
+	            <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+	                <c:choose>
+	                	<c:when test="${ pi.currentPage eq p }">
+	                    	 <li class="page-item disabled"><a class="page-link" href="myTeamMemberJoinList.te?cPage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
+	                	</c:when>
+	                	<c:otherwise>
+		                     <li class="page-item"><a class="page-link" href="myTeamMemberJoinList.te?cPage=${ p }" style="color: rgb(135, 206, 235);">${ p }</a></li>
+	                	</c:otherwise>
+	                </c:choose>
+	            </c:forEach>
 
                 <c:choose>
                      <c:when test="${ pi.currentPage eq  pi.endPage }">
                          <li class="page-item disabled"><a class="page-link" href="#"  >다음</a></li>
                      </c:when>
                      <c:otherwise>
-                         <li class="page-item"><a class="page-link" href="list.bo?cpage=${ pi.currentPage +1 }" style="color: rgb(135, 206, 235);">다음</a></li>
+                         <li class="page-item"><a class="page-link" href="myTeamMemberJoinList.te?cPage=${ pi.currentPage +1 }" style="color: rgb(135, 206, 235);">다음</a></li>
                      </c:otherwise>
                 </c:choose>
            
@@ -206,42 +151,90 @@
     <jsp:include page="../common/footer.jsp" />
 
 
-
-    <div class="modal" id="memberIntro" tabindex="-1">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">자기소개</h5>
-            </div>
-            <div class="modal-body">
-            <p>안녕하세염 열심히 하겠습니다! </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-            </div>
+  <div class="modal fade" id="memberIntro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">자기 소개</h5>
         </div>
+        <div class="modal-body">
+            <p id="introText"> </p>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        </div>
+      </div>
     </div>
+  </div>
 
 
-    <div class="modal" id="insert-member" tabindex="-1">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">팀원 가입시키기</h5>
-            </div>
-            <div class="modal-body">
+
+  <div class="modal fade" id="insert-member" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">팀원 가입시키기</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
             <p>정말 회원을 가입시키시겠습니까??</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">가입시키기</button>
+        </div>
+        <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="insertTeamMember();" >가입시키기</button>
                 <button type="button" class="btn btn-primary">거절하기</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-            </div>
         </div>
-        </div>
+      </div>
     </div>
+  </div>
 
+
+
+
+
+
+	
+	<script>
+	
+	
+		    var introMy = "";
+		    var teamNo = "";
+		    var memberNo = "";
+	
+		$(function(){
+			
+		    
+		    $(document).ready(function() {     
+		        $('#memberIntro').on('show.bs.modal', function(event) {          
+		        	introMy = $(event.relatedTarget).data('intro');
+		        	
+		        });
+		    });
+		    
+		    $(document).ready(function() {     
+		        $('#insert-member').on('show.bs.modal', function(event) {          
+		        	teamNo = $(event.relatedTarget).data('test1');
+		        	memberNo = $(event.relatedTarget).data('test2');
+		        	
+		        });
+		    });
+			
+			$(".introMyself").on("click",function(){
+				
+				$("#introText").text(introMy);
+			})			
+			
+	
+		})
+		
+		
+			function insertTeamMember(){
+				
+				location.href="insertTeamMember.te?teamNo=" + teamNo + "&memberNo=" + memberNo;
+			}
+		
+		
+	</script>
 
 
     

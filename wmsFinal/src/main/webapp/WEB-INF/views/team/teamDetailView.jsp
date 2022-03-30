@@ -115,9 +115,12 @@
         <div class="team-detail-buttonArea">
             <div class="team-join-button" style="text-align: center;">
                 <button style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#team-join-apply-bttopn">팀 가입 신청하기</button>
+            
             </div>
             <div class="team-detail-battleApply-button" style="text-align: center;">
+            <c:if test="${ selectTeam.size()  ne 0}">
                 <button style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#battle-apply-button">대전 신청하기</button>
+            </c:if>
             </div>
         </div>
 
@@ -157,11 +160,17 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" style="text-align: center;">
-            <input type="date">
-            <textarea cols="30" rows="10" style="resize: none;"> </textarea>
+            <input type="date" id="battleDate">
+            <select id="selectOption">
+            	<c:forEach var="t" items="${ selectTeam }">
+            		<option value="${ t.teamNo }">${ t.teamName }</option>
+            	</c:forEach>
+            </select>
+            <textarea cols="30" rows="10" style="resize: none;" class="teamIntroText"></textarea>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">대전 신청하기</button>
+
+          <button type="button" class="btn btn-primary" onclick="battleApply();">대전 신청하기</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
         </div>
       </div>
@@ -175,9 +184,19 @@
   		var applyText = $(".applyTextArea").val();
   		var teamNo = '${t.teamNo}';
   		var memberNo = '${loginUser.memberNo}';
-  		var sportsNo = '${t.sportsNo}';
   		
   		location.href="teamJoinApply.te?introMyself=" + applyText + "&teamNo=" + teamNo + "&memberNo=" + memberNo + "&sportsNo=" + sportsNo;
+  	}
+  	
+  	function battleApply(){
+  		
+  		var teamIntroText = $(".teamIntroText").val();
+  		var homeTeamNo = '${t.teamNo}';
+  		var memberNo = '${loginUser.memberNo}';
+  		var battleDate = $("#battleDate").val();
+  		var awayTeamNo = $("#selectOption").val();
+  		
+  		location.href="applyBattle.te?teamIntro=" + teamIntroText + "&homeTeamNo=" + homeTeamNo + "&memberNo=" + memberNo + "&battleDate=" + battleDate + "&awayTeamNo=" + awayTeamNo;
   	}
   
   

@@ -14,12 +14,16 @@ import lombok.ToString;
 public class Battle {
 
 	private int battleNo;
-	private int hometeamNo;
-	private int awayteamNo;
-	private int sportsNo;
+	private int homeTeamNo;
+	private int awayTeamNo;
+	private String sportsName;
 	private String battleDate;
 	private int agreeStatus;
 	private int resultStatus;
+	private String teamIntro;
+	private String awayTeamName;
+	private String awayBossNo;
+	
 	
 
 	

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.member.model.vo.Member;
+import com.kh.wms.team.model.vo.Battle;
 import com.kh.wms.team.model.vo.MemberTeam;
 import com.kh.wms.team.model.vo.Team;
 
@@ -90,7 +91,11 @@ public class MemberDao {
 		return sqlSession.insert("memberMapper.applyTeamJoin", tm);
 	}
 
-	public ArrayList<MemberTeam> myTeamMemberJoinList(SqlSessionTemplate sqlSession, int teamNo) {
+	public int memberCount(SqlSessionTemplate sqlSession, int teamNo) {
+		return sqlSession.selectOne("memberMapper.memberCount", teamNo);
+	}
+	
+	public ArrayList<MemberTeam> myTeamMemberJoinList(SqlSessionTemplate sqlSession, int teamNo, PageInfo pi) {
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		
@@ -98,7 +103,27 @@ public class MemberDao {
 		
 		return (ArrayList)sqlSession.selectList("memberMapper.myTeamMemberJoinList", teamNo, rowBounds);
 	}
-	
+
+	public int insertTeamMember(Map<String, Object> map, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("memberMapper.insertTeamMember", map);
+	}
+
+	public int applyBattle(SqlSessionTemplate sqlSession, Battle bt) {
+		return sqlSession.insert("memberMapper.applyBattle",bt);
+	}
+
+	public int battleCount(SqlSessionTemplate sqlSession, int teamNo) {
+		return sqlSession.selectOne("memberMapper.battleCount", teamNo);
+	}
+
+	public ArrayList<Battle> selectBattleApplyList(int teamNo, PageInfo pi, SqlSessionTemplate sqlSession) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return (ArrayList)sqlSession.selectList("memberMapper.selectBattleApplyList", teamNo, rowBounds);
+	}
+
 	
 	
 	

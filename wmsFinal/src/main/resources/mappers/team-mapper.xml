@@ -30,6 +30,7 @@
 
 	</resultMap>
 
+
 	<select id="selectAddressList" resultMap="addressResultSet">
 		SELECT *
 		FROM ADDRESS
@@ -125,6 +126,31 @@
 			AND SPORTS_NAME = #{sportsName}
 	
 	</select>
+	
+	<select id="selectOptionTeamList" parameterType="HashMap" resultMap="teamResultSet">
+		
+		SELECT 
+		    WIN_POINT
+		    ,WIN_COUNT
+		    ,TEAM_STATUS
+		    ,TEAM_NO
+		    ,TEAM_NAME
+		    ,TEAM_INTRO
+		    ,SPORTS_NAME
+		    ,SIGUNGU_NAME
+		    ,SIDO_NAME
+		    ,ORIGIN_NAME
+		    ,LOSE_COUNT
+		    ,DRAW_COUNT
+		    ,SUBSTR(CREATE_DATE, 1,10) CREATE_DATE
+		    ,CHANGE_NAME
+		    ,BOSS_ID
+		FROM TEAM
+			WHERE BOSS_ID = #{memberId}
+			AND SPORTS_NAME = #{sportsName}
+	
+	</select>
+
 
 
 
