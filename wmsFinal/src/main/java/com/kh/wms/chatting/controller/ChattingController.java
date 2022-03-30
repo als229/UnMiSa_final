@@ -20,12 +20,16 @@ import com.kh.wms.chatting.model.vo.ChattingMessage;
 import com.kh.wms.chatting.model.vo.TeamChat;
 import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.common.template.Pagination;
+import com.kh.wms.member.model.service.MemberService;
 import com.kh.wms.member.model.vo.Member;
 @Controller
 public class ChattingController {
 
 	@Autowired
 	private ChattingService chattingService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping(value="myChat.ct")
 	public ModelAndView myChatList(ModelAndView mv, HttpSession session, @RequestParam(value = "cpage", defaultValue = "1") int currentPage) {
@@ -72,8 +76,6 @@ public class ChattingController {
 	public String chatRommAdd(@RequestParam(value="members[]") List<Integer> members, @RequestParam(value="chatName") String chatName, HttpSession session) {
 		
 		members.add(((Member)session.getAttribute("loginUser")).getMemberNo());
-		System.out.println(chatName);
-		System.out.println(members);
 		ChattingMessage cm = new ChattingMessage();
 		String roomId = UUID.randomUUID().toString(); 
 		cm.setRoomId(roomId);
@@ -102,9 +104,7 @@ public class ChattingController {
 		ArrayList<Member> mlist = chattingService.selectRoomMembers(roomNo);
 		
 		mv.addObject("clist", clist);
-		System.out.println(clist);
 		mv.addObject("mlist", mlist);
-		System.out.println(mlist);
 		mv.addObject("count", mlist.size());
 		mv.addObject("roomNo",roomNo);
 		mv.addObject("roomName",roomName);
@@ -112,7 +112,37 @@ public class ChattingController {
 		return mv;
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value="adminChat.ct", produces="application/json; charset=UTF-8", method=RequestMethod.GET)
+	public String adminChat(HttpSession session) {
+		
+		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		String memberName = ((Member)session.getAttribute("loginUser")).getMemberName();
+		ChattingMessage cm = new ChattingMessage();
+		String roomId = UUID.randomUUID().toString(); 
+		ArrayList<Integer> members = new ArrayList<>();
+		members.add(memberNo);
+		cm.setRoomId(roomId);
+		cm.setRoomName(memberName+"님 1:1 문의");
+		Member admin = memberService.adminSelct("admin");
+		members.add(admin.getMemberNo());
+		int memResult = 0;
+		int roomResult  = chattingService.chatRoomAdd(cm);
+		if(roomResult > 0) {
+			memResult = chattingService.selectRoomNo(roomId);
+			
+			for(int i=0; i<members.size(); i++) {
+				cm = new ChattingMessage();
+				cm.setMemberNo(members.get(i));
+				cm.setRoomNo(memResult);
+				chattingService.chatMemberAdd(cm);
+			}
+		}
+		ArrayList<Object> list = new ArrayList<Object>();
+		list.add(memResult);
+		list.add(memberName+"님 1:1 문의");
+		return new Gson().toJson(list);
+	}
 	
 	
 	

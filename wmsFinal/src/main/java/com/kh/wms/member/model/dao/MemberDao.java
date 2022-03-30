@@ -124,6 +124,10 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectBattleApplyList", teamNo, rowBounds);
 	}
 
+	public Member adminSelect(SqlSessionTemplate sqlSession, String memberId) {
+		return sqlSession.selectOne("memberMapper.adminSelect", memberId);
+	}
+
 	
 	
 	

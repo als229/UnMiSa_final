@@ -109,6 +109,10 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<Battle> selectBattleApplyList(int teamNo, PageInfo pi) {
 		return memberDao.selectBattleApplyList(teamNo, pi, sqlSession);
 	}
+	@Override
+	public Member adminSelct(String memberId) {
+		return memberDao.adminSelect(sqlSession, memberId);
+	}
 	
 	
 	
