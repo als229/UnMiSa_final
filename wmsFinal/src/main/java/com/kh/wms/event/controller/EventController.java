@@ -95,7 +95,7 @@ public class EventController {
 		
 		System.out.println(content);
 		
-		//이걸로 if문 오지게 돌려서 유효성 검사.
+		
 		int now = Integer.parseInt(str[1]);
 		
 		Member m = (Member)session.getAttribute("loginUser");

@@ -13,7 +13,6 @@
 		<result column="CHANGE_NAME" property="changeName" />
 		<result column="LOCATION" property="location" />
 		
-		
 	</resultMap>
 	
 	<resultMap id="replyResultSet" type="reply">

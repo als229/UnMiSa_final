@@ -166,7 +166,7 @@
 	$(function(){
 		var members = [];
 		
-		$('#teamName').change(function(){
+		$('#teamNo').change(function(){
 			$.ajax({
 				url : 'teamMember.ct',
 				data : { teamNo : $('#teamNo').val()},
