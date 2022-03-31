@@ -24,7 +24,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	<context:component-scan base-package="com.kh.wms" />
-	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/> <!-- p:order : 해당 ViewResolver가  우선권을 가짐-->
 	<beans:bean id="qrcodeview" class="com.kh.wms.event.controller.QRCodeView"/>
 	
 
