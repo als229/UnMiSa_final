@@ -43,6 +43,7 @@
 
     }
 
+
 </style>
 <link rel="stylesheet" href="resources/css/member/myPage.css?ver=1"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -57,29 +58,25 @@
         <div class="side-bar">
             <a href="myPage.me" class="big-menu">마이페이지</a> <br>
             <a href="">개인 정보 수정</a> <br>
-            <a href="selectmyJoinTeamList.te?memberId=${ loginUser.memberId }">내가 가입한 팀 관리</a> <br>
-            <a href="selectListCreateTeam.te?memberId=${ loginUser.memberId }">내가 만든 팀</a> <br>
-            <a href="">내 결제내역</a> <br>
-            <a href="myMatchSchedule.me">내 경기 일정</a> <br> 
+            <a href="selectmyJoinTeamList.te?memberNo=${ loginUser.memberNo }">내가 가입한 팀 관리</a> <br>
+            <a href="selectListCreateTeam.te?memberNo=${ loginUser.memberNo }">내가 만든 팀</a> <br>
+            <a href="myPayment.pm">마크 관리</a> <br>
         </div>
         
             <div class="team-title">
                 <h1 style="margin-left: 20px;">경기 신청 관리</h1>
-                <div class="buttonArea">
-                    <div class="memberButton" style="float: right;">
-                        <button class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'myTeamMemberList.te' ">팀원 관리</button>
-                    </div>
-                    <div class="joinMemberButton" style="float: right; margin-right: 15px;">
-                        <button class="btn btn-primary " style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); vertical-align: middle;" onclick = "location.href = 'myTeamMemberJoinList.te' ">경기 신청 관리</button>
-                    </div>
-                </div>
-            </div>
+	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 65px;" class="btn btn-primary " onclick="location.href='myMatchSchedule.me?teamNo=${t.teamNo}'">경기 기록 관리</button>
+	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 65px;" class="btn btn-primary " onclick="location.href='updateFormTeam.te?teamNo=${t.teamNo}'">팀 수정</button>
+	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 65px;" class="btn btn-primary " onclick="location.href='myTeamMemberList.te?teamNo=${t.teamNo}'">팀원 관리</button>
+	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 65px;" class="btn btn-primary " onclick="location.href='battleApplyList.te?teamNo=${t.teamNo}'">경기 신청 관리</button>
+	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 65px;" class="btn btn-primary " onclick="location.href='myTeamMemberJoinList.te?teamNo=${t.teamNo}'">멤버 신청 관리</button>
+	        </div>
             <div class="teamHeader">
                 <div class="teamLogo">
-                    <img src="" alt="팀 로고">
+                    <img src="${t.logoChangeName }"style="width:140px; height:140px;margin-left: 40px;" alt="팀 로고">
                 </div>
                 <div class="teamName">
-                    <p style="font-size: 30px; font-weight: bold;">은평구 불빠따쓰</p>
+                    <p style="font-size: 30px; font-weight: bold;">${t.teamName }</p>
                 </div>    
             </div>
             <div class="team-list table " style="width: 80%; height: 70%;">
@@ -87,23 +84,26 @@
                     <thead>
                         
                         <tr>
-                            <th>No.</th>                        
                             <th>대결신청팀</th>
                             <th>대전날짜</th>
+                            <th>팀 소개</th>
                             <th>수락버튼</th>
                             <th>거절버튼</th>
+                            <th>채팅하기</th>
                         </tr>
                     </thead>
                     <tbody>
-
+					<c:forEach var="bt" items="${ bList }">
                         <tr>
-                            <td style="vertical-align: middle;">1</td>
-                            <td class="team-name" style="vertical-align: middle;">강남구 물빠따쓰</td>
-                            <td style="vertical-align: middle;">2022-04-21</td>
-                            <td><button type="button" class="btn btn-primary ">수락하기</button></td>
-                            <td><button type="button" class="btn btn-primary ">거절하기</button></td>
+                            <td class="team-name" style="vertical-align: middle;">${ bt.awayTeamName }</td>
+                            <td style="vertical-align: middle;">${ bt.battleDate }</td>
+                            <td><button type="button" class="btn btn-primary teamIntro"data-bs-toggle="modal" data-bs-target="#teamIntro" data-test="${ bt.teamIntro }">팀 소개</button></td>
+                            <td><button type="button" class="btn btn-primary acceptButton" id="acceptButton" value="${ bt.battleNo }">수락하기</button></td>
+                            <td><button type="button" class="btn btn-primary refuseButton" value="${ bt.battleNo }">거절하기</button></td>
+                            <td><button type="button" class="btn btn-primary " id="awayBossNo" value="${ bt.awayBossNo }">채팅하기</button></td>
                         </tr>
                         
+					</c:forEach>
 
                     </tbody>
                         
@@ -142,21 +142,59 @@
 
 
 
-    <div class="modal" id="memberIntro" tabindex="-1">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">자기소개</h5>
-            </div>
-            <div class="modal-body">
-            <p>안녕하세염 열심히 하겠습니다! </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-            </div>
+  <div class="modal fade" id="teamIntro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">팀 소개</h5>
         </div>
+        <div class="modal-body">
+            <p id="introText"> </p>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        </div>
+      </div>
     </div>
+  </div>
+
         <jsp:include page="../common/footer.jsp" />
+        
+	<script>
+	
+	    var introTeam = "";
+	
+		$(function(){
+		    
+		    $(document).ready(function() {     
+		        $('#teamIntro').on('show.bs.modal', function(event) {          
+		        	introTeam = $(event.relatedTarget).data('test');
+		        	
+		        });
+		    });
+		    
+			$(".teamIntro").on("click",function(){
+				
+				$("#introText").text(introTeam);
+			})			
+			
+			
+		
+		})	
+			$("#acceptButton").click(function(){
+				var battleNo = $(this).val();
+				var memberNo = '${ loginUser.memberNo }';
+				
+				location.href="acceptBattle.te?battleNo=" + battleNo + "&memberNo=" + ${ loginUser.memberNo };
+			})			
+			
+			$(".refuseButton").on("click",function(){
+				var battleNo = $(this).val();
+				var memberNo = '${ loginUser.memberNo }';
+				
+				location.href="refuseBattle.te?battleNo=" + battleNo + "&memberNo=" + ${ loginUser.memberNo };
+			})			
+		
+	</script>
 </body>
 </html>

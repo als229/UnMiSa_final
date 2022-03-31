@@ -54,7 +54,6 @@
     	<div class="side-bar">
             <a href="serchWms.te" class="big-menu">우리동네 운미사</a> <br>
             <a href="serchWms.te">우리동네 운미사 찾기</a> <br>
-            <a href="gymReservation.te">우리동네 체육관 대여하기</a> <br>
             <a href="createTeamForm.te">팀 등록하기</a> <br>
         </div>
         <div class="team-menu-title">
@@ -85,7 +84,7 @@
             </div>
             <div class="search2"style="margin-left: 40px;">
                 <select id="siGunGuSelect"class="form-select form-select-sm" style="margin-top: 5px;">
-
+					<option>${ map1.siGunGuName }</option>
                 </select>
             </div>
             <div class="search3"style="margin-left: 40px;" >
@@ -113,11 +112,9 @@
                     <!-- 승률	운동종목	지역	팀 이름 	 승점	팀 등록 날짜	 동네 순위 -->
                     <tr>
                         <th>팀 번호</th>
-                        <th>승률</th>
                         <th>운동종목</th>
                         <th>지역</th>
                         <th>팀 이름</th>
-                        <th>승점</th>
                         <th>팀 등록 날짜</th>
                     </tr>
                 </thead>
@@ -125,20 +122,10 @@
                 	<c:forEach var="t" items="${ serchSelectWmsList }">
 	                    <tr class="teamTable">
 	                        <td>${ t.teamNo }</td>
-	                        <c:choose>
-	                        	<c:when test="${ t.winCount + t.loseCount + t.drawCount  ne 0}">
-		                        	<td> ${ t.winPercent }%</td>
-	                        	</c:when>
-	                        	<c:otherwise>
-		                        	<td>0%</td>
-	                        	</c:otherwise>
-	                        	
-	                        </c:choose>
 	                        <td>${ t.sportsName }</td>
 	                        <td>${ t.sidoName }  ${t.siGunGuName }</td>
 	                        <td class="team-name-inTable">${ t.teamName }</td>
 	                        <input type="hidden" value="${ t.teamNo }">
-	                        <td>${ t.winPoint }</td>
 	                        <td>${ t.createDate }</td>
 	                    </tr>
 					</c:forEach>
@@ -220,6 +207,7 @@
 	        siDoSelect.onchange = function() {
 	            createSelection();
 	            // siDoSelect에 변화가 있을때 createSelection 메서드가 호출된다.
+	            
 	        }
 			
 			let map = new Map();
@@ -242,7 +230,6 @@
 	                set.add(address[key].gu);
 	            }
 	        }
-            createSelection();
 			
     		let selectSiDoName = '${map1.sidoName}';
     		let selectSiGunGuName = '${map1.siGunGuName}';

@@ -100,6 +100,25 @@
 	
 
 
-
+<script type="text/javascript">
+$(function(){
+	$('#adminChat').on('click', function(){
+		$.ajax({
+			url : 'adminChat.ct',
+			success : function(result){
+					console.log(result)
+					var roomNo = result[0];
+					var roomName = result[1];
+					window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName, "채팅창", "width=550 , height=800");
+			},
+			error : function(){
+				console.log('조회 실패');
+			}
+		})
+		
+	})
+	
+})
+</script>
 </body>
 </html>

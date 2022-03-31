@@ -26,7 +26,7 @@
 		<result column="PAYMENT_METHOD" property="paymentMethod"/>
 	</resultMap>
 	
-		<resultMap type="team" id="teamMemberResultSet">
+	<resultMap type="team" id="teamMemberResultSet">
 		<result column="TEAM_NO" property="teamNo"/>
 		<result column="SPORTS_NO" property="sportsNo"/>
 		<result column="TEAM_NAME" property="teamName"/>
@@ -49,6 +49,38 @@
 
 	</resultMap>
 	
+	
+	<resultMap type="memberTeam" id="memberTeamResultSet">
+	
+		<result column="TEAM_NO" property="teamNo"/>
+		<result column="SPORTS_NO" property="sportsNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_GRADE" property="memberGrade"/>
+		<result column="JOIN_DATE" property="joinDate"/>
+		<result column="JOIN_STATUS" property="joinStatus"/>
+		<result column="INTRO_MYSELF" property="introMyself"/>
+		<result column="rownum" property="rownum"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="BIRTH_DATE" property="birthDate"/>
+		
+
+	</resultMap>
+	
+	<resultMap type="battle" id="battleResultSet">
+	
+		<result column="BATTLE_NO" property="battleNo"/>
+		<result column="HOMETEAM_NO" property="homeTeamNo"/>
+		<result column="AWAYTEAM_NO" property="awayTeamNo"/>
+		<result column="SPORTS_NAME" property="sportsName"/>
+		<result column="BATTLE_DATE" property="battleDate"/>
+		<result column="AGREE_STATUS" property="agreeStatus"/>
+		<result column="RESULT_STATUS" property="resultStatus"/>
+		<result column="TEAM_INTRO" property="teamIntro"/>
+		<result column="TEAM_NAME" property="awayTeamName"/>
+		<result column="MEMBER_NO" property="awayBossNo"/>
+		<result column="TEAM_NAME" property="teamName"/>
+
+	</resultMap>
 	
 	
 	<select id="ajaxCheckId" resultType="_int" parameterType="String">
@@ -100,17 +132,21 @@
 	
 	
 	<!-- 관민존 -->
+	
+	<!-- 내가 가입한 팀 카운트 -->
 	<select id="selectMyTeamCount" parameterType="member" resultType="_int">
 	
 	    SELECT COUNT(*)
 	    FROM MEMBER_TEAM
 	    JOIN TEAM T USING(TEAM_NO)
 	    JOIN MEMBER USING(MEMBER_NO)
-	    WHERE MEMBER_ID = #{memberId}
+	    WHERE MEMBER_NO = #{memberNo}
     	AND TEAM_STATUS = 'Y'
+        AND JOIN_STATUS = 'Y'
 	    
 	</select>
 	
+	<!-- 내가 가입한 팀 리스트 셀렉 -->
 	<select id="selectmyJoinTeamList" parameterType="member" resultMap="teamMemberResultSet">
 	
     SELECT T.TEAM_NAME, T.SPORTS_NAME, ROWNUM rNum,T.TEAM_NO
@@ -120,13 +156,15 @@
         FROM MEMBER_TEAM
         JOIN TEAM T USING(TEAM_NO)
         JOIN MEMBER USING(MEMBER_NO)
-        WHERE MEMBER_ID = #{memberId}
+        WHERE MEMBER_No = #{memberNo}
         AND TEAM_STATUS = 'Y'
+        AND JOIN_STATUS = 'Y'
         ORDER BY TEAM_NO DESC
     )T
 	
 	</select>
 	
+	<!-- 팀 탈퇴하기 -->
 	<delete id="quitTeam" parameterType="HashMap">
 	
 	DELETE FROM MEMBER_TEAM
@@ -134,6 +172,7 @@
 	AND MEMBER_NO = #{memberNo}
 	</delete>
 	
+	<!-- 팀넘버로 셀렉하는 놈 -->
 	<select id="selectTeam" parameterType="_int" resultMap="teamMemberResultSet">
 	
 		SELECT 
@@ -157,14 +196,16 @@
 	
 	</select>
 	
+	<!-- 내가 만든 팀 카운트 -->
 	<select id="selectMyCreateTeamCount" parameterType="member" resultType="_int">
 	
 		SELECT COUNT(*)
 		FROM TEAM
-		WHERE BOSS_ID = #{memberId}
+		WHERE BOSS_NO = #{memberNo}
 	
 	</select>
 	
+	<!-- 내가 만든 팀 리스트 셀렉트 -->
 	<select id="selectListCreateTeam" parameterType="member" resultMap="teamMemberResultSet" resultType="arraylist">
 		
 		SELECT 
@@ -184,10 +225,11 @@
 		    ,CHANGE_NAME
 		    ,BOSS_ID
 		FROM TEAM
-		WHERE BOSS_ID = #{memberId}
+		WHERE BOSS_NO = #{memberNo}
 	
 	</select>
 	
+	<!-- 팀 수정하기 -->
 	<update id="updateTeam">
 	
 		UPDATE TEAM
@@ -204,6 +246,206 @@
 			
 	</update>
 	
+	<!-- 팀 가입 신청하기  -->
+	<insert id="applyTeamJoin" parameterType = "memberTeam" >
 	
+		INSERT INTO MEMBER_TEAM 
+				(
+				MEMBER_NO
+				,TEAM_NO
+				,INTRO_MYSELF
+				)
+				VALUES
+				(
+				#{memberNo}
+				,#{teamNo}
+				,#{introMyself}
+				)
+	
+	</insert>
+	
+	<!-- 가입신청한 멤버 카운트 -->
+	<select id="memberCount" parameterType="_int" resultType="_int">
+		
+		SELECT COUNT(*)
+		FROM MEMBER_TEAM
+		WHERE TEAM_NO = #{teamNo}
+		AND JOIN_STATUS = 'H'
+	
+	</select>
+	
+	<!-- 가입신청한 멤버 조인 리스트 -->
+	<select id="myTeamMemberJoinList" parameterType="_int" resultMap="memberTeamResultSet">
+	
+		SELECT  M.MEMBER_NAME, SUBSTR(M.BIRTH_DATE, 1,10) BIRTH_DATE, T.INTRO_MYSELF, ROWNUM AS "rownum", MEMBER_NO,JOIN_STATUS
+		FROM MEMBER_TEAM T
+        JOIN MEMBER M USING(MEMBER_NO)
+		WHERE T.TEAM_NO = #{teamNo}
+		AND T.JOIN_STATUS = 'H'
+		
+	</select>
+	
+	<!-- 멤버 가입시키기 -->
+	<update id="insertTeamMember" parameterType="HashMap">
+		
+		UPDATE MEMBER_TEAM
+		SET
+		JOIN_STATUS = 'Y'
+		WHERE TEAM_NO = #{teamNo}
+		AND MEMBER_NO = #{memberNo}
+	
+	</update>
+	
+	<!-- 대전 신청하기 -->
+	<insert id="applyBattle" parameterType="HashMap">
+		
+		INSERT INTO
+			BATTLE
+			(
+			BATTLE_NO,
+			TEAM_INTRO,
+			SPORTS_NAME,
+			HOMETEAM_NO,
+			AWAYTEAM_NO,
+			BATTLE_DATE
+			)
+			VALUES
+			(
+			SEQ_BTNO.NEXTVAL,
+			#{teamIntro},
+			#{sportsName},
+			#{homeTeamNo},
+			#{awayTeamNo},
+			#{battleDate}
+			)
+	
+	</insert>
+	
+	<update id="insertBattleResult">
+		
+		UPDATE BATTLE
+		SET
+		RESULT_STATUS = #{resultStatus}
+		WHERE BATTLE_NO = #{battleNo}
+	
+	</update>
+	
+	<!-- 대전전적 카운트 -->
+	<select id="battleScheduleCount" parameterType="_int" resultType="_int">
+	
+		SELECT COUNT(*)
+		FROM BATTLE
+		WHERE HOMETEAM_NO = #{teamNo}
+		AND AGREE_STATUS = '0'
+		
+	</select>	
+	
+	<!-- 전적 셀렉트 -->
+	<select id="selectBattleSchedule" parameterType="_int" resultMap="battleResultSet">
+	
+		SELECT *
+		FROM (
+		        SELECT SUBSTR(BATTLE_DATE, 1,10) BATTLE_DATE
+		        , MEMBER_NO 
+		        , AGREE_STATUS
+		        ,HOMETEAM_NO
+		        ,TEAM_NAME
+		        ,T.SPORTS_NAME
+		        ,B.TEAM_INTRO
+		        ,BATTLE_NO
+		        ,RESULT_STATUS
+		        FROM TEAM  T
+		        JOIN BATTLE B ON (TEAM_NO = AWAYTEAM_NO)
+		        JOIN MEMBER ON (BOSS_ID = MEMBER_ID)
+		        )
+		WHERE HOMETEAM_NO = #{teamNo}
+		AND AGREE_STATUS = '0'
+	
+	</select>
+	
+	<!-- 대전신청 카운트 -->
+	<select id="battleCount" parameterType="_int" resultType="_int">
+	
+		SELECT COUNT(*)
+		FROM BATTLE
+		WHERE HOMETEAM_NO = #{teamNo}
+		AND AGREE_STATUS = '1'
+		
+	</select>	
+	
+	<!-- 대전신청 받은 기록 -->
+	<select id="selectBattleApplyList" parameterType="_int" resultMap="battleResultSet">
+	
+		SELECT *
+		FROM (
+		        SELECT SUBSTR(BATTLE_DATE, 1,10) BATTLE_DATE
+		        , MEMBER_NO 
+		        , AGREE_STATUS
+		        ,HOMETEAM_NO
+		        ,TEAM_NAME
+		        ,T.SPORTS_NAME
+		        ,B.TEAM_INTRO
+		        ,BATTLE_NO
+		        ,RESULT_STATUS
+		        FROM TEAM  T
+		        JOIN BATTLE B ON (TEAM_NO = AWAYTEAM_NO)
+		        JOIN MEMBER ON (BOSS_ID = MEMBER_ID)
+		        )
+		WHERE HOMETEAM_NO = #{teamNo}
+		AND AGREE_STATUS = '1'
+	
+	</select>
+	
+	<!-- 경기 수락하기 -->
+	<update id="acceptBattle" parameterType="_int" >
+	
+		UPDATE BATTLE
+		    SET
+		    AGREE_STATUS ='0'
+		WHERE BATTLE_NO = #{battleNo}
+	
+	</update>
+	
+	<!-- 경기 거절하기 -->
+	<update id="refuseBattle" parameterType="_int" >
+	
+		UPDATE BATTLE
+		    SET
+		    AGREE_STATUS ='2'
+		WHERE BATTLE_NO = #{battleNo}
+	
+	</update>
+	
+	<!-- 우리 팀원 카운트 -->
+	<select id="myTeamMemberListCount" parameterType="_int" resultType="_int">
+	   
+	    SELECT COUNT(*)
+	    FROM MEMBER_TEAM
+	    WHERE TEAM_NO = #{teamNo}
+	    AND JOIN_STATUS = 'Y'
+		
+	</select>
+	
+	<!-- 우리 팀원 리스트 뽑아오기 -->
+	<select id="myTeamMemberList" parameterType="_int" resultMap="memberTeamResultSet">
+		
+	    SELECT 
+	    	MEMBER_NO
+	    	, MEMBER_NAME
+	    	, BIRTH_DATE
+	    	, SUBSTR(JOIN_DATE, 1,10) JOIN_DATE
+	    	, TEAM_NO
+	    FROM MEMBER_TEAM
+	    JOIN MEMBER USING (MEMBER_NO)
+	    WHERE TEAM_NO = #{teamNo}
+	    AND JOIN_STATUS = 'Y'
+	
+	</select>
+	
+	<select id="adminSelect" resultMap="memberResultSet" parameterType="String">
+		SELECT * FROM MEMBER 
+		WHERE MEMBER_ID = #{memberId}
+		AND MEMBER_STATUS = 'Y'
+	</select>
 
 </mapper>

@@ -77,10 +77,9 @@
     <jsp:include page="../common/header.jsp" />
 
     <div class="team-outer">
-        <div class="side-bar">
-            <a href="myPage.me" class="big-menu">우리동네 운미사</a> <br>
+    	<div class="side-bar">
+            <a href="serchWms.te" class="big-menu">우리동네 운미사</a> <br>
             <a href="serchWms.te">우리동네 운미사 찾기</a> <br>
-            <a href="gymReservation.te">우리동네 체육관 대여하기</a> <br>
             <a href="createTeamForm.te">팀 등록하기</a> <br>
         </div>
         <div class="team-detail-header">
@@ -115,9 +114,12 @@
         <div class="team-detail-buttonArea">
             <div class="team-join-button" style="text-align: center;">
                 <button style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#team-join-apply-bttopn">팀 가입 신청하기</button>
+            
             </div>
             <div class="team-detail-battleApply-button" style="text-align: center;">
+            <c:if test="${ selectTeam.size()  ne 0}">
                 <button style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#battle-apply-button">대전 신청하기</button>
+            </c:if>
             </div>
         </div>
 
@@ -137,10 +139,10 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <textarea cols="30" rows="10" style="resize: none;">자기 소개 : 저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠슴다저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠슴다저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠슴다저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠슴다저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠다</textarea>
+          <textarea class="applyTextArea" cols="30" rows="10" style="resize: none;"></textarea>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">팀 가입 신청하기</button>
+            <button type="button" class="btn btn-primary" onclick="teamJoinApply();">팀 가입 신청하기</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
         </div>
       </div>
@@ -157,16 +159,47 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" style="text-align: center;">
-            <input type="date">
-            <textarea cols="30" rows="10" style="resize: none;">상대에게 할 말 : 재밌는 게임 한번 해봐영 ^^ 즐겜해영 저희 </textarea>
+            <input type="date" id="battleDate">
+            <select id="selectOption">
+            	<c:forEach var="t" items="${ selectTeam }">
+            		<option value="${ t.teamNo }">${ t.teamName }</option>
+            	</c:forEach>
+            </select>
+            <textarea cols="30" rows="10" style="resize: none;" class="teamIntroText"></textarea>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">대전 신청하기</button>
+
+          <button type="button" class="btn btn-primary" onclick="battleApply();">대전 신청하기</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
         </div>
       </div>
     </div>
   </div>
+  
+  <script>
+  
+  	function teamJoinApply(){
+  		
+  		var applyText = $(".applyTextArea").val();
+  		var teamNo = '${t.teamNo}';
+  		var memberNo = '${loginUser.memberNo}';
+  		
+  		location.href="teamJoinApply.te?introMyself=" + applyText + "&teamNo=" + teamNo + "&memberNo=" + memberNo;
+  	}
+  	
+  	function battleApply(){
+  		
+  		var teamIntroText = $(".teamIntroText").val();
+  		var homeTeamNo = '${t.teamNo}';
+  		var memberNo = '${loginUser.memberNo}';
+  		var battleDate = $("#battleDate").val();
+  		var awayTeamNo = $("#selectOption").val();
+  		
+  		location.href="applyBattle.te?teamIntro=" + teamIntroText + "&homeTeamNo=" + homeTeamNo + "&memberNo=" + memberNo + "&battleDate=" + battleDate + "&awayTeamNo=" + awayTeamNo;
+  	}
+  
+  
+  </script>
 
     
 </body>

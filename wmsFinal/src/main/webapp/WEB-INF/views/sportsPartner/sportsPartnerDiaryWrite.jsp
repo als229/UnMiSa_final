@@ -306,8 +306,7 @@
 					            <h5 class="modal-title">인바디 변동</h5>
 					            </div>
 					            <div class="modal-body">
-					     		<br>
-					            
+					     	
 					            <div id="md_kg">
 					            	몸무게 
 					            </div>

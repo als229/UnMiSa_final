@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.kh.wms.common.model.vo.PageInfo;
 import com.kh.wms.member.model.dao.MemberDao;
 import com.kh.wms.member.model.vo.Member;
+import com.kh.wms.team.model.vo.Battle;
+import com.kh.wms.team.model.vo.MemberTeam;
 import com.kh.wms.team.model.vo.Team;
 
 @Service
@@ -51,13 +53,13 @@ public class MemberServiceImpl implements MemberService{
 	
 	// 관민존
 	@Override
-	public int selectMyTeamCount(Member m) {
-		return memberDao.selectMyTeamCount(sqlSession,m);
+	public int selectMyTeamCount( int memberNo) {
+		return memberDao.selectMyTeamCount(sqlSession,memberNo);
 	}
 	
 	@Override
-	public ArrayList<Team> selectmyJoinTeamList(Member m,PageInfo pi) {
-		return memberDao.selectmyJoinTeamList(sqlSession, m, pi);
+	public ArrayList<Team> selectmyJoinTeamList( int memberNo,PageInfo pi) {
+		return memberDao.selectmyJoinTeamList(sqlSession, memberNo, pi);
 	}
 	@Override
 	public int quitTeam(Map<String, Object> map) {
@@ -68,16 +70,77 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.memberSelectTeam(teamNo, sqlSession);
 	}
 	@Override
-	public int selectMyCreateTeamCount(Member m) {
-		return memberDao.selectMyCreateTeamCount(sqlSession, m);
+	public int selectMyCreateTeamCount( int memberNo) {
+		return memberDao.selectMyCreateTeamCount(sqlSession, memberNo);
 	}
 	@Override
-	public ArrayList<Team> selectListCreateTeam(Member m, PageInfo pi) {
-		return memberDao.selectListCreateTeam(m, pi, sqlSession);
+	public ArrayList<Team> selectListCreateTeam( int memberNo, PageInfo pi) {
+		return memberDao.selectListCreateTeam(memberNo, pi, sqlSession);
 	}
 	@Override
 	public int updateTeam(Team team) {
 		return memberDao.updateTeam(team, sqlSession);
+	}
+	@Override
+	public int applyTeamJoin(MemberTeam tm) {
+		return memberDao.applyTeamJoin(sqlSession, tm);
+	}
+	@Override
+	public ArrayList<MemberTeam> myTeamMemberJoinList(int teamNo, PageInfo pi) {
+		return memberDao.myTeamMemberJoinList(sqlSession, teamNo, pi);
+	}
+	@Override
+	public int memberCount(int teamNo) {
+		return memberDao.memberCount(sqlSession,teamNo);
+	}
+	@Override
+	public int insertTeamMember(Map<String, Object> map) {
+		return memberDao.insertTeamMember(map, sqlSession);
+	}
+	@Override
+	public int applyBattle(Battle bt) {
+		return memberDao.applyBattle(sqlSession, bt);
+	}
+	@Override
+	public int battleCount(int teamNo) {
+		return memberDao.battleCount(sqlSession, teamNo);
+	}
+	@Override
+	public ArrayList<Battle> selectBattleApplyList(int teamNo, PageInfo pi) {
+		return memberDao.selectBattleApplyList(teamNo, pi, sqlSession);
+	}
+	@Override
+	public int acceptBattle(int battleNo) {
+		return memberDao.acceptBattle(sqlSession, battleNo);
+	}
+	@Override
+	public int refuseBattle(int battleNo) {
+		return memberDao.refuseBattle(battleNo, sqlSession);
+	}
+	@Override
+	public int myTeamMemberListCount(int teamNo) {
+		return memberDao.myTeamMemberListCount(teamNo, sqlSession);
+	}
+	@Override
+	public ArrayList<Member> myTeamMemberList(int teamNo,PageInfo pi) {
+		return memberDao.myTeamMemberList(teamNo, sqlSession, pi);
+	}
+	@Override
+	public int battleScheduleCount(int teamNo) {
+		return memberDao.battleScheduleCount(teamNo,sqlSession);
+	}
+	@Override
+	public ArrayList<Battle> selectBattleSchedule(int teamNo, PageInfo pi) {
+		return memberDao.selectBattleSchedule(teamNo,pi,sqlSession);
+	}
+	@Override
+	public int insertBattleResult(Battle bt) {
+	return memberDao.insertBattleResult(sqlSession, bt);
+	}
+	
+	@Override
+	public Member adminSelct(String memberId) {
+		return memberDao.adminSelect(sqlSession, memberId);
 	}
 	
 	

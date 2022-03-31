@@ -32,23 +32,15 @@ public class TeamController {
 	@Autowired
 	private MemberService memberService;
 	
+	// 나의 운미사 찾기 들어가는 메서드
 	@RequestMapping("serchWms.te")
 	public ModelAndView serchWms(@RequestParam(value="serchWmsPage", defaultValue="1")int currentPage, ModelAndView mv) {
 		
 		int selectTeamCount = teamService.selectTeamCount();
 		
-		PageInfo pi = Pagination.getPageInfo(selectTeamCount, currentPage, 10, 5);
+		PageInfo pi = Pagination.getPageInfo(selectTeamCount, currentPage, 5, 10);
 		
 		ArrayList<Team> tList = teamService.selectTeamList(pi);
-		
-		for(Team t : tList) {
-			if((t.getLoseCount() + t.getWinCount() + t.getDrawCount()) != 0) {
-				t.setWinPercent((int)(((double)t.getWinCount()/(t.getLoseCount() + t.getWinCount() + t.getDrawCount())*100)));
-			}else {
-				t.setWinPercent(0);
-			}
-			
-		}
 		
 		mv.addObject("tList",tList);
 		mv.addObject("pi",pi);
@@ -56,6 +48,8 @@ public class TeamController {
 		
 		return mv;
 	}
+	
+	// 검색하기 기능
 	@RequestMapping("serchSelectWms.te")
 	public ModelAndView serchSelectWms(@RequestParam(value="serchWmsPage", defaultValue="1")int currentPage, ModelAndView mv, String sidoName, String siGunGuName, String sportsName) {
 		
@@ -66,7 +60,7 @@ public class TeamController {
 		
 		int serchSelectWmsCount = teamService.serchSelectWmsCount(map);
 		
-		PageInfo pi = Pagination.getPageInfo(serchSelectWmsCount, currentPage, 10, 5);
+		PageInfo pi = Pagination.getPageInfo(serchSelectWmsCount, currentPage, 5, 10);
 
 		ArrayList<Team> serchSelectWmsList = teamService.serchSelectWms(map, pi);
 		
@@ -78,24 +72,31 @@ public class TeamController {
 		
 		return mv;
 	}
+	
 	@RequestMapping("teamDetail.te")
-	public ModelAndView selectTeamDetail(int teamNo, ModelAndView mv) {
+	public ModelAndView selectTeamDetail(int teamNo, ModelAndView mv, String memberId, String sportsName) {
 		
-		System.out.println(teamNo);
+		Map <String,Object> map = new HashMap<String, Object>();
+		map.put("teamNo", teamNo);
+		map.put("memberId", memberId);
+		map.put("sportsName", sportsName);
+
 		Team t = memberService.memberSelectTeam(teamNo);
+		ArrayList<Team> selectTeam = teamService.selectOptionTeamList(map);
 		
+		System.out.println(selectTeam);
+		mv.addObject("selectTeam", selectTeam);
 		mv.addObject("t",t);
 		mv.setViewName("team/teamDetailView");
 		return mv;
 	}
+	
 	@RequestMapping("createTeamForm.te")
 	public ModelAndView createTeamForm(ModelAndView mv) {
-		
-
 		mv.setViewName("team/createTeam");
-		
 		return mv;
 	}
+	
 	@RequestMapping("gymReservation.te")
 	public String gymReservationForm() {
 		
@@ -103,22 +104,22 @@ public class TeamController {
 		
 		return "team/gymReservation";
 	}
+	
 	@RequestMapping("insertTeam.te")
 	public ModelAndView insertTeam(Team t, MultipartFile upfile, HttpSession session, ModelAndView mv) {
 		
 		String changeName = saveFile(upfile, session);
-
 		t.setLogoOriginName(upfile.getOriginalFilename()); // 원본명
 		t.setLogoChangeName("resources/uploadFiles/" + changeName);
 		
 		int result = teamService.insertTeam(t);
 		
 		if(result > 0) {
-			mv.addObject("alertMsg", "팀 등록에 성공하셨습니다^^");
+			mv.addObject("alertMsg", "팀 등록에 성공하셨습니다!");
 		}else {
 			mv.addObject("alertMsg", "팀 등록에 실패하셨습니다 ^^");
 		}
-		mv.setViewName("team/searchWms");
+		mv.setViewName("redirect:serchWms.te");
 		
 		return mv;
 	}

@@ -113,7 +113,6 @@
     	<div class="side-bar">
             <a href="serchWms.te" class="big-menu">우리동네 운미사</a> <br>
             <a href="serchWms.te">우리동네 운미사 찾기</a> <br>
-            <a href="gymReservation.te">우리동네 체육관 대여하기</a> <br>
             <a href="createTeamForm.te">팀 등록하기</a> <br>
         </div>
         
@@ -201,6 +200,7 @@
                 <div class="inputTeamLogoArea">
                     <input type="file" name="upfile" onchange="setLogo(event)" required>
 		            <input type="hidden" name="bossId" value="${ loginUser.memberId }">
+		            <input type="hidden" name="bossNo" value="${ loginUser.memberNo }">
                 </div>
             </div>
             <div class="button-area" style="margin-top: 20px;">

@@ -1,5 +1,7 @@
 package com.kh.wms.team.model.vo;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,9 @@ public class MemberTeam {
 	private String joinDate;
 	private String joinStatus;
 	private String introMyself;
-	
+	private int rownum;
+	private String memberName;
+	private String birthDate;
 
 	
 }

@@ -22,7 +22,7 @@
                 <div class="content_1_select">
                     <div class="Notice_select"><a href="noticeList.no">공지사항</a></div>
                     <div class="FAQ_select"><a href="noticeFAQ.no">FAQ</a></div>
-                    <div class="ChattingQ_select"><a href="">1:1 채팅문의</a></div>
+                    <div class="ChattingQ_select" id="adminChat">1:1 채팅문의</div>
                 </div>
             </div>
     		<div id="content_2">

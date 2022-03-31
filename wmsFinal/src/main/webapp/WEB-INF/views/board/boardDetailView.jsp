@@ -6,6 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+   .content {
+            background-color:rgb(247, 245, 245);
+            width:80%;
+            margin:auto;
+        }
+        .innerOuter {
+            border:1px solid lightgray;
+            width:80%;
+            margin:auto;
+            padding:5% 10%;
+            background-color:white;
+        }
+
+        table * {margin:5px;}
+        table {width:100%;}
+         div{font-family: 'gmarket_font_medium';}
+</style>
 </head>
 <body>
         
@@ -17,7 +35,7 @@
             <h2>게시글 상세보기</h2>
             <br>
 
-            <a class="btn btn-secondary" style="float:right;" href="">목록으로</a>
+            <a class="btn btn-secondary" style="float:right;" href="nomalList.bo">목록으로</a>
             <br><br>
 
             <table id="contentArea" algin="center" class="table">
@@ -68,39 +86,105 @@
             
             <table id="replyArea" class="table" align="center">
                 <thead>
+                
                     <tr>
+                    	<c:choose>
+                    		<c:when test="${empty loginUser }">
+                    	<!-- 로그인 전 -->
                         <th colspan="2">
-                            <textarea class="form-control" name="" id="content" cols="55" rows="2" style="resize:none; width:100%;"></textarea>
+                            <textarea class="form-control"  cols="55" rows="2" style="resize:none; width:100%;" readonly>로그인 후 이용해주세요.</textarea>
                         </th>
-                        <th style="vertical-align:middle"><button class="btn btn-secondary">등록하기</button></th>
+                        <th style="vertical-align:middle"><button class="btn btn-secondary disabled">등록하기</button></th>
+                        </c:when>
+                        
+                        <c:otherwise>
+                        <!-- 로그인 후 -->
+                        <th colspan="2">
+                            <textarea class="form-control"  id="content" cols="55" rows="2" style="resize:none; width:100%;"></textarea>
+                        </th>
+                        <th style="vertical-align:middle"><button class="btn btn-secondary" onclick="addReply();">등록하기</button></th>
+                        </c:otherwise>
+                       </c:choose>  
+                        
                     </tr>
                     <tr>
-                        <td colspan="3">댓글(<span id="rcount">3</span>)</td>
+                        <td colspan="3">댓글(<span id="rcount">0</span>)</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>설윤수</th>
-                        <td>다이어트는 내일부터</td>
-                        <td>2022-03-17</td>
-                    </tr>
-                    <tr>
-                        <th>박현빈</th>
-                        <td>운동이 너무 재밌어요</td>
-                        <td>2022-03-16</td>
-                    </tr>
-                    <tr>
-                        <th>킹관민</th>
-                        <td>에베베베</td>
-                        <td>2022-03-11</td>
-                    </tr>
+                  	
                 </tbody>
             </table>
         </div>
         <br><br>
-
+	
     </div>
-    
+    	<script>
+    		
+    	
+    	$(function(){
+    		selectReplyList();
+    	})
+    	
+    	function addReply(){ // 댓글작성용
+    		
+    		// 아무것도 입력 안되어있을 때는 요청이 불가능하게끔 만들어주자
+    		if($("#content").val().trim() != 0){
+    			$.ajax({
+						url : "rinsert.bo",
+    					data : {
+    							boardNo : ${ b.boardNo },	// EL
+    							replyContent : $("#content").val(),  //jQuery
+    							memberNo : '${ loginUser.memberNo }'
+    					}, success:function(status){
+    						if(status == "success"){
+								selectReplyList();
+								$("#content").val("");
+								}
+    					}, error:function(){
+    						console.log("댓글 작성 실패");
+    					}
+    			})
+    		} 
+    		else{
+    			alertify.alert("댓글을 다시 작성해주세요.");	
+    		}
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    	}
+			function selectReplyList(){
+				
+				$.ajax({
+					url:"rlist.bo",
+					data:{boardNo : ${b.boardNo}},
+					success:function(list){
+						
+						let value="";
+						for(let i in list){
+							
+							value += "<tr>"
+								+"<th>" + list[i].memberId + "</th>"
+								+"<th>" + list[i].replyContent + "</th>"
+								+"<th>" + list[i].createDate + "</th>"
+								+"</tr>"
+						}
+						$("#replyArea tbody").html(value);
+						$("#rcount").text(list.length);
+					},error : function(){
+						console.log("댓글 조회 실패")
+					}
+					
+				})
+			
+			}
+		
+		
+		</script>
      <jsp:include page="../common/footer.jsp" />
     
 </body>

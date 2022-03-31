@@ -54,7 +54,6 @@
     	<div class="side-bar">
             <a href="serchWms.te" class="big-menu">우리동네 운미사</a> <br>
             <a href="serchWms.te">우리동네 운미사 찾기</a> <br>
-            <a href="gymReservation.te">우리동네 체육관 대여하기</a> <br>
             <a href="createTeamForm.te">팀 등록하기</a> <br>
         </div>
         <div class="team-menu-title">
@@ -113,11 +112,9 @@
                     <!-- 승률	운동종목	지역	팀 이름 	 승점	팀 등록 날짜	 동네 순위 -->
                     <tr>
                         <th>팀 번호</th>
-                        <th>승률</th>
                         <th>운동종목</th>
                         <th>지역</th>
                         <th>팀 이름</th>
-                        <th>승점</th>
                         <th>팀 등록 날짜</th>
                     </tr>
                 </thead>
@@ -125,20 +122,11 @@
                 	<c:forEach var="t" items="${ tList }">
 	                    <tr class="teamTable">
 	                        <td>${ t.teamNo }</td>
-	                        <c:choose>
-	                        	<c:when test="${ t.winCount + t.loseCount + t.drawCount  ne 0}">
-		                        	<td> ${ t.winPercent }%</td>
-	                        	</c:when>
-	                        	<c:otherwise>
-		                        	<td>0%</td>
-	                        	</c:otherwise>
-	                        	
-	                        </c:choose>
 	                        <td>${ t.sportsName }</td>
 	                        <td>${ t.sidoName }  ${t.siGunGuName }</td>
 	                        <td class="team-name-inTable">${ t.teamName }</td>
 	                        <input type="hidden" value="${ t.teamNo }">
-	                        <td>${ t.winPoint }</td>
+	                        <input type="hidden" value="${ t.sportsName }">
 	                        <td>${ t.createDate }</td>
 	                    </tr>
 					</c:forEach>
@@ -250,8 +238,9 @@
         $(function(){
         	
         	$(".team-name-inTable").click(function(){
+        		var memberId = '${loginUser.memberId}';
         		
-	        	location.href='teamDetail.te?teamNo= ' + $(this).next().val();        	
+	        	location.href='teamDetail.te?teamNo= ' + $(this).next().val() + "&memberId=" + memberId + "&sportsName=" +$(this).next().next().val();        	
         	
         	})
         	
