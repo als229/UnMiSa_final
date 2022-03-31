@@ -12,9 +12,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <style>
-    div{
-        border: 1px solid red;
-    }
     .team-detail-header{
         width: 80%;
         height: 20%;
@@ -68,6 +65,11 @@
         width: 50%;
         height: 100%;
     }
+    .team-detail-logo img{
+    	width: 280px;
+        height: 175px;
+    
+    }
 
 </style>
 </head>
@@ -84,10 +86,10 @@
         <div class="team-detail-header">
 
             <div class="team-detail-logo">
-                <img src="" alt="팀 로고">
+                <img src="${ t.logoChangeName }" alt="팀 로고">
             </div>
             <div class="team-detail-name">
-                <p style="font-size: 40px; font-weight: bold;">은평구 불빠따쓰</p>
+                <p style="font-size: 40px; font-weight: bold;">${ t.teamName }</p>
             </div>
         </div>
         <div class="team-detail-content">
@@ -95,27 +97,30 @@
                 <p>생성 날짜 : &nbsp; &nbsp;</p>
             </div>
             <div class="team-detaile-inputDate">
-                <p>2020-12-13</p>
+                <p>${ t.createDate }</p>
             </div>
             <div class="team-detail-record-text" style="text-align: right;">
                 <p>전적 :  &nbsp; &nbsp;</p>
             </div>
             <div class="team-detail-recordInput">
-                <p>46승 4패</p>
+                <p>${ t.winCount }승 ${ t.loseCount }패</p>
             </div>
             <div class="team-detail-intro-text" style="text-align: right;">
                 <p>팀 소개 : &nbsp; &nbsp;</p>
             </div>
             <div class="team-detail-inputIntro">
-                <textarea cols="50" rows="12" style="resize: none;" >안녕하세염 은평구 불빠따쓰 입니다. 항상 빠이링해요 저희 헤헿 사랑합니다~</textarea>
+                <textarea cols="50" rows="12" style="resize: none;" >${ t.teamIntro }</textarea>
             </div>
         </div>
         <div class="team-detail-buttonArea">
             <div class="team-join-button" style="text-align: center;">
                 <button style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#team-join-apply-bttopn">팀 가입 신청하기</button>
+            
             </div>
             <div class="team-detail-battleApply-button" style="text-align: center;">
+            <c:if test="${ selectTeam.size()  ne 0}">
                 <button style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#battle-apply-button">대전 신청하기</button>
+            </c:if>
             </div>
         </div>
 
@@ -135,10 +140,10 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <textarea cols="30" rows="10" style="resize: none;">자기 소개 : 저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠슴다저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠슴다저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠슴다저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠슴다저는 꼭 이 팀에 들어가고 싶슴다 열시미 하겠다</textarea>
+          <textarea class="applyTextArea" cols="30" rows="10" style="resize: none;"></textarea>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">팀 가입 신청하기</button>
+            <button type="button" class="btn btn-primary" onclick="teamJoinApply();">팀 가입 신청하기</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
         </div>
       </div>
@@ -155,16 +160,47 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" style="text-align: center;">
-            <input type="date">
-            <textarea cols="30" rows="10" style="resize: none;">상대에게 할 말 : 재밌는 게임 한번 해봐영 ^^ 즐겜해영 저희 </textarea>
+            <input type="date" id="battleDate">
+            <select id="selectOption">
+            	<c:forEach var="t" items="${ selectTeam }">
+            		<option value="${ t.teamNo }">${ t.teamName }</option>
+            	</c:forEach>
+            </select>
+            <textarea cols="30" rows="10" style="resize: none;" class="teamIntroText"></textarea>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">대전 신청하기</button>
+
+          <button type="button" class="btn btn-primary" onclick="battleApply();">대전 신청하기</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
         </div>
       </div>
     </div>
   </div>
+  
+  <script>
+  
+  	function teamJoinApply(){
+  		
+  		var applyText = $(".applyTextArea").val();
+  		var teamNo = '${t.teamNo}';
+  		var memberNo = '${loginUser.memberNo}';
+  		
+  		location.href="teamJoinApply.te?introMyself=" + applyText + "&teamNo=" + teamNo + "&memberNo=" + memberNo + "&sportsNo=" + sportsNo;
+  	}
+  	
+  	function battleApply(){
+  		
+  		var teamIntroText = $(".teamIntroText").val();
+  		var homeTeamNo = '${t.teamNo}';
+  		var memberNo = '${loginUser.memberNo}';
+  		var battleDate = $("#battleDate").val();
+  		var awayTeamNo = $("#selectOption").val();
+  		
+  		location.href="applyBattle.te?teamIntro=" + teamIntroText + "&homeTeamNo=" + homeTeamNo + "&memberNo=" + memberNo + "&battleDate=" + battleDate + "&awayTeamNo=" + awayTeamNo;
+  	}
+  
+  
+  </script>
 
     
 </body>

@@ -24,25 +24,29 @@
                 <div class="content_1_select">
                     <div class="Notice_select"><a href="noticeList.no">공지사항</a></div>
                     <div class="FAQ_select"><a href="noticeFAQ.no">FAQ</a></div>
-                    <div class="ChattingQ_select"><a href="">1:1 채팅문의</a></div>
+                    <div class="ChattingQ_select" id="adminChat">1:1 채팅문의</div>
                 </div>
                 <div class="noticeList_title">
                  	  공지사항
                 </div>
             </div>
             <div id="content_2">
-             <form id="content_2_searchForm" action="" method="get" align="center">
+             <form id="content_2_searchForm" action="search.no" method="get" align="center">
                 <div class="content2_searchDiv">
-                    <select name="notice_search" id="notice_search">
-                        <option value="while">전체</option>
+                    <select name="condition" id="notice_search">
                         <option value="title">제목</option>
                         <option value="content">내용</option>
                     </select>
-                    <input type="text" placeholder="검색어를 입력하세요" id="notice_searchBar">
+                    <input type="text" placeholder="검색어를 입력하세요" id="notice_searchBar" name = "keyword" value="${ keyword }">
                     <button class="notice_searchBtn btn btn-secondary">검색</button>
                 </div>
              </form>
             </div>
+            <script>
+            	$(function(){
+            		 $("#content_2 option[value=${condition}]").attr("selected", true);
+            	})
+            </script>
             <div id="content_3">
             	<table class="table" id = "noticeTable">
             		<thead>
@@ -73,7 +77,9 @@
             		</tbody>
             	</table>
             	<div id = "notice_enrollBtnDiv"> <!-- 관리자면 보여주는 등록하기 버튼 -->
-            	 <button class="notice_enrollBtn btn btn-primary">공지사항 작성하기</button>
+            	<c:if test="${loginUser.memberNo == 1 }">
+	            	 <button class="notice_enrollBtn btn btn-primary">공지사항 작성하기</button>
+            	</c:if>
             	</div>
             </div>
             <div id="content_4">
@@ -107,7 +113,6 @@
     <div id="footer_area">
     	<jsp:include page="../common/footer.jsp"/>
     </div>
-
 
 </body>
 </html>

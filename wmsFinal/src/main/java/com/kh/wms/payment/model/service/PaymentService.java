@@ -16,6 +16,8 @@ public interface PaymentService {
 	int paymentListCount(int memberNo);
 	ArrayList<Payment> paymentList(PageInfo pi, int memberNo);
 	void canclePayment(int memberNo);
+	int selectMark(Payment p);
+	int viewPoint(int memberNo);
 		
 	
 

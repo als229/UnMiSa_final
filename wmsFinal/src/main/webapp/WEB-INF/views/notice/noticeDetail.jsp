@@ -45,6 +45,7 @@
 					</c:when>
 					<c:otherwise>
 						<a href="${n.changeName }" download="${n.originName }">${n.originName }</a>
+			 			<input type = "hidden" value="${ n.changeName }" id="hidden_filePath">
 					</c:otherwise>
 				</c:choose>
 			</p>
@@ -56,8 +57,10 @@ ${n.noticeContent }
 		</div>
 		<div id = "content_4">
 			 <button class="noticeList_Btn btn btn-primary">목록으로 돌아가기</button>
-			 <button class="noticeUpdate_Btn btn btn-secondary">공지사항 수정하기</button>
-			 <button class="noticeDelete_Btn btn btn-danger">공지사항 삭제하기</button>
+			 <c:if test="${loginUser.memberNo == 1 }">
+			 	<button class="noticeUpdate_Btn btn btn-secondary">공지사항 수정하기</button>
+			 	<button class="noticeDelete_Btn btn btn-danger">공지사항 삭제하기</button>
+			 </c:if>
 		</div>
 		
 	</div>

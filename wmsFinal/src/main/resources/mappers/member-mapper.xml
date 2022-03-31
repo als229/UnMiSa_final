@@ -26,6 +26,60 @@
 		<result column="PAYMENT_METHOD" property="paymentMethod"/>
 	</resultMap>
 	
+	<resultMap type="team" id="teamMemberResultSet">
+		<result column="TEAM_NO" property="teamNo"/>
+		<result column="SPORTS_NO" property="sportsNo"/>
+		<result column="TEAM_NAME" property="teamName"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="WIN_COUNT" property="winCount"/>
+		<result column="DRAW_COUNT" property="drawCount"/>
+		<result column="LOSE_COUNT" property="loseCount"/>
+		<result column="WIN_POINT" property="winPoint"/>
+		<result column="TEAM_INTRO" property="teamIntro"/>
+		<result column="TEAM_STATUS" property="teamStatus"/>
+		<result column="ADDRESS_NO" property="addressNo"/>
+		<result column="SIDO_NAME" property="sidoName"/>
+		<result column="SIGUNGU_NAME" property="siGunGuName"/>
+		<result column="SPORTS_NAME" property="sportsName"/>
+		<result column="ORIGIN_NAME" property="logoOriginName"/>
+		<result column="CHANGE_NAME" property="logoChangeName"/>
+		<result column="BOSS_ID" property="bossId"/>
+		<result column="rNum" property="rowNum"/>
+		
+
+	</resultMap>
+	
+	
+	<resultMap type="memberTeam" id="memberTeamResultSet">
+	
+		<result column="TEAM_NO" property="teamNo"/>
+		<result column="SPORTS_NO" property="sportsNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="MEMBER_GRADE" property="memberGrade"/>
+		<result column="JOIN_DATE" property="joinDate"/>
+		<result column="JOIN_STATUS" property="joinStatus"/>
+		<result column="INTRO_MYSELF" property="introMyself"/>
+		<result column="rownum" property="rownum"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="BIRTH_DATE" property="birthDate"/>
+		
+
+	</resultMap>
+	
+	<resultMap type="battle" id="battleResultSet">
+	
+		<result column="BATTLE_NO" property="battleNo"/>
+		<result column="HOMETEAM_NO" property="homeTeamNo"/>
+		<result column="AWAYTEAM_NO" property="awayTeamNo"/>
+		<result column="SPORTS_NO" property="sportsNo"/>
+		<result column="BATTLE_DATE" property="battleDate"/>
+		<result column="AGREE_STATUS" property="agreeStatus"/>
+		<result column="RESULT_STATUS" property="resultStatus"/>
+		<result column="TEAM_INTRO" property="teamIntro"/>
+		<result column="TEAM_NAME" property="awayTeamName"/>
+		<result column="MEMBER_NO" property="awayBossNo"/>
+
+	</resultMap>
 	
 	
 	<select id="ajaxCheckId" resultType="_int" parameterType="String">
@@ -76,6 +130,212 @@
 	</select>
 	
 	
+	<!-- 관민존 -->
+	<select id="selectMyTeamCount" parameterType="member" resultType="_int">
 	
+	    SELECT COUNT(*)
+	    FROM MEMBER_TEAM
+	    JOIN TEAM T USING(TEAM_NO)
+	    JOIN MEMBER USING(MEMBER_NO)
+	    WHERE MEMBER_ID = #{memberId}
+    	AND TEAM_STATUS = 'Y'
+	    
+	</select>
+	
+	<select id="selectmyJoinTeamList" parameterType="member" resultMap="teamMemberResultSet">
+	
+    SELECT T.TEAM_NAME, T.SPORTS_NAME, ROWNUM rNum,T.TEAM_NO
+    FROM 
+    (
+        SELECT *
+        FROM MEMBER_TEAM
+        JOIN TEAM T USING(TEAM_NO)
+        JOIN MEMBER USING(MEMBER_NO)
+        WHERE MEMBER_ID = #{memberId}
+        AND TEAM_STATUS = 'Y'
+        ORDER BY TEAM_NO DESC
+    )T
+	
+	</select>
+	
+	<delete id="quitTeam" parameterType="HashMap">
+	
+	DELETE FROM MEMBER_TEAM
+	WHERE TEAM_NO = #{teamNo}
+	AND MEMBER_NO = #{memberNo}
+	</delete>
+	
+	<select id="selectTeam" parameterType="_int" resultMap="teamMemberResultSet">
+	
+		SELECT 
+		    WIN_POINT
+		    ,WIN_COUNT
+		    ,TEAM_STATUS
+		    ,TEAM_NO
+		    ,TEAM_NAME
+		    ,TEAM_INTRO
+		    ,SPORTS_NAME
+		    ,SIGUNGU_NAME
+		    ,SIDO_NAME
+		    ,ORIGIN_NAME
+		    ,LOSE_COUNT
+		    ,DRAW_COUNT
+		    ,SUBSTR(CREATE_DATE, 1,10) CREATE_DATE
+		    ,CHANGE_NAME
+		    ,BOSS_ID
+		FROM TEAM
+		WHERE TEAM_NO = #{teamNo}
+	
+	</select>
+	
+	<select id="selectMyCreateTeamCount" parameterType="member" resultType="_int">
+	
+		SELECT COUNT(*)
+		FROM TEAM
+		WHERE BOSS_ID = #{memberId}
+	
+	</select>
+	
+	<select id="selectListCreateTeam" parameterType="member" resultMap="teamMemberResultSet" resultType="arraylist">
+		
+		SELECT 
+		    WIN_POINT
+		    ,WIN_COUNT
+		    ,TEAM_STATUS
+		    ,TEAM_NO
+		    ,TEAM_NAME
+		    ,TEAM_INTRO
+		    ,SPORTS_NAME
+		    ,SIGUNGU_NAME
+		    ,SIDO_NAME
+		    ,ORIGIN_NAME
+		    ,LOSE_COUNT
+		    ,DRAW_COUNT
+		    ,SUBSTR(CREATE_DATE, 1,10) CREATE_DATE
+		    ,CHANGE_NAME
+		    ,BOSS_ID
+		FROM TEAM
+		WHERE BOSS_ID = #{memberId}
+	
+	</select>
+	
+	<update id="updateTeam">
+	
+		UPDATE TEAM
+		    SET 
+		    TEAM_NAME = #{teamName},
+		    SPORTS_NAME = #{sportsName},
+		    TEAM_INTRO = #{teamIntro},
+		    SIDO_NAME = #{sidoName},
+		    SIGUNGU_NAME = #{siGunGuName},
+		    ORIGIN_NAME = #{logoOriginName},
+		    CHANGE_NAME = #{logoChangeName}
+		WHERE 
+			TEAM_NO = #{teamNo}
+			
+	</update>
+	
+	<insert id="applyTeamJoin" parameterType = "memberTeam" >
+	
+		INSERT INTO MEMBER_TEAM 
+				(
+				MEMBER_NO
+				,TEAM_NO
+				,INTRO_MYSELF
+				)
+				VALUES
+				(
+				#{memberNo}
+				,#{teamNo}
+				,#{introMyself}
+				)
+	
+	</insert>
+	
+	<select id="memberCount" parameterType="_int" resultType="_int">
+		
+		SELECT COUNT(*)
+		FROM MEMBER_TEAM
+		WHERE TEAM_NO = #{teamNo}
+		AND JOIN_STATUS = 'H'
+	
+	</select>
+	
+	<select id="myTeamMemberJoinList" parameterType="_int" resultMap="memberTeamResultSet">
+	
+		SELECT  M.MEMBER_NAME, SUBSTR(M.BIRTH_DATE, 1,10) BIRTH_DATE, T.INTRO_MYSELF, ROWNUM AS "rownum", MEMBER_NO,JOIN_STATUS
+		FROM MEMBER_TEAM T
+        JOIN MEMBER M USING(MEMBER_NO)
+		WHERE T.TEAM_NO = #{teamNo}
+		AND T.JOIN_STATUS = 'H'
+		
+	</select>
+	
+	<update id="insertTeamMember" parameterType="HashMap">
+		
+		UPDATE MEMBER_TEAM
+		SET
+		JOIN_STATUS = 'Y'
+		WHERE TEAM_NO = #{teamNo}
+		AND MEMBER_NO = #{memberNo}
+	
+	</update>
+	
+	<insert id="applyBattle" parameterType="HashMap">
+		
+		INSERT INTO
+			BATTLE
+			(
+			BATTLE_NO,
+			TEAM_INTRO,
+			SPORTS_NAME,
+			HOMETEAM_NO,
+			AWAYTEAM_NO,
+			BATTLE_DATE
+			)
+			VALUES
+			(
+			SEQ_BTNO.NEXTVAL,
+			#{teamIntro},
+			#{sportsName},
+			#{homeTeamNo},
+			#{awayTeamNo},
+			#{battleDate}
+			)
+	
+	</insert>
+	
+	<select id="battleCount" parameterType="_int" resultType="_int">
+	
+		SELECT COUNT(*)
+		FROM BATTLE
+		WHERE HOMETEAM_NO = #{teamNo}
+		AND AGREE_STATUS = '1'
+		
+	</select>	
+	
+	<select id="selectBattleApplyList" parameterType="_int" resultMap="battleResultSet">
+	
+		SELECT *
+		FROM (
+		        SELECT SUBSTR(BATTLE_DATE, 1,10) BATTLE_DATE, MEMBER_NO 
+		        , AGREE_STATUS
+		        ,HOMETEAM_NO
+		        ,TEAM_NAME
+		        ,T.SPORTS_NAME
+		        ,B.TEAM_INTRO
+		        FROM TEAM  T
+		        JOIN BATTLE B ON (TEAM_NO = AWAYTEAM_NO)
+		        JOIN MEMBER ON (BOSS_ID = MEMBER_ID)
+		        )
+		WHERE HOMETEAM_NO = #{teamNo}
+		AND AGREE_STATUS = '1'
+	
+	</select>
+	<select id="adminSelect" resultMap="memberResultSet" parameterType="String">
+		SELECT * FROM MEMBER 
+		WHERE MEMBER_ID = #{memberId}
+		AND MEMBER_STATUS = 'Y'
+	</select>
 
 </mapper>

@@ -65,8 +65,8 @@
 						
 						<!-- 로그인 전 -->
 						<div style="float:right">
-							<a href="choice.me">&nbsp;&nbsp;회원가입</a>
-							<a href="loginForm.me">&nbsp;&nbsp;로그인</a>
+							<a href="choice.me">회원가입</a>
+							<a href="loginForm.me" style="margin-left:20px; margin-right:20px;">로그인</a>
 						</div>
 						<!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
 					</c:when>
@@ -77,7 +77,7 @@
 						<br>
 						<div style="float:right">
 						 &nbsp;&nbsp; 
-						 <a href=""><img src="">&nbsp;&nbsp;내 채팅</a> 
+						 <a href="myChat.ct"><img src="">&nbsp;&nbsp;내 채팅</a> 
 						 <a href="logOut.me">&nbsp;&nbsp;로그아웃</a> 
 						 <a href="myPage.me">&nbsp;&nbsp;마이페이지</a> 
 						 <a href="sportsPartnerMain.sp">&nbsp;&nbsp;운동파트너</a>
@@ -89,7 +89,7 @@
 		<div id="header_nav">
 			<ul>
 				<li><a href="serchWms.te">우리동네 운미사</a></li>
-				<li><a href="list.bo" >우리동네 커뮤니티</a></li>
+				<li><a href="nomalList.bo" >우리동네 커뮤니티</a></li>
 				<li><a href="eventMain.ev">우리동네 이벤트</a></li>
 				<li><a href="markMarket.pm?">마크 상점</a></li>
 				<li><a href="noticeFAQ.no" >고객센터</a></li>
@@ -100,6 +100,25 @@
 	
 
 
-
+<script type="text/javascript">
+$(function(){
+	$('#adminChat').on('click', function(){
+		$.ajax({
+			url : 'adminChat.ct',
+			success : function(result){
+					console.log(result)
+					var roomNo = result[0];
+					var roomName = result[1];
+					window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName, "채팅창", "width=550 , height=800");
+			},
+			error : function(){
+				console.log('조회 실패');
+			}
+		})
+		
+	})
+	
+})
+</script>
 </body>
 </html>

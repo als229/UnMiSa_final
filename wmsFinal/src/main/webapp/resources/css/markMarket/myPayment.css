@@ -12,7 +12,9 @@ font-family: 'gmarket_font_medium';
 div{
 	/*border:1px solid red;*/	
 }
+#pagin-area {width:fit-content; margin:auto;}
 #content_3{
+	padding-top:50px;
 	height:100px;
 }
 #paymentList{

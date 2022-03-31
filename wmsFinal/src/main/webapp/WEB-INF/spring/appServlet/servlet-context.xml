@@ -4,7 +4,9 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -25,12 +27,20 @@
 	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
 	<beans:bean id="qrcodeview" class="com.kh.wms.event.controller.QRCodeView"/>
 	
-	<!-- 
+
 	<interceptors>
 	  		<interceptor>
-	  			<mapping path="/insert.me"/>
+	  			<mapping path="/insertTeam.te"/>
 				<beans:bean class="com.kh.wms.common.intercepter.LoginIntercepter" id="LoginIntercepter"></beans:bean>	  
 	  		</interceptor>
 	</interceptors>
-	-->
+	<beans:bean id="basicServer" class="com.kh.wms.chatting.webSocket.WebSocketBasicServer"/>
+	<beans:bean id="groupServer" class="com.kh.wms.chatting.webSocket.WebSocketGroupServer"/>
+	<websocket:handlers>
+		<!-- 접속주소는  sc://localhost:8008/sc/wsc -->
+		<websocket:mapping handler="basicServer" path="wsc"/><!-- 내가 만든 웹소켓을 연결시켜주겠다. handler : 처리기 / path : 경로 -->
+		<websocket:mapping handler="groupServer" path="gsc"/><!-- 내가 만든 웹소켓을 연결시켜주겠다. handler : 처리기 / path : 경로 -->
+		
+	</websocket:handlers>
+	
 </beans:beans>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chatMapper">
+
+	<resultMap type="teamChat" id="teamChatResultSet">
+		<result column="MEMBER_NO" property="memberNo"/>	
+		<result column="MEMBER_ID" property="memberId"/>	
+		<result column="MEMBER_NAME" property="memberName"/>	
+		<result column="TEAM_NO" property="teamNo"/>	
+		<result column="TEAM_NAME" property="teamName"/>	
+		<result column="BOSS_ID" property="bossId"/>	
+		<result column="CHANGE_NAME" property="changeName"/>	
+	</resultMap>
+	
+	<resultMap type="chat" id="chatResultSet">
+		<result property="messageNo" column="MESSAGE_NO"/>
+		<result property="roomNo" column="ROOM_NO"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="roomId" column="ROOM_ID"/>
+		<result property="message" column="MESSAGE"/>
+		<result property="messageTime" column="MESSAGE_TIME"/>
+		<result property="memberId" column="MEMBER_ID"/>
+		<result property="roomName" column="ROOM_NAME"/>
+		<result property="memberName" column="MEMBER_NAME"/>
+	</resultMap>
+	
+	<select id="teamChatList" resultMap="teamChatResultSet" parameterType="String">
+		SELECT M.MEMBER_NO, M.MEMBER_ID, T.TEAM_NO, T.TEAM_NAME, T.BOSS_ID, T.CHANGE_NAME
+		FROM MEMBER M
+		JOIN TEAM T ON (M.MEMBER_ID = T.BOSS_ID)
+		WHERE BOSS_ID = #{bossId}
+	</select>
+	
+	<select id="teamChatCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*)
+		FROM MEMBER M
+		JOIN TEAM T ON (M.MEMBER_ID = T.BOSS_ID)
+		WHERE BOSS_ID = #{bossId}
+	</select>
+	
+	<select id="teamMember" resultMap="teamChatResultSet" parameterType="_int">
+		SELECT M.MEMBER_NO, M.MEMBER_ID, M.MEMBER_NAME 
+		FROM 
+		MEMBER_TEAM MT
+		JOIN MEMBER M ON (MT.MEMBER_NO = M.MEMBER_NO)
+		WHERE JOIN_STATUS = 'Y'
+		AND TEAM_NO = #{teamNo}
+	</select>
+	
+	<insert id="chatRoomAdd" parameterType="String" >
+		INSERT INTO 
+		CHATTINGROOM(ROOM_NO, ROOM_ID, ROOM_NAME)
+		VALUES(SEQ_CTRNO.NEXTVAL, #{roomId}, #{roomName})
+	</insert>
+	
+	<select id="selectRoomNo" resultType="_int" parameterType="String">
+		SELECT ROOM_NO FROM CHATTINGROOM
+		WHERE ROOM_ID = #{roomId}
+	</select>
+	
+	<insert id="chatMemberAdd" parameterType="teamChat">
+		INSERT INTO 
+		CHATTING(CHAT_NO, MEMBER_NO, ROOM_NO)
+		VALUES(SEQ_CTNO.NEXTVAL, #{memberNo}, #{roomNo})
+	</insert>
+	
+	
+	<select id="myChatList" resultMap="chatResultSet" parameterType="_int">
+		SELECT CR.ROOM_NO, CR.ROOM_NAME, CM.MESSAGE_NO, CM.MESSAGE, CM.MESSAGE_TIME,
+		M.MEMBER_NO , M.MEMBER_NAME, 
+		M.MEMBER_ID , CT.CHAT_NO 
+		FROM 
+		CHATTINGROOM CR
+		JOIN CHATTING CT ON (CR.ROOM_NO = CT.ROOM_NO) 
+		JOIN MEMBER M ON (M.MEMBER_NO = CT.MEMBER_NO)
+        JOIN (SELECT * FROM CHATTINGMESSAGE
+        WHERE ROWID IN (SELECT MAX(ROWID) FROM CHATTINGMESSAGE GROUP BY ROOM_NO)) CM ON (CM.ROOM_NO = CR.ROOM_NO)
+		WHERE M.MEMBER_NO = #{memberNo}
+		ORDER BY CM.MESSAGE_NO DESC
+	</select>
+	
+	<select id="myChatListCount" resultType="_int" parameterType="_int">
+		SELECT COUNT(*)
+		FROM 
+		CHATTINGROOM CR
+		JOIN CHATTING CT ON (CR.ROOM_NO = CT.ROOM_NO) 
+		JOIN MEMBER M ON (M.MEMBER_NO = CT.MEMBER_NO)
+        JOIN (SELECT * FROM CHATTINGMESSAGE
+        WHERE ROWID IN (SELECT MAX(ROWID) FROM CHATTINGMESSAGE GROUP BY ROOM_NO)) CM ON (CM.ROOM_NO = CR.ROOM_NO)
+		WHERE M.MEMBER_NO = #{memberNo}
+	</select>
+	
+	<insert id="addChatMessage" parameterType="chat">
+		INSERT INTO 
+		CHATTINGMESSAGE
+		(MESSAGE_NO, ROOM_NO, MEMBER_NO, MESSAGE, MESSAGE_TIME)
+		VALUES
+		(SEQ_CTMNO.NEXTVAL, #{roomNo}, #{memberNo}, #{message}, #{messageTime})
+	</insert>
+	
+	<select id="selectMessageList" parameterType="_int" resultMap="chatResultSet">
+		SELECT CM.MESSAGE_NO, CM.ROOM_NO, M.MEMBER_NO, CM.MESSAGE, CM.MESSAGE_TIME, M.MEMBER_ID, M.MEMBER_NAME
+		FROM CHATTINGMESSAGE CM 
+		JOIN MEMBER M ON (CM.MEMBER_NO = M.MEMBER_NO)
+		WHERE CM.ROOM_NO = #{roomNo}
+		ORDER BY CM.ROOM_NO DESC
+	</select>
+	
+	<select id="selectRoomMembers" parameterType="_int" resultMap="chatResultSet">
+		SELECT C.ROOM_NO, M.MEMBER_NO, M.MEMBER_NAME, M.MEMBER_ID
+		FROM CHATTING C
+		JOIN MEMBER M ON (C.MEMBER_NO = M.MEMBER_NO)
+		WHERE C.ROOM_NO = #{roomNo}
+	</select>
+	
+	
+</mapper>
