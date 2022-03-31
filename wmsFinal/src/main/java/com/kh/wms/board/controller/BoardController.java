@@ -65,7 +65,7 @@ public class BoardController {
 			
 		if(result > 0) { 
 			session.setAttribute("alertMsg", "게시글 작성 성공");
-			return "redirect:list.bo";
+			return "redirect:nomalList.bo";
 		}else {
 			model.addAttribute("errorMsg","게시글 작성 실패");
 			return null; 

@@ -194,6 +194,11 @@
 				
 				location.href="refuseBattle.te?battleNo=" + battleNo + "&memberNo=" + ${ loginUser.memberNo };
 			})			
+			$("#awayBossNo").on("click",function(){
+				var awayBossNo = $(this).val();
+				var memberNo = '${ loginUser.memberNo }';
+				
+			})			
 		
 	</script>
 </body>
