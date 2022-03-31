@@ -60,10 +60,12 @@
                 <br>
                 <br>
                 </div>
+    	        <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?">전체</a>
              
                 <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?boardSelect=0">구해요</a>
 
     	        <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?boardSelect=1">끼워주세요</a>
+    	        
                 <br>
                 <br>
             <!-- 로그인 상태일 경우만 보여지는 글쓰기 버튼 -->
@@ -81,7 +83,7 @@
                         <th>작성자</th>
                         <th>작성일</th>
                         <th>조회수</th>
-                        <th>지역</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

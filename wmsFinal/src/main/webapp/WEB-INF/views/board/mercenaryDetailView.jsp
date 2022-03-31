@@ -43,6 +43,10 @@
                     <td colspan="3">${ b.boardTitle }</td>
                 </tr>
                 <tr>
+                    <th width="100">지역</th>
+                    <td colspan="3">${ b.location }</td>
+                </tr>
+                <tr>
                     <th>작성자</th>
                     <td>${b.memberId }</td>
                     <th>작성일</th>

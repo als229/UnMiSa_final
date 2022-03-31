@@ -102,6 +102,9 @@
 		 WHERE BOARD_NO = #{boardNo}
 
 	</delete>
+	
+	
+	
 	<select id="selectReplyList" resultMap="replyResultSet" parameterType="_int">
 			SELECT
 					REPLY_NO
