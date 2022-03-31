@@ -19,7 +19,7 @@
             padding:5% 10%;
             background-color:white;
         }
-
+		 div{font-family: 'gmarket_font_medium';}
         table * {margin:5px;}
         table {width:100%;}
 </style>

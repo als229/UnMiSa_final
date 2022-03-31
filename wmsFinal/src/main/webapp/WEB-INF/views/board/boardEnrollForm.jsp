@@ -10,7 +10,7 @@
     
    #enrollForm>table {width: 1200px;}
         #enrollForm>table * {margin:5px;}
-       
+   div{font-family: 'gmarket_font_medium';}     
 </style>
 </head>
 <body>

@@ -6,19 +6,15 @@
 
   <style>
  
-        #boardList {text-align:center;}
+        #boardList {text-align:center;
+        			font-family: 'gmarket_font_medium';}
         #boardList>tbody>tr:hover {cursor:pointer ;
                                     background-color:lightblue;    }
 
-        #pagingArea {width:fit-content; margin:auto;}
+        #pagingArea {width:fit-content; margin:auto;
+        			font-family: 'gmarket_font_medium';}
         
-        #searchForm {
-            width:80%;
-            margin:auto;
-        }
-        #searchForm>* {
-            float:left;
-            margin:5px;
+      
         }
         .select {width:20%;}
         .text {width:53%;}
@@ -35,8 +31,9 @@
 		text-decoration-line: none;
 		color: rgb(135, 206, 235);
 		}
- 
-   
+ 		.btn {font-family: 'gmarket_font_medium';
+ 		}
+   		div{ font-family: 'gmarket_font_medium'; }
     </style>
   
 	

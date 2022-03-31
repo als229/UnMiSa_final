@@ -22,6 +22,7 @@
 
         table * {margin:5px;}
         table {width:100%;}
+         div{font-family: 'gmarket_font_medium';}
 </style>
 </head>
 <body>

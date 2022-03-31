@@ -279,7 +279,13 @@ public class BoardController {
 		}
 		
 		return mv;
-	
+		}
+		@RequestMapping(value="mercenaryDelete.mbo")
+		public String mercenaryDelete(int boardNo) {
+			
+			int result = boardService.mercenaryDeleteBoard(boardNo);
+			return "redirect:mercenaryList.mbo";
+		
 	}
 	
 	@ResponseBody
