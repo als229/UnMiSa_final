@@ -7,10 +7,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style >
-    
-   #enrollForm>table {width: 1200px;}
+  
+   #enrollForm>table {width: 1200px;
+   						}
         #enrollForm>table * {margin:5px;}
-   div{font-family: 'gmarket_font_medium';}     
+       
+        .region-select{
+ 		float: right;
+ 		width: 100px;	      	
+       	
+       	} 
+    div{font-family: 'gmarket_font_medium';}
 </style>
 </head>
 <body>
@@ -20,13 +27,45 @@
     <div class="content">
         <br><br>
         <div class="innerOuter">
+       
             <h2 align="center">게시글 작성하기</h2>
             <br>
-
-            <form id="enrollForm" method="post" action="nomalInsert.bo" enctype="multipart/form-data" align="center">
+			  
+			  
+                
+                  
+               
+            <form id="enrollForm" method="post" action="mercenaryInsert.mbo" enctype="multipart/form-data" align="center">
+             <div class="region-select" style="font-family: 'gmarket_font_medium';margin-right: 320px;">
+                
+                    <select class="region-select" name="location" >
+                        <option value="서울">서울</option>
+                        <option value="경기">경기</option>
+                        <option value="부산">부산</option>
+                        <option value="대구">대구</option>
+                        <option value="인천">인천</option>
+                        <option value="광주">광주</option>
+                        <option value="대전">대전</option>
+                        <option value="울산">울산</option>
+                        <option value="강원">강원</option>
+                        <option value="충청">충청</option>
+                        <option value="경상">경상</option>
+                        <option value="제주">제주</option>
+                    </select>
+                     <select class="board-select" name="boardSelect" style="width: 100px;" >
+                     
+                        <option value="0">구해요</option>
+                     
+                        <option value="1">끼워주세요</option>
+                     
+                    </select>
+                      
+                </div>
+                 
                 <table algin="center">
                     <tr>
                         <th><label for="title" style="margin-left: 100px;" >제목</label></th>
+                        
                         <td><input type="text" id="title" class="form-control" name="boardTitle" required></td>
                     </tr>
                     <tr>
@@ -43,6 +82,7 @@
                         <th><label for="content" style="margin-left: 100px;">내용</label></th>
                         <td><textarea id="content" class="form-control" rows="10" style="resize:none;" name="boardContent" required></textarea></td>
                     </tr>
+                 
                 </table>
                 <br>
 
@@ -53,10 +93,9 @@
             </form>
         </div>
         <br><br>
-
+	
     </div>
     
     <jsp:include page="../common/footer.jsp" />
-    
 </body>
 </html>

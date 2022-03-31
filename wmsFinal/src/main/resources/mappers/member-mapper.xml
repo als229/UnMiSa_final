@@ -442,5 +442,10 @@
 	
 	</select>
 	
+	<select id="adminSelect" resultMap="memberResultSet" parameterType="String">
+		SELECT * FROM MEMBER 
+		WHERE MEMBER_ID = #{memberId}
+		AND MEMBER_STATUS = 'Y'
+	</select>
 
 </mapper>

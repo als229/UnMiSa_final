@@ -127,7 +127,7 @@
 			</div>
 			<div class="chat_member_select">
 				<p>채팅 팀 선택</p>
-				<select name="teamName" id="teamName">
+				<select name="teamNo" id="teamNo">
 					<option value="0">선택</option>
 					<c:forEach var="c" items="${list }">
 						<option value="${c.teamNo }">${c.teamName }</option>
@@ -169,7 +169,7 @@
 		$('#teamName').change(function(){
 			$.ajax({
 				url : 'teamMember.ct',
-				data : { teamNo : $('#teamName').val()},
+				data : { teamNo : $('#teamNo').val()},
 				type : 'get',
 				success : function(list){
 					let value= "";

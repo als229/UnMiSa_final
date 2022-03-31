@@ -163,6 +163,9 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.insertBattleResult", bt);
 	}
 
+	public Member adminSelect(SqlSessionTemplate sqlSession, String memberId) {
+		return sqlSession.selectOne("memberMapper.adminSelect", memberId);
+	}
 
 	
 	

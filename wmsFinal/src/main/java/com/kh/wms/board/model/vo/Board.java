@@ -18,11 +18,13 @@ public class Board {
 	private String boardType;
 	private String createDate;
 	private String boardStatus;
+	private int boardSelect;
 	private String memberId;
 	private int addressNo;
 	private String sidoName;
 	private String gu;
 	private String dong;
+	private String location;
 	
 
 }

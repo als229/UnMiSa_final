@@ -19,10 +19,9 @@
             padding:5% 10%;
             background-color:white;
         }
-
+		 div{font-family: 'gmarket_font_medium';}
         table * {margin:5px;}
         table {width:100%;}
-         div{font-family: 'gmarket_font_medium';}
 </style>
 </head>
 <body>
@@ -35,7 +34,7 @@
             <h2>게시글 상세보기</h2>
             <br>
 
-            <a class="btn btn-secondary" style="float:right;" href="nomalList.bo">목록으로</a>
+            <a class="btn btn-secondary" style="float:right;" href="mercenaryList.mbo">목록으로</a>
             <br><br>
 
             <table id="contentArea" algin="center" class="table">
@@ -76,8 +75,8 @@
 
             <div align="center">
            		 <c:if test="${loginUser.memberId eq b.memberId }">
-                <a class="btn btn-primary" href="nomalUpdateForm.bo?boardNo=${b.boardNo }">수정</a>
-                <a class="btn btn-primary" href="nomalDelete.bo?boardNo=${b.boardNo }">삭제</a>
+                <a class="btn btn-primary" href="mercenaryUpdateForm.mbo?boardNo=${b.boardNo }">수정</a>
+                <a class="btn btn-primary" href="mercenaryDelete.mbo?boardNo=${b.boardNo }">삭제</a>
                 </c:if>
                 <a class="btn btn-danger" href="">취소</a>
             </div>
@@ -131,16 +130,16 @@
     		// 아무것도 입력 안되어있을 때는 요청이 불가능하게끔 만들어주자
     		if($("#content").val().trim() != 0){
     			$.ajax({
-						url : "rinsert.bo",
+						url : "mrinsert.mbo",
     					data : {
-    							boardNo : ${ b.boardNo },	// EL
+    							BoardNo : ${ b.boardNo },	// EL
     							replyContent : $("#content").val(),  //jQuery
     							memberNo : '${ loginUser.memberNo }'
     					}, success:function(status){
     						if(status == "success"){
 								selectReplyList();
 								$("#content").val("");
-								}
+    						}
     					}, error:function(){
     						console.log("댓글 작성 실패");
     					}
@@ -160,7 +159,7 @@
 			function selectReplyList(){
 				
 				$.ajax({
-					url:"rlist.bo",
+					url:"mrlist.mbo",
 					data:{boardNo : ${b.boardNo}},
 					success:function(list){
 						
@@ -186,6 +185,6 @@
 		
 		</script>
      <jsp:include page="../common/footer.jsp" />
-    
+
 </body>
 </html>

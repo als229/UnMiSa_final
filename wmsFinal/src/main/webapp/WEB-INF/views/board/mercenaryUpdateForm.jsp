@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 수정</title>
-	<style>
+<title>Insert title here</title>
+<style>
     .content {
             background-color:rgb(247, 245, 245);
             width:80%;
@@ -34,7 +34,7 @@
             <h2 align="center">게시글 수정하기</h2>
             <br>
 
-            <form id="updateForm" method="post" action="nomalUpdate.bo" enctype="multipart/form-data">
+            <form id="updateForm" method="post" action="mercenaryUpdate.mbo" enctype="multipart/form-data">
                 <table algin="center">
                     <tr>
                         <th><label for="title">제목</label></th>
@@ -77,6 +77,5 @@
     </div>
     
  	<jsp:include page="../common/footer.jsp" />
-    
 </body>
 </html>

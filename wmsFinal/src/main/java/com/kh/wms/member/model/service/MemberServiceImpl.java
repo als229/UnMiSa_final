@@ -135,7 +135,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public int insertBattleResult(Battle bt) {
-		return memberDao.insertBattleResult(sqlSession, bt);
+	return memberDao.insertBattleResult(sqlSession, bt);
+	}
+	
+	@Override
+	public Member adminSelct(String memberId) {
+		return memberDao.adminSelect(sqlSession, memberId);
 	}
 	
 	

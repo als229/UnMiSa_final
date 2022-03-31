@@ -219,7 +219,7 @@
             border : 3px solid rgb(176,176,176);
             margin-top: 12px;
             font-weight: bold;
-            font-size : 4px;
+            font-size : 14px;
 
         }
         #ss2{
@@ -231,7 +231,7 @@
             background-color: rgb(229,242,248);
             border : 3px solid rgb(176,176,176);
             font-weight: bold;
- margin-top: 12px;
+ 			margin-top: 12px;
             font-size : 14px;
       
         }

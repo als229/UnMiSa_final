@@ -19,6 +19,7 @@ public interface MemberService {
 	Member loginMember(Member m);
 	Member loginMember(String authKey);
 	int AjaxPlatFormCheck(String authKey);
+	Member adminSelct(String memberId);
 	
 	// 관민존
 	int selectMyTeamCount(int memberNo);

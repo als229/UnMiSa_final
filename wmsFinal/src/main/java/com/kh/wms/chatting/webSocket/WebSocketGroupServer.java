@@ -22,7 +22,6 @@ public class WebSocketGroupServer extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		
-		System.out.println(session.getId());
 		users.add(session);
 		System.out.println("사용자 접속 ! 현재 " + users.size() + " 명");
 
@@ -47,11 +46,9 @@ public class WebSocketGroupServer extends TextWebSocketHandler {
 		cm.setMessage(message);
 		cm.setRoomNo(roomNo);
 		cm.setMessageTime(messageTime);
-		System.out.println(cm);
 		chattingService.addChatMessage(cm);
 		
 		// session.sendMessage(newMessage); // 메세지를 본내놈한테 다시 메세지를 보내겠다
-		System.out.println(senMessage);
 		for (WebSocketSession ws : users) {
 			ws.sendMessage(totalMessage);
 		}

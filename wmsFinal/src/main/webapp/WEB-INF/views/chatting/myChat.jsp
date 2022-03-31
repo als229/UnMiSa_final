@@ -143,6 +143,9 @@ h2 {
 	background-color: white;
 	border: 1px solid #1A237E;
 }
+.pager_area{
+	margin-left: 45%;
+}
 
 
 </style>
@@ -157,20 +160,22 @@ h2 {
 	<c:if test="${list != null && list.size() !=0 }">
 		<!-- 목록 영역 -->
 		<div class="chat_list_area">
-			<table>
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>방 이름</th>
 						<th>메시지</th>
 						<th>시간</th>
+						<th>보낸이</th>
 					</tr>
 				</thead>
 				<tbody>
 		        <c:forEach var="cr" items="${list }">
 		            <tr class="chat_window_tr" data-room-no="${cr.roomNo }" data-room-name="${cr.roomName }">
 		            	<td>${cr.roomName }</td>
-		            	<td></td>
-		            	<td></td>
+		            	<td>${cr.message }</td>
+		            	<td>${cr.messageTime }</td>
+		            	<td>${cr.memberName }</td>
 		            </tr>
 		        </c:forEach>
 				</tbody>
@@ -183,15 +188,15 @@ h2 {
              <ul class="pagination"  >
                    <c:choose>
                     	<c:when test="${ pi.currentPage eq 1 }">
-	                    	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+	                    	<li class="page-item disabled"><a class="page-link" href="myChat.ct">Previous</a></li>
                     	</c:when>
                     	<c:otherwise>
-	                    	<li class="page-item"><a class="page-link" href="list.bo?cpage=${ pi.currentPage -1 }">Previous</a></li>
+	                    	<li class="page-item"><a class="page-link" href="myChat.ct?cpage=${ pi.currentPage -1 }">Previous</a></li>
                     	</c:otherwise>
                    </c:choose>
                    
                    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                    	<li class="page-item"><a class="page-link" href="list.bo?cpage=${ p }">${ p }</a></li>
+                    	<li class="page-item"><a class="page-link" href="myChat.ct?cpage=${ p }">${ p }</a></li>
                    </c:forEach>
 
                    <c:choose>
@@ -199,7 +204,7 @@ h2 {
 	                    	<li class="page-item disabled"><a class="page-link" href="#" >Previous</a></li>
                     	</c:when>
                     	<c:otherwise>
-	                    	<li class="page-item"><a class="page-link" href="list.bo?cpage=${ pi.currentPage +1 }">Next</a></li>
+	                    	<li class="page-item"><a class="page-link" href="myChat.ct?cpage=${ pi.currentPage +1 }">Next</a></li>
                     	</c:otherwise>
                    </c:choose>
               
