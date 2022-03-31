@@ -32,6 +32,7 @@ public class Team {
 	private String bossId;
 	private int rowNum;
 	private int winPercent;
+	private int bossNo;
 
 	
 	

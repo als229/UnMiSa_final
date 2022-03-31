@@ -272,28 +272,85 @@ public class MemberController {
 	
 	// 관민존
 	@RequestMapping("myMatchSchedule.me")
-	public String selectMyMatchSchedule() {
+	public ModelAndView selectMyMatchSchedule(@RequestParam(value="myJoinPage", defaultValue="1")int currentPage, ModelAndView mv, int teamNo) {
+		int battleCount = memberService.battleScheduleCount(teamNo);
+		Team t = memberService.memberSelectTeam(teamNo);
 		
+		PageInfo pi = Pagination.getPageInfo(battleCount, currentPage, 5, 10);
 		
-		return "member/myMatchSchedule";
+		ArrayList<Battle> bList = memberService.selectBattleSchedule(teamNo, pi);
+		
+		mv.addObject("bList",bList);
+		mv.addObject("t",t);
+		mv.setViewName("member/myMatchSchedule");
+		return mv;
+	}
+	
+	@RequestMapping("insertBattleResult.te")
+	public ModelAndView insertBattleResult(ModelAndView mv, Battle bt) {
+		
+		int result = memberService.insertBattleResult(bt);
+		
+		if(result > 0) {
+			mv.addObject("alertMsg","결과를 입력했습니다!");
+		}else {
+			mv.addObject("alertMsg", "결과 입력에 실패했습니다...");
+		}
+		
+		mv.setViewName("member/myPage");
+		return mv;
 	}
 	
 	@RequestMapping(value="myPage.me")
 	public ModelAndView selectMyPage(ModelAndView mv) {
 		
-		mv.setViewName("member/myPage");
 		
+		
+		
+		mv.setViewName("member/myPage");
 		return mv;
 	}
-
-	@RequestMapping("selectmyJoinTeamList.te")
-	public ModelAndView selectmyJoinTeamList(@RequestParam(value="myJoinPage", defaultValue="1")int currentPage, ModelAndView mv, Member m) {
+	
+	@RequestMapping("acceptBattle.te")
+	public ModelAndView acceptBattle(ModelAndView mv, int battleNo, int memberNo) {
 		
-		int myJoinTeamCount = memberService.selectMyTeamCount(m);
+		
+		int result = memberService.acceptBattle(battleNo);
+		
+		if(result > 0) {
+			mv.addObject("alertMsg","경기를 수락하셨습니다 !");
+		}else {
+			mv.addObject("alertMsg", "경기 수락에 실패했습니다!!");
+		}
+		
+		mv.setViewName("member/myPage");
+		return mv;
+	}
+	
+	@RequestMapping("refuseBattle.te")
+	public ModelAndView refuseBattle(ModelAndView mv, int battleNo, int memberNo) {
+		
+		int result = memberService.refuseBattle(battleNo);
+		
+		if(result > 0) {
+			mv.addObject("alertMsg","경기를 거절하셨습니다 !");
+		}else {
+			mv.addObject("alertMsg", "경기 거절에 실패했습니다!!");
+		}
+		
+		mv.setViewName("member/myPage");
+		return mv;
+	}
+	
+	// 내가 가입한 팀 리스트
+	@RequestMapping("selectmyJoinTeamList.te")
+	public ModelAndView selectmyJoinTeamList(@RequestParam(value="myJoinPage", defaultValue="1")int currentPage, ModelAndView mv, int memberNo) {
+		
+		int myJoinTeamCount = memberService.selectMyTeamCount(memberNo);
 		
 		PageInfo pi = Pagination.getPageInfo(myJoinTeamCount, currentPage, 5, 10);
 		
-		ArrayList<Team> myJoinTeamList = memberService.selectmyJoinTeamList(m, pi);
+		ArrayList<Team> myJoinTeamList = memberService.selectmyJoinTeamList(memberNo, pi);
 		
 		mv.addObject("myJoinTeamList", myJoinTeamList);
 		mv.addObject("pi",pi);
@@ -301,6 +358,7 @@ public class MemberController {
 		return mv;
 	}
 	
+	// 팀 탈퇴하기
 	@RequestMapping("quitTeam.te")
 	public ModelAndView quitTeam(int teamNo,int memberNo, ModelAndView mv) {
 		
@@ -315,19 +373,20 @@ public class MemberController {
 		}else {
 			mv.addObject("alertMsg", "팀탈퇴에 실패하셨습니다.");
 		}
-		mv.setViewName("member/myJoinTeam");
+		mv.setViewName("member/myPage");
 		
 		return mv;
 	}
 	
+	// 내가 만든팀 
 	@RequestMapping("selectListCreateTeam.te")
-	public ModelAndView selectListCreateTeam(@RequestParam(value="myCreateTeamPage", defaultValue="1")int currentPage, Member m, ModelAndView mv) {
+	public ModelAndView selectListCreateTeam(@RequestParam(value="myCreateTeamPage", defaultValue="1")int currentPage, int memberNo, ModelAndView mv) {
 		
-		int myCreateTeamCount = memberService.selectMyCreateTeamCount(m);
+		int myCreateTeamCount = memberService.selectMyCreateTeamCount(memberNo);
 		
 		PageInfo pi = Pagination.getPageInfo(myCreateTeamCount, currentPage, 5, 10);
 		
-		ArrayList<Team> myCreateTeamList = memberService.selectListCreateTeam(m,pi);
+		ArrayList<Team> myCreateTeamList = memberService.selectListCreateTeam(memberNo,pi);
 		
 		mv.addObject("pi",pi);
 		mv.addObject("myCreateTeamList",myCreateTeamList);
@@ -336,6 +395,7 @@ public class MemberController {
 		return mv;
 	}
 	
+	// 팀 관리하기
 	@RequestMapping("updateFormTeam.te")
 	public ModelAndView updateFormTeam(ModelAndView mv, int teamNo) {
 
@@ -346,6 +406,7 @@ public class MemberController {
 		return mv;
 	}
 	
+	// 팀 수정하기 
 	@RequestMapping("updateTeam.te")
 	public ModelAndView updateTeam(Team team, MultipartFile reupfile, HttpSession session, ModelAndView mv) {
 		
@@ -379,13 +440,24 @@ public class MemberController {
 		mv.setViewName("member/updateTeam");
 		return mv;
 	}
+	
+	// 우리 팀 멤버 리스트 가져오기
 	@RequestMapping("myTeamMemberList.te")
-	public String myTeamMemberList() {
+	public ModelAndView myTeamMemberList(@RequestParam(value="cPage", defaultValue="1")int currentPage, ModelAndView mv, int teamNo) {
+		Team t = memberService.memberSelectTeam(teamNo);
+		int myCreateTeamCount = memberService.myTeamMemberListCount(teamNo);
+		PageInfo pi = Pagination.getPageInfo(myCreateTeamCount, currentPage, 10, 5);
 		
+		ArrayList<Member> mtList = memberService.myTeamMemberList(teamNo,pi);
 		
-		return "member/myTeamMemberList";
+		mv.addObject("pi",pi);
+		mv.addObject("mtList",mtList);
+		mv.addObject("t",t);
+		mv.setViewName("member/myTeamMemberList");
+		return mv;
 	}
 	
+	// 가입 신청 수락하기
 	@RequestMapping("insertTeamMember.te")
 	public ModelAndView insertMember( ModelAndView mv, int memberNo, int teamNo) {
 
@@ -404,10 +476,11 @@ public class MemberController {
 			mv.addObject("alertMsg", "팀원등록에 성공하셨습니다 !!!!");
 		}
 		mv.addObject("t",t);
-		mv.setViewName("member/myCreateTeam");
+		mv.setViewName("redirect:myTeamMemberJoinList.te?teamNo="+teamNo);
 		return mv;
 	}
 	
+	// 가입 신청 관리하기
 	@RequestMapping("myTeamMemberJoinList.te")
 	public ModelAndView myTeamMemberJoinList(@RequestParam(value="cPage", defaultValue="1")int currentPage, ModelAndView mv, int teamNo) {
 		
@@ -426,6 +499,8 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+	// 경기 신청 관리 
 	@RequestMapping("battleApplyList.te")
 	public ModelAndView battleApplyList(@RequestParam(value="cPage", defaultValue="1")int currentPage, ModelAndView mv, int teamNo) {
 		
@@ -441,6 +516,8 @@ public class MemberController {
 		mv.setViewName("member/battleApplyList");
 		return mv;
 	}
+	
+	// 대전 신청하기
 	@RequestMapping("applyBattle.te")
 	public ModelAndView applyBattle( ModelAndView mv, Battle bt) {
 		
@@ -456,10 +533,11 @@ public class MemberController {
 		}
 		
 		mv.addObject("t",t);
-		mv.setViewName("team/searchWms");
+		mv.setViewName("redirect:teamDetail.te?teamNo=" + bt.getHomeTeamNo());
 		return mv;
 	}
 	
+	// 팀 가입 신청하기
 	@RequestMapping("teamJoinApply.te")
 	public ModelAndView applyTeamJoin(ModelAndView mv, MemberTeam tm) {
 		
@@ -476,9 +554,11 @@ public class MemberController {
 		}
 		
 		mv.addObject("t",t);
-		mv.setViewName("team/searchWms");
+		mv.setViewName("redirect:teamDetail.te?teamNo=" + tm.getTeamNo());
 		return mv;
 	}
+	
+	// 팀 넘버로 셀렉해오는 메서드
 	@RequestMapping("memberSelectTeam.te")
 	public ModelAndView memberSelectTeam(ModelAndView mv, int teamNo) {
 		
@@ -488,6 +568,7 @@ public class MemberController {
 		
 		return mv;
 	}
+	
 	
 	public String teamSaveFile(MultipartFile reupfile, HttpSession session) {
 		

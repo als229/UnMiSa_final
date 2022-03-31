@@ -23,6 +23,8 @@ public class Battle {
 	private String teamIntro;
 	private String awayTeamName;
 	private String awayBossNo;
+	private String teamName;
+	
 	
 	
 
