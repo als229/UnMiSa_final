@@ -136,14 +136,14 @@
     			$.ajax({
 						url : "mrinsert.mbo",
     					data : {
-    							BoardNo : ${ b.boardNo },	// EL
+    							boardNo : ${ b.boardNo },	// EL
     							replyContent : $("#content").val(),  //jQuery
     							memberNo : '${ loginUser.memberNo }'
     					}, success:function(status){
     						if(status == "success"){
 								selectReplyList();
 								$("#content").val("");
-    						}
+								}
     					}, error:function(){
     						console.log("댓글 작성 실패");
     					}
