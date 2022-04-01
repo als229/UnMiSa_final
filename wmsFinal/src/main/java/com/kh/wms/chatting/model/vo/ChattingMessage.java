@@ -9,6 +9,7 @@ public class ChattingMessage {
 	private int messageNo;
 	private int roomNo;
 	private int memberNo;
+	private int chatNo;
 	private String roomId;
 	private String message;
 	private String messageTime;

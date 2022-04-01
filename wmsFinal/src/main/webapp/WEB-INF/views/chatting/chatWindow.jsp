@@ -175,16 +175,13 @@
 			webSocket = new WebSocket(uri);
 
 			webSocket.onopen = function() {
-				console.log('서버와 연결되었습니다.');
 			}
 
 			webSocket.onclose = function() {
 				console.log('서버와 연결이 종료 되었습니다.');
-
 			}
 
 			webSocket.onerror = function(e) {
-				console.log('오타 내지맙시다.');
 			}
 
 			webSocket.onmessage = function(e) {
@@ -196,60 +193,81 @@
 				var receiveTime = messages[4];
 				if (receiveRoomNo == roomNo) {
 					var li ="";
-					if (receiveMemberNo == sessionMemberNo) {
-					
-						li = "<li>"
-						+ "<div class='me-all'>"
-						+ "<div class='me'>"
-						+ "<sapn>" + receiveMessage +"</span>"
-						+ "</div>"
-						+ "<div class='time'>" + receiveTime + "</div>"
-						+ "</div>"
-						+ "</li>"
-					
-					}else{
-						li = "<li>"
-						+ "<div class='you-all'>"
-						+ "<div class='name'>" + receiveMemberName + "</div>"
-						+ "<div class='you'>"
-						+ "<sapn>" + receiveMessage +"</span>"
-						+ "</div>"
-						+ "<div class='time'>" + receiveTime + "</div>"
-						+ "</div>"
-						+ "</li>"
+					if(!(receiveMessage == " " || receiveMessage == null || receiveMessage == "")){
+						if (receiveMemberNo == sessionMemberNo) {
+							
+							li = "<li>"
+							+ "<div class='me-all'>"
+							+ "<div class='me'>"
+							+ "<sapn>" + receiveMessage +"</span>"
+							+ "</div>"
+							+ "<div class='time'>" + receiveTime + "</div>"
+							+ "</div>"
+							+ "</li>"
+						
+						}else{
+							li = "<li>"
+							+ "<div class='you-all'>"
+							+ "<div class='name'>" + receiveMemberName + "</div>"
+							+ "<div class='you'>"
+							+ "<sapn>" + receiveMessage +"</span>"
+							+ "</div>"
+							+ "<div class='time'>" + receiveTime + "</div>"
+							+ "</div>"
+							+ "</li>"
+						}
+						$('.message_area>ul').append(li);
+						$('.message_area').scrollTop($('.message_area').prop('scrollHeight'));
 					}
-					$('.message_area>ul').append(li);
-					$('.message_area').scrollTop($('.message_area').prop('scrollHeight'));
+					
 				}
 			}
 		}
 
-		$('#sendBtn').click(
-				function() {
+		$('#sendBtn').click(function() {
+			var sendMeassge = $('#message').val();
+			var sendRoomNo = $('#roomNo').val();
+			var sendMemberNo = $('#memberNo').val();
+			var sendMmemberName = $('#memberName').val();
+			let today = new Date();
+			let year = today.getFullYear();
+			let month = today.getMonth() + 1
+			let date = today.getDate(); // 일
+			let hours = today.getHours();
+			let minutes = today.getMinutes();
+			let sendTime = year + "-" + month + "-" + date + " " + hours + ":" + minutes ;
+			if (!sendMeassge) {
+				return;
+			} else {
+			webSocket.send(sendMeassge + "," + sendRoomNo + ","	+ sendMemberNo + "," + sendMmemberName + ","+ sendTime);
+				$('#message').val('');
+			}
 
-					var sendMeassge = $('#message').val();
-					var sendRoomNo = $('#roomNo').val();
-					var sendMemberNo = $('#memberNo').val();
-					var sendMmemberName = $('#memberName').val();
-					let today = new Date();
-					let year = today.getFullYear();
-					let month = today.getMonth() + 1
-					let date = today.getDate(); // 일
-					let hours = today.getHours();
-					let minutes = today.getMinutes();
-					let sendTime = year + "-" + month + "-" + date + " "
-							+ hours + ":" + minutes ;
-					if (!sendMeassge) {
-						return;
-					} else {
-						webSocket.send(sendMeassge + "," + sendRoomNo + ","
-								+ sendMemberNo + "," + sendMmemberName + ","
-								+ sendTime);
-						$('#message').val('');
+		})
+		
+		$('#exitBtn').click(function(){
+			var memberName = '${loginUser.memberName}';
+			var roomNo = $('#roomNo').val();
+			var count = '${count}';
+			console.log(count);
+			$.ajax({
+				url : 'exitChat.ct',
+				data : {
+					roomNo : roomNo,
+					count : count
+				},
+				success : function(result){
+					if(result == 1){
+						window.close();
+						opener.location.reload();
 					}
-
-				})
-
+				},
+				error : function(){
+					console.log('조회 실패');
+				}
+			})
+		})
+		
 	})
 </script>
 </head>
@@ -264,30 +282,36 @@
 			</div>
 			<div class="message_area">
 				<ul>
+					<c:forEach var="m" items="${mlist }">
+						<li>${m.memberName}님 입장 하였습니다.</li>
+					</c:forEach>
 					<c:forEach var="c" items="${clist }">
-						<c:choose>
-							<c:when test="${c.memberNo == loginUser.memberNo }">
-								<li>
-									<div class="me-all">
-										<div class="me">
-											<span>${c.message }</span>
-										</div>
-										<div class="time">${c.messageTime }</div>
-									</div>
-								</li>
-							</c:when>
-							<c:otherwise>
-								<li>
-									<div class="you-all">
-										<div class="name">${c.memberName }</div>
-										<div class="you">
-											<span>${c.message }</span>
-										</div>
-										<div class="time">${c.messageTime }</div>
-									</div>
-								</li>
-							</c:otherwise>
-						</c:choose>
+							<c:if test="${not (c.message eq ' ')}">
+								<c:choose>
+									<c:when test="${c.memberNo == loginUser.memberNo }">
+										<li>
+											<div class="me-all">
+												<div class="me">
+													<span>${c.message }</span>
+												</div>
+												<div class="time">${c.messageTime }</div>
+											</div>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li>
+											<div class="you-all">
+												<div class="name">${c.memberName }</div>
+												<div class="you">
+													<span>${c.message }</span>
+												</div>
+												<div class="time">${c.messageTime }</div>
+											</div>
+										</li>
+									</c:otherwise>
+								</c:choose>
+							</c:if>
+						
 					</c:forEach>
 				</ul>
 

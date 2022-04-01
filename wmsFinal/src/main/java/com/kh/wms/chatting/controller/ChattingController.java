@@ -1,5 +1,6 @@
 package com.kh.wms.chatting.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -74,25 +75,35 @@ public class ChattingController {
 	@ResponseBody
 	@RequestMapping(value="chatRommAdd.ct", produces="application/json; charset=UTF-8", method=RequestMethod.GET)
 	public String chatRommAdd(@RequestParam(value="members[]") List<Integer> members, @RequestParam(value="chatName") String chatName, HttpSession session) {
-		
-		members.add(((Member)session.getAttribute("loginUser")).getMemberNo());
+		int memberNo = ((Member)session.getAttribute("loginUser")).getMemberNo();
+		members.add(memberNo);
 		ChattingMessage cm = new ChattingMessage();
 		String roomId = UUID.randomUUID().toString(); 
 		cm.setRoomId(roomId);
 		cm.setRoomName(chatName);
-		int roomResult  = chattingService.chatRoomAdd(cm);
-		if(roomResult > 0) {
-			int memResult = chattingService.selectRoomNo(roomId);
-			
-			for(int i=0; i<members.size(); i++) {
-				cm = new ChattingMessage();
-				cm.setMemberNo(members.get(i));
-				cm.setRoomNo(memResult);
-				chattingService.chatMemberAdd(cm);
-			}
+		chattingService.chatRoomAdd(cm);
+		int	roomNo = chattingService.selectRoomNo(roomId);
+
+		for(int i=0; i<members.size(); i++) {
+			cm = new ChattingMessage();
+			cm.setMemberNo(members.get(i));
+			cm.setRoomNo(roomNo);
+			chattingService.chatMemberAdd(cm);
 		}
+		ArrayList<Object> list = new ArrayList<Object>();
+		list.add(roomNo);
+		list.add(chatName);
+		ChattingMessage createCm = new ChattingMessage();
 		
-		return new Gson().toJson(roomId);
+		LocalDate now = LocalDate.now();
+		createCm.setMemberNo(memberNo);
+		createCm.setMessage(" ");
+		createCm.setRoomNo(roomNo);
+		createCm.setMessageTime(now+"");
+		chattingService.addChatMessage(createCm);
+		
+		
+		return new Gson().toJson(list);
 	}
 	
 	
@@ -126,24 +137,86 @@ public class ChattingController {
 		cm.setRoomName(memberName+"님 1:1 문의");
 		Member admin = memberService.adminSelct("admin");
 		members.add(admin.getMemberNo());
-		int memResult = 0;
-		int roomResult  = chattingService.chatRoomAdd(cm);
-		if(roomResult > 0) {
-			memResult = chattingService.selectRoomNo(roomId);
+		chattingService.chatRoomAdd(cm);
+		int roomNo = chattingService.selectRoomNo(roomId);
 			
-			for(int i=0; i<members.size(); i++) {
-				cm = new ChattingMessage();
-				cm.setMemberNo(members.get(i));
-				cm.setRoomNo(memResult);
-				chattingService.chatMemberAdd(cm);
-			}
+		for(int i=0; i<members.size(); i++) {
+			cm = new ChattingMessage();
+			cm.setMemberNo(members.get(i));
+			cm.setRoomNo(roomNo);
+			chattingService.chatMemberAdd(cm);
 		}
 		ArrayList<Object> list = new ArrayList<Object>();
-		list.add(memResult);
+		list.add(roomNo);
 		list.add(memberName+"님 1:1 문의");
+		
+		ChattingMessage createCm = new ChattingMessage();
+		
+		LocalDate now = LocalDate.now();
+		createCm.setMemberNo(memberNo);
+		createCm.setMessage(" ");
+		createCm.setRoomNo(roomNo);
+		createCm.setMessageTime(now+"");
+		chattingService.addChatMessage(createCm);
+		
 		return new Gson().toJson(list);
 	}
 	
+	
+	@ResponseBody
+	@RequestMapping(value="leaderChatAdd.ct", produces="application/json; charset=UTF-8", method=RequestMethod.GET)
+	public String leaderChatAdd(HttpSession session, int memberNo, int awayMemberNo, String chatName) {
+		ChattingMessage cm = new ChattingMessage();
+		String roomId = UUID.randomUUID().toString(); 
+		ArrayList<Integer> members = new ArrayList<>();
+		
+		members.add(memberNo);
+		members.add(awayMemberNo);
+		cm.setRoomId(roomId);
+		cm.setRoomName(chatName);
+		chattingService.chatRoomAdd(cm);
+		int roomNo = chattingService.selectRoomNo(roomId);
+		for(int i=0; i<members.size(); i++) {
+			cm = new ChattingMessage();
+			cm.setMemberNo(members.get(i));
+			cm.setRoomNo(roomNo);
+			chattingService.chatMemberAdd(cm);
+		}
+		ArrayList<Object> list = new ArrayList<Object>();
+		list.add(roomNo);
+		list.add(chatName);
+		
+		ChattingMessage createCm = new ChattingMessage();
+		
+		LocalDate now = LocalDate.now();
+		createCm.setMemberNo(memberNo);
+		createCm.setMessage(" ");
+		createCm.setRoomNo(roomNo);
+		createCm.setMessageTime(now+"");
+		chattingService.addChatMessage(createCm);
+		
+		return new Gson().toJson(list);
+	}
+	@ResponseBody
+	@RequestMapping(value="exitChat.ct", produces="application/json; charset=UTF-8", method=RequestMethod.GET)
+	public String exitChat( HttpSession session, int roomNo, int count) {
+
+		int result = 0;
+		ChattingMessage cm = new ChattingMessage();
+		cm.setMemberNo(((Member)session.getAttribute("loginUser")).getMemberNo());
+		
+		if(count > 1) {
+			cm.setRoomNo(roomNo);
+			result = chattingService.exitChat(cm);
+		}else {
+			result = chattingService.exitRoom(roomNo);
+		}
+		
+		
+		
+		
+		return new Gson().toJson(result);
+	}
 	
 	
 }
