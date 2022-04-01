@@ -83,11 +83,11 @@
                         <th>작성자</th>
                         <th>작성일</th>
                         <th>조회수</th>
-                        <th></th>
+                        <th>지역</th>
                     </tr>
                 </thead>
                 <tbody>
-                 <c:forEach var="b" items="${list }">
+                 <c:forEach var="b" items="${list}">
                     <tr onclick="location.href='mercenaryDetail.mbo?boardNo=${b.boardNo}'">
                         <td>${ b.boardNo } </td>
                         <td>${ b.boardTitle }</td>
@@ -95,9 +95,7 @@
                         <td>${ b.createDate }</td>
                         <td>${ b.count }</td>
                         <td>${ b.location }</td>
-                        	 
-                        	
-                        
+
                     </tr>
                    </c:forEach> 
                 </tbody>
