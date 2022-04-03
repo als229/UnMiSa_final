@@ -7,8 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style >
-    
-   #enrollForm>table {width: 1200px;}
+  
+   #enrollForm>table {width: 1200px;
+   						}
         #enrollForm>table * {margin:5px;}
        
         .region-select{
@@ -16,7 +17,7 @@
  		width: 100px;	      	
        	
        	} 
-     
+    div{font-family: 'gmarket_font_medium';}
 </style>
 </head>
 <body>
@@ -35,7 +36,7 @@
                   
                
             <form id="enrollForm" method="post" action="mercenaryInsert.mbo" enctype="multipart/form-data" align="center">
-             <div class="region-select" style="margin-right: 320px;">
+             <div class="region-select" style="font-family: 'gmarket_font_medium';margin-right: 320px;">
                 
                     <select class="region-select" name="location" >
                         <option value="서울">서울</option>
@@ -81,7 +82,7 @@
                         <th><label for="content" style="margin-left: 100px;">내용</label></th>
                         <td><textarea id="content" class="form-control" rows="10" style="resize:none;" name="boardContent" required></textarea></td>
                     </tr>
-                 
+                 	
                 </table>
                 <br>
 

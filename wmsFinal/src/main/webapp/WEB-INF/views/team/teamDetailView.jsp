@@ -77,10 +77,9 @@
     <jsp:include page="../common/header.jsp" />
 
     <div class="team-outer">
-        <div class="side-bar">
-            <a href="myPage.me" class="big-menu">우리동네 운미사</a> <br>
+    	<div class="side-bar">
+            <a href="serchWms.te" class="big-menu">우리동네 운미사</a> <br>
             <a href="serchWms.te">우리동네 운미사 찾기</a> <br>
-            <a href="gymReservation.te">우리동네 체육관 대여하기</a> <br>
             <a href="createTeamForm.te">팀 등록하기</a> <br>
         </div>
         <div class="team-detail-header">
@@ -185,7 +184,7 @@
   		var teamNo = '${t.teamNo}';
   		var memberNo = '${loginUser.memberNo}';
   		
-  		location.href="teamJoinApply.te?introMyself=" + applyText + "&teamNo=" + teamNo + "&memberNo=" + memberNo + "&sportsNo=" + sportsNo;
+  		location.href="teamJoinApply.te?introMyself=" + applyText + "&teamNo=" + teamNo + "&memberNo=" + memberNo;
   	}
   	
   	function battleApply(){

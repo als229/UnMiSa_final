@@ -53,10 +53,9 @@
         <div class="side-bar">
             <a href="myPage.me" class="big-menu">마이페이지</a> <br>
             <a href="">개인 정보 수정</a> <br>
-            <a href="selectmyJoinTeamList.te?memberId=${ loginUser.memberId }">내가 가입한 팀 관리</a> <br>
-            <a href="selectListCreateTeam.te?memberId=${ loginUser.memberId }">내가 만든 팀</a> <br>
-            <a href="">내 결제내역</a> <br>
-            <a href="myMatchSchedule.me">내 경기 일정</a> <br>
+            <a href="selectmyJoinTeamList.te?memberNo=${ loginUser.memberNo }">내가 가입한 팀 관리</a> <br>
+            <a href="selectListCreateTeam.te?memberNo=${ loginUser.memberNo }">내가 만든 팀</a> <br>
+            <a href="myPayment.pm">마크 관리</a> <br>
         </div>
         
             <div class="team-title">
@@ -150,28 +149,29 @@
 
     
     <script>
-    var TEAMNO = "";
-    var MEMBERNO = "";
-    $(document).ready(function() {     
-        $('#delete-team').on('show.bs.modal', function(event) {          
-        	TEAMNO = $(event.relatedTarget).data('test');
-        	MEMBERNO = $(event.relatedTarget).data('test2');
-        });
-    });
     
-    
-	    function quitTeam(){
-	    	location.href="quitTeam.te?teamNo="+TEAMNO+"&memberNo="+MEMBERNO;
-	    	
-	    };
+	    var TEAMNO = "";
+	    var MEMBERNO = "";
+	    $(document).ready(function() {     
+	        $('#delete-team').on('show.bs.modal', function(event) {          
+	        	TEAMNO = $(event.relatedTarget).data('test');
+	        	MEMBERNO = $(event.relatedTarget).data('test2');
+	        });
+	    });
 	    
-        $(function(){
-        	
-        	$(".team-name").click(function(){
-	        	location.href='teamDetail.te?teamNo= ' + $(this).next().val();        	
-        	})
-        })
-    
+	    
+		    function quitTeam(){
+		    	location.href="quitTeam.te?teamNo="+TEAMNO+"&memberNo="+MEMBERNO;
+		    	
+		    };
+		    
+	        $(function(){
+	        	
+	        	$(".team-name").click(function(){
+		        	location.href='teamDetail.te?teamNo= ' + $(this).next().val();        	
+		        })
+			})
+	    
     
     </script>
     

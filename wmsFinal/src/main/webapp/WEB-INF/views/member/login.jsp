@@ -126,7 +126,7 @@
 				</div>
 				<div class="social-icons">
 					<a href="javascript:void(0)"><img src="resources/image/member/kakao.png" alt="kakao" onclick="kakaoLogin();"></a> 
-					<img src="resources/image/member/naver.png" alt="naver"	id="naverIdLogin_btn"> 
+					<img src="resources/image/member/naver.png" alt="naver"	id="naverIdLogin_loginButton"> 
 					<a href="javascript:void(0)"><img src="resources/image/member/facebook.png" alt="facebook" id="facebookIdLogin_btn"></a>
 				</div>
 				<form action="platFormLogin.me" method="post" id="platFormLogin">
@@ -202,7 +202,7 @@
 			
 			
 			
-			$('#naverIdLogin_btn').click(function() {
+			$('#naverIdLogin_loginButton').click(function() {
 				location.href = "javascript:void(0)";
 			})
 

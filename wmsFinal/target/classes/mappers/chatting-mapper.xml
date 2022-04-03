@@ -22,6 +22,9 @@
 		<result property="memberId" column="MEMBER_ID"/>
 		<result property="roomName" column="ROOM_NAME"/>
 		<result property="memberName" column="MEMBER_NAME"/>
+		<result property="chatNo" column="CHAT_NO"/>
+		<result property="roomCheck" column="ROOM_CHECK"/>
+		<result property="markNo" column="MARK"/>
 	</resultMap>
 	
 	<select id="teamChatList" resultMap="teamChatResultSet" parameterType="String">
@@ -49,8 +52,8 @@
 	
 	<insert id="chatRoomAdd" parameterType="String" >
 		INSERT INTO 
-		CHATTINGROOM(ROOM_NO, ROOM_ID, ROOM_NAME)
-		VALUES(SEQ_CTRNO.NEXTVAL, #{roomId}, #{roomName})
+		CHATTINGROOM(ROOM_NO, ROOM_ID, ROOM_NAME, ROOM_CHECK)
+		VALUES(SEQ_CTRNO.NEXTVAL, #{roomId}, #{roomName}, #{roomCheck})
 	</insert>
 	
 	<select id="selectRoomNo" resultType="_int" parameterType="String">
@@ -66,8 +69,13 @@
 	
 	
 	<select id="myChatList" resultMap="chatResultSet" parameterType="_int">
-		SELECT CR.ROOM_NO, CR.ROOM_NAME, CM.MESSAGE_NO, CM.MESSAGE, CM.MESSAGE_TIME,
-		M.MEMBER_NO , M.MEMBER_NAME, 
+		SELECT ROOM_NO, ROOM_NAME, ROOM_ID, ROOM_CHECK, 
+		MESSAGE_NO, MESSAGE, MESSAGE_TIME, M.MEMBER_NO, M.MEMBER_NAME,
+		M.MEMBER_ID, CHAT_NO
+		FROM 
+		(SELECT CR.ROOM_NO, CR.ROOM_NAME, CR.ROOM_ID, CR.ROOM_CHECK, 
+		CM.MESSAGE_NO, CM.MESSAGE, CM.MESSAGE_TIME,
+		CM.MEMBER_NO ,  
 		M.MEMBER_ID , CT.CHAT_NO 
 		FROM 
 		CHATTINGROOM CR
@@ -76,7 +84,8 @@
         JOIN (SELECT * FROM CHATTINGMESSAGE
         WHERE ROWID IN (SELECT MAX(ROWID) FROM CHATTINGMESSAGE GROUP BY ROOM_NO)) CM ON (CM.ROOM_NO = CR.ROOM_NO)
 		WHERE M.MEMBER_NO = #{memberNo}
-		ORDER BY CM.MESSAGE_NO DESC
+		ORDER BY CM.MESSAGE_NO DESC) RE
+		JOIN MEMBER M ON (M.MEMBER_NO = RE.MEMBER_NO)
 	</select>
 	
 	<select id="myChatListCount" resultType="_int" parameterType="_int">
@@ -107,11 +116,19 @@
 	</select>
 	
 	<select id="selectRoomMembers" parameterType="_int" resultMap="chatResultSet">
-		SELECT C.ROOM_NO, M.MEMBER_NO, M.MEMBER_NAME, M.MEMBER_ID
+		SELECT C.ROOM_NO, M.MEMBER_NO, M.MEMBER_NAME, M.MEMBER_ID, C.CHAT_NO, M.MARK
 		FROM CHATTING C
 		JOIN MEMBER M ON (C.MEMBER_NO = M.MEMBER_NO)
 		WHERE C.ROOM_NO = #{roomNo}
 	</select>
 	
+	<delete id="exitChat" parameterType="chat">
+		DELETE CHATTING WHERE ROOM_NO = #{roomNo}
+		AND MEMBER_NO = #{memberNo}
+	</delete>
 	
+	<delete id="exitRoom" parameterType="_int">
+		DELETE CHATTINGROOM 
+		WHERE ROOM_NO = #{roomNo}
+	</delete>
 </mapper>

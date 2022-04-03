@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="resources/css/notice/noticeFAQ.css"/>
 <script src="resources/js/notice/notice.js"></script>
 </head>
-<body>
+<body style="font-family: 'gmarket_font_medium';">
 	<div id="header_area">
 		<jsp:include page="../common/header.jsp"/>
 	</div>

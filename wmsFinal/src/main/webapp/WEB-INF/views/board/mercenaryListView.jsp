@@ -7,15 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <style>
-          <style>
- 		
+        
+ 		 div{font-family: 'gmarket_font_medium';}
  		.pagination{ font-family: 'gmarket_font_medium';}
         #boardList {text-align:center;
         			font-family: 'gmarket_font_medium';}
         #boardList>tbody>tr:hover {cursor:pointer ;
                                     background-color:lightblue;    }
 
-        #pagingArea {width:fit-content; margin:auto;}
+        #pagingArea {font-family: 'gmarket_font_medium';
+        				width:fit-content; margin:auto;}
         
      	
         .select {width:20%;}
@@ -26,7 +27,7 @@
 		text-decoration-line: none;
 		color: black;
         font-size: 20px;   
-        
+        font-family: 'gmarket_font_medium';
       
 		}
 	
@@ -35,11 +36,7 @@
 		color: rgb(135, 206, 235);
 		}
        
-       	.region-select{
- 		float:right;
- 		width:150px;	      	
-       	
-       	}
+     
     </style>
 <head>
 <meta charset="UTF-8">
@@ -50,7 +47,7 @@
 		<jsp:include page="../common/header.jsp"/>
 		
 		<div class="innerOuter" style="padding:5% 10%;">
-            <h2>우리동네 커뮤니티</h2>
+            <h2 >우리동네 커뮤니티</h2>
            
 	</div>
     <div class="wrap">
@@ -63,10 +60,12 @@
                 <br>
                 <br>
                 </div>
+    	        <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?">전체</a>
              
                 <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?boardSelect=0">구해요</a>
 
     	        <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?boardSelect=1">끼워주세요</a>
+    	        
                 <br>
                 <br>
             <!-- 로그인 상태일 경우만 보여지는 글쓰기 버튼 -->
@@ -88,7 +87,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                 <c:forEach var="b" items="${list }">
+                 <c:forEach var="b" items="${list}">
                     <tr onclick="location.href='mercenaryDetail.mbo?boardNo=${b.boardNo}'">
                         <td>${ b.boardNo } </td>
                         <td>${ b.boardTitle }</td>
@@ -96,9 +95,7 @@
                         <td>${ b.createDate }</td>
                         <td>${ b.count }</td>
                         <td>${ b.location }</td>
-                        	 
-                        	
-                        
+
                     </tr>
                    </c:forEach> 
                 </tbody>
@@ -108,26 +105,26 @@
             <div id="pagingArea">
                 <ul class="pagination">
                 <c:choose>
-                	<c:when test="${pi.currentPage eq 1 }">
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    </c:when>
-                    <c:otherwise>
-                    	<li class="page-item"><a class="page-link" href="/mercenaryList.mbo?cpage=${pi.cureentPage - 1 }">Previous</a>
-                    </c:otherwise>
-                    
-                    </c:choose>
-                <c:forEach var="p" begin="${pi.startPage }" end= "${ pi.endPage}">
-                    <li class="page-item"><a class="page-link" href="/mercenaryList.mbo?cpage=${ p }">${ p }</a></li>
-                </c:forEach> 
-         
-                    <c:choose>
-                    	<c:when test="${ pi.currentPage eq pi.maxPage }">
-                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                    	</c:when>
-                    	<c:otherwise>
-                    	 <li class="page-item"><a class="page-link" href="/mercenaryList.mbo?cpage=${ pi.currentPage + 1 }">Next</a></li>	
-                    	</c:otherwise>
-                    </c:choose>
+						<c:when test="${ pi.currentPage eq 1 }">
+	                    	<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li><!-- 1번페이지일경우 -->
+	                    </c:when>
+	                    <c:otherwise>
+	                    	<li class="page-item"><a class="page-link" href="mercenaryList.mbo?cpage=${ pi.currentPage - 1 }">Previous</a></li>
+	                    </c:otherwise>
+					</c:choose>
+
+					<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                    	<li class="page-item"><a class="page-link" href="mercenaryList.mbo?cpage=${ p }">${ p }</a></li>
+					</c:forEach>
+
+					<c:choose>
+						<c:when test="${ pi.currentPage eq pi.maxPage }">
+		                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li><!-- 마지막페이지일경우 -->
+						</c:when>
+						<c:otherwise>
+		                    <li class="page-item"><a class="page-link" href="mercenaryList.mbo?cpage=${ pi.currentPage + 1 }">Next</a></li><!-- 마지막페이지일경우 -->
+						</c:otherwise>
+					</c:choose>
                 </ul>
             </div>
 

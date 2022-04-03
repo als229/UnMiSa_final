@@ -108,17 +108,18 @@
         <div class="side-bar">
             <a href="myPage.me" class="big-menu">마이페이지</a> <br>
             <a href="">개인 정보 수정</a> <br>
-            <a href="selectmyJoinTeamList.te?memberId=${ loginUser.memberId }">내가 가입한 팀 관리</a> <br>
-            <a href="selectListCreateTeam.te?memberId=${ loginUser.memberId }">내가 만든 팀</a> <br>
-            <a href="">내 결제내역</a> <br>
-            <a href="myMatchSchedule.me">내 경기 일정</a> <br> 
+            <a href="selectmyJoinTeamList.te?memberNo=${ loginUser.memberNo }">내가 가입한 팀 관리</a> <br>
+            <a href="selectListCreateTeam.te?memberNo=${ loginUser.memberNo }">내가 만든 팀</a> <br>
+            <a href="myPayment.pm">마크 관리</a> <br>
         </div>
         
         <div class="team-title">
             <h1 style="margin-left: 20px;">팀 수정하기</h1>
-            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " onclick="location.href='myTeamMemberList.te">팀원 관리</button>
-            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 30px;" class="btn btn-primary " onclick="location.href='battleApplyList.te?teamNo=${t.teamNo}'">경기 신청 관리</button>
-            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 30px;" class="btn btn-primary " onclick="location.href='myTeamMemberJoinList.te?teamNo=${t.teamNo}'">멤버 신청 관리</button>
+	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 65px;" class="btn btn-primary " onclick="location.href='myMatchSchedule.me?teamNo=${t.teamNo}'">경기 기록 관리</button>
+	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 65px;" class="btn btn-primary " onclick="location.href='updateFormTeam.te?teamNo=${t.teamNo}'">팀 수정</button>
+	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 65px;" class="btn btn-primary " onclick="location.href='myTeamMemberList.te?teamNo=${t.teamNo}'">팀원 관리</button>
+	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 65px;" class="btn btn-primary " onclick="location.href='battleApplyList.te?teamNo=${t.teamNo}'">경기 신청 관리</button>
+	            <button style="float: right; background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235); margin-right: 65px;" class="btn btn-primary " onclick="location.href='myTeamMemberJoinList.te?teamNo=${t.teamNo}'">멤버 신청 관리</button>
         </div>
 		<form action="updateTeam.te" method="post"  enctype="multipart/form-data">
 			<input type="hidden" name = "teamNo" value="${ t.teamNo }">
@@ -302,8 +303,6 @@
 	    		let selectSportsName = '${t.sportsName}';
 	        	
 	    		$('#sportsName').val(selectSportsName).prop("selected",true);
-	
-	        	
 	        }
 	        settingSelect();
         })

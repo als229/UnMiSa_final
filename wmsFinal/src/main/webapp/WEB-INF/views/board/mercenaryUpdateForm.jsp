@@ -19,7 +19,7 @@
             padding:5% 10%;
             background-color:white;
         }
-
+		 div{font-family: 'gmarket_font_medium';}
         #updateForm>table {width:100%;}
         #updateForm>table * {margin:5px;}
     </style>

@@ -73,7 +73,20 @@
 
 					<c:otherwise>
 						<!-- 로그인 후 -->
-						<div style="float:right">${loginUser.memberName}님 환영합니다</div>
+						<div style="float:right">
+							<c:choose>
+								<c:when test="${ loginUser.mark ne null }">
+									<img src="resources/image/mark/${ loginUser.mark }.jpg" width="30px" height="30px">
+								</c:when>
+								<c:otherwise>
+									<img src="resources/image/sportsPartner/person.jpg" width="30px" height="30px">
+								</c:otherwise>
+							</c:choose>
+						
+						${loginUser.memberName}
+						님 환영합니다
+						
+						</div>
 						<br>
 						<div style="float:right">
 						 &nbsp;&nbsp; 
@@ -109,7 +122,8 @@ $(function(){
 					console.log(result)
 					var roomNo = result[0];
 					var roomName = result[1];
-					window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName, "채팅창", "width=550 , height=800");
+					var roomCheck = result[2];
+					window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName+"&roomCheck=" + roomCheck, "채팅창", "width=550 , height=800");
 			},
 			error : function(){
 				console.log('조회 실패');

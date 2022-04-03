@@ -54,7 +54,6 @@
     	<div class="side-bar">
             <a href="serchWms.te" class="big-menu">우리동네 운미사</a> <br>
             <a href="serchWms.te">우리동네 운미사 찾기</a> <br>
-            <a href="gymReservation.te">우리동네 체육관 대여하기</a> <br>
             <a href="createTeamForm.te">팀 등록하기</a> <br>
         </div>
         <div class="team-menu-title">

@@ -150,7 +150,7 @@ h2 {
 
 </style>
 
-<body>
+<body style="font-family: 'gmarket_font_medium';">
 	<div id="header_area">
 			<jsp:include page="../common/header.jsp"/>
 	</div>
@@ -171,7 +171,7 @@ h2 {
 				</thead>
 				<tbody>
 		        <c:forEach var="cr" items="${list }">
-		            <tr class="chat_window_tr" data-room-no="${cr.roomNo }" data-room-name="${cr.roomName }">
+		            <tr class="chat_window_tr" data-room-no="${cr.roomNo }" data-room-name="${cr.roomName }" data-room-check="${cr.roomCheck }">
 		            	<td>${cr.roomName }</td>
 		            	<td>${cr.message }</td>
 		            	<td>${cr.messageTime }</td>
@@ -230,7 +230,8 @@ $(function(){
 	$(".chat_window_tr").on("click", function(){
 		var roomNo = $(this).attr("data-room-no");
 		var roomName = $(this).attr("data-room-name");
-		window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName, "채팅창", "width=550 , height=800");
+		var roomCheck = $(this).attr("data-room-check");
+		window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName+"&roomCheck="+roomCheck, "채팅창", "width=550 , height=800, resizable=no");
 	});
 });
 //chat_message/28

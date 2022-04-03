@@ -32,6 +32,7 @@ public class TeamController {
 	@Autowired
 	private MemberService memberService;
 	
+	// 나의 운미사 찾기 들어가는 메서드
 	@RequestMapping("serchWms.te")
 	public ModelAndView serchWms(@RequestParam(value="serchWmsPage", defaultValue="1")int currentPage, ModelAndView mv) {
 		
@@ -41,13 +42,14 @@ public class TeamController {
 		
 		ArrayList<Team> tList = teamService.selectTeamList(pi);
 		
-		
 		mv.addObject("tList",tList);
 		mv.addObject("pi",pi);
 		mv.setViewName("team/searchWms");
 		
 		return mv;
 	}
+	
+	// 검색하기 기능
 	@RequestMapping("serchSelectWms.te")
 	public ModelAndView serchSelectWms(@RequestParam(value="serchWmsPage", defaultValue="1")int currentPage, ModelAndView mv, String sidoName, String siGunGuName, String sportsName) {
 		
@@ -70,6 +72,7 @@ public class TeamController {
 		
 		return mv;
 	}
+	
 	@RequestMapping("teamDetail.te")
 	public ModelAndView selectTeamDetail(int teamNo, ModelAndView mv, String memberId, String sportsName) {
 		
@@ -77,7 +80,7 @@ public class TeamController {
 		map.put("teamNo", teamNo);
 		map.put("memberId", memberId);
 		map.put("sportsName", sportsName);
-		System.out.println(map);
+
 		Team t = memberService.memberSelectTeam(teamNo);
 		ArrayList<Team> selectTeam = teamService.selectOptionTeamList(map);
 		
@@ -87,11 +90,13 @@ public class TeamController {
 		mv.setViewName("team/teamDetailView");
 		return mv;
 	}
+	
 	@RequestMapping("createTeamForm.te")
 	public ModelAndView createTeamForm(ModelAndView mv) {
 		mv.setViewName("team/createTeam");
 		return mv;
 	}
+	
 	@RequestMapping("gymReservation.te")
 	public String gymReservationForm() {
 		
@@ -99,22 +104,22 @@ public class TeamController {
 		
 		return "team/gymReservation";
 	}
+	
 	@RequestMapping("insertTeam.te")
 	public ModelAndView insertTeam(Team t, MultipartFile upfile, HttpSession session, ModelAndView mv) {
 		
 		String changeName = saveFile(upfile, session);
-
 		t.setLogoOriginName(upfile.getOriginalFilename()); // 원본명
 		t.setLogoChangeName("resources/uploadFiles/" + changeName);
 		
 		int result = teamService.insertTeam(t);
 		
 		if(result > 0) {
-			mv.addObject("alertMsg", "팀 등록에 성공하셨습니다^^");
+			mv.addObject("alertMsg", "팀 등록에 성공하셨습니다!");
 		}else {
 			mv.addObject("alertMsg", "팀 등록에 실패하셨습니다 ^^");
 		}
-		mv.setViewName("team/searchWms");
+		mv.setViewName("redirect:serchWms.te");
 		
 		return mv;
 	}

@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>마이페이지 메인</title>
-	<link rel="stylesheet" href="resources/css/member/myPage.css?ver=1"/>
+	<link rel="stylesheet" href="resources/css/member/myPage.css?ver=2"/>
 </head>
 
 <body>
@@ -16,11 +16,10 @@
 
         <div class="side-bar">
             <a href="myPage.me" class="big-menu">마이페이지</a> <br>
-            <a href="">개인 정보 수정</a> <br>
-            <a href="selectmyJoinTeamList.te?memberId=${ loginUser.memberId }">내가 가입한 팀 관리</a> <br>
-            <a href="selectListCreateTeam.te?memberId=${ loginUser.memberId }">내가 만든 팀</a> <br>
+            <a href="updateGuard.me">개인 정보 수정</a> <br>
+            <a href="selectmyJoinTeamList.te?memberNo=${ loginUser.memberNo }">내가 가입한 팀 관리</a> <br>
+            <a href="selectListCreateTeam.te?memberNo=${ loginUser.memberNo }">내가 만든 팀</a> <br>
             <a href="myPayment.pm">마크 관리</a> <br>
-            <a href="myMatchSchedule.me">내 경기 일정</a> <br>
         </div>
         <div class="myTeam">
             <table class="table table-bordered ">
@@ -60,46 +59,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="myMark">
-            <table class="table table-bordered ">
-                <thead>
-                    <tr>
-                        <th>
-                            나의 업적
-                        </th>
-                    </tr>
-                </thead>
-                <br>
-                <tbody>
-                    <tr>
-                        <td>
-                            멍멍 왈왈쓰
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            은평구 불빠따쓰
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            멍멍
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            킹호 라이언즈
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            킹호 라이언즈
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
         </div>
         <div class="partner">
             <table class="table table-bordered ">
