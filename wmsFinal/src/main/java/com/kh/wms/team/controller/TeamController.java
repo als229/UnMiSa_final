@@ -83,7 +83,7 @@ public class TeamController {
 
 		Team t = memberService.memberSelectTeam(teamNo);
 		ArrayList<Team> selectTeam = teamService.selectOptionTeamList(map);
-		
+		System.out.println(map);
 		System.out.println(selectTeam);
 		mv.addObject("selectTeam", selectTeam);
 		mv.addObject("t",t);

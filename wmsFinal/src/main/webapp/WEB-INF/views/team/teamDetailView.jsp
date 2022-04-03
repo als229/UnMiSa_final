@@ -117,9 +117,7 @@
             
             </div>
             <div class="team-detail-battleApply-button" style="text-align: center;">
-            <c:if test="${ selectTeam.size()  ne 0}">
                 <button style="background-color: rgb(135, 206, 235); border: 1px solid rgb(135, 206, 235);" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#battle-apply-button">대전 신청하기</button>
-            </c:if>
             </div>
         </div>
 
