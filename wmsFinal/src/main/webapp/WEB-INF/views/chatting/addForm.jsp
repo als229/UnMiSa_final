@@ -109,7 +109,7 @@
         </style>    
 
 </head>
-<body>
+<body style="font-family: 'gmarket_font_medium';">
 	<div id="header_area">
 			<jsp:include page="../common/header.jsp"/>
 	</div>
@@ -151,6 +151,7 @@
 				</div>
 				
 				<div class="btn_area">
+					<br>
 					<button type="button" id="create_chat_window_btn">생성</button>
 					<button type="button" id="create_chat_cancel_btn">취소</button>
 				</div>
@@ -232,10 +233,15 @@
 				alert("채팅방 제목을 입력해주세요.");
 				return;
 			}
-
+			if(members.length == 0){
+				alert("멤버를 선택하세요.");
+				return;
+			}
+			
 			var json = {
                     "chatName"      : chatName, 
-                    "members" : members    
+                    "members" : members,
+                    "teamNo" : $('#teamNo').val()
                 };
 			$.ajax({
 				url : 'chatRommAdd.ct',
@@ -246,7 +252,8 @@
 					console.log(result)
 					var roomNo = result[0];
 					var roomName = result[1];
-					window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName, "채팅창", "width=550 , height=800");
+					var roomCheck = result[2];
+					window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName+"&roomCheck=" +roomCheck, "채팅창", "width=550 , height=800, resizable=no");
 					location.href="myChat.ct";
 				},
 				error : function(){

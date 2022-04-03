@@ -109,7 +109,8 @@ $(function(){
 					console.log(result)
 					var roomNo = result[0];
 					var roomName = result[1];
-					window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName, "채팅창", "width=550 , height=800");
+					var roomCheck = result[2];
+					window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName+"&roomCheck=" + roomCheck, "채팅창", "width=550 , height=800");
 			},
 			error : function(){
 				console.log('조회 실패');

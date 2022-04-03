@@ -23,6 +23,7 @@
 		<result property="roomName" column="ROOM_NAME"/>
 		<result property="memberName" column="MEMBER_NAME"/>
 		<result property="chatNo" column="CHAT_NO"/>
+		<result property="roomCheck" column="ROOM_CHECK"/>
 	</resultMap>
 	
 	<select id="teamChatList" resultMap="teamChatResultSet" parameterType="String">
@@ -50,8 +51,8 @@
 	
 	<insert id="chatRoomAdd" parameterType="String" >
 		INSERT INTO 
-		CHATTINGROOM(ROOM_NO, ROOM_ID, ROOM_NAME)
-		VALUES(SEQ_CTRNO.NEXTVAL, #{roomId}, #{roomName})
+		CHATTINGROOM(ROOM_NO, ROOM_ID, ROOM_NAME, ROOM_CHECK)
+		VALUES(SEQ_CTRNO.NEXTVAL, #{roomId}, #{roomName}, #{roomCheck})
 	</insert>
 	
 	<select id="selectRoomNo" resultType="_int" parameterType="String">
@@ -67,7 +68,8 @@
 	
 	
 	<select id="myChatList" resultMap="chatResultSet" parameterType="_int">
-		SELECT CR.ROOM_NO, CR.ROOM_NAME, CM.MESSAGE_NO, CM.MESSAGE, CM.MESSAGE_TIME,
+		SELECT CR.ROOM_NO, CR.ROOM_NAME, CR.ROOM_ID, CR.ROOM_CHECK, 
+		CM.MESSAGE_NO, CM.MESSAGE, CM.MESSAGE_TIME,
 		M.MEMBER_NO , M.MEMBER_NAME, 
 		M.MEMBER_ID , CT.CHAT_NO 
 		FROM 

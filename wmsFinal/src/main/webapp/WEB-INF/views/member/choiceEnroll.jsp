@@ -109,7 +109,6 @@ $(function(){
 	
 	
 	$('#naverIdLogin_loginButton').click(function(){
-		console.log("asdasd");
 		location.href="javascript:void(0)";
 	})
 	

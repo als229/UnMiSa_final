@@ -7,9 +7,11 @@
 <meta charset="UTF-8">
 <title>채팅 창</title>
 <style type="text/css">
+
         .wrap {
            width: 500px;
            height: 600px;
+           font-family: 'gmarket_font_medium';
         }
         .cwindow_left_area {
            border-right: 1px solid #ddd;
@@ -28,6 +30,7 @@
             background: #2e6183; 
             color: white; 
             text-align: center;
+            font-family: 'gmarket_font_medium';
         }
    
         .cwindow_left_area .send_area{
@@ -91,7 +94,7 @@
             background-color:#5dbedb;
            
         }
-        #inviteBtn{
+        #inviteBtn, #addMemberBtn{
             background-color: #3192af; 
             border-radius: 5px; 
             color: rgb(255, 255, 255); 
@@ -157,6 +160,9 @@
         ul,li{
             margin:3%; padding:0;
 
+        }
+        .member_info_area2{
+        	padding-left: 20px;
         }
         </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -268,11 +274,56 @@
 			})
 		})
 		
+		$('#inviteBtn').on("click", function(){
+			var teamNo = $('#inviteBtn').val();
+			var chatMembers = new Array();
+			<c:forEach var="c" items="${mlist }">
+				chatMembers.push(${c.memberNo});
+			</c:forEach>
+			$.ajax({
+				url : 'teamMember.ct',
+				data : { teamNo : teamNo},
+				success : function(result){
+					var teamMembers = new Array();
+					teamMembers.push(${loginUser.memberNo});
+					for(var i=0; i<result.length; i++){
+						teamMembers.push(result[i].memberNo);
+					}
+					var newMembers = teamMembers;
+					
+					newMembers = newMembers.filter(x => !chatMembers.includes(x));
+						var div = $('.member_info_area2');
+					if(newMembers.length == 0){
+						div.append("<h5>추가할 멤버 없음</h5>");						
+					}else{
+						var input = "<h5>추가할 팀원 리스트</h5>";
+						for (var j=0; j<newMembers.length; j++){
+							for(var i=0; i<result.length; i++){
+								if(newMembers[j] == result[i].memberNo){
+									input += result[i].memberName+"<input type='checkbox' class='members' name='members' value='"+result[i].memberNo+"'><br>"
+								}
+							}
+						}
+						
+						div.html(input);
+						$('.member_add_area>').remove();
+						$('.member_add_area').append("<input type='submit' id='addMemberBtn' value='초대'/>");
+					}
+					
+					
+				},
+				error : function(){
+					console.log("조퇴 실패");
+				}
+			})
+			
+		})
+		
 	})
 </script>
 </head>
-<body>
-	<input type="hidden" id="roomNo" value="${roomNo }" />
+<body style="font-family: 'gmarket_font_medium';">
+	
 	<input type="hidden" id="memberNo" value="${loginUser.memberNo }" />
 	<input type="hidden" id="memberName" value="${loginUser.memberName }" />
 	<div class="wrap">
@@ -280,7 +331,7 @@
 			<div class="header_area">
 				<span class="thumb_path"></span> <span>${roomName }</span>
 			</div>
-			<div class="message_area">
+			<div class="message_area"">
 				<ul>
 					<c:forEach var="m" items="${mlist }">
 						<li>${m.memberName}님 입장 하였습니다.</li>
@@ -335,14 +386,24 @@
 					<br>
 				</c:forEach>
 			</div>
-			<div class="member_info_area2">
-				
-			</div>
-
-
-			<div class="member_add_area">
-				<button type="button" id="inviteBtn">팀원 초대</button>
-			</div>
+			<form action="newMemberChat.ct" id="newMember" method="get">
+				<div class="member_info_area2">
+				</div>
+					<input type="hidden" name="roomNo" id="roomNo" value="${roomNo }" />
+					<input type="hidden" name="roomName" id="roomName" value="${roomName }" />
+					<input type="hidden" name="roomCheck" id="roomCheck" value="${roomCheck }" />
+			<c:choose>
+				<c:when test="${roomCheck eq 'adminChat'}">
+				</c:when>
+				<c:when test="${roomCheck eq 'leaderChat'}">
+				</c:when>
+				<c:otherwise>
+					<div class="member_add_area">
+						<button type="button" id="inviteBtn" value="${roomCheck}">팀원 초대</button>
+					</div>
+				</c:otherwise>		
+			</c:choose>
+			</form>
 		</div>
 	</div>
 
