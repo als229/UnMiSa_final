@@ -116,7 +116,7 @@
   					)
   					VALUES
   					(
-  					SEQ_BNO.NEXTVAL
+  					SEQ_DNO.NEXTVAL
   					,#{memberNo}
   					,#{diaryTitle}
   					,#{diaryContent}
