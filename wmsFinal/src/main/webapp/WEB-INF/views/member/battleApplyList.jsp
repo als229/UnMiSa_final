@@ -100,7 +100,7 @@
                             <td><button type="button" class="btn btn-primary teamIntro"data-bs-toggle="modal" data-bs-target="#teamIntro" data-test="${ bt.teamIntro }">팀 소개</button></td>
                             <td><button type="button" class="btn btn-primary acceptButton" id="acceptButton" value="${ bt.battleNo }">수락하기</button></td>
                             <td><button type="button" class="btn btn-primary refuseButton" value="${ bt.battleNo }">거절하기</button></td>
-                            <td><button type="button" class="btn btn-primary " id="awayBossNo" value="${ bt.awayBossNo }">채팅하기</button></td>
+                            <td><button type="button" class="btn btn-primary " id="awayBossNo" value="${ bt.awayBossNo }" data-away-teamName="${bt.awayTeamName}" data-away-memberNo="${ bt.awayBossNo }">채팅하기</button></td>
                         </tr>
                         
 					</c:forEach>
@@ -193,11 +193,32 @@
 				var memberNo = '${ loginUser.memberNo }';
 				
 				location.href="refuseBattle.te?battleNo=" + battleNo + "&memberNo=" + ${ loginUser.memberNo };
-			})			
-			$("#awayBossNo").on("click",function(){
-				var awayBossNo = $(this).val();
+			})	
+			
+			$(document).on("click", "#awayBossNo", function(){
+				var awayMemberNo = $(this).val();
 				var memberNo = '${ loginUser.memberNo }';
-				
+				var teamName = '${t.teamName}';
+				var awayTeamName = $(this).attr("data-away-teamName");
+				var chatName = teamName + "vs" + awayTeamName;
+				$.ajax({
+					url : 'leaderChatAdd.ct',
+					type : "get",
+					data : {
+						memberNo : memberNo,
+						awayMemberNo : awayMemberNo,
+						chatName : chatName
+					},
+					success : function(result){
+							console.log(result)
+							var roomNo = result[0];
+							var roomName = result[1];
+							window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName, "채팅창", "width=550 , height=800");
+					},
+					error : function(){
+						console.log('조회 실패');
+					}
+				})	
 			})			
 		
 	</script>

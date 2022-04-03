@@ -43,6 +43,10 @@
                     <td colspan="3">${ b.boardTitle }</td>
                 </tr>
                 <tr>
+                    <th width="100">지역</th>
+                    <td colspan="3">${ b.location }</td>
+                </tr>
+                <tr>
                     <th>작성자</th>
                     <td>${b.memberId }</td>
                     <th>작성일</th>
@@ -132,14 +136,14 @@
     			$.ajax({
 						url : "mrinsert.mbo",
     					data : {
-    							BoardNo : ${ b.boardNo },	// EL
+    							boardNo : ${ b.boardNo },	// EL
     							replyContent : $("#content").val(),  //jQuery
     							memberNo : '${ loginUser.memberNo }'
     					}, success:function(status){
     						if(status == "success"){
 								selectReplyList();
 								$("#content").val("");
-    						}
+								}
     					}, error:function(){
     						console.log("댓글 작성 실패");
     					}

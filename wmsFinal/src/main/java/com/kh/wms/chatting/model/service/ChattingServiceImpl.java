@@ -64,5 +64,13 @@ public class ChattingServiceImpl implements ChattingService{
 	public ArrayList<Member> selectRoomMembers(int roomNo) {
 		return chattingDao.selectRoomMembers(sqlSession, roomNo);
 	}
+	@Override
+	public int exitChat(ChattingMessage cm) {
+		return chattingDao.exitChat(sqlSession, cm);
+	}
+	@Override
+	public int exitRoom(int roomNo) {
+		return chattingDao.exitRoom(sqlSession, roomNo);
+	}
 	
 }

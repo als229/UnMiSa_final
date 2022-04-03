@@ -61,4 +61,12 @@ public class ChattingDao {
 		return (ArrayList)sqlSession.selectList("chatMapper.selectRoomMembers", roomNo);
 	}
 
+	public int exitChat(SqlSessionTemplate sqlSession, ChattingMessage cm) {
+		return sqlSession.delete("chatMapper.exitChat", cm);
+	}
+
+	public int exitRoom(SqlSessionTemplate sqlSession, int roomNo) {
+		return sqlSession.delete("chatMapper.exitRoom", roomNo);
+	}
+
 }
