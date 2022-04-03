@@ -7,165 +7,210 @@
 <meta charset="UTF-8">
 <title>채팅 창</title>
 <style type="text/css">
+.wrap {
+	width: 500px;
+	height: 600px;
+	font-family: 'gmarket_font_medium';
+}
 
-        .wrap {
-           width: 500px;
-           height: 600px;
-           font-family: 'gmarket_font_medium';
-        }
-        .cwindow_left_area {
-           border-right: 1px solid #ddd;
-           float: left;
-           width: 70%;
-           box-sizing: border-box;
-        }
-        #message{
-            width: 285px;
-        }
-        
-        /* 헤드 영역 */
-        .cwindow_left_area .header_area {
-            font-size: 14px; 
-            padding: 15px 0; 
-            background: #2e6183; 
-            color: white; 
-            text-align: center;
-            font-family: 'gmarket_font_medium';
-        }
-   
-        .cwindow_left_area .send_area{
-            position: sticky; 
-            bottom: 0; 
-            width: 350px; 
-            background-color: #FFF; 
-            text-align: center; 
-            border-top: 1px solid #afafb1;
+.cwindow_left_area {
+	border-right: 1px solid #ddd;
+	float: left;
+	width: 70%;
+	box-sizing: border-box;
+}
 
-        }
-        .cwindow_left_area .send_area >textarea {
-            width: 100%; height: 80px; border: none; padding: 10px;
-        }
-        .cwindow_left_area .message_area{
-            padding-bottom: 80px;
-        }
-        .cwindow_left_area .message_area ul{
-            width: 100%; list-style: none;
-        }
-      
-        .cwindow_left_area .message_area ul li > div.me-all .me {
-            margin-left: 55%;
-            font-weight: bold;
-            border: 1px solid #888;
-            display: inline-block; 
-            word-break:break-all; 
-            max-width: 75%; 
-            border-radius: 5px; 
-            background-color: #fcda91; 
-            color: rgb(87, 73, 73); 
-            text-align: left;
-            padding: 10px; 
-            position: sticky;
-        }
-        .cwindow_left_area .message_area ul li > div.you-all .you {
-            display: inline-block; 
-            word-break:break-all; 
-            margin-left: 0px;
-            max-width: 75%; 
-            border: 1px solid #888; 
-            padding: 10px; 
-            border-radius: 5px; 
-            background-color: #FCFCFC; 
-            color: #555; 
-            text-align: left;
-        }
-        #exitBtn{
-            background-color: #3192af; 
-            border-radius: 5px; 
-            color: rgb(255, 255, 255);
-            padding: 5px; 
-            border: 1px solid rgb(20, 41, 110);
-            position: absolute;
-            margin-left: 4%;
-            margin-bottom: 100%;
-            position: sticky;
-            
-        }
-        #exitBtn:hover{
-            background-color:#5dbedb;
-           
-        }
-        #inviteBtn, #addMemberBtn{
-            background-color: #3192af; 
-            border-radius: 5px; 
-            color: rgb(255, 255, 255); 
-            padding: 5px;
-            border: 1px solid rgb(20, 41, 110);
-            width: 150px;
-            position: sticky;
-            margin-left: 4%;
-            margin-top: 1%;
-        }
-        #inviteBtn:hover{
-            background-color:#5dbedb;
-        }
-        #sendBtn{
-            background-color: #49a0da; 
-            border-radius: 2px; 
-            border: 1px solid #49a0da;
-            float:right;
-            color: white;
-            padding: 4px;
-        }
-        #sendBtn:hover{
-            color:#fff;
-            
-        }
-        .cwindow_right_area{
-            float: right;
-        }
-        .exit_btn_area{
-            height: 30px;
-            margin-left: 20px;
-        }
-        .member_info_area{
-            margin-bottom: 30%;
-            margin-left: 30px;
-            height: 360px;
-        }
-        .message_area{
-            height: 500px;
-            OVERFLOW-Y:auto;
-            overflow-x: hidden;
-        }
-        .member_info_area2{
-            height: 230px;
+#message {
+	width: 285px;
+}
 
-        }
-        .cwindow_left_area .message_area ul li > div.you-all .time{
-            width: 100px;
-            float: right;
-            margin-right: 68%;
-            margin-top: 0%;
-            font-size: 12px;
-        }
-        .cwindow_left_area .message_area ul li > div.me-all .time{
-            width: 100px;
-            margin-left: 65%;
-            margin-bottom: 2%;
-            font-size: 12px;
-        }
-        .cwindow_left_area .message_area ul li > div.you-all .name{
-            font-size: 13px;
-        }
-        ul,li{
-            margin:3%; padding:0;
+/* 헤드 영역 */
+.cwindow_left_area .header_area {
+	font-size: 14px;
+	padding: 15px 0;
+	background: #2e6183;
+	color: white;
+	text-align: center;
+	font-family: 'gmarket_font_medium';
+}
 
-        }
-        .member_info_area2{
-        	padding-left: 20px;
-        }
-        </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+.cwindow_left_area .send_area {
+	position: sticky;
+	bottom: 0;
+	width: 350px;
+	background-color: #FFF;
+	text-align: center;
+	border-top: 1px solid #afafb1;
+}
+
+.cwindow_left_area .send_area>textarea {
+	width: 100%;
+	height: 80px;
+	border: none;
+	padding: 10px;
+}
+
+.cwindow_left_area .message_area {
+	padding-bottom: 80px;
+}
+
+.cwindow_left_area .message_area ul {
+	width: 100%;
+	list-style: none;
+}
+
+.cwindow_left_area .message_area ul li>div.me-all .me {
+	margin-left: 55%;
+	font-weight: bold;
+	border: 1px solid #888;
+	display: inline-block;
+	word-break: break-all;
+	max-width: 75%;
+	border-radius: 5px;
+	background-color: #fcda91;
+	color: rgb(87, 73, 73);
+	text-align: left;
+	padding: 10px;
+	position: sticky;
+}
+
+.cwindow_left_area .message_area ul li>div.you-all .you {
+	display: inline-block;
+	word-break: break-all;
+	margin-left: 0px;
+	max-width: 75%;
+	border: 1px solid #888;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #FCFCFC;
+	color: #555;
+	text-align: left;
+}
+
+#exitBtn {
+	background-color: #3192af;
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+	padding: 5px;
+	border: 1px solid rgb(20, 41, 110);
+	position: absolute;
+	margin-left: 4%;
+	margin-bottom: 100%;
+	position: sticky;
+}
+
+#exitBtn:hover {
+	background-color: #5dbedb;
+}
+
+#inviteBtn, #addMemberBtn {
+	background-color: #3192af;
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+	padding: 5px;
+	border: 1px solid rgb(20, 41, 110);
+	width: 130px;
+	position: sticky;
+	margin-left: 4%;
+	margin-top: 1%;
+}
+
+#inviteBtn:hover {
+	background-color: #5dbedb;
+}
+
+#sendBtn {
+	background-color: #49a0da;
+	border-radius: 2px;
+	border: 1px solid #49a0da;
+	float: right;
+	color: white;
+	padding: 4px;
+}
+
+#sendBtn:hover {
+	color: #fff;
+}
+
+.cwindow_right_area {
+	float: right;
+}
+
+.exit_btn_area {
+	height: 30px;
+	margin-left: 20px;
+}
+
+.member_info_area {
+	margin-bottom: 30%;
+	margin-left: 30px;
+	height: 360px;
+}
+
+.message_area {
+	height: 500px;
+	OVERFLOW-Y: auto;
+	overflow-x: hidden;
+}
+
+.member_info_area2 {
+	height: 230px;
+}
+
+.cwindow_left_area .message_area ul li>div.you-all .time {
+	width: 100px;
+	float: right;
+	margin-right: 68%;
+	margin-top: 0%;
+	font-size: 12px;
+}
+
+.cwindow_left_area .message_area ul li>div.me-all .time {
+	width: 100px;
+	margin-left: 65%;
+	margin-bottom: 2%;
+	font-size: 12px;
+}
+
+.cwindow_left_area .message_area ul li>div.you-all .name {
+	font-size: 13px;
+}
+
+ul, li {
+	margin: 3%;
+	padding: 0;
+}
+
+.member_info_area2 {
+	padding-left: 20px;
+}
+
+@font-face {
+	font-family: 'gmarket_font_light';
+	font-style: normal;
+	font-weight: 800;
+	src: url('resources/font/GmarketSansTTFLight.ttf')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'gmarket_font_bold';
+	font-style: normal;
+	font-weight: 800;
+	src: url('resources/font/GmarketSansTTFBold.ttf')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'gmarket_font_medium';
+	font-style: normal;
+	font-weight: 800;
+	src: url('resources/font/GmarketSansTTFMedium.ttf')
+		format('truetype');
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		var webSocket;
@@ -323,7 +368,7 @@
 </script>
 </head>
 <body style="font-family: 'gmarket_font_medium';">
-	
+
 	<input type="hidden" id="memberNo" value="${loginUser.memberNo }" />
 	<input type="hidden" id="memberName" value="${loginUser.memberName }" />
 	<div class="wrap">
@@ -331,38 +376,38 @@
 			<div class="header_area">
 				<span class="thumb_path"></span> <span>${roomName }</span>
 			</div>
-			<div class="message_area"">
+			<div class="message_area">
 				<ul>
 					<c:forEach var="m" items="${mlist }">
-						<li>${m.memberName}님 입장 하였습니다.</li>
+						<li>${m.memberName}님입장 하였습니다.</li>
 					</c:forEach>
 					<c:forEach var="c" items="${clist }">
-							<c:if test="${not (c.message eq ' ')}">
-								<c:choose>
-									<c:when test="${c.memberNo == loginUser.memberNo }">
-										<li>
-											<div class="me-all">
-												<div class="me">
-													<span>${c.message }</span>
-												</div>
-												<div class="time">${c.messageTime }</div>
+						<c:if test="${not (c.message eq ' ')}">
+							<c:choose>
+								<c:when test="${c.memberNo == loginUser.memberNo }">
+									<li>
+										<div class="me-all">
+											<div class="me">
+												<span>${c.message }</span>
 											</div>
-										</li>
-									</c:when>
-									<c:otherwise>
-										<li>
-											<div class="you-all">
-												<div class="name">${c.memberName }</div>
-												<div class="you">
-													<span>${c.message }</span>
-												</div>
-												<div class="time">${c.messageTime }</div>
+											<div class="time">${c.messageTime }</div>
+										</div>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li>
+										<div class="you-all">
+											<div class="name">${c.memberName }</div>
+											<div class="you">
+												<span>${c.message }</span>
 											</div>
-										</li>
-									</c:otherwise>
-								</c:choose>
-							</c:if>
-						
+											<div class="time">${c.messageTime }</div>
+										</div>
+									</li>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
+
 					</c:forEach>
 				</ul>
 
@@ -375,7 +420,7 @@
 		</div>
 		<div class="cwindow_right_area">
 			<div class="exit_btn_area">
-				<button type="button" id="exitBtn">채팅방 퇴장하기</button>
+				<button type="button" id="exitBtn">채팅 퇴장하기</button>
 			</div>
 			<div class="member_info_area">
 				<p>
@@ -387,22 +432,23 @@
 				</c:forEach>
 			</div>
 			<form action="newMemberChat.ct" id="newMember" method="get">
-				<div class="member_info_area2">
-				</div>
-					<input type="hidden" name="roomNo" id="roomNo" value="${roomNo }" />
-					<input type="hidden" name="roomName" id="roomName" value="${roomName }" />
-					<input type="hidden" name="roomCheck" id="roomCheck" value="${roomCheck }" />
-			<c:choose>
-				<c:when test="${roomCheck eq 'adminChat'}">
-				</c:when>
-				<c:when test="${roomCheck eq 'leaderChat'}">
-				</c:when>
-				<c:otherwise>
-					<div class="member_add_area">
-						<button type="button" id="inviteBtn" value="${roomCheck}">팀원 초대</button>
-					</div>
-				</c:otherwise>		
-			</c:choose>
+				<div class="member_info_area2"></div>
+				<input type="hidden" name="roomNo" id="roomNo" value="${roomNo }" />
+				<input type="hidden" name="roomName" id="roomName"
+					value="${roomName }" /> <input type="hidden" name="roomCheck"
+					id="roomCheck" value="${roomCheck }" />
+				<c:choose>
+					<c:when test="${roomCheck eq 'adminChat'}">
+					</c:when>
+					<c:when test="${roomCheck eq 'leaderChat'}">
+					</c:when>
+					<c:otherwise>
+						<div class="member_add_area">
+							<button type="button" id="inviteBtn" value="${roomCheck}">팀원
+								초대</button>
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</form>
 		</div>
 	</div>
