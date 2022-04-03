@@ -163,6 +163,7 @@ public class MemberController {
 		
 		m.setBirthDate(m.getYyyy()+"-"+m.getDd()+"-"+m.getMm());
 		String encPwd = bcryptPasswordEncoder.encode(m.getMemberPwd());
+		
 		m.setMemberPwd(encPwd);
 		
 		int result = memberService.insertMember(m);
@@ -176,6 +177,29 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="updateEnrollForm.me", method=RequestMethod.POST)
+	public ModelAndView insertMember(ModelAndView mv, Member m, HttpSession session) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
+			mv.setViewName("member/enrollForm");
+		} else {
+			session.setAttribute("alertMsg", "비밀번호가 틀립니다.");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("updateGuard.me")
+	public ModelAndView updateGuard(ModelAndView mv, Member m, HttpSession session) {
+		
+		mv.setViewName("member/enrollFormGuard");
+		
+		return mv;
+	}
+	
 	
 	// email 인증
 	@ResponseBody

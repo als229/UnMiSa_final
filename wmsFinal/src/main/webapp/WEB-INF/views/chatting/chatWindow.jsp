@@ -307,6 +307,7 @@
 					<span>참여인원 : ${count }</span><span>명</span>
 				</p>
 				<c:forEach var="m" items="${mlist }">
+					<img src="resources/image/mark/1.jpg" width="20px" height="20px">
 					<span>${m.memberName }</span>
 					<br>
 				</c:forEach>
