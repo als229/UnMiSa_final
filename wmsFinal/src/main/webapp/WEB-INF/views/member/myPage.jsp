@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>마이페이지 메인</title>
-	<link rel="stylesheet" href="resources/css/member/myPage.css?ver=1"/>
+	<link rel="stylesheet" href="resources/css/member/myPage.css?ver=2"/>
 </head>
 
 <body>
@@ -59,46 +59,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="myMark">
-            <table class="table table-bordered ">
-                <thead>
-                    <tr>
-                        <th>
-                            나의 업적
-                        </th>
-                    </tr>
-                </thead>
-                <br>
-                <tbody>
-                    <tr>
-                        <td>
-                            멍멍 왈왈쓰
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            은평구 불빠따쓰
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            멍멍
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            킹호 라이언즈
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            킹호 라이언즈
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
         </div>
         <div class="partner">
             <table class="table table-bordered ">

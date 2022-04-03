@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="resources/css/event/eventMain.css"/>
 	<script src="resources/js/event/eventMain.js"></script>
 </head>
-<body>
+<body style="font-family: 'gmarket_font_medium';">
 	<div id="header_area">
 		<jsp:include page="../common/header.jsp"/>
 	</div>

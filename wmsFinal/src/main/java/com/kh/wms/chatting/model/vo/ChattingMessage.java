@@ -17,6 +17,7 @@ public class ChattingMessage {
 	private String roomName;
 	private String memberName;
 	private String roomCheck;
+	private String markNo;
 	
 	
 }

@@ -16,12 +16,20 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v10.0&appId=699377614579818" nonce="SiOBIhLG"></script>
 <style type="text/css">
 	.choice-list{
-		margin-top:100px;
+		margin-top:50px;
 		width:300px;
 	}
 	.wrap{
-		height:500px;
+		height:300px;
 	}
+	.wrap a:hover{
+	  cursor: pointer;
+		color: rgb(176, 176 ,176);
+	}
+	.mung{
+		color: black;
+	}
+	
 
 </style>
 <title>회원가입 선택</title>
@@ -30,25 +38,24 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="font-family: 'gmarket_font_medium';">
 	<div id="header_area">
 		<jsp:include page="../common/header.jsp"/>
 	</div>
 	<div class="wrap" align="center">
-		<div class="choice-list" align="center">
+		<div class="choice-list" align="center" >
 			<ul class="list-group">
 				<li class="list-group-item">
-					<a href="enroll.me?platForm=1"><span>일반 회원 가입</span></a>
+					<a class="mung" href="enroll.me?platForm=1" style="text-decoration-line: none;">일반 회원 가입</a>
 				</li>
 				<li onclick="kakaoEnroll();" class="list-group-item">
-					<a href="javascript:void(0)"><span>카카오 회원가입</span></a>
-					
+					<a class="mung" href="javascript:void(0)" style="text-decoration-line: none;">카카오 회원가입</a>
 				</li>
 				<li class="list-group-item">
-					<a id="naverIdLogin_loginButton"><span>네이버 회원가입</span></a>
+					<a class="mung" id="naverIdLogin_loginButton" style="text-decoration-line: none;">네이버 회원가입</a>
 				</li>
 				<li class="list-group-item">
-					<a id="facebookIdLogin_btn"><span>페이스북 회원가입</span></a>
+					<a class="mung" id="facebookIdLogin_btn" style="text-decoration-line: none;">페이스북 회원가입</a>
 				</li>
 				
 			</ul>

@@ -485,11 +485,16 @@
 			<div id="m3">
 
 				<div id="profileBorder">
-					<div id="profileName">${ loginUser.memberName }</div>
-					<div id="mark">🥊</div>
+					<div id="profileName"  style="margin-left:38%;">${ loginUser.memberName }</div>
 					<div id="profile">
-						<img src="resources/image/sportsPartner/person.jpg" width="180px"
-							height="156px">
+						<c:choose>
+							<c:when test="${ loginUser.mark ne null }">
+								<img src="resources/image/mark/${ loginUser.mark }.jpg" width="180px" height="156px">
+							</c:when>
+							<c:otherwise>
+								<img src="resources/image/sportsPartner/person.jpg" width="180px" height="156px">
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 

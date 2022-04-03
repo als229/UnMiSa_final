@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="resources/css/markMarket/myPayment.css"/>
 	<script src="resources/js/markMarket/myPayment.js"></script>
 </head>
-<body>
+<body style="font-family: 'gmarket_font_medium';">
 	<div id="header_area">
 		<jsp:include page="../common/header.jsp"/>
 	</div>

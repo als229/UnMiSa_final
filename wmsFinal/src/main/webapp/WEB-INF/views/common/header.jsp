@@ -73,7 +73,20 @@
 
 					<c:otherwise>
 						<!-- 로그인 후 -->
-						<div style="float:right">${loginUser.memberName}님 환영합니다</div>
+						<div style="float:right">
+							<c:choose>
+								<c:when test="${ loginUser.mark ne null }">
+									<img src="resources/image/mark/${ loginUser.mark }.jpg" width="30px" height="30px">
+								</c:when>
+								<c:otherwise>
+									<img src="resources/image/sportsPartner/person.jpg" width="30px" height="30px">
+								</c:otherwise>
+							</c:choose>
+						
+						${loginUser.memberName}
+						님 환영합니다
+						
+						</div>
 						<br>
 						<div style="float:right">
 						 &nbsp;&nbsp; 

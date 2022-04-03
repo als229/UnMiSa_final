@@ -12,19 +12,18 @@
 <title>메인</title>
 <style>
     div{
-    
     }
     
     .wrap{
         width: 1200px;
-        height: 2800px;
+        height:1000px;
     }
     .wrap div{
         float: left;
     }
     .carousel{
         width: 1200px;
-        height: 20%;
+        height: 400px;
     }
     .news-title{
         width: 1200px;
@@ -77,13 +76,12 @@
     }
     .event-title{
         width: 100%;
-        height: 5%;
+        height: 100px;
         
     }
     .event-content{
         width: 100%;
-        height: 20%;
-    	border: 4px solid rgb(229, 242, 248);
+        height: 500px;
     	border-radius:10px;
     }
     .event-picture{
@@ -101,7 +99,6 @@
         padding-top:20px;
         width: 100%;
         height: 20%;
-        border-bottom: 4px solid rgb(229, 242, 248);
         text-align:center;
     }
     .event-minContent{
@@ -128,7 +125,7 @@
     	text-align:center;
     	padding-top:22px;
     	cursor:pointer;
-    	color: skyblue;
+    	color: black;
     }
     #event-content_Btn:hover{
     	background: skyblue;
@@ -140,15 +137,14 @@
   max-width: 1440px;
   position: relative;
   margin: auto;
-  margin-top: 120px;
 }
 
 /* effect */
 .fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
+  -webkit-animation-duration: 5.0s;
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 5.0s;
 }
 
 @-webkit-keyframes fade {
@@ -172,7 +168,7 @@
   color: white;
   font-weight: bold;
   font-size: 18px;
-  transition: 0.6s ease;
+  transition: 0.3s ease;
   border-radius: 0 3px 3px 0;
 }
 
@@ -185,6 +181,10 @@
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
+}
+.mySlideDiv img{
+	width:1200px;
+	height:400px;
 }
 </style>
     <link rel="stylesheet" href="resources/css/member/myPage.css"/>
@@ -199,69 +199,24 @@
     	<div class="carousel">
             <div class="slideshow-container">
 
-		     <div class="mySlideDiv fade active">
-		        <img src="img.jpg"> 
-		     </div>
-		            
-		     <div class="mySlideDiv fade">
-		         <img src="img.jpg"> 
-		     </div>
-		            
-		     <div class="mySlideDiv fade">
-		         <img src="img.jpg"> 
-		     </div>
-		
-		     <a class="prev" onclick="prevSlide()">&#10094;</a>
-		     <a class="next" onclick="nextSlide()">&#10095;</a>
-            
-</div>
-        </div>
-        <!-- 실시간 소식 제목 -->
-        <div class="news-title">
-            <br><br>
-            
-			<h1>&nbsp;&nbsp;우리 동네 최근 소식들</h1>
-        </div>
-        <!-- 실시간 소식 나오는 영역 -->
-        <div class="news-content">
-
-        </div>
-        <!-- 나에게 맞는 운동 추천 -->
-        <div class="recommend-title">
-            <br><br>
-            <h1>&nbsp;&nbsp;나에게 맞는 운동 추천</h1>
-        </div>
-        <!-- 나에게 맞는 운동 전체 영역 -->
-        <div class="recomment-content">
-            <!-- 첫 번째 사진 영역 -->
-            <div class="picture1-area">
-                <div class="pructure1">
-                    
-                </div>
-                <div class="sports-name">
-                    
-                </div>
-            </div>
-            <!-- 두 번째 사진 영역 -->
-            <div class="picture2-area">
-                <div class="pructure2">
-                    
-                </div>
-                <div class="sports-name">
-                    
-                </div>
-                    
-            </div>
-            <!-- 세 번째 사진 영역 -->
-            <div class="picture3-area">
-                <div class="pructure3">
-                    
-                </div>
-                <div class="sports-name">
-                    
-                </div>
-                    
-            </div>
+			     <div class="mySlideDiv fade active">
+			        <img src="resources/image/common/1.jpg"> 
+			     </div>
+			            
+			     <div class="mySlideDiv fade">
+			         <img src="resources/image/common/2.jpg"> 
+			     </div>
+			            
+			     <div class="mySlideDiv fade">
+			         <img src="resources/image/common/3.jpg"> 
+			     </div>
+			     
+			     <div class="mySlideDiv fade">
+			         <img src="resources/image/common/4.jpg"> 
+			     </div>
+			
+	            
+			</div>
         </div>
         <!-- 이벤트 영역 제목 -->
         <div class="event-title">
@@ -365,7 +320,6 @@
                     		
                     	}
 
-                    	</script>
                     	
                     	
                	 	})

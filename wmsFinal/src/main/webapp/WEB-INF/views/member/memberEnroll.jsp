@@ -11,8 +11,34 @@
 <script	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="resources/js/member/member.js"></script>
+<style>
+
+@font-face {
+	font-family: 'gmarket_font_light';
+	font-style: normal;
+	font-weight: 800;
+	src: url('resources/font/GmarketSansTTFLight.ttf')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'gmarket_font_bold';
+	font-style: normal;
+	font-weight: 800;
+	src: url('resources/font/GmarketSansTTFBold.ttf')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'gmarket_font_medium';
+	font-style: normal;
+	font-weight: 800;
+	src: url('resources/font/GmarketSansTTFMedium.ttf')
+		format('truetype');
+}
+</style>
 </head>
-<body>
+<body style="font-family: 'gmarket_font_medium';">
 	<div class="header">
 		<div class="logo_bg">
 			<img src="resources/image/common/WMS2.png" alt="운미사">

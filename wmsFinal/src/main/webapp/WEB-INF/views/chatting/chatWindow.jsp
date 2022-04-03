@@ -427,9 +427,16 @@ ul, li {
 					<span>참여인원 : ${count }</span><span>명</span>
 				</p>
 				<c:forEach var="m" items="${mlist }">
-					<img src="resources/image/mark/1.jpg" width="20px" height="20px">
-					<span>${m.memberName }</span>
-					<br>
+					<c:choose>
+						<c:when test="${ m.markNo ne null }">
+							<img src="resources/image/mark/${ m.markNo }.jpg" width="20px" height="20px">
+						</c:when>
+						<c:otherwise>
+							<img src="resources/image/sportsPartner/person.jpg" width="20px" height="20px">
+						</c:otherwise>
+					</c:choose>
+							<span>${m.memberName }</span>
+							<br>
 				</c:forEach>
 			</div>
 			<form action="newMemberChat.ct" id="newMember" method="get">

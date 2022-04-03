@@ -171,6 +171,8 @@ public class PaymentController {
 			int result = paymentService.selectMark(p);
 			
 			if(result > 0){
+				m.setMark(p.getMarkNo()+"");
+				session.setAttribute("loginUser", m);
 				session.setAttribute("alertMsg", "마크 설정 성공!");
 				mv.addObject("memberNo", memberNo).setViewName("redirect:myPayment.pm");
 			}else {
