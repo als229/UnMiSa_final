@@ -12,19 +12,18 @@
 <title>메인</title>
 <style>
     div{
-    
     }
     
     .wrap{
         width: 1200px;
-        height: 2800px;
+        height:1000px;
     }
     .wrap div{
         float: left;
     }
     .carousel{
         width: 1200px;
-        height: 20%;
+        height: 400px;
     }
     .news-title{
         width: 1200px;
@@ -77,13 +76,12 @@
     }
     .event-title{
         width: 100%;
-        height: 5%;
+        height: 100px;
         
     }
     .event-content{
         width: 100%;
-        height: 20%;
-    	border: 4px solid rgb(229, 242, 248);
+        height: 500px;
     	border-radius:10px;
     }
     .event-picture{
@@ -101,7 +99,6 @@
         padding-top:20px;
         width: 100%;
         height: 20%;
-        border-bottom: 4px solid rgb(229, 242, 248);
         text-align:center;
     }
     .event-minContent{
@@ -128,12 +125,67 @@
     	text-align:center;
     	padding-top:22px;
     	cursor:pointer;
-    	color: skyblue;
+    	color: black;
     }
     #event-content_Btn:hover{
     	background: skyblue;
     	color: steelblue;
     }
+    
+    /* Slideshow container */
+.slideshow-container {
+  max-width: 1440px;
+  position: relative;
+  margin: auto;
+}
+
+/* effect */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 5.0s;
+  animation-name: fade;
+  animation-duration: 5.0s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;	
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.3s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+.mySlideDiv img{
+	width:1200px;
+	height:400px;
+}
 </style>
     <link rel="stylesheet" href="resources/css/member/myPage.css"/>
 </head>
@@ -145,54 +197,26 @@
     <div class="wrap">
         <!-- 케러셀 영역 -->
     	<div class="carousel">
-            
-        </div>
-        <!-- 실시간 소식 제목 -->
-        <div class="news-title">
-            <br><br>
-            
-			<h1>&nbsp;&nbsp;우리 동네 최근 소식들</h1>
-        </div>
-        <!-- 실시간 소식 나오는 영역 -->
-        <div class="news-content">
+            <div class="slideshow-container">
 
-        </div>
-        <!-- 나에게 맞는 운동 추천 -->
-        <div class="recommend-title">
-            <br><br>
-            <h1>&nbsp;&nbsp;나에게 맞는 운동 추천</h1>
-        </div>
-        <!-- 나에게 맞는 운동 전체 영역 -->
-        <div class="recomment-content">
-            <!-- 첫 번째 사진 영역 -->
-            <div class="picture1-area">
-                <div class="pructure1">
-                    
-                </div>
-                <div class="sports-name">
-                    
-                </div>
-            </div>
-            <!-- 두 번째 사진 영역 -->
-            <div class="picture2-area">
-                <div class="pructure2">
-                    
-                </div>
-                <div class="sports-name">
-                    
-                </div>
-                    
-            </div>
-            <!-- 세 번째 사진 영역 -->
-            <div class="picture3-area">
-                <div class="pructure3">
-                    
-                </div>
-                <div class="sports-name">
-                    
-                </div>
-                    
-            </div>
+			     <div class="mySlideDiv fade active">
+			        <img src="resources/image/common/1.jpg"> 
+			     </div>
+			            
+			     <div class="mySlideDiv fade">
+			         <img src="resources/image/common/2.jpg"> 
+			     </div>
+			            
+			     <div class="mySlideDiv fade">
+			         <img src="resources/image/common/3.jpg"> 
+			     </div>
+			     
+			     <div class="mySlideDiv fade">
+			         <img src="resources/image/common/4.jpg"> 
+			     </div>
+			
+	            
+			</div>
         </div>
         <!-- 이벤트 영역 제목 -->
         <div class="event-title">
@@ -226,6 +250,78 @@
                 		$("#event-content_Btn").click(function(){
                     		location.href = "eventMain.ev";
                     	})
+                    	
+                    	$(document).ready(function () {
+                    		$(".mySlideDiv").not(".active").hide(); //화면 로딩 후 첫번째 div를 제외한 나머지 숨김
+                    		
+                    		setInterval(nextSlide, 4000); //4초(4000)마다 다음 슬라이드로 넘어감
+                    	});
+
+                    	//이전 슬라이드
+                    	function prevSlide() {
+                    		$(".mySlideDiv").hide(); //모든 div 숨김
+                    		var allSlide = $(".mySlideDiv"); //모든 div 객체를 변수에 저장
+                    		var currentIndex = 0; //현재 나타난 슬라이드의 인덱스 변수
+                    		
+                    		//반복문으로 현재 active클래스를 가진 div를 찾아 index 저장
+                    		$(".mySlideDiv").each(function(index,item){ 
+                    			if($(this).hasClass("active")) {
+                    				currentIndex = index;
+                    			}
+                    	        
+                    		});
+                    		
+                    		//새롭게 나타낼 div의 index
+                    		var newIndex = 0;
+                    	    
+                    		if(currentIndex <= 0) {
+                    			//현재 슬라이드의 index가 0인 경우 마지막 슬라이드로 보냄(무한반복)
+                    			newIndex = allSlide.length-1;
+                    		} else {
+                    			//현재 슬라이드의 index에서 한 칸 만큼 뒤로 간 index 지정
+                    			newIndex = currentIndex-1;
+                    		}
+
+                    		//모든 div에서 active 클래스 제거
+                    		$(".mySlideDiv").removeClass("active");
+                    	    
+                    		//새롭게 지정한 index번째 슬라이드에 active 클래스 부여 후 show()
+                    		$(".mySlideDiv").eq(newIndex).addClass("active");
+                    		$(".mySlideDiv").eq(newIndex).show();
+
+                    	}
+
+                    	//다음 슬라이드
+                    	function nextSlide() {
+                    		$(".mySlideDiv").hide();
+                    		var allSlide = $(".mySlideDiv");
+                    		var currentIndex = 0;
+                    		
+                    		$(".mySlideDiv").each(function(index,item){
+                    			if($(this).hasClass("active")) {
+                    				currentIndex = index;
+                    			}
+                    	        
+                    		});
+                    		
+                    		var newIndex = 0;
+                    		
+                    		if(currentIndex >= allSlide.length-1) {
+                    			//현재 슬라이드 index가 마지막 순서면 0번째로 보냄(무한반복)
+                    			newIndex = 0;
+                    		} else {
+                    			//현재 슬라이드의 index에서 한 칸 만큼 앞으로 간 index 지정
+                    			newIndex = currentIndex+1;
+                    		}
+
+                    		$(".mySlideDiv").removeClass("active");
+                    		$(".mySlideDiv").eq(newIndex).addClass("active");
+                    		$(".mySlideDiv").eq(newIndex).show();
+                    		
+                    	}
+
+                    	
+                    	
                	 	})
                 </script>
             </div>

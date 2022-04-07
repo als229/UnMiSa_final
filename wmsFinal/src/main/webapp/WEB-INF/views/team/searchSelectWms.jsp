@@ -126,6 +126,7 @@
 	                        <td>${ t.sidoName }  ${t.siGunGuName }</td>
 	                        <td class="team-name-inTable">${ t.teamName }</td>
 	                        <input type="hidden" value="${ t.teamNo }">
+	                        <input type="hidden" value="${ t.sportsName }">
 	                        <td>${ t.createDate }</td>
 	                    </tr>
 					</c:forEach>
@@ -241,8 +242,8 @@
 
         $(function(){
         	$(".team-name-inTable").click(function(){
-        		
-	        	location.href='teamDetail.te?teamNo= ' + $(this).next().val();        	
+        		var memberId = '${loginUser.memberId}';
+	        	location.href='teamDetail.te?teamNo= ' + $(this).next().val() + "&memberId=" + memberId + "&sportsName=" +$(this).next().next().val();;        	
         	
         	})
         })

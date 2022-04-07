@@ -235,7 +235,7 @@ public class SportsPartnerController {
 		if(result > 0) {
 			
 		
-			session.setAttribute("alertMsg", "수고 많으셨습니다!! n 완료");
+			session.setAttribute("alertMsg", "수고하셨습니다! 다음 목표는 더 높게!");
 			mv.setViewName("redirect:sportsPartnerMain.sp");
 			
 			

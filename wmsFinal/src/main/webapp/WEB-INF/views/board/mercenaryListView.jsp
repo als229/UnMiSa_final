@@ -60,10 +60,12 @@
                 <br>
                 <br>
                 </div>
+    	        <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?">전체</a>
              
                 <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?boardSelect=0">구해요</a>
 
     	        <a class="btn btn-secondary" style="background-color: lightblue;border: 1px lightblue;" href="mercenaryList.mbo?boardSelect=1">끼워주세요</a>
+    	        
                 <br>
                 <br>
             <!-- 로그인 상태일 경우만 보여지는 글쓰기 버튼 -->
@@ -85,7 +87,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                 <c:forEach var="b" items="${list }">
+                 <c:forEach var="b" items="${list}">
                     <tr onclick="location.href='mercenaryDetail.mbo?boardNo=${b.boardNo}'">
                         <td>${ b.boardNo } </td>
                         <td>${ b.boardTitle }</td>
@@ -93,9 +95,7 @@
                         <td>${ b.createDate }</td>
                         <td>${ b.count }</td>
                         <td>${ b.location }</td>
-                        	 
-                        	
-                        
+
                     </tr>
                    </c:forEach> 
                 </tbody>

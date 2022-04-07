@@ -7,112 +7,109 @@
 <title>채팅방 개설</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style type="text/css">
- #wrap {
-           padding-top: 150px;
-        }
-        .wrap{
-            margin-left: 20%;
-        }
-        h2 {
-           font-size: 26px;
-           font-weight: 600;
-           padding-bottom: 15px;
-           border-bottom: 2px solid #333333;
-           text-align: left;
-        }
-        
-        /* 선택된 사원 영역 */
-        .added_member_area {
-           min-height: 100px;
-           border: 1px solid #DDD;
-           display: flex;
-           justify-content: center;
-           align-items: center;
-           width: 300px;
-           height: 100px;
-        }
-        
-        .added_member_area >span {
-        }
-        
-        /* 리스트에서 선택된 사원 */
-        .member_select_area li.member_li.selected {
-           color: #ddd;
-        }
-        
-        #create_chat_form {
-           padding: 50px 70px;
-        }
-        
-        #create_chat_form .chat_window_name {
-        }
-        
-        #create_chat_form .chat_window_name > label {
-           display: block;
-           margin-bottom: 10px;
-           font-weight: 800;
-        }
-        
-        #create_chat_form .chat_window_name > input {
-           height: 30px;
-           padding-left: 8px;
-           width: 500px;
-        }
-        
-        #create_chat_form .chat_member_select {
-           margin: 50px auto;
-        }
-        
-        #create_chat_form .chat_member_select >p {
-           font-weight: 800;
-           margin-bottom: 10px;
-        }
-        
-        .added_member_area_message {
-           margin-top: 8px;
-        }
-        
-        .btn_area {
-           text-align: right;
-           clear: both;
-           margin-top: 20%;
-        }
-        
-        .btn_area >button {
-           padding: 10px 30px;   
-            text-decoration: none;
-            background-color: #1A237E;
-            color: white;
-            transition: all 0.2s;
-            border: 1px solid #1A237E;
-            cursor: pointer;
-            position : fixed;
-        }
-        
-        .btn_area >button:hover {
-           color: #1A237E;
-           background-color: white;
-           border: 1px solid #1A237E;
-        }
-        .member_span{
-           width: 100px;
-        }
-        
-        #create_chat_window_btn{
-            position: fixed;
-            top: 80%;
-            left: 84%;
-
-        }
-        #create_chat_cancel_btn{
-            position: fixed;
-            top: 80%;
-            left: 90%;
-        }
+#wrap {
+              padding-top: 150px;
+           }
+           .wrap{
+               margin-left: 10%;
+               width: 1200px;
+           }
+           h2 {
+              font-size: 26px;
+              font-weight: 600;
+              padding-bottom: 15px;
+              border-bottom: 2px solid #333333;
+              text-align: left;
+           }
+           
+           /* 선택된 사원 영역 */
+           .added_member_area {
+              min-height: 100px;
+              border: 1px solid #DDD;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 300px;
+              height: 100px;
+           }
+           
+           /* 리스트에서 선택된 사원 */
+           .member_select_area li.member_li.selected {
+              color: #ddd;
+           }
+           
+           #create_chat_form {
+              padding: 50px 70px;
+           }
+           
+           #create_chat_form .chat_window_name {
+           }
+           
+           #create_chat_form .chat_window_name > label {
+              display: block;
+              margin-bottom: 10px;
+              font-weight: 800;
+           }
+           
+           #create_chat_form .chat_window_name > input {
+              height: 30px;
+              padding-left: 8px;
+              width: 500px;
+           }
+           
+           #create_chat_form .chat_member_select {
+              margin: 50px auto;
+           }
+           
+           #create_chat_form .chat_member_select >p {
+              font-weight: 800;
+              margin-bottom: 10px;
+           }
+           
+           .added_member_area_message {
+              margin-top: 8px;
+           }
+           
+           .btn_area {
+              text-align: right;
+              clear: both;
+           }
+           
+           .btn_area >button {
+              padding: 10px 30px;   
+               text-decoration: none;
+               background-color: #1A237E;
+               color: white;
+               transition: all 0.2s;
+               border: 1px solid #1A237E;
+               cursor: pointer;
+           }
+           
+           .btn_area >button:hover {
+              color: #1A237E;
+              background-color: white;
+              border: 1px solid #1A237E;
+           }
+           .member_span{
+              width: 100px;
+           }
+           
+           #create_chat_window_btn{
+               position: static;
+               top: 80%;
+               left: 84%;
+               margin-right: 0%;
+   
+           }
+           #create_chat_cancel_btn{
+               position: static;
+               top: 80%;
+               left: 90%;
+           }
         </style>    
 
 </head>
-<body>
+<body style="font-family: 'gmarket_font_medium';">
 	<div id="header_area">
 			<jsp:include page="../common/header.jsp"/>
 	</div>
@@ -148,11 +145,13 @@
 				<br>
 			</div>
 			<div>
+				<h5>선택 된 팀원</h5>
 				<div class="added_member_area" style=" float: left; width: 55%; padding:10px;">
 					
 				</div>
 				
 				<div class="btn_area">
+					<br>
 					<button type="button" id="create_chat_window_btn">생성</button>
 					<button type="button" id="create_chat_cancel_btn">취소</button>
 				</div>
@@ -165,8 +164,9 @@
 <script type="text/javascript">
 	$(function(){
 		var members = [];
-		
-		$('#teamName').change(function(){
+		$('#teamNo').change(function(){
+			$('.added_member_area').text("");
+			members = [];
 			$.ajax({
 				url : 'teamMember.ct',
 				data : { teamNo : $('#teamNo').val()},
@@ -196,7 +196,7 @@
 			var memberName = $(this).attr("data-tr-memberName");
 			var memberNo = $(this).attr("data-tr-memberNo");
 			
-			var trAdd = "<span class='member_span' data-span-memberId='"+memberId+"' data-span-memberName='"+memberName+"' data-span-memberNo='"+memberNo+"' >"+memberId+"</span>";
+			var trAdd = "<span class='member_span' data-span-memberId='"+memberId+"' data-span-memberName='"+memberName+"' data-span-memberNo='"+memberNo+"' >"+memberName+"</span>";
 			
 			$('.added_member_area').append(trAdd);
 			members.push(memberNo);
@@ -228,24 +228,39 @@
 		})
 		
 		$("#create_chat_window_btn").on("click", function(){
-			console.log("click");
-			  var json = {
-                      "chatName"      : $('#chatName').val(), 
-                      "members" : members    
-                  };
+			var chatName =  $('#chatName').val();
+			if(chatName == null || chatName==""){
+				alert("채팅방 제목을 입력해주세요.");
+				return;
+			}
+			if(members.length == 0){
+				alert("멤버를 선택하세요.");
+				return;
+			}
+			
+			var json = {
+                    "chatName"      : chatName, 
+                    "members" : members,
+                    "teamNo" : $('#teamNo').val()
+                };
 			$.ajax({
 				url : 'chatRommAdd.ct',
 				dataType : "json",
 				data : json,
 				type : 'get',
 				success : function(result){
-						console.log(result)
-					
+					console.log(result)
+					var roomNo = result[0];
+					var roomName = result[1];
+					var roomCheck = result[2];
+					window.open("chatWindow.ct?roomNo="+roomNo+"&roomName="+roomName+"&roomCheck=" +roomCheck, "채팅창", "width=550 , height=800, resizable=no");
+					location.href="myChat.ct";
 				},
 				error : function(){
 					console.log('조회 실패');
 				}
 			})
+			
 		})
 	})
 	

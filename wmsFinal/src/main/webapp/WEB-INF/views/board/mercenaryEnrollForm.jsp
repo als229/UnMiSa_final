@@ -82,7 +82,7 @@
                         <th><label for="content" style="margin-left: 100px;">내용</label></th>
                         <td><textarea id="content" class="form-control" rows="10" style="resize:none;" name="boardContent" required></textarea></td>
                     </tr>
-                 
+                 	
                 </table>
                 <br>
 

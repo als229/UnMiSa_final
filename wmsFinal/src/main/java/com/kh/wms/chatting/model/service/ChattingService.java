@@ -30,6 +30,10 @@ public interface ChattingService {
 	ArrayList<ChattingMessage> selectMessageList(int roomNo);
 
 	ArrayList<Member> selectRoomMembers(int roomNo);
+
+	int exitChat(ChattingMessage cm);
+
+	int exitRoom(int roomNo);
 	
 
 }

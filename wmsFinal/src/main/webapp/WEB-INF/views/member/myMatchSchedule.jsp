@@ -52,7 +52,7 @@
 
         <div class="side-bar">
             <a href="myPage.me" class="big-menu">마이페이지</a> <br>
-            <a href="">개인 정보 수정</a> <br>
+            <a href="updateMember.me">개인 정보 수정</a> <br>
             <a href="selectmyJoinTeamList.te?memberNo=${ loginUser.memberNo }">내가 가입한 팀 관리</a> <br>
             <a href="selectListCreateTeam.te?memberNo=${ loginUser.memberNo }">내가 만든 팀</a> <br>
             <a href="myPayment.pm">마크 관리</a> <br>

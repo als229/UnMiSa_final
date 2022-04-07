@@ -65,7 +65,7 @@ public class BoardController {
 			
 		if(result > 0) { 
 			session.setAttribute("alertMsg", "게시글 작성 성공");
-			return "redirect:list.bo";
+			return "redirect:nomalList.bo";
 		}else {
 			model.addAttribute("errorMsg","게시글 작성 실패");
 			return null; 
@@ -151,9 +151,18 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value="nomalDelete.bo")
-	public String nomalDelete(int boardNo) {
+	public String nomalDelete(int boardNo,ModelAndView mv,HttpSession session) {
 		
 		int result = boardService.nomalDeleteBoard(boardNo);
+		
+		if(result > 0) {
+			session.setAttribute("alertMsg", "게시글 삭제 성공 ");
+			mv.setViewName("redirect:nomalList.bo"); 
+		}else {
+			session.setAttribute("alertMsg","게시글 삭제 실패.");
+			mv.setViewName("redirect:nomalList.bo");
+		}
+		
 		return "redirect:nomalList.bo";
 	}
 	@ResponseBody
@@ -271,7 +280,7 @@ public class BoardController {
 				
 		int result = boardService.mercenaryUpdateBoard(b);
 		if(result > 0) {
-			session.setAttribute("alertMsg", "게시글 수정에 성공했습니다 ^!^");
+			session.setAttribute("alertMsg", "게시글 수정에 성공했습니다 ");
 			mv.setViewName("redirect:mercenaryDetail.mbo?boardNo=" + b.getBoardNo());
 		}else {
 			session.setAttribute("alertMsg","게시글 수정에 실패했습니다.");
@@ -281,9 +290,17 @@ public class BoardController {
 		return mv;
 		}
 		@RequestMapping(value="mercenaryDelete.mbo")
-		public String mercenaryDelete(int boardNo) {
+		public String mercenaryDelete(int boardNo,HttpSession session,ModelAndView mv) {
 			
 			int result = boardService.mercenaryDeleteBoard(boardNo);
+			if(result > 0) {
+				session.setAttribute("alertMsg", "게시글 삭제 성공 ");
+				mv.setViewName("redirect:mercenaryList.mbo"); 
+			}else {
+				session.setAttribute("alertMsg","게시글 삭제 실패.");
+				mv.setViewName("redirect:mercenaryList.mbo");
+			}
+			
 			return "redirect:mercenaryList.mbo";
 		
 	}

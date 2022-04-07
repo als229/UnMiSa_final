@@ -485,11 +485,16 @@
 			<div id="m3">
 
 				<div id="profileBorder">
-					<div id="profileName">${ loginUser.memberName }</div>
-					<div id="mark">🥊</div>
+					<div id="profileName"  style="margin-left:38%;">${ loginUser.memberName }</div>
 					<div id="profile">
-						<img src="resources/image/sportsPartner/person.jpg" width="180px"
-							height="156px">
+						<c:choose>
+							<c:when test="${ loginUser.mark ne null }">
+								<img src="resources/image/mark/${ loginUser.mark }.jpg" width="180px" height="156px">
+							</c:when>
+							<c:otherwise>
+								<img src="resources/image/sportsPartner/person.jpg" width="180px" height="156px">
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 
@@ -686,19 +691,32 @@
 						var cf = ${ p.currentFat }; // 현재 체지방
 						var pf = ${ p.purposeFat }; // 목표 체지방
 						
-					
-						
 						var gw = bw - pw; // 감량해야될 몸무게
 						var jm = pm - bm; // 증가해야될 근육량
 						var gf = pf - bf; // 감량해야될 체지방
+						
+						var ww = bw - cw; // 감량한 몸무게
+						var mm = cm - bm; // 증가한 근육량
+						var ff = bf - cf; // 감량한 체지방
 
+						
 						if( cw == pw ){
 							
 							$('#weightPercent').width('200px');
 							$('#weightPercent').html('100%');
 							
-						}else{
+						}else if((0 < ww) && (ww <= 10) && (cw != pw)){
+
+							$('#weightPercent').width('130px');
+							$('#weightPercent').html('66%');
 							
+						}else if((0 < ww) && (cw != pw)){
+
+							$('#weightPercent').width('65px');
+							$('#weightPercent').html('33%');
+
+						}else{						
+						
 							$('#weightPercent').width('0px');
 							$('#weightPercent').html('0%');
 							

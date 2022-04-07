@@ -139,19 +139,19 @@ public class PaymentController {
 	
 	// 현빈존
 		@RequestMapping(value="myPayment.pm")
-		public ModelAndView myPayment(@RequestParam(value="cpage", defaultValue="1") int currentPage,int memberNo, ModelAndView mv) {
+		public ModelAndView myPayment(@RequestParam(value="cpage", defaultValue="1") int currentPage, ModelAndView mv, HttpSession session) {
+			
+			Member m = (Member)session.getAttribute("loginUser");
+			
+			int memberNo= m.getMemberNo();
 			
 			int listCount = paymentService.paymentListCount(memberNo);
 			
 			PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 6);
 			
 			ArrayList<Payment> list = paymentService.paymentList(pi,memberNo);
-			
-			
 						
 			mv.addObject("list",list).addObject("pi",pi).setViewName("markMarket/myPaymentList");
-			
-			
 			
 			return mv;
 		}
@@ -171,6 +171,8 @@ public class PaymentController {
 			int result = paymentService.selectMark(p);
 			
 			if(result > 0){
+				m.setMark(p.getMarkNo()+"");
+				session.setAttribute("loginUser", m);
 				session.setAttribute("alertMsg", "마크 설정 성공!");
 				mv.addObject("memberNo", memberNo).setViewName("redirect:myPayment.pm");
 			}else {
