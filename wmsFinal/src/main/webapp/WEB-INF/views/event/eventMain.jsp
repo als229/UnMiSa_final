@@ -69,7 +69,7 @@
                  }
              })  		
              })
-    		 $("input[name=nextMon]").click(function() { // 이전달
+    		 $("input[name=nextMon]").click(function() { // 다음달
     		 attYear = $(".year_mon").text().substring(0,4);
     	     attMonth = $(".year_mon").text().substring($(".year_mon").text().indexOf("년")+1,$(".year_mon").text().indexOf("월"));
     	     $(".date").each(function(index){

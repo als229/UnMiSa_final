@@ -109,7 +109,7 @@
         	margin-left : 150px;
         	margin-top : 20px;
         	width : 520px;
-        	height : 160px;
+        	height : 180px;
         	text-align : center;
         	background-color : rgb(176,176,176);
         	color : white;
@@ -179,7 +179,7 @@
     	}
     	#back{
     		float : left;
-    		margin-top : 35px;
+    		margin-top : 10px;
     		width : 160px;
     		height : 75px;
     		text-align : center;
@@ -218,8 +218,7 @@
 							<div class="diaryBt" id="diaryPicture">
 									
 								<div>
-									<a href="${pageContext.request.contextPath}/${ sd.diaryPhoto }" download="${ sd.diaryPhoto }">${ sd.diaryPhoto }</a>
-									<img src="${pageContext.request.contextPath}/${ sd.diaryPhoto }" width="360" height="110">
+									<img src="${pageContext.request.contextPath}/${ sd.diaryPhoto }" width="180" height="180">
 								</div>
 							</div>
 						</c:when>
